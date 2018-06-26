@@ -8,20 +8,38 @@
 
 /* Begin PBXBuildFile section */
 		BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059D820E262AD00491506 /* AppDelegate.swift */; };
-		BB5059DB20E262AD00491506 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059DA20E262AD00491506 /* ViewController.swift */; };
-		BB5059DE20E262AD00491506 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5059DC20E262AD00491506 /* Main.storyboard */; };
 		BB5059E020E262AE00491506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5059DF20E262AE00491506 /* Assets.xcassets */; };
 		BB5059E320E262AE00491506 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5059E120E262AE00491506 /* LaunchScreen.storyboard */; };
+		BB5059EF20E2657000491506 /* UserSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059EE20E2657000491506 /* UserSelectViewController.swift */; };
+		BB5059F120E2658200491506 /* GuestRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059F020E2658200491506 /* GuestRegisterViewController.swift */; };
+		BB5059F320E2658F00491506 /* GuideRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059F220E2658F00491506 /* GuideRegisterViewController.swift */; };
+		BB5059F520E265A500491506 /* Initial.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5059F420E265A500491506 /* Initial.storyboard */; };
+		BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059F720E2675800491506 /* CALayer+Border.swift */; };
+		BB5059FA20E2677200491506 /* String+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059F920E2677200491506 /* String+Base64.swift */; };
+		BB5059FC20E267B200491506 /* UIViewController+Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059FB20E267B200491506 /* UIViewController+Scene.swift */; };
+		BB5059FF20E267F300491506 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059FE20E267F300491506 /* Constants.swift */; };
+		BB505A0220E26F8500491506 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0120E26F8500491506 /* HttpManager.swift */; };
+		BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0320E26F8D00491506 /* ApiManager.swift */; };
+		BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0620E2703C00491506 /* AccountRequester.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BB5059D520E262AD00491506 /* GuideMatching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuideMatching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5059D820E262AD00491506 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BB5059DA20E262AD00491506 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BB5059DD20E262AD00491506 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB5059DF20E262AE00491506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB5059E220E262AE00491506 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB5059E420E262AE00491506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB5059EE20E2657000491506 /* UserSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectViewController.swift; sourceTree = "<group>"; };
+		BB5059F020E2658200491506 /* GuestRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestRegisterViewController.swift; sourceTree = "<group>"; };
+		BB5059F220E2658F00491506 /* GuideRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterViewController.swift; sourceTree = "<group>"; };
+		BB5059F420E265A500491506 /* Initial.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Initial.storyboard; sourceTree = "<group>"; };
+		BB5059F720E2675800491506 /* CALayer+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Border.swift"; sourceTree = "<group>"; };
+		BB5059F920E2677200491506 /* String+Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Base64.swift"; sourceTree = "<group>"; };
+		BB5059FB20E267B200491506 /* UIViewController+Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Scene.swift"; sourceTree = "<group>"; };
+		BB5059FE20E267F300491506 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BB505A0120E26F8500491506 /* HttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
+		BB505A0320E26F8D00491506 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		BB505A0620E2703C00491506 /* AccountRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRequester.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +72,87 @@
 		BB5059D720E262AD00491506 /* GuideMatching */ = {
 			isa = PBXGroup;
 			children = (
+				BB5059EA20E264C200491506 /* View */,
+				BB5059FD20E267DF00491506 /* System */,
+				BB505A0020E26F7500491506 /* Http */,
+				BB5059F620E2673A00491506 /* Extension */,
+				BB5059EB20E264C600491506 /* Storyboard */,
 				BB5059D820E262AD00491506 /* AppDelegate.swift */,
-				BB5059DA20E262AD00491506 /* ViewController.swift */,
-				BB5059DC20E262AD00491506 /* Main.storyboard */,
 				BB5059DF20E262AE00491506 /* Assets.xcassets */,
 				BB5059E120E262AE00491506 /* LaunchScreen.storyboard */,
 				BB5059E420E262AE00491506 /* Info.plist */,
 			);
 			path = GuideMatching;
+			sourceTree = "<group>";
+		};
+		BB5059EA20E264C200491506 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BB5059EC20E264D400491506 /* Initial */,
+				BB5059ED20E264D900491506 /* Tabbar */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BB5059EB20E264C600491506 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				BB5059F420E265A500491506 /* Initial.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		BB5059EC20E264D400491506 /* Initial */ = {
+			isa = PBXGroup;
+			children = (
+				BB5059EE20E2657000491506 /* UserSelectViewController.swift */,
+				BB5059F020E2658200491506 /* GuestRegisterViewController.swift */,
+				BB5059F220E2658F00491506 /* GuideRegisterViewController.swift */,
+			);
+			path = Initial;
+			sourceTree = "<group>";
+		};
+		BB5059ED20E264D900491506 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		BB5059F620E2673A00491506 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BB5059F720E2675800491506 /* CALayer+Border.swift */,
+				BB5059F920E2677200491506 /* String+Base64.swift */,
+				BB5059FB20E267B200491506 /* UIViewController+Scene.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BB5059FD20E267DF00491506 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				BB5059FE20E267F300491506 /* Constants.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		BB505A0020E26F7500491506 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				BB505A0120E26F8500491506 /* HttpManager.swift */,
+				BB505A0320E26F8D00491506 /* ApiManager.swift */,
+				BB505A0520E2702100491506 /* Requester */,
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		BB505A0520E2702100491506 /* Requester */ = {
+			isa = PBXGroup;
+			children = (
+				BB505A0620E2703C00491506 /* AccountRequester.swift */,
+			);
+			path = Requester;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,9 +213,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB5059F520E265A500491506 /* Initial.storyboard in Resources */,
 				BB5059E320E262AE00491506 /* LaunchScreen.storyboard in Resources */,
 				BB5059E020E262AE00491506 /* Assets.xcassets in Resources */,
-				BB5059DE20E262AD00491506 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,22 +226,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB5059DB20E262AD00491506 /* ViewController.swift in Sources */,
+				BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */,
+				BB5059FA20E2677200491506 /* String+Base64.swift in Sources */,
+				BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */,
+				BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */,
+				BB5059F120E2658200491506 /* GuestRegisterViewController.swift in Sources */,
+				BB505A0220E26F8500491506 /* HttpManager.swift in Sources */,
 				BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */,
+				BB5059F320E2658F00491506 /* GuideRegisterViewController.swift in Sources */,
+				BB5059FC20E267B200491506 /* UIViewController+Scene.swift in Sources */,
+				BB5059EF20E2657000491506 /* UserSelectViewController.swift in Sources */,
+				BB5059FF20E267F300491506 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		BB5059DC20E262AD00491506 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BB5059DD20E262AD00491506 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BB5059E120E262AE00491506 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -282,6 +374,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GuideMatching/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -289,7 +382,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Leapfrog-Inc.GuideMatching";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -299,6 +392,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = GuideMatching/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,7 +400,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Leapfrog-Inc.GuideMatching";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
