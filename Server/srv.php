@@ -6,7 +6,7 @@ require "reserve.php";
 require "message.php";
 require "estimate.php";
 
-$command = $_GET["command"];
+$command = $_POST["command"];
 
 if (strcmp($command, "createGuide") == 0) {
   createGuide();
@@ -87,7 +87,7 @@ function createGuest() {
   $name = $_POST["name"];
   $nationality = $_POST["nationality"];
 
-  $guestId = Guest::createGuest($name, $nationality);
+  $guestId = Guest::create($name, $nationality);
   if (is_null($guestId)) {
     echo(json_encode(Array("result" => "1")));
   } else {
