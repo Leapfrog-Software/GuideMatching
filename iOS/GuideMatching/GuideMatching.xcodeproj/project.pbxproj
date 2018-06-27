@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E94040020E3307600362878 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9403FF20E3307600362878 /* Constants.swift */; };
 		BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059D820E262AD00491506 /* AppDelegate.swift */; };
 		BB5059E020E262AE00491506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5059DF20E262AE00491506 /* Assets.xcassets */; };
 		BB5059E320E262AE00491506 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5059E120E262AE00491506 /* LaunchScreen.storyboard */; };
@@ -17,13 +18,13 @@
 		BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059F720E2675800491506 /* CALayer+Border.swift */; };
 		BB5059FA20E2677200491506 /* String+Base64.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059F920E2677200491506 /* String+Base64.swift */; };
 		BB5059FC20E267B200491506 /* UIViewController+Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059FB20E267B200491506 /* UIViewController+Scene.swift */; };
-		BB5059FF20E267F300491506 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059FE20E267F300491506 /* Constants.swift */; };
 		BB505A0220E26F8500491506 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0120E26F8500491506 /* HttpManager.swift */; };
 		BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0320E26F8D00491506 /* ApiManager.swift */; };
 		BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0620E2703C00491506 /* AccountRequester.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E9403FF20E3307600362878 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BB5059D520E262AD00491506 /* GuideMatching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuideMatching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5059D820E262AD00491506 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB5059DF20E262AE00491506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -36,7 +37,6 @@
 		BB5059F720E2675800491506 /* CALayer+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Border.swift"; sourceTree = "<group>"; };
 		BB5059F920E2677200491506 /* String+Base64.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Base64.swift"; sourceTree = "<group>"; };
 		BB5059FB20E267B200491506 /* UIViewController+Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Scene.swift"; sourceTree = "<group>"; };
-		BB5059FE20E267F300491506 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BB505A0120E26F8500491506 /* HttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		BB505A0320E26F8D00491506 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		BB505A0620E2703C00491506 /* AccountRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRequester.swift; sourceTree = "<group>"; };
@@ -53,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E9403FE20E3306400362878 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				2E9403FF20E3307600362878 /* Constants.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
 		BB5059CC20E262AD00491506 = {
 			isa = PBXGroup;
 			children = (
@@ -73,9 +81,9 @@
 			isa = PBXGroup;
 			children = (
 				BB5059EA20E264C200491506 /* View */,
-				BB5059FD20E267DF00491506 /* System */,
 				BB505A0020E26F7500491506 /* Http */,
 				BB5059F620E2673A00491506 /* Extension */,
+				2E9403FE20E3306400362878 /* System */,
 				BB5059EB20E264C600491506 /* Storyboard */,
 				BB5059D820E262AD00491506 /* AppDelegate.swift */,
 				BB5059DF20E262AE00491506 /* Assets.xcassets */,
@@ -127,14 +135,6 @@
 				BB5059FB20E267B200491506 /* UIViewController+Scene.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		BB5059FD20E267DF00491506 /* System */ = {
-			isa = PBXGroup;
-			children = (
-				BB5059FE20E267F300491506 /* Constants.swift */,
-			);
-			path = System;
 			sourceTree = "<group>";
 		};
 		BB505A0020E26F7500491506 /* Http */ = {
@@ -227,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */,
+				2E94040020E3307600362878 /* Constants.swift in Sources */,
 				BB5059FA20E2677200491506 /* String+Base64.swift in Sources */,
 				BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */,
 				BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */,
@@ -236,7 +237,6 @@
 				BB5059F320E2658F00491506 /* GuideRegisterViewController.swift in Sources */,
 				BB5059FC20E267B200491506 /* UIViewController+Scene.swift in Sources */,
 				BB5059EF20E2657000491506 /* UserSelectViewController.swift in Sources */,
-				BB5059FF20E267F300491506 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
