@@ -12,6 +12,12 @@
 		2E94040420E3508700362878 /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040320E3508700362878 /* SaveData.swift */; };
 		2E94040720E3528800362878 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040620E3528800362878 /* TabbarViewController.swift */; };
 		2E94040920E3562200362878 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040820E3562200362878 /* UIImage+Resize.swift */; };
+		2E94040B20E36AD600362878 /* Common.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E94040A20E36AD600362878 /* Common.storyboard */; };
+		2E94041120E36B7600362878 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94041020E36B7600362878 /* PickerViewController.swift */; };
+		2E94041320E36B8400362878 /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94041220E36B8400362878 /* PickerTableViewCell.swift */; };
+		2E94041620E370BD00362878 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94041520E370BD00362878 /* PlaceholderTextView.swift */; };
+		2E94041820E370CD00362878 /* PlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94041720E370CD00362878 /* PlaceholderTextField.swift */; };
+		2E94041A20E3711300362878 /* UIColor+Original.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94041920E3711300362878 /* UIColor+Original.swift */; };
 		BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059D820E262AD00491506 /* AppDelegate.swift */; };
 		BB5059E020E262AE00491506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5059DF20E262AE00491506 /* Assets.xcassets */; };
 		BB5059E320E262AE00491506 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5059E120E262AE00491506 /* LaunchScreen.storyboard */; };
@@ -33,6 +39,12 @@
 		2E94040320E3508700362878 /* SaveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
 		2E94040620E3528800362878 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		2E94040820E3562200362878 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		2E94040A20E36AD600362878 /* Common.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Common.storyboard; sourceTree = "<group>"; };
+		2E94041020E36B7600362878 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		2E94041220E36B8400362878 /* PickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
+		2E94041520E370BD00362878 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
+		2E94041720E370CD00362878 /* PlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextField.swift; sourceTree = "<group>"; };
+		2E94041920E3711300362878 /* UIColor+Original.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Original.swift"; sourceTree = "<group>"; };
 		BB5059D520E262AD00491506 /* GuideMatching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuideMatching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5059D820E262AD00491506 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB5059DF20E262AE00491506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +90,33 @@
 			path = Tabbar;
 			sourceTree = "<group>";
 		};
+		2E94040C20E36B5100362878 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2E94041420E370A700362878 /* Placeholder */,
+				2E94040F20E36B6600362878 /* Picker */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2E94040F20E36B6600362878 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				2E94041020E36B7600362878 /* PickerViewController.swift */,
+				2E94041220E36B8400362878 /* PickerTableViewCell.swift */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
+		2E94041420E370A700362878 /* Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				2E94041520E370BD00362878 /* PlaceholderTextView.swift */,
+				2E94041720E370CD00362878 /* PlaceholderTextField.swift */,
+			);
+			path = Placeholder;
+			sourceTree = "<group>";
+		};
 		BB5059CC20E262AD00491506 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +154,7 @@
 			children = (
 				BB5059EC20E264D400491506 /* Initial */,
 				2E94040520E3527600362878 /* Tabbar */,
+				2E94040C20E36B5100362878 /* Common */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -123,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				BB5059F420E265A500491506 /* Initial.storyboard */,
+				2E94040A20E36AD600362878 /* Common.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -144,6 +185,7 @@
 				BB5059F920E2677200491506 /* String+Base64.swift */,
 				BB5059FB20E267B200491506 /* UIViewController+Scene.swift */,
 				2E94040820E3562200362878 /* UIImage+Resize.swift */,
+				2E94041920E3711300362878 /* UIColor+Original.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -226,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB5059F520E265A500491506 /* Initial.storyboard in Resources */,
+				2E94040B20E36AD600362878 /* Common.storyboard in Resources */,
 				BB5059E320E262AE00491506 /* LaunchScreen.storyboard in Resources */,
 				BB5059E020E262AE00491506 /* Assets.xcassets in Resources */,
 			);
@@ -238,16 +281,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E94041320E36B8400362878 /* PickerTableViewCell.swift in Sources */,
 				BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */,
 				2E94040020E3307600362878 /* Constants.swift in Sources */,
+				2E94041620E370BD00362878 /* PlaceholderTextView.swift in Sources */,
+				2E94041120E36B7600362878 /* PickerViewController.swift in Sources */,
 				2E94040720E3528800362878 /* TabbarViewController.swift in Sources */,
 				2E94040420E3508700362878 /* SaveData.swift in Sources */,
 				BB5059FA20E2677200491506 /* String+Base64.swift in Sources */,
 				BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */,
 				BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */,
+				2E94041820E370CD00362878 /* PlaceholderTextField.swift in Sources */,
 				2E94040220E3458F00362878 /* ImageUploader.swift in Sources */,
 				2E94040920E3562200362878 /* UIImage+Resize.swift in Sources */,
 				BB5059F120E2658200491506 /* GuestRegisterViewController.swift in Sources */,
+				2E94041A20E3711300362878 /* UIColor+Original.swift in Sources */,
 				BB505A0220E26F8500491506 /* HttpManager.swift in Sources */,
 				BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */,
 				BB5059F320E2658F00491506 /* GuideRegisterViewController.swift in Sources */,

@@ -12,11 +12,11 @@ class UserSelectViewController: UIViewController {
 
     @IBAction func onTapGuest(_ sender: Any) {
         let guestRegisterViewController = self.viewController(storyboard: "Initial", identifier: "GuestRegisterViewController") as! GuestRegisterViewController
-        self.stack(viewController: guestRegisterViewController, animationType: .horizontal)
+        self.stack(viewController: guestRegisterViewController, animationType: .vertical)
     }
     
     @IBAction func onTapGuide(_ sender: Any) {
         let guideRegisterViewController = self.viewController(storyboard: "Initial", identifier: "GuideRegisterViewController") as! GuideRegisterViewController
-        self.stack(viewController: guideRegisterViewController, animationType: .horizontal)
+        self.stack(viewController: guideRegisterViewController, animationType: .vertical)
     }
 }

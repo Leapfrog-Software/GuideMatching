@@ -34,7 +34,7 @@ class GuestRegisterViewController: UIViewController {
     private func uploadImage(type: ImageType, completion: @escaping ((Bool) -> ())) {
         
         let image: UIImage?
-        var params: [String: String] = ["command": "uploadImage"]
+        var params: [String: String] = ["command": "uploadGuestImage"]
         
         switch type {
         case .face1:
@@ -61,8 +61,12 @@ class GuestRegisterViewController: UIViewController {
     }
     
     private func stackTabbar() {
-        let tabbar = self.viewController(storyboard: "Initial", identifier: "TabbarViewController") as! TabbarViewController
-        self.stack(viewController: tabbar, animationType: .none)
+        if let userSelectViewController = self.parent {
+            let tabbar = self.viewController(storyboard: "Initial", identifier: "TabbarViewController") as! TabbarViewController
+            userSelectViewController.stack(viewController: tabbar, animationType: .none)
+            userSelectViewController.view.bringSubview(toFront: self.view)
+            self.pop(animationType: .vertical)
+        }
     }
     
     private func showError(message: String) {
@@ -139,6 +143,10 @@ class GuestRegisterViewController: UIViewController {
             })
         })
     }
+    
+    @IBAction func onTapClose(_ sender: Any) {
+        self.pop(animationType: .vertical)
+    }
 }
 
 extension GuestRegisterViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -157,7 +165,7 @@ extension GuestRegisterViewController: UIImagePickerControllerDelegate, UINaviga
         
         if let rawImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
-            let image = self.resizeImage(image: rawImage)
+            let image = rawImage.toFaceImage()
             
             guard let pickerTarget = self.pickerTarget else {
                 return
@@ -178,23 +186,5 @@ extension GuestRegisterViewController: UIImagePickerControllerDelegate, UINaviga
             }
         }
         picker.dismiss(animated: true, completion: nil)
-    }
-    
-    private func resizeImage(image: UIImage) -> UIImage? {
-        
-        let trimmedImage: UIImage?
-        
-        if image.size.width < image.size.height {
-            trimmedImage = image.trim(rect: CGRect(x: 0,
-                                                   y: (image.size.height - image.size.width) / 2,
-                                                   width: image.size.width,
-                                                   height: image.size.width))
-        } else {
-            trimmedImage = image.trim(rect: CGRect(x: (image.size.width - image.size.height) / 2,
-                                                   y: 0,
-                                                   width: image.size.height,
-                                                   height: image.size.height))
-        }
-        return trimmedImage?.resize(size: CGSize(width: 400, height: 400))
     }
 }
