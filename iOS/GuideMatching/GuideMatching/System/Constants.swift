@@ -14,4 +14,8 @@ class Constants {
     static let ServerApiUrl = Constants.ServerRootUrl + "srv.php"
     static let StringEncoding = String.Encoding.utf8
     static let HttpTimeOutInterval = TimeInterval(10)
+    
+    struct UserDefaultsKey {
+        static let GuestId = "GuestId"
+    }
 }

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2E94040020E3307600362878 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9403FF20E3307600362878 /* Constants.swift */; };
+		2E94040220E3458F00362878 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040120E3458F00362878 /* ImageUploader.swift */; };
+		2E94040420E3508700362878 /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040320E3508700362878 /* SaveData.swift */; };
+		2E94040720E3528800362878 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040620E3528800362878 /* TabbarViewController.swift */; };
+		2E94040920E3562200362878 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040820E3562200362878 /* UIImage+Resize.swift */; };
 		BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059D820E262AD00491506 /* AppDelegate.swift */; };
 		BB5059E020E262AE00491506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5059DF20E262AE00491506 /* Assets.xcassets */; };
 		BB5059E320E262AE00491506 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5059E120E262AE00491506 /* LaunchScreen.storyboard */; };
@@ -25,6 +29,10 @@
 
 /* Begin PBXFileReference section */
 		2E9403FF20E3307600362878 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2E94040120E3458F00362878 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
+		2E94040320E3508700362878 /* SaveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
+		2E94040620E3528800362878 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		2E94040820E3562200362878 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		BB5059D520E262AD00491506 /* GuideMatching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuideMatching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5059D820E262AD00491506 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB5059DF20E262AE00491506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,9 +64,18 @@
 		2E9403FE20E3306400362878 /* System */ = {
 			isa = PBXGroup;
 			children = (
+				2E94040320E3508700362878 /* SaveData.swift */,
 				2E9403FF20E3307600362878 /* Constants.swift */,
 			);
 			path = System;
+			sourceTree = "<group>";
+		};
+		2E94040520E3527600362878 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				2E94040620E3528800362878 /* TabbarViewController.swift */,
+			);
+			path = Tabbar;
 			sourceTree = "<group>";
 		};
 		BB5059CC20E262AD00491506 = {
@@ -97,7 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				BB5059EC20E264D400491506 /* Initial */,
-				BB5059ED20E264D900491506 /* Tabbar */,
+				2E94040520E3527600362878 /* Tabbar */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -120,19 +137,13 @@
 			path = Initial;
 			sourceTree = "<group>";
 		};
-		BB5059ED20E264D900491506 /* Tabbar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tabbar;
-			sourceTree = "<group>";
-		};
 		BB5059F620E2673A00491506 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				BB5059F720E2675800491506 /* CALayer+Border.swift */,
 				BB5059F920E2677200491506 /* String+Base64.swift */,
 				BB5059FB20E267B200491506 /* UIViewController+Scene.swift */,
+				2E94040820E3562200362878 /* UIImage+Resize.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -143,6 +154,7 @@
 				BB505A0120E26F8500491506 /* HttpManager.swift */,
 				BB505A0320E26F8D00491506 /* ApiManager.swift */,
 				BB505A0520E2702100491506 /* Requester */,
+				2E94040120E3458F00362878 /* ImageUploader.swift */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -228,9 +240,13 @@
 			files = (
 				BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */,
 				2E94040020E3307600362878 /* Constants.swift in Sources */,
+				2E94040720E3528800362878 /* TabbarViewController.swift in Sources */,
+				2E94040420E3508700362878 /* SaveData.swift in Sources */,
 				BB5059FA20E2677200491506 /* String+Base64.swift in Sources */,
 				BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */,
 				BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */,
+				2E94040220E3458F00362878 /* ImageUploader.swift in Sources */,
+				2E94040920E3562200362878 /* UIImage+Resize.swift in Sources */,
 				BB5059F120E2658200491506 /* GuestRegisterViewController.swift in Sources */,
 				BB505A0220E26F8500491506 /* HttpManager.swift in Sources */,
 				BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */,
