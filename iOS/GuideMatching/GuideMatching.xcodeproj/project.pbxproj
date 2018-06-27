@@ -18,6 +18,20 @@
 		2E94041620E370BD00362878 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94041520E370BD00362878 /* PlaceholderTextView.swift */; };
 		2E94041820E370CD00362878 /* PlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94041720E370CD00362878 /* PlaceholderTextField.swift */; };
 		2E94041A20E3711300362878 /* UIColor+Original.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94041920E3711300362878 /* UIColor+Original.swift */; };
+		2E94041C20E3746A00362878 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94041B20E3746A00362878 /* SplashViewController.swift */; };
+		2E94041E20E3767D00362878 /* GuideRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94041D20E3767D00362878 /* GuideRequester.swift */; };
+		2E94042120E37BF500362878 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94042020E37BF500362878 /* GuideViewController.swift */; };
+		2E94042420E37C0B00362878 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94042320E37C0B00362878 /* SearchViewController.swift */; };
+		2E94042720E37C2600362878 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94042620E37C2600362878 /* MessageViewController.swift */; };
+		2E94042A20E37C3700362878 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94042920E37C3700362878 /* MyPageViewController.swift */; };
+		2E94042C20E37D5F00362878 /* Guide.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E94042B20E37D5F00362878 /* Guide.storyboard */; };
+		2E94042E20E37D6900362878 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E94042D20E37D6900362878 /* Search.storyboard */; };
+		2E94043020E37D7200362878 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E94042F20E37D7200362878 /* Message.storyboard */; };
+		2E94043220E37D7A00362878 /* MyPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E94043120E37D7A00362878 /* MyPage.storyboard */; };
+		2E94043420E37F3B00362878 /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94043320E37F3B00362878 /* GuideTableViewCell.swift */; };
+		2E94043620E3811100362878 /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94043520E3811100362878 /* ImageStorage.swift */; };
+		2E94043820E3857A00362878 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94043720E3857A00362878 /* CommonUtility.swift */; };
+		2E94043A20E386A200362878 /* EstimateRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94043920E386A200362878 /* EstimateRequester.swift */; };
 		BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059D820E262AD00491506 /* AppDelegate.swift */; };
 		BB5059E020E262AE00491506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5059DF20E262AE00491506 /* Assets.xcassets */; };
 		BB5059E320E262AE00491506 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5059E120E262AE00491506 /* LaunchScreen.storyboard */; };
@@ -45,6 +59,20 @@
 		2E94041520E370BD00362878 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		2E94041720E370CD00362878 /* PlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextField.swift; sourceTree = "<group>"; };
 		2E94041920E3711300362878 /* UIColor+Original.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Original.swift"; sourceTree = "<group>"; };
+		2E94041B20E3746A00362878 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		2E94041D20E3767D00362878 /* GuideRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRequester.swift; sourceTree = "<group>"; };
+		2E94042020E37BF500362878 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		2E94042320E37C0B00362878 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		2E94042620E37C2600362878 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		2E94042920E37C3700362878 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		2E94042B20E37D5F00362878 /* Guide.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Guide.storyboard; sourceTree = "<group>"; };
+		2E94042D20E37D6900362878 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		2E94042F20E37D7200362878 /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
+		2E94043120E37D7A00362878 /* MyPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPage.storyboard; sourceTree = "<group>"; };
+		2E94043320E37F3B00362878 /* GuideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
+		2E94043520E3811100362878 /* ImageStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStorage.swift; sourceTree = "<group>"; };
+		2E94043720E3857A00362878 /* CommonUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtility.swift; sourceTree = "<group>"; };
+		2E94043920E386A200362878 /* EstimateRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateRequester.swift; sourceTree = "<group>"; };
 		BB5059D520E262AD00491506 /* GuideMatching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuideMatching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5059D820E262AD00491506 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB5059DF20E262AE00491506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +106,8 @@
 			children = (
 				2E94040320E3508700362878 /* SaveData.swift */,
 				2E9403FF20E3307600362878 /* Constants.swift */,
+				2E94043520E3811100362878 /* ImageStorage.swift */,
+				2E94043720E3857A00362878 /* CommonUtility.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -117,6 +147,39 @@
 			path = Placeholder;
 			sourceTree = "<group>";
 		};
+		2E94041F20E37BE500362878 /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				2E94042020E37BF500362878 /* GuideViewController.swift */,
+				2E94043320E37F3B00362878 /* GuideTableViewCell.swift */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
+		2E94042220E37BFA00362878 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				2E94042320E37C0B00362878 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		2E94042520E37C1600362878 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				2E94042620E37C2600362878 /* MessageViewController.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		2E94042820E37C2900362878 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				2E94042920E37C3700362878 /* MyPageViewController.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
 		BB5059CC20E262AD00491506 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +217,10 @@
 			children = (
 				BB5059EC20E264D400491506 /* Initial */,
 				2E94040520E3527600362878 /* Tabbar */,
+				2E94041F20E37BE500362878 /* Guide */,
+				2E94042220E37BFA00362878 /* Search */,
+				2E94042520E37C1600362878 /* Message */,
+				2E94042820E37C2900362878 /* MyPage */,
 				2E94040C20E36B5100362878 /* Common */,
 			);
 			path = View;
@@ -163,6 +230,10 @@
 			isa = PBXGroup;
 			children = (
 				BB5059F420E265A500491506 /* Initial.storyboard */,
+				2E94042B20E37D5F00362878 /* Guide.storyboard */,
+				2E94042D20E37D6900362878 /* Search.storyboard */,
+				2E94042F20E37D7200362878 /* Message.storyboard */,
+				2E94043120E37D7A00362878 /* MyPage.storyboard */,
 				2E94040A20E36AD600362878 /* Common.storyboard */,
 			);
 			path = Storyboard;
@@ -171,6 +242,7 @@
 		BB5059EC20E264D400491506 /* Initial */ = {
 			isa = PBXGroup;
 			children = (
+				2E94041B20E3746A00362878 /* SplashViewController.swift */,
 				BB5059EE20E2657000491506 /* UserSelectViewController.swift */,
 				BB5059F020E2658200491506 /* GuestRegisterViewController.swift */,
 				BB5059F220E2658F00491506 /* GuideRegisterViewController.swift */,
@@ -205,6 +277,8 @@
 			isa = PBXGroup;
 			children = (
 				BB505A0620E2703C00491506 /* AccountRequester.swift */,
+				2E94041D20E3767D00362878 /* GuideRequester.swift */,
+				2E94043920E386A200362878 /* EstimateRequester.swift */,
 			);
 			path = Requester;
 			sourceTree = "<group>";
@@ -267,10 +341,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E94042C20E37D5F00362878 /* Guide.storyboard in Resources */,
 				BB5059F520E265A500491506 /* Initial.storyboard in Resources */,
 				2E94040B20E36AD600362878 /* Common.storyboard in Resources */,
+				2E94043220E37D7A00362878 /* MyPage.storyboard in Resources */,
 				BB5059E320E262AE00491506 /* LaunchScreen.storyboard in Resources */,
+				2E94042E20E37D6900362878 /* Search.storyboard in Resources */,
 				BB5059E020E262AE00491506 /* Assets.xcassets in Resources */,
+				2E94043020E37D7200362878 /* Message.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,25 +360,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E94041320E36B8400362878 /* PickerTableViewCell.swift in Sources */,
+				2E94043820E3857A00362878 /* CommonUtility.swift in Sources */,
+				2E94043620E3811100362878 /* ImageStorage.swift in Sources */,
 				BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */,
 				2E94040020E3307600362878 /* Constants.swift in Sources */,
 				2E94041620E370BD00362878 /* PlaceholderTextView.swift in Sources */,
 				2E94041120E36B7600362878 /* PickerViewController.swift in Sources */,
+				2E94042120E37BF500362878 /* GuideViewController.swift in Sources */,
 				2E94040720E3528800362878 /* TabbarViewController.swift in Sources */,
+				2E94042A20E37C3700362878 /* MyPageViewController.swift in Sources */,
 				2E94040420E3508700362878 /* SaveData.swift in Sources */,
 				BB5059FA20E2677200491506 /* String+Base64.swift in Sources */,
+				2E94042720E37C2600362878 /* MessageViewController.swift in Sources */,
 				BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */,
 				BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */,
 				2E94041820E370CD00362878 /* PlaceholderTextField.swift in Sources */,
+				2E94043A20E386A200362878 /* EstimateRequester.swift in Sources */,
 				2E94040220E3458F00362878 /* ImageUploader.swift in Sources */,
+				2E94041C20E3746A00362878 /* SplashViewController.swift in Sources */,
 				2E94040920E3562200362878 /* UIImage+Resize.swift in Sources */,
 				BB5059F120E2658200491506 /* GuestRegisterViewController.swift in Sources */,
+				2E94041E20E3767D00362878 /* GuideRequester.swift in Sources */,
 				2E94041A20E3711300362878 /* UIColor+Original.swift in Sources */,
+				2E94042420E37C0B00362878 /* SearchViewController.swift in Sources */,
 				BB505A0220E26F8500491506 /* HttpManager.swift in Sources */,
 				BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */,
 				BB5059F320E2658F00491506 /* GuideRegisterViewController.swift in Sources */,
 				BB5059FC20E267B200491506 /* UIViewController+Scene.swift in Sources */,
 				BB5059EF20E2657000491506 /* UserSelectViewController.swift in Sources */,
+				2E94043420E37F3B00362878 /* GuideTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

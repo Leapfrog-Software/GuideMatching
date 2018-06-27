@@ -50,4 +50,14 @@ class AccountRequester {
             }
         }
     }
+    
+    class func login() {
+        
+        let params = [
+            "command": "login",
+            "guideId": SaveData.shared.guideId,
+            "guestId": SaveData.shared.guestId
+        ]
+        ApiManager.post(params: params, completion: { _, _ in })
+    }
 }
