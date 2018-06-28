@@ -10,6 +10,7 @@ import UIKit
 
 class GuideDetailViewController: UIViewController {
     
+    @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var imageScrollView: UIScrollView!
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var categoryLabel: UILabel!
@@ -30,6 +31,8 @@ class GuideDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.nameLabel.text = self.guideData.name
         
         let windowWidth = UIApplication.shared.keyWindow?.frame.size.width ?? 0
         for i in 0..<3 {
@@ -75,7 +78,7 @@ class GuideDetailViewController: UIViewController {
 
     @IBAction func onTapInquiry(_ sender: Any) {
         let messageDetail = self.viewController(storyboard: "Message", identifier: "MessageDetailViewController") as! MessageDetailViewController
-        messageDetail.set(guideData: self.guideData)
+        messageDetail.set(targetUserId: self.guideData.id)
         self.stack(viewController: messageDetail, animationType: .horizontal)
     }
     

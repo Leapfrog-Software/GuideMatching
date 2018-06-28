@@ -9,16 +9,18 @@
 import UIKit
 
 class MessageTableViewCell: UITableViewCell {
+    
+    @IBOutlet private weak var faceImageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var messageLabel: UILabel!
+    @IBOutlet private weak var loginLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func configure(guideData: GuideData) {
+        
+        ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + guideData.id + "-0", imageView: self.faceImageView)
+        
+        self.nameLabel.text = guideData.name
+        self.messageLabel.text = guideData.message
+        self.loginLabel.text = DateFormatter(dateFormat: "MM/dd").string(from: guideData.loginDate)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

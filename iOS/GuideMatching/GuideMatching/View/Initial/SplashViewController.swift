@@ -12,6 +12,8 @@ class SplashViewController: UIViewController {
 
     enum ResultKey: String {
         case guide = "Guide"
+        case guest = "Guest"
+        case message = "Message"
         case estimate = "Estimate"
     }
     
@@ -31,6 +33,19 @@ class SplashViewController: UIViewController {
                 self?.checkResult()
             })
         }
+        if self.results[.guest] != true {
+            GuestRequester.shared.fetch(completion: { [weak self] result in
+                self?.results[.guest] = result
+                self?.checkResult()
+            })
+        }
+        
+        if self.results[.message] != true {
+            MessageRequester.shared.fetch(completion: { [weak self] result in
+                self?.results[.message] = result
+                self?.checkResult()
+            })
+        }
         if self.results[.estimate] != true {
             EstimateRequester.shared.fetch(completion: { [weak self] result in
                 self?.results[.estimate] = result
@@ -41,7 +56,7 @@ class SplashViewController: UIViewController {
     
     private func checkResult() {
         
-        let keys: [ResultKey] = [.guide, .estimate]
+        let keys: [ResultKey] = [.guide, .estimate, .guest, .message]
         let results = keys.map { self.results[$0] }
         if results.contains(where: { $0 == nil }) {
             return

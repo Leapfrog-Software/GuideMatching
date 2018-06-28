@@ -814,6 +814,7 @@
                         <outlet property="imageScrollView" destination="JKH-Kg-woW" id="6Tu-Ap-cWT"/>
                         <outlet property="languageLabel" destination="wp2-RU-vKa" id="1XI-EN-sxL"/>
                         <outlet property="messageLabel" destination="7yd-Kc-ePs" id="D49-Yy-6OP"/>
+                        <outlet property="nameLabel" destination="PEd-OU-Lc9" id="UFb-iE-tlu"/>
                         <outlet property="notesLabel" destination="07U-Y3-lSL" id="ERm-XO-EKL"/>
                         <outlet property="priceLabel" destination="rT3-eE-4SR" id="BSr-1E-ptx"/>
                         <outlet property="scoreLabel" destination="PKv-UJ-U8n" id="Sjg-tK-7Tl"/>
