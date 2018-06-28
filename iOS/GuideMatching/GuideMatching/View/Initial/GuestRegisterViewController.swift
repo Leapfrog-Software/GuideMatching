@@ -61,11 +61,11 @@ class GuestRegisterViewController: UIViewController {
     }
     
     private func stackTabbar() {
-        if let userSelectViewController = self.parent {
+        if let splashViewController = self.parent?.parent {
             let tabbar = self.viewController(storyboard: "Initial", identifier: "TabbarViewController") as! TabbarViewController
-            userSelectViewController.stack(viewController: tabbar, animationType: .none)
-            userSelectViewController.view.bringSubview(toFront: self.view)
-            self.pop(animationType: .vertical)
+            splashViewController.stack(viewController: tabbar, animationType: .none)
+            splashViewController.view.bringSubview(toFront: self.view)
+            self.parent?.pop(animationType: .vertical)
         }
     }
     

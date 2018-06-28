@@ -65,7 +65,9 @@ class SplashViewController: UIViewController {
     
     private func showError() {
         let alert = UIAlertController(title: "Error", message: "Failed to communicate", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { [weak self] _ in
+            self?.fetch()
+        }))
         self.present(alert, animated: true, completion: nil)
     }
     

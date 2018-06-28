@@ -1318,7 +1318,7 @@ Sun. 13:00 - 18:00</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5SS-12-Qj0">
-                                <rect key="frame" x="0.0" y="20" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Hm-J9-HUh">
@@ -1467,7 +1467,6 @@ Sun. 13:00 - 18:00</string>
                         <constraints>
                             <constraint firstItem="dJS-e5-HBG" firstAttribute="leading" secondItem="Ik4-th-fFl" secondAttribute="leading" id="0cb-9y-6Lb"/>
                             <constraint firstItem="Ik4-th-fFl" firstAttribute="trailing" secondItem="5SS-12-Qj0" secondAttribute="trailing" id="8US-VS-uT2"/>
-                            <constraint firstItem="5SS-12-Qj0" firstAttribute="top" secondItem="Ik4-th-fFl" secondAttribute="top" id="JZg-qq-Xhr"/>
                             <constraint firstItem="9Hm-J9-HUh" firstAttribute="leading" secondItem="Ik4-th-fFl" secondAttribute="leading" id="Ldw-3d-aOc"/>
                             <constraint firstItem="5SS-12-Qj0" firstAttribute="leading" secondItem="Ik4-th-fFl" secondAttribute="leading" id="ZX9-2c-HmS"/>
                             <constraint firstItem="dJS-e5-HBG" firstAttribute="top" secondItem="9Hm-J9-HUh" secondAttribute="bottom" id="dbk-E8-54v"/>
@@ -1476,6 +1475,7 @@ Sun. 13:00 - 18:00</string>
                             <constraint firstItem="Ik4-th-fFl" firstAttribute="bottom" secondItem="9Hm-J9-HUh" secondAttribute="bottom" id="k18-Ig-OMO"/>
                             <constraint firstItem="9Hm-J9-HUh" firstAttribute="top" secondItem="5SS-12-Qj0" secondAttribute="bottom" id="lVq-C0-FfR"/>
                             <constraint firstAttribute="bottom" secondItem="dJS-e5-HBG" secondAttribute="bottom" id="pEy-LX-U52"/>
+                            <constraint firstItem="5SS-12-Qj0" firstAttribute="top" secondItem="kul-gX-gW3" secondAttribute="top" id="pqA-mt-5qc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ik4-th-fFl"/>
                     </view>

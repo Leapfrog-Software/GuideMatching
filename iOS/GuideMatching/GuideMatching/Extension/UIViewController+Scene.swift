@@ -74,4 +74,8 @@ extension UIViewController {
         self.view.removeFromSuperview()
         self.removeFromParentViewController()
     }
+    
+    func tabbarViewController() -> TabbarViewController? {
+        return UIApplication.shared.keyWindow?.rootViewController?.childViewControllers.compactMap { $0 as? TabbarViewController }.first
+    }
 }

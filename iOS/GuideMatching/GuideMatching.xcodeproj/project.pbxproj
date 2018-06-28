@@ -45,6 +45,17 @@
 		BB505A0220E26F8500491506 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0120E26F8500491506 /* HttpManager.swift */; };
 		BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0320E26F8D00491506 /* ApiManager.swift */; };
 		BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0620E2703C00491506 /* AccountRequester.swift */; };
+		BBFEBB1320E4C33400C9F01C /* GuideDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1220E4C33400C9F01C /* GuideDetailViewController.swift */; };
+		BBFEBB1520E4D60D00C9F01C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */; };
+		BBFEBB1820E4D6FE00C9F01C /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1720E4D6FE00C9F01C /* MessageDetailViewController.swift */; };
+		BBFEBB1A20E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1920E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift */; };
+		BBFEBB1C20E4D72000C9F01C /* MessageDetailRightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1B20E4D72000C9F01C /* MessageDetailRightTableViewCell.swift */; };
+		BBFEBB1E20E4DD1400C9F01C /* MyPageReservationTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1D20E4DD1400C9F01C /* MyPageReservationTitleTableViewCell.swift */; };
+		BBFEBB2020E4DD3600C9F01C /* MyPageReservationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1F20E4DD3600C9F01C /* MyPageReservationTableViewCell.swift */; };
+		BBFEBB2220E4DD5800C9F01C /* MyPageButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB2120E4DD5800C9F01C /* MyPageButtonTableViewCell.swift */; };
+		BBFEBB2420E4DFC300C9F01C /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB2320E4DFC300C9F01C /* BookViewController.swift */; };
+		BBFEBB2620E4E0E900C9F01C /* CustomerReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB2520E4E0E900C9F01C /* CustomerReviewViewController.swift */; };
+		BBFEBB2820E4E14F00C9F01C /* MyPageReservationNoneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB2720E4E14F00C9F01C /* MyPageReservationNoneTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +99,17 @@
 		BB505A0120E26F8500491506 /* HttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		BB505A0320E26F8D00491506 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		BB505A0620E2703C00491506 /* AccountRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRequester.swift; sourceTree = "<group>"; };
+		BBFEBB1220E4C33400C9F01C /* GuideDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailViewController.swift; sourceTree = "<group>"; };
+		BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		BBFEBB1720E4D6FE00C9F01C /* MessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
+		BBFEBB1920E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailLeftTableViewCell.swift; sourceTree = "<group>"; };
+		BBFEBB1B20E4D72000C9F01C /* MessageDetailRightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailRightTableViewCell.swift; sourceTree = "<group>"; };
+		BBFEBB1D20E4DD1400C9F01C /* MyPageReservationTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReservationTitleTableViewCell.swift; sourceTree = "<group>"; };
+		BBFEBB1F20E4DD3600C9F01C /* MyPageReservationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReservationTableViewCell.swift; sourceTree = "<group>"; };
+		BBFEBB2120E4DD5800C9F01C /* MyPageButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageButtonTableViewCell.swift; sourceTree = "<group>"; };
+		BBFEBB2320E4DFC300C9F01C /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
+		BBFEBB2520E4E0E900C9F01C /* CustomerReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReviewViewController.swift; sourceTree = "<group>"; };
+		BBFEBB2720E4E14F00C9F01C /* MyPageReservationNoneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageReservationNoneTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +174,8 @@
 			children = (
 				2E94042020E37BF500362878 /* GuideViewController.swift */,
 				2E94043320E37F3B00362878 /* GuideTableViewCell.swift */,
+				BBFEBB1220E4C33400C9F01C /* GuideDetailViewController.swift */,
+				BBFEBB2320E4DFC300C9F01C /* BookViewController.swift */,
 			);
 			path = Guide;
 			sourceTree = "<group>";
@@ -168,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				2E94042620E37C2600362878 /* MessageViewController.swift */,
+				BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */,
+				BBFEBB1620E4D6ED00C9F01C /* Detail */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -176,6 +202,11 @@
 			isa = PBXGroup;
 			children = (
 				2E94042920E37C3700362878 /* MyPageViewController.swift */,
+				BBFEBB1D20E4DD1400C9F01C /* MyPageReservationTitleTableViewCell.swift */,
+				BBFEBB1F20E4DD3600C9F01C /* MyPageReservationTableViewCell.swift */,
+				BBFEBB2720E4E14F00C9F01C /* MyPageReservationNoneTableViewCell.swift */,
+				BBFEBB2120E4DD5800C9F01C /* MyPageButtonTableViewCell.swift */,
+				BBFEBB2520E4E0E900C9F01C /* CustomerReviewViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -283,6 +314,16 @@
 			path = Requester;
 			sourceTree = "<group>";
 		};
+		BBFEBB1620E4D6ED00C9F01C /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				BBFEBB1720E4D6FE00C9F01C /* MessageDetailViewController.swift */,
+				BBFEBB1920E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift */,
+				BBFEBB1B20E4D72000C9F01C /* MessageDetailRightTableViewCell.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -359,15 +400,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBFEBB2620E4E0E900C9F01C /* CustomerReviewViewController.swift in Sources */,
 				2E94041320E36B8400362878 /* PickerTableViewCell.swift in Sources */,
 				2E94043820E3857A00362878 /* CommonUtility.swift in Sources */,
+				BBFEBB1820E4D6FE00C9F01C /* MessageDetailViewController.swift in Sources */,
+				BBFEBB2020E4DD3600C9F01C /* MyPageReservationTableViewCell.swift in Sources */,
 				2E94043620E3811100362878 /* ImageStorage.swift in Sources */,
 				BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */,
 				2E94040020E3307600362878 /* Constants.swift in Sources */,
 				2E94041620E370BD00362878 /* PlaceholderTextView.swift in Sources */,
 				2E94041120E36B7600362878 /* PickerViewController.swift in Sources */,
+				BBFEBB2420E4DFC300C9F01C /* BookViewController.swift in Sources */,
+				BBFEBB1320E4C33400C9F01C /* GuideDetailViewController.swift in Sources */,
 				2E94042120E37BF500362878 /* GuideViewController.swift in Sources */,
 				2E94040720E3528800362878 /* TabbarViewController.swift in Sources */,
+				BBFEBB2220E4DD5800C9F01C /* MyPageButtonTableViewCell.swift in Sources */,
 				2E94042A20E37C3700362878 /* MyPageViewController.swift in Sources */,
 				2E94040420E3508700362878 /* SaveData.swift in Sources */,
 				BB5059FA20E2677200491506 /* String+Base64.swift in Sources */,
@@ -376,6 +423,7 @@
 				BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */,
 				2E94041820E370CD00362878 /* PlaceholderTextField.swift in Sources */,
 				2E94043A20E386A200362878 /* EstimateRequester.swift in Sources */,
+				BBFEBB1A20E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift in Sources */,
 				2E94040220E3458F00362878 /* ImageUploader.swift in Sources */,
 				2E94041C20E3746A00362878 /* SplashViewController.swift in Sources */,
 				2E94040920E3562200362878 /* UIImage+Resize.swift in Sources */,
@@ -383,10 +431,14 @@
 				2E94041E20E3767D00362878 /* GuideRequester.swift in Sources */,
 				2E94041A20E3711300362878 /* UIColor+Original.swift in Sources */,
 				2E94042420E37C0B00362878 /* SearchViewController.swift in Sources */,
+				BBFEBB2820E4E14F00C9F01C /* MyPageReservationNoneTableViewCell.swift in Sources */,
+				BBFEBB1C20E4D72000C9F01C /* MessageDetailRightTableViewCell.swift in Sources */,
 				BB505A0220E26F8500491506 /* HttpManager.swift in Sources */,
 				BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */,
+				BBFEBB1E20E4DD1400C9F01C /* MyPageReservationTitleTableViewCell.swift in Sources */,
 				BB5059F320E2658F00491506 /* GuideRegisterViewController.swift in Sources */,
 				BB5059FC20E267B200491506 /* UIViewController+Scene.swift in Sources */,
+				BBFEBB1520E4D60D00C9F01C /* MessageTableViewCell.swift in Sources */,
 				BB5059EF20E2657000491506 /* UserSelectViewController.swift in Sources */,
 				2E94043420E37F3B00362878 /* GuideTableViewCell.swift in Sources */,
 			);

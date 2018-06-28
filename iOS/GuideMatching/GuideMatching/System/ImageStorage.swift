@@ -53,7 +53,7 @@ class ImageStorage {
                 if let defaultImage = defaultImage {
                     resultImage = defaultImage
                 } else {
-                    resultImage = UIImage(named: "no_image")
+                    resultImage = UIImage(named: "no_face")
                 }
             }
             let storageData = ImageStorageData(url: url, image: resultImage!)

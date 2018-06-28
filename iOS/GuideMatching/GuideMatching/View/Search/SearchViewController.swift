@@ -10,26 +10,13 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    @IBAction func onTapSearch(_ sender: Any) {
+        let guideList = self.viewController(storyboard: "Guide", identifier: "GuideViewController") as! GuideViewController
+        guideList.set(searchResult: [])
+        self.tabbarViewController()?.stack(viewController: guideList, animationType: .horizontal)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func onTapReset(_ sender: Any) {
+        
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
