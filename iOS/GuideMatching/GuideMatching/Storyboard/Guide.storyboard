@@ -27,7 +27,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guide List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKY-7X-D8e">
-                                        <rect key="frame" x="144.5" y="11.5" width="87" height="21.5"/>
+                                        <rect key="frame" x="144" y="11.5" width="87" height="21.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -227,12 +227,20 @@
                                     <outlet property="delegate" destination="j74-Bk-aiR" id="ujI-xS-NnR"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ガイドが見つかりません" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2k6-Ev-yv8">
+                                <rect key="frame" x="86.5" y="323" width="202" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="inv-7n-EMF" firstAttribute="top" secondItem="pnF-R7-OxR" secondAttribute="top" id="7Jx-Lb-21Q"/>
                             <constraint firstAttribute="trailing" secondItem="12s-O3-quU" secondAttribute="trailing" id="N9I-QR-cce"/>
                             <constraint firstItem="pnF-R7-OxR" firstAttribute="bottom" secondItem="Ovf-Uo-6Gs" secondAttribute="bottom" id="OCC-Uc-KWg"/>
+                            <constraint firstItem="2k6-Ev-yv8" firstAttribute="centerX" secondItem="E4Z-XO-hmY" secondAttribute="centerX" id="PZM-Bb-bcI"/>
+                            <constraint firstItem="2k6-Ev-yv8" firstAttribute="centerY" secondItem="E4Z-XO-hmY" secondAttribute="centerY" id="SiS-ms-iUg"/>
                             <constraint firstItem="pnF-R7-OxR" firstAttribute="trailing" secondItem="inv-7n-EMF" secondAttribute="trailing" id="aQU-Z4-hPh"/>
                             <constraint firstItem="12s-O3-quU" firstAttribute="leading" secondItem="E4Z-XO-hmY" secondAttribute="leading" id="aWV-BB-cMy"/>
                             <constraint firstItem="pnF-R7-OxR" firstAttribute="trailing" secondItem="Ovf-Uo-6Gs" secondAttribute="trailing" id="eIK-Lp-3yr"/>
@@ -246,6 +254,7 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="Eb9-7n-ymx" id="TKX-I0-Ens"/>
+                        <outlet property="noDataLabel" destination="2k6-Ev-yv8" id="XYQ-3n-3uL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LiY-xU-K8N" userLabel="First Responder" sceneMemberID="firstResponder"/>

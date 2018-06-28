@@ -11,6 +11,7 @@ import UIKit
 class GuideViewController: UIViewController {
 
     @IBOutlet private weak var backButton: UIButton!
+    @IBOutlet private weak var noDataLabel: UILabel!
     
     private var isSearchResult = false
     private var guideDatas = [GuideData]()
@@ -27,6 +28,8 @@ class GuideViewController: UIViewController {
             self.backButton.isHidden = true
             self.guideDatas = GuideRequester.shared.dataList
         }
+        
+        self.noDataLabel.isHidden = !self.guideDatas.isEmpty
     }
     
     @IBAction func onTapBack(_ sender: Any) {
