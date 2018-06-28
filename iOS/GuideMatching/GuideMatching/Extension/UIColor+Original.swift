@@ -15,22 +15,22 @@ extension UIColor {
     }
     
     class var loginStateOnline: UIColor {
-        return .blue
+        return UIColor(red: 28 / 255, green: 164 / 255, blue: 252 / 255, alpha: 1)
     }
     
     class var loginStateWithin24h: UIColor {
-        return .green
+        return UIColor(red: 41 / 255, green: 157 / 255, blue: 29 / 255, alpha: 1)
     }
     
     class var loginStateWithin3d: UIColor {
-        return .orange
+        return UIColor(red: 253 / 255, green: 147 / 255, blue: 38 / 255, alpha: 1)
     }
     
     class var loginStateWithin1w: UIColor {
-        return .purple
+        return UIColor(red: 237 / 255, green: 98 / 255, blue: 167 / 255, alpha: 1)
     }
     
     class var loginStateOver1w: UIColor {
-        return .black
+        return UIColor(red: 94 / 255, green: 94 / 255, blue: 94 / 255, alpha: 1)
     }
 }

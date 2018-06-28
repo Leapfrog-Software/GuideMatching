@@ -31,7 +31,7 @@ class GuideTableViewCell: UITableViewCell {
 
     func configure(guideData: GuideData) {
         
-        ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + guideData.id, imageView: self.faceImageView, defaultImage: nil)
+        ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + guideData.id + "-0", imageView: self.faceImageView, defaultImage: nil)
         
         self.nameLabel.text = guideData.name
         
@@ -46,13 +46,28 @@ class GuideTableViewCell: UITableViewCell {
         self.estimate3ImageView.image = estimateImages[2]
         self.estimate4ImageView.image = estimateImages[3]
         self.estimate5ImageView.image = estimateImages[4]
-        self.estimateNumberLabel.text = "\(estimateDatas.count)"
+        self.estimateNumberLabel.text = "(\(estimateDatas.count))"
         
         self.specialtyLabel.text = guideData.specialty
         
-        // TODO
-        self.loginStateView.backgroundColor = .loginStateOnline
-        self.loginStateLabel.text = "online"
-        self.feeLabel.text = "3000 JPY/h"
+        let timeInterval = Date().timeIntervalSince(guideData.loginDate)
+        if timeInterval > 7 * 24 * 60 * 60 {
+            self.loginStateView.backgroundColor = UIColor.loginStateOver1w
+            self.loginStateLabel.text = "over a week"
+        } else if timeInterval > 3 * 24 * 60 * 60 {
+            self.loginStateView.backgroundColor = UIColor.loginStateWithin1w
+            self.loginStateLabel.text = "within a week"
+        } else if timeInterval > 1 * 24 * 60 * 60 {
+            self.loginStateView.backgroundColor = UIColor.loginStateWithin3d
+            self.loginStateLabel.text = "within a few days"
+        } else if timeInterval > 3 * 60 * 60 {
+            self.loginStateView.backgroundColor = UIColor.loginStateWithin24h
+            self.loginStateLabel.text = "within 24 hours"
+        } else {
+            self.loginStateView.backgroundColor = UIColor.loginStateOnline
+            self.loginStateLabel.text = "online"
+        }
+        
+        self.feeLabel.text = guideData.fee + " JPY/h"
     }
 }

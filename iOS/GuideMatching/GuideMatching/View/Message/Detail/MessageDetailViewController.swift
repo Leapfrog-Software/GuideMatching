@@ -10,7 +10,12 @@ import UIKit
 
 class MessageDetailViewController: UIViewController {
 
-
+    private var guideData: GuideData!
+    
+    func set(guideData: GuideData) {
+        self.guideData = guideData
+    }
+    
     @IBAction func onTapBack(_ sender: Any) {
         self.pop(animationType: .horizontal)
     }

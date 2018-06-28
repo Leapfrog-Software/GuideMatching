@@ -21,7 +21,7 @@ struct GuideData {
     let applicableNumber: Int
     let fee: String
     let notes: String
-    let lastLoginDate: String
+    let loginDate: Date
     
     init?(data: Dictionary<String, Any>) {
         
@@ -38,9 +38,14 @@ struct GuideData {
         self.message = (data["message"] as? String)?.base64Decode() ?? ""
         self.timeZone = (data["timeZone"] as? String)?.base64Decode() ?? ""
         self.applicableNumber = Int(data["applicableNumber"] as? String ?? "") ?? 0
-        self.fee = (data["fee"] as? String)?.base64Decode() ?? ""
+        self.fee = data["fee"] as? String ?? ""
         self.notes = (data["notes"] as? String)?.base64Decode() ?? ""
-        self.lastLoginDate = data["lastLoginDate"] as? String ?? ""
+        
+        let loginDateString = data["loginDate"] as? String ?? ""
+        guard loginDateString.count == 14, let loginDate = DateFormatter(dateFormat: "yyyyMMddHHmmss").date(from: loginDateString) else {
+            return nil
+        }
+        self.loginDate = loginDate
     }
 }
 

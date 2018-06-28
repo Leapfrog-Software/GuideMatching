@@ -12,7 +12,7 @@ class Constants {
     
     static let ServerRootUrl = "http://localhost/tourguide/"
     static let ServerApiUrl = Constants.ServerRootUrl + "srv.php"
-    static let ServerGuideImageRootUrl = Constants.ServerRootUrl + "image/guide/"
+    static let ServerGuideImageRootUrl = Constants.ServerRootUrl + "data/image/guide/"
     static let StringEncoding = String.Encoding.utf8
     static let HttpTimeOutInterval = TimeInterval(10)
     

@@ -48,6 +48,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = self.viewController(storyboard: "Guide", identifier: "GuideDetailViewController") as! GuideDetailViewController
+        detail.set(guideData: self.guideDatas[indexPath.row])
         self.tabbarViewController()?.stack(viewController: detail, animationType: .horizontal)
     }
 }
