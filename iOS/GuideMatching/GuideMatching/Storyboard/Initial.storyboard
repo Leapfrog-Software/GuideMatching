@@ -1328,11 +1328,11 @@ Sun. 13:00 - 18:00</string>
                                         <rect key="frame" x="0.0" y="0.0" width="94" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="goS-wN-tcc">
-                                                <rect key="frame" x="37" y="15" width="20" height="20"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="32" y="10" width="30" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="Ylo-0x-aOW"/>
-                                                    <constraint firstAttribute="width" constant="20" id="hDC-Ep-SB1"/>
+                                                    <constraint firstAttribute="height" constant="30" id="Ylo-0x-aOW"/>
+                                                    <constraint firstAttribute="width" constant="30" id="hDC-Ep-SB1"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ahD-Ct-qaI">
@@ -1356,11 +1356,11 @@ Sun. 13:00 - 18:00</string>
                                         <rect key="frame" x="94" y="0.0" width="93.5" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aK3-wX-TM2">
-                                                <rect key="frame" x="36" y="15" width="20" height="20"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="31" y="10" width="30" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="83b-GF-6RB"/>
-                                                    <constraint firstAttribute="width" constant="20" id="hfj-co-Q2V"/>
+                                                    <constraint firstAttribute="height" constant="30" id="83b-GF-6RB"/>
+                                                    <constraint firstAttribute="width" constant="30" id="hfj-co-Q2V"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BST-S3-xLm">
@@ -1384,11 +1384,11 @@ Sun. 13:00 - 18:00</string>
                                         <rect key="frame" x="187.5" y="0.0" width="94" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NdM-lM-rQW">
-                                                <rect key="frame" x="36.5" y="15" width="20" height="20"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="31.5" y="10" width="30" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="e0E-tb-QsY"/>
-                                                    <constraint firstAttribute="width" constant="20" id="psf-Wx-ZPO"/>
+                                                    <constraint firstAttribute="height" constant="30" id="e0E-tb-QsY"/>
+                                                    <constraint firstAttribute="width" constant="30" id="psf-Wx-ZPO"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOg-n3-sei">
@@ -1412,11 +1412,11 @@ Sun. 13:00 - 18:00</string>
                                         <rect key="frame" x="281.5" y="0.0" width="93.5" height="50"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QNu-ga-2K0">
-                                                <rect key="frame" x="36.5" y="15" width="20" height="20"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="31.5" y="10" width="30" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="20" id="Jfh-IU-E5L"/>
-                                                    <constraint firstAttribute="height" constant="20" id="hKi-zc-oWW"/>
+                                                    <constraint firstAttribute="width" constant="30" id="Jfh-IU-E5L"/>
+                                                    <constraint firstAttribute="height" constant="30" id="hKi-zc-oWW"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrP-fy-peQ">
