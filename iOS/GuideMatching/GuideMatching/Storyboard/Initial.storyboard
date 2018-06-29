@@ -178,7 +178,7 @@
                                                 <color key="textColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ajF-hw-fpw">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_guide" translatesAutoresizingMaskIntoConstraints="NO" id="ajF-hw-fpw">
                                                 <rect key="frame" x="0.0" y="25" width="91.5" height="91.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="ajF-hw-fpw" secondAttribute="height" multiplier="1:1" id="B5g-p7-agk"/>
@@ -195,7 +195,7 @@
                                                     <action selector="onTapFace1:" destination="FPY-1Z-gHv" eventType="touchUpInside" id="dWU-fj-UiN"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u3O-gV-W5b">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_guide" translatesAutoresizingMaskIntoConstraints="NO" id="u3O-gV-W5b">
                                                 <rect key="frame" x="111.5" y="25" width="92" height="91.5"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -209,7 +209,7 @@
                                                     <action selector="onTapFace2:" destination="FPY-1Z-gHv" eventType="touchUpInside" id="0ho-Kv-B8V"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xY7-3c-flC">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_guide" translatesAutoresizingMaskIntoConstraints="NO" id="xY7-3c-flC">
                                                 <rect key="frame" x="223.5" y="25" width="91.5" height="91.5"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -371,7 +371,7 @@
                                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZjT-sw-bzU">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_guide" translatesAutoresizingMaskIntoConstraints="NO" id="ZjT-sw-bzU">
                                                 <rect key="frame" x="0.0" y="25" width="140" height="140"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="140" id="A5F-Dj-c5Y"/>
@@ -537,7 +537,7 @@
                                                 <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V0H-79-0je">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_guide" translatesAutoresizingMaskIntoConstraints="NO" id="V0H-79-0je">
                                                 <rect key="frame" x="0.0" y="25" width="91.5" height="91.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="V0H-79-0je" secondAttribute="height" multiplier="1:1" id="x2V-kB-mKX"/>
@@ -554,7 +554,7 @@
                                                     <action selector="onTapFace1:" destination="Ybk-ca-Z8S" eventType="touchUpInside" id="tYh-Rh-Eip"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ia6-5f-i6y">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_guide" translatesAutoresizingMaskIntoConstraints="NO" id="ia6-5f-i6y">
                                                 <rect key="frame" x="111.5" y="25" width="92" height="91.5"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -568,7 +568,7 @@
                                                     <action selector="onTapFace2:" destination="Ybk-ca-Z8S" eventType="touchUpInside" id="C5N-qn-6em"/>
                                                 </connections>
                                             </button>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xKG-V6-0ev">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_guide" translatesAutoresizingMaskIntoConstraints="NO" id="xKG-V6-0ev">
                                                 <rect key="frame" x="223.5" y="25" width="91.5" height="91.5"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1492,4 +1492,7 @@ Sun. 13:00 - 18:00</string>
             <point key="canvasLocation" x="2285.5999999999999" y="167.76611694152925"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="image_guide" width="106" height="106"/>
+    </resources>
 </document>

@@ -11,6 +11,7 @@ import UIKit
 class MessageViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var noDataLabel: UILabel!
     
     private var userIds = [String]()
     
@@ -47,6 +48,7 @@ class MessageViewController: UIViewController {
                 self.userIds = userIds
                 
                 self.tableView.reloadData()
+                self.noDataLabel.isHidden = !self.userIds.isEmpty
             }
         })
     }
