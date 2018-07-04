@@ -22,6 +22,7 @@ class GuideDetailViewController: UIViewController {
     @IBOutlet private weak var notesLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private weak var estimateNumberLabel: UILabel!
+    @IBOutlet private weak var scheduleBaseView: UIView!
     
     private var guideData: GuideData!
     
@@ -60,6 +61,16 @@ class GuideDetailViewController: UIViewController {
         }
         self.scoreLabel.text = "\(score)"
         self.estimateNumberLabel.text = "(\(estimateDatas.count))"
+        
+        if let scheduleView = UINib(nibName: "GuideDetailScheduleView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? GuideDetailScheduleView {
+            scheduleView.set(schedules: self.guideData.schedules)
+            self.scheduleBaseView.addSubview(scheduleView)
+            scheduleView.translatesAutoresizingMaskIntoConstraints = false
+            scheduleView.topAnchor.constraint(equalTo: self.scheduleBaseView.topAnchor).isActive = true
+            scheduleView.leadingAnchor.constraint(equalTo: self.scheduleBaseView.leadingAnchor).isActive = true
+            scheduleView.trailingAnchor.constraint(equalTo: self.scheduleBaseView.trailingAnchor).isActive = true
+            scheduleView.bottomAnchor.constraint(equalTo: self.scheduleBaseView.bottomAnchor).isActive = true
+        }
     }
     
     @IBAction func onTapImageLeft(_ sender: Any) {
@@ -82,11 +93,30 @@ class GuideDetailViewController: UIViewController {
         self.stack(viewController: messageDetail, animationType: .horizontal)
     }
     
-    @IBAction func onTapBook(_ sender: Any) {
-        let book = self.viewController(storyboard: "Guide", identifier: "BookViewController") as! BookViewController
-        self.stack(viewController: book, animationType: .horizontal)
+    @IBAction func onTapNextMonth1(_ sender: Any) {
+        if let scheduleView = (self.scheduleBaseView.subviews.compactMap { $0 as? GuideDetailScheduleView }).first {
+            scheduleView.changeToNext()
+        }
     }
-        
+    
+    @IBAction func onTapPreviousMonth1(_ sender: Any) {
+        if let scheduleView = (self.scheduleBaseView.subviews.compactMap { $0 as? GuideDetailScheduleView }).first {
+            scheduleView.changeToPrevious()
+        }
+    }
+    
+    @IBAction func onTapNextMonth2(_ sender: Any) {
+        if let scheduleView = (self.scheduleBaseView.subviews.compactMap { $0 as? GuideDetailScheduleView }).first {
+            scheduleView.changeToNext()
+        }
+    }
+    
+    @IBAction func onTapPreviousMonth2(_ sender: Any) {
+        if let scheduleView = (self.scheduleBaseView.subviews.compactMap { $0 as? GuideDetailScheduleView }).first {
+            scheduleView.changeToPrevious()
+        }
+    }
+    
     @IBAction func onTapBack(_ sender: Any) {
         self.pop(animationType: .horizontal)
     }

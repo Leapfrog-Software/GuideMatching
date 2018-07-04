@@ -8,6 +8,39 @@
 
 import Foundation
 
+struct GuideScheduleData {
+    let date: Date
+    let isFreeList: [Bool]
+    
+    init?(data: String) {
+        let datas = data.components(separatedBy: "_")
+        if datas.count == 49 {
+            guard let date = DateFormatter(dateFormat: "yyyyMMdd").date(from: datas[0]) else {
+                return nil
+            }
+            self.date = date
+
+            var isFreeList: [Bool] = []
+            for i in 1..<datas.count {
+                if datas[i] == "1" {
+                    isFreeList.append(true)
+                } else {
+                    isFreeList.append(false)
+                }
+            }
+            self.isFreeList = isFreeList
+            return
+        }
+        return nil
+    }
+    
+    func toString() -> String {
+        let dateStr = DateFormatter(dateFormat: "yyyyMMdd").string(from: self.date)
+        let isFrees = self.isFreeList.map { $0 ? "1" : "0" }
+        return dateStr + "_" + isFrees.joined(separator: "_")
+    }
+}
+
 struct GuideData {
     
     let id: String
@@ -21,6 +54,7 @@ struct GuideData {
     let applicableNumber: Int
     let fee: String
     let notes: String
+    let schedules: [GuideScheduleData]
     let loginDate: Date
     
     init?(data: Dictionary<String, Any>) {
@@ -41,6 +75,8 @@ struct GuideData {
         self.fee = data["fee"] as? String ?? ""
         self.notes = (data["notes"] as? String)?.base64Decode() ?? ""
         
+        self.schedules = (data["schedules"] as? String ?? "").components(separatedBy: "/").compactMap { GuideScheduleData(data: $0) }
+
         let loginDateString = data["loginDate"] as? String ?? ""
         guard loginDateString.count == 14, let loginDate = DateFormatter(dateFormat: "yyyyMMddHHmmss").date(from: loginDateString) else {
             return nil
