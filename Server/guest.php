@@ -57,7 +57,7 @@ class Guest {
 
     $guestList = Guest::readAll();
     foreach ($guestList as $guestData) {
-      $guestId = intval($guestData->id);
+      $guestId = intval(substr($guestData->id, 6, strlen($guestData->id) - 6));
       if ($guestId > $maxGuestId) {
         $maxGuestId = $guestId;
       }
@@ -66,12 +66,12 @@ class Guest {
     $nextGuestId = strval($maxGuestId + 1);
 
     $guestData = new GuestData();
-    $guestData->id = $nextGuestId;
+    $guestData->id = "guest_" . $nextGuestId;
     $guestData->name = $name;
     $guestData->nationality = $nationality;
 
     if (file_put_contents(Guest::FILE_NAME, $guestData->toFileString(), FILE_APPEND) !== FALSE) {
-      return $nextGuestId;
+      return $guestData->id;
     } else {
       return null;
     }
@@ -102,6 +102,19 @@ class Guest {
       $str .= $data->toFileString();
     }
     return file_put_contents(Guest::FILE_NAME, $str) !== false;
+  }
+
+  static function getGuestArray() {
+
+    $ret = [];
+
+    $guestList = Guest::readAll();
+    foreach ($guestList as $guestData) {
+      $ret[] = Array("id" => $guestData->id,
+                      "name" => $guestData->name,
+                      "nationality" => $guestData->nationality);
+    }
+    return $ret;
   }
 }
 

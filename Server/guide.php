@@ -11,11 +11,13 @@ class GuideData {
   public $timeZone;
   public $applicableNumber;
   public $fee;
-  public $notes;  
+  public $notes;
+  public $schedules;
+  public $loginDate;
 
 	static function initFromFileString($line) {
 		$datas = explode(",", $line);
-		if (count($datas) == 11) {
+		if (count($datas) == 13) {
       $guideData = new GuideData();
       $guideData->id = $datas[0];
 			$guideData->name = $datas[1];
@@ -28,6 +30,8 @@ class GuideData {
       $guideData->applicableNumber = $datas[8];
       $guideData->fee = $datas[9];
       $guideData->notes = $datas[10];
+      $guideData->schedules = $datas[11];
+      $guideData->loginDate = $datas[12];
 			return $guideData;
 		}
 		return null;
@@ -56,6 +60,10 @@ class GuideData {
     $str .= $this->fee;
     $str .= ",";
     $str .= $this->notes;
+    $str .= ",";
+    $str .= $this->schedules;
+    $str .= ",";
+    $str .= $this->loginDate;
     $str .= "\n";
     return $str;
   }
@@ -89,7 +97,7 @@ class Guide {
 
     $guideList = Guide::readAll();
     foreach ($guideList as $guideData) {
-      $guideId = intval($guideData->id);
+      $guideId = intval(substr($guideData->id, 6, strlen($guideData->id) - 6));
       if ($guideId > $maxGuideId) {
         $maxGuideId = $guideId;
       }
@@ -97,8 +105,10 @@ class Guide {
 
     $nextGuideId = strval($maxGuideId + 1);
 
+    date_default_timezone_set('Asia/Tokyo');
+
     $guideData = new GuideData();
-    $guideData->id = $nextGuideId;
+    $guideData->id = "guide_" . $nextGuideId;
     $guideData->name = $name;
     $guideData->nationality = $nationality;
     $guideData->language = $language;
@@ -109,18 +119,22 @@ class Guide {
     $guideData->applicableNumber = $applicableNumber;
     $guideData->fee = $fee;
     $guideData->notes = $notes;
+    $guideData->schedules = "";
+    $guideData->loginDate = date("YmdHis");
 
     if (file_put_contents(Guide::FILE_NAME, $guideData->toFileString(), FILE_APPEND) !== FALSE) {
-      return $nextGuideId;
+      return $guideData->id;
     } else {
       return null;
     }
   }
 
-  static function update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes) {
+  static function update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes, $schedules) {
 
     $guideList = Guide::readAll();
     $find = false;
+
+    date_default_timezone_set('Asia/Tokyo');
 
     foreach ($guideList as &$guideData) {
       if (strcmp($guideData->id, $id) == 0) {
@@ -136,6 +150,8 @@ class Guide {
         $guideData->applicableNumber = $applicableNumber;
         $guideData->fee = $fee;
         $guideData->notes = $notes;
+        $guideData->schedules = $schedules;
+        $guideData->loginDate = date("YmdHis");
 
         $find = true;
         break;
@@ -168,9 +184,34 @@ class Guide {
                       "timeZone" => $guideData->timeZone,
                       "applicableNumber" => $guideData->applicableNumber,
                       "fee" => $guideData->fee,
-                      "notes" => $guideData->notes);
+                      "notes" => $guideData->notes,
+                      "loginDate" => $guideData->loginDate);
     }
     return $ret;
+  }
+
+  static function login() {
+
+    $guideList = Guide::readAll();
+    $find = false;
+
+    foreach ($guideList as &$guideData) {
+      if (strcmp($guideData->id, $id) == 0) {
+        date_default_timezone_set('Asia/Tokyo');
+        $guideData->loginDate = date("YmdHis");
+        $find = true;
+        break;
+      }
+    }
+    if (!$find) {
+      return false;
+    }
+
+    $str = "";
+    foreach($guideList as $data) {
+      $str .= $data->toFileString();
+    }
+    return file_put_contents(Guide::FILE_NAME, $str) !== false;
   }
 }
 
