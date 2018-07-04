@@ -12,11 +12,12 @@ class GuideData {
   public $applicableNumber;
   public $fee;
   public $notes;
+  public $schedules;
   public $loginDate;
 
 	static function initFromFileString($line) {
 		$datas = explode(",", $line);
-		if (count($datas) == 12) {
+		if (count($datas) == 13) {
       $guideData = new GuideData();
       $guideData->id = $datas[0];
 			$guideData->name = $datas[1];
@@ -29,7 +30,8 @@ class GuideData {
       $guideData->applicableNumber = $datas[8];
       $guideData->fee = $datas[9];
       $guideData->notes = $datas[10];
-      $guideData->loginDate = $datas[11];
+      $guideData->schedules = $datas[11];
+      $guideData->loginDate = $datas[12];
 			return $guideData;
 		}
 		return null;
@@ -58,6 +60,8 @@ class GuideData {
     $str .= $this->fee;
     $str .= ",";
     $str .= $this->notes;
+    $str .= ",";
+    $str .= $this->schedules;
     $str .= ",";
     $str .= $this->loginDate;
     $str .= "\n";
@@ -115,6 +119,7 @@ class Guide {
     $guideData->applicableNumber = $applicableNumber;
     $guideData->fee = $fee;
     $guideData->notes = $notes;
+    $guideData->schedules = "";
     $guideData->loginDate = date("YmdHis");
 
     if (file_put_contents(Guide::FILE_NAME, $guideData->toFileString(), FILE_APPEND) !== FALSE) {
@@ -124,7 +129,7 @@ class Guide {
     }
   }
 
-  static function update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes) {
+  static function update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes, $schedules) {
 
     $guideList = Guide::readAll();
     $find = false;
@@ -145,6 +150,7 @@ class Guide {
         $guideData->applicableNumber = $applicableNumber;
         $guideData->fee = $fee;
         $guideData->notes = $notes;
+        $guideData->schedules = $schedules;
         $guideData->loginDate = date("YmdHis");
 
         $find = true;

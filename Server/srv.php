@@ -79,8 +79,9 @@ function updateGuide() {
   $applicableNumber = $_POST["applicableNumber"];
   $fee = $_POST["fee"];
   $notes = $_POST["notes"];
+  $schedules = $_POST["schedules"];
 
-  if (Guide::update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes)) {
+  if (Guide::update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes, $schedules)) {
     echo(json_encode(Array("result" => "0")));
   } else {
     echo(json_encode(Array("result" => "1")));
