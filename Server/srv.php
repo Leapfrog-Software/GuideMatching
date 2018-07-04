@@ -10,14 +10,22 @@ $command = $_POST["command"];
 
 if (strcmp($command, "createGuide") == 0) {
   createGuide();
+} else if (strcmp($command, "uploadGuideImage") == 0) {
+  uploadGuideImage();
 } else if (strcmp($command, "updateGuide") == 0) {
   updateGuide();
 } else if (strcmp($command, "getGuide") == 0) {
   getGuide();
 } else if (strcmp($command, "createGuest") == 0) {
   createGuest();
+ } else if (strcmp($command, "uploadGuestImage") == 0) {
+  uploadGuestImage();
 } else if (strcmp($command, "updateGuest") == 0) {
   updateGuest();
+} else if (strcmp($command, "getGuest") == 0) {
+  getGuest();
+} else if (strcmp($command, "login") == 0) {
+  login();
 } else if (strcmp($command, "reserve") == 0) {
   reserve();
 } else if (strcmp($command, "getMessage") == 0) {
@@ -52,6 +60,10 @@ function createGuide() {
   } else {
     echo(json_encode(Array("result" => "0", "guideId" => $guideId)));
   }
+}
+
+function uploadGuideImage() {
+	echo(json_encode(Array("result" => "0")));
 }
 
 function updateGuide() {
@@ -95,6 +107,10 @@ function createGuest() {
   }
 }
 
+function uploadGuestImage() {
+	echo(json_encode(Array("result" => "0")));
+}
+
 function updateGuest() {
 
   $id = $_POST["id"];
@@ -102,6 +118,23 @@ function updateGuest() {
   $nationality = $_POST["nationality"];
 
   if (Guest::update($id, $name, $nationality)) {
+    echo(json_encode(Array("result" => "0")));
+  } else {
+    echo(json_encode(Array("result" => "1")));
+  }
+}
+
+function getGuest() {
+
+  $ret = Array("result" => "0",
+                "guests" => Guest::getGuestArray());
+  echo(json_encode($ret));
+}
+
+function login() {
+
+  $id = $_POST["id"];
+  if (Guide::login($id)) {
     echo(json_encode(Array("result" => "0")));
   } else {
     echo(json_encode(Array("result" => "1")));
@@ -141,7 +174,7 @@ function getMessage() {
     );
   }
   echo(json_encode(Array("result" => "0",
-                        "data" => $data)));
+                        "messages" => $data)));
 }
 
 function postMessage() {
@@ -169,7 +202,7 @@ function getEstimate() {
                     "score" => $estimateData->score,
                     "comment" => $estimateData->comment);
   }
-  $ret = Array("result" => "0", "data" => $data);
+  $ret = Array("result" => "0", "estimates" => $data);
   echo(json_encode($ret));
 }
 
