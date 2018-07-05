@@ -22,16 +22,12 @@ extension Date {
         return calendar.date(byAdding: .month, value: month, to: self) ?? self
     }
     
-    func firstMonday() -> Date {
+    func latestSunday() -> Date {
         
-        var components = calendar.dateComponents([.year, .month, .day], from: self)
-        components.day = 1
-        let firstDay = calendar.date(from: components)
         for i in 0..<7 {
-            if let shifted = firstDay?.add(day: -i) {
-                if calendar.dateComponents([.weekday], from: shifted).weekday == 2 {
-                    return shifted
-                }
+            let shifted = self.add(day: -i)
+            if calendar.dateComponents([.weekday], from: shifted).weekday == 1 {
+                return shifted
             }
         }
         return self

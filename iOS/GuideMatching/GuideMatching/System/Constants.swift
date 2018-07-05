@@ -10,8 +10,8 @@ import Foundation
 
 class Constants {
     
-//    static let ServerRootUrl = "http://localhost/tourguide/"
-    static let ServerRootUrl = "http://lfrogs.sakura.ne.jp/guide_matching/"
+    static let ServerRootUrl = "http://localhost/tourguide/"
+//    static let ServerRootUrl = "http://lfrogs.sakura.ne.jp/guide_matching/"
     static let ServerApiUrl = Constants.ServerRootUrl + "srv.php"
     static let ServerGuideImageRootUrl = Constants.ServerRootUrl + "data/image/guide/"
     static let ServerGuestImageRootUrl = Constants.ServerRootUrl + "data/image/guest/"

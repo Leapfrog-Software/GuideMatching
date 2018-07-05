@@ -1,15 +1,15 @@
 //
-//  GuideDetailScheduleTableViewCell.swift
+//  MyPageScheduleTableViewCell.swift
 //  GuideMatching
 //
-//  Created by Leapfrog-Software on 2018/07/04.
+//  Created by Leapfrog-Software on 2018/07/05.
 //  Copyright © 2018年 Leapfrog-Inc. All rights reserved.
 //
 
 import UIKit
 
-class GuideDetailScheduleTableViewCell: UITableViewCell {
-    
+class MyPageScheduleTableViewCell: UITableViewCell {
+
     enum StateType {
         case free
         case ng
@@ -19,9 +19,10 @@ class GuideDetailScheduleTableViewCell: UITableViewCell {
     
     struct State {
         let type: StateType
+        let edited: Bool
         let isPast: Bool
     }
-
+    
     @IBOutlet private weak var timeLabel: UILabel!
     @IBOutlet private weak var date1Label: UILabel!
     @IBOutlet private weak var date2Label: UILabel!
@@ -51,11 +52,11 @@ class GuideDetailScheduleTableViewCell: UITableViewCell {
                 label?.text = "□"
             }
         }
-
+        
         self.cellIndex = cellIndex
         self.onTap = onTap
     }
-
+    
     @IBAction func onTapDate1(_ sender: Any) {
         self.onTap?(0, self.cellIndex)
     }

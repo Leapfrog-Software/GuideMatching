@@ -51,6 +51,10 @@ class AccountRequester {
         }
     }
     
+    class func updateGuide(guideData: GuideData, completion: @escaping ((Bool) -> ())) {
+        
+    }
+    
     class func login() {
         
         let params = [
