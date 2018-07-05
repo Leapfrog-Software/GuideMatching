@@ -10,7 +10,7 @@ import Foundation
 
 struct GuideScheduleData {
     let date: Date
-    let isFreeList: [Bool]
+    var isFreeList: [Bool]
     
     init?(data: String) {
         let datas = data.components(separatedBy: "_")
@@ -34,6 +34,11 @@ struct GuideScheduleData {
         return nil
     }
     
+    init?(date: Date, isFreeList: [Bool]) {
+        self.date = date
+        self.isFreeList = isFreeList
+    }
+    
     func toString() -> String {
         let dateStr = DateFormatter(dateFormat: "yyyyMMdd").string(from: self.date)
         let isFrees = self.isFreeList.map { $0 ? "1" : "0" }
@@ -54,7 +59,7 @@ struct GuideData {
     let applicableNumber: Int
     let fee: String
     let notes: String
-    let schedules: [GuideScheduleData]
+    var schedules: [GuideScheduleData]
     let loginDate: Date
     
     init?(data: Dictionary<String, Any>) {
@@ -102,5 +107,9 @@ class GuideRequester {
                 completion(false)
             }
         }
+    }
+    
+    func query(id: String) -> GuideData? {
+        return self.dataList.filter { $0.id == id }.first
     }
 }

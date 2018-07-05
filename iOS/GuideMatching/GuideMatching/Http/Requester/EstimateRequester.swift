@@ -52,4 +52,25 @@ class EstimateRequester {
             }
         }
     }
+    
+    class func post(guideId: String, score: Int, comment: String, completion: @escaping ((Bool) -> ())) {
+        
+        let userId: String
+        if SaveData.shared.guestId.count > 0 {
+            userId = SaveData.shared.guestId
+        } else {
+            userId = SaveData.shared.guideId
+        }
+        
+        let params = [
+            "command": "postEstimate",
+            "requesterId": userId,
+            "guideId": guideId,
+            "score": "\(score)",
+            "comment": comment.base64Encode() ?? ""
+        ]
+        ApiManager.post(params: params) { (result, data) in
+            completion(result)
+        }
+    }
 }

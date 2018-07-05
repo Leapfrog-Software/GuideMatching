@@ -26,6 +26,22 @@ class AccountRequester {
         }
     }
     
+    class func updateGuest(guestData: GuestData, completion: @escaping ((Bool) -> ())) {
+        
+        var params: [String: String] = ["command": "updateGuest"]
+        params["id"] = guestData.id
+        params["name"] = guestData.name.base64Encode() ?? ""
+        params["nationality"] = guestData.nationality.base64Encode() ?? ""
+        
+        ApiManager.post(params: params, completion: { (result, data) in
+            if result, ((data as? NSDictionary)?.object(forKey: "result") as? String) == "0" {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        })
+    }
+    
     class func createGuide(name: String, nationality: String, language: String, specialty: String,
                            category: String, message: String, timeZone: String, applicableNumber: Int,
                            fee: String, notes: String, completion: @escaping ((Bool, String?) -> ())) {
@@ -49,6 +65,31 @@ class AccountRequester {
                 completion(false, nil)
             }
         }
+    }
+    
+    class func updateGuide(guideData: GuideData, completion: @escaping ((Bool) -> ())) {
+        
+        var params: [String: String] = ["command": "updateGuide"]
+        params["id"] = guideData.id
+        params["name"] = guideData.name.base64Encode() ?? ""
+        params["nationality"] = guideData.nationality.base64Encode() ?? ""
+        params["language"] = guideData.language.base64Encode() ?? ""
+        params["specialty"] = guideData.specialty.base64Encode() ?? ""
+        params["category"] = guideData.category.base64Encode() ?? ""
+        params["message"] = guideData.message.base64Encode() ?? ""
+        params["timeZone"] = guideData.timeZone.base64Encode() ?? ""
+        params["applicableNumber"] = "\(guideData.applicableNumber)"
+        params["fee"] = guideData.fee
+        params["notes"] = guideData.notes
+        params["schedules"] = guideData.schedules.compactMap { $0.toString() }.joined(separator: "/")
+        
+        ApiManager.post(params: params, completion: { (result, data) in
+            if result, ((data as? NSDictionary)?.object(forKey: "result") as? String) == "0" {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        })
     }
     
     class func login() {

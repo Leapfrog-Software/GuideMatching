@@ -9,13 +9,36 @@
 import UIKit
 
 class MyPageViewController: UIViewController {
+    
+    @IBOutlet private weak var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
+    }
 
-    @IBAction func onTapCustomerReview(_ sender: Any) {
+    @IBAction func onTapHistory(_ sender: Any) {
         
     }
     
-    @IBAction func onTapMyAccount(_ sender: Any) {
+    @IBAction func onTapSchedule(_ sender: Any) {
+        let schedule = self.viewController(storyboard: "MyPage", identifier: "MyPageScheduleViewController") as! MyPageScheduleViewController
+        self.stack(viewController: schedule, animationType: .horizontal)
+    }
+    
+    @IBAction func onTapProfile(_ sender: Any) {
         
+    }
+    
+    @IBAction func onTapPayment(_ sender: Any) {
+        
+    }
+    
+    @IBAction func onTapReview(_ sender: Any) {
+        let review = self.viewController(storyboard: "MyPage", identifier: "CustomerReviewViewController") as! CustomerReviewViewController
+        self.stack(viewController: review, animationType: .horizontal)
     }
 }
 
@@ -35,14 +58,4 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             return tableView.dequeueReusableCell(withIdentifier: "MyPageButtonTableViewCell", for: indexPath) as! MyPageButtonTableViewCell
         }
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 50
-        } else if indexPath.row == 1 {
-            return 100
-        } else {
-            return 200
-        }
-    }    
 }

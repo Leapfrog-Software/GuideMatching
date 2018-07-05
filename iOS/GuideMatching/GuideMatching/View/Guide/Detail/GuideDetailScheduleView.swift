@@ -2,7 +2,7 @@
 //  GuideDetailScheduleView.swift
 //  GuideMatching
 //
-//  Created by 藤田 祥一 on 2018/07/04.
+//  Created by Leapfrog-Software on 2018/07/04.
 //  Copyright © 2018年 Leapfrog-Inc. All rights reserved.
 //
 
@@ -31,6 +31,8 @@ class GuideDetailScheduleView: UIView {
         super.didMoveToSuperview()
         
         self.tableView.register(UINib(nibName: "GuideDetailScheduleTableViewCell", bundle: nil), forCellReuseIdentifier: "GuideDetailScheduleTableViewCell")
+        
+        self.reload()
     }
     
     func changeToNext() {
@@ -49,15 +51,15 @@ class GuideDetailScheduleView: UIView {
     
     private func reload() {
         
-        let today = Date()
+        let latestSunday = Date().latestSunday()
         let dateFormatter = DateFormatter(dateFormat: "d\nE")
-        self.date1Label.text = dateFormatter.string(from: today.add(day: self.weekOffset * 7))
-        self.date2Label.text = dateFormatter.string(from: today.add(day: self.weekOffset * 7 + 1))
-        self.date3Label.text = dateFormatter.string(from: today.add(day: self.weekOffset * 7 + 2))
-        self.date4Label.text = dateFormatter.string(from: today.add(day: self.weekOffset * 7 + 3))
-        self.date5Label.text = dateFormatter.string(from: today.add(day: self.weekOffset * 7 + 4))
-        self.date6Label.text = dateFormatter.string(from: today.add(day: self.weekOffset * 7 + 5))
-        self.date7Label.text = dateFormatter.string(from: today.add(day: self.weekOffset * 7 + 6))
+        self.date1Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7))
+        self.date2Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 1))
+        self.date3Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 2))
+        self.date4Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 3))
+        self.date5Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 4))
+        self.date6Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 5))
+        self.date7Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 6))
         
         self.tableView.reloadData()
     }
@@ -72,18 +74,27 @@ extension GuideDetailScheduleView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GuideDetailScheduleTableViewCell", for: indexPath) as! GuideDetailScheduleTableViewCell
         
-        var states = [GuideDetailScheduleTableViewCell.ScheduleState]()
+        let today = Date()
+        
+        var states = [GuideDetailScheduleTableViewCell.State]()
         for i in 0..<7 {
-            let targetDate = Date().add(day: self.weekOffset * 7 + i)
+            let targetDate = Date().latestSunday().add(day: self.weekOffset * 7 + i)
+            
+            var type = GuideDetailScheduleTableViewCell.StateType.free
             if let scheduleData = (self.scheduleDatas.filter { $0.date.isSameDay(with: targetDate) }).first {
                 if scheduleData.isFreeList[indexPath.row] {
-                    states.append(.free)
+                    type = .free
                 } else {
-                    states.append(.ng)
+                    type = .ng
                 }
             } else {
-                states.append(.unselected)
+                type = .unselected
             }
+            
+            let isPast = (!targetDate.isSameDay(with: today)) && (targetDate < today)
+            
+            let state = GuideDetailScheduleTableViewCell.State(type: type, isPast: isPast)
+            states.append(state)
         }
         
         cell.configure(cellIndex: indexPath.row, states:states, onTap: { dateOffset, timeOffset in
