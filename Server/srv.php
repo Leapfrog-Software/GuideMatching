@@ -26,8 +26,10 @@ if (strcmp($command, "createGuide") == 0) {
   getGuest();
 } else if (strcmp($command, "login") == 0) {
   login();
-} else if (strcmp($command, "reserve") == 0) {
-  reserve();
+} else if (strcmp($command, "createReserve") == 0) {
+  createReserve();
+} else if (strcmp($command, "getReserve") == 0) {
+  getReserve();
 } else if (strcmp($command, "getMessage") == 0) {
   getMessage();
 } else if (strcmp($command, "postMessage") == 0) {
@@ -142,22 +144,33 @@ function login() {
   }
 }
 
-function reserve() {
+function createReserve() {
 
-  date_default_timezone_set('Asia/Tokyo');
+  $requesterId = $_POST["requesterId"];
+  $guideId = $_POST["guideId"];
+  $area = $_POST["area"];
 
-  $reserveData = new ReserveData();
-  $reserveData->id = $_GET["id"];
-  $reserveData->requesterId = $_GET["requesterId"];
-  $reserveData->guideId = $_GET["guideId"];
-  $reserveData->area = $_GET["area"];
-  $reserveData->date = date("YmdHis");
-
-  if (Reserve::append($reserveData)) {
+  if (Reserve::create($requesterId, $guideId, $area)) {
     echo(json_encode(Array("result" => "0")));
+  }
   } else {
     echo(json_encode(Array("result" => "1")));
   }
+}
+
+function getReserve() {
+
+  $data = [];
+  $reserveList = Reserve::readAll();
+  foreach ($reserveList as $reserveData) {
+    $data[] = Array("id" => $reserveData->id,
+                    "requesterId" => $reserveData->requesterId,
+                    "guideId" => $reserveData->guideId,
+                    "area" => $reserveData->area,
+                    "date" => $reserveData->date);
+  }
+  $ret = Array("result" => "0", "reserves" => $data);
+  echo(json_encode($ret));
 }
 
 function getMessage() {

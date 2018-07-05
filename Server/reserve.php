@@ -59,9 +59,30 @@ class Reserve {
 		return [];
 	}
 
-  static function append($reserveData) {
+  static function create($requesterId, $guideId, $area) {
 
-    $str = $reserveData->toFileString();
+    $maxReserveId = -1;
+
+    $reserveList = Reserve::readAll();
+    foreach ($reserveList as $reserveData) {
+      $reserveId = intval($reserveData->id);
+      if ($reserveId > $maxReserveId) {
+        $maxReserveId = $reserveId;
+      }
+    }
+
+    $nextReserveId = strval($maxReserveId + 1);
+
+    date_default_timezone_set('Asia/Tokyo');
+
+    $reserveData = new ReserveData();
+    $reserveData->id = $nextReserveId;
+    $reserveData->requesterId = $requesterId;
+    $reserveData->guideId = $guideId;
+    $reserveData->area = $area;
+    $reserveData->date = date("YmdHis");
+
+   $str = $reserveData->toFileString();
     return file_put_contents(Reserve::FILE_NAME, $str, FILE_APPEND) !== false;
   }
 }
