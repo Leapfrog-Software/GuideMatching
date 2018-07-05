@@ -15,6 +15,7 @@
 		2E12A0BB20EDB5F10035107F /* CustomerReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0BA20EDB5F10035107F /* CustomerReviewViewController.swift */; };
 		2E12A0BD20EDB6190035107F /* MyPageScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0BC20EDB6190035107F /* MyPageScheduleViewController.swift */; };
 		2E12A0BF20EDC9220035107F /* MyPageScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0BE20EDC9220035107F /* MyPageScheduleTableViewCell.swift */; };
+		2E12A0C120EE031E0035107F /* ReserveRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0C020EE031E0035107F /* ReserveRequester.swift */; };
 		2E94040020E3307600362878 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9403FF20E3307600362878 /* Constants.swift */; };
 		2E94040220E3458F00362878 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040120E3458F00362878 /* ImageUploader.swift */; };
 		2E94040420E3508700362878 /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040320E3508700362878 /* SaveData.swift */; };
@@ -78,6 +79,7 @@
 		2E12A0BA20EDB5F10035107F /* CustomerReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerReviewViewController.swift; sourceTree = "<group>"; };
 		2E12A0BC20EDB6190035107F /* MyPageScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScheduleViewController.swift; sourceTree = "<group>"; };
 		2E12A0BE20EDC9220035107F /* MyPageScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScheduleTableViewCell.swift; sourceTree = "<group>"; };
+		2E12A0C020EE031E0035107F /* ReserveRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveRequester.swift; sourceTree = "<group>"; };
 		2E9403FF20E3307600362878 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2E94040120E3458F00362878 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		2E94040320E3508700362878 /* SaveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
@@ -367,6 +369,7 @@
 				BBFEBB2D20E50B9300C9F01C /* GuestRequester.swift */,
 				2E94043920E386A200362878 /* EstimateRequester.swift */,
 				BBFEBB2B20E504AB00C9F01C /* MessageRequester.swift */,
+				2E12A0C020EE031E0035107F /* ReserveRequester.swift */,
 			);
 			path = Requester;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */,
 				BBFEBB1E20E4DD1400C9F01C /* MyPageReservationTitleTableViewCell.swift in Sources */,
 				BB5059F320E2658F00491506 /* GuideRegisterViewController.swift in Sources */,
+				2E12A0C120EE031E0035107F /* ReserveRequester.swift in Sources */,
 				BB5059FC20E267B200491506 /* UIViewController+Scene.swift in Sources */,
 				BBFEBB1520E4D60D00C9F01C /* MessageTableViewCell.swift in Sources */,
 				BBFEBB3020E50D9900C9F01C /* KeyboardRespondableViewController.swift in Sources */,
