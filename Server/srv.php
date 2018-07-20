@@ -45,6 +45,7 @@ else {
 
 function createGuide() {
 
+  $email = $_POST["email"];
   $name = $_POST["name"];
   $nationality = $_POST["nationality"];
   $language = $_POST["language"];
@@ -56,7 +57,7 @@ function createGuide() {
   $fee = $_POST["fee"];
   $notes = $_POST["notes"];
 
-  $guideId = Guide::create($name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes);
+  $guideId = Guide::create($email, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes);
   if (is_null($guideId)) {
     echo(json_encode(Array("result" => "1")));
   } else {
@@ -82,8 +83,9 @@ function updateGuide() {
   $fee = $_POST["fee"];
   $notes = $_POST["notes"];
   $schedules = $_POST["schedules"];
+  $stripeAccountId = $_POST["stripeAccountId"];
 
-  if (Guide::update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes, $schedules)) {
+  if (Guide::update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes, $schedules, $stripeAccountId)) {
     echo(json_encode(Array("result" => "0")));
   } else {
     echo(json_encode(Array("result" => "1")));
@@ -92,17 +94,36 @@ function updateGuide() {
 
 function getGuide() {
 
-  $ret = Array("result" => "0",
-                "guides" => Guide::getGuideArray());
+  $guides = [];
+  $guideList = Guide::readAll();
+
+  foreach ($guideList as $guideData) {
+    $guides[] = Array("id" => $guideData->id,
+                      "email" => $guideData->email,
+                      "name" => $guideData->name,
+                      "nationality" => $guideData->nationality,
+                      "language" => $guideData->language,
+                      "specialty" => $guideData->specialty,
+                      "category" => $guideData->category,
+                      "message" => $guideData->message,
+                      "timeZone" => $guideData->timeZone,
+                      "applicableNumber" => $guideData->applicableNumber,
+                      "fee" => $guideData->fee,
+                      "notes" => $guideData->notes,
+                      "loginDate" => $guideData->loginDate,
+                      "stripeAccountId" => $guideData->stripeAccountId);
+  }
+  $ret = Array("result" => "0", "guides" => $guides);
   echo(json_encode($ret));
 }
 
 function createGuest() {
 
+  $email = $_POST["email"];
   $name = $_POST["name"];
   $nationality = $_POST["nationality"];
 
-  $guestId = Guest::create($name, $nationality);
+  $guestId = Guest::create($email, $name, $nationality);
   if (is_null($guestId)) {
     echo(json_encode(Array("result" => "1")));
   } else {
@@ -119,8 +140,9 @@ function updateGuest() {
   $id = $_POST["id"];
   $name = $_POST["name"];
   $nationality = $_POST["nationality"];
+  $stripeCustomerId = $_POST["stripeCustomerId"];
 
-  if (Guest::update($id, $name, $nationality)) {
+  if (Guest::update($id, $name, $nationality, $stripeCustomerId)) {
     echo(json_encode(Array("result" => "0")));
   } else {
     echo(json_encode(Array("result" => "1")));
@@ -129,8 +151,17 @@ function updateGuest() {
 
 function getGuest() {
 
+  $guests = [];
+  $guestList = Guest::readAll();
+  foreach ($guestList as $guestData) {
+    $guests[] = Array("id" => $guestData->id,
+                      "email" => $guestData->email,
+                      "name" => $guestData->name,
+                      "nationality" => $guestData->nationality,
+                      "stripeCustomerId" => $guestData->stripeCustomerId);
+  }
   $ret = Array("result" => "0",
-                "guests" => Guest::getGuestArray());
+                "guests" => $guests);
   echo(json_encode($ret));
 }
 
@@ -152,7 +183,6 @@ function createReserve() {
 
   if (Reserve::create($requesterId, $guideId, $area)) {
     echo(json_encode(Array("result" => "0")));
-  }
   } else {
     echo(json_encode(Array("result" => "1")));
   }

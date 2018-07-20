@@ -2,6 +2,7 @@
 
 class GuideData {
   public $id;
+  public $email;
 	public $name;
   public $nationality;
   public $language;
@@ -14,24 +15,27 @@ class GuideData {
   public $notes;
   public $schedules;
   public $loginDate;
+  public $stripeAccountId;
 
 	static function initFromFileString($line) {
 		$datas = explode(",", $line);
-		if (count($datas) == 13) {
+		if (count($datas) == 15) {
       $guideData = new GuideData();
       $guideData->id = $datas[0];
-			$guideData->name = $datas[1];
-      $guideData->nationality = $datas[2];
-      $guideData->language = $datas[3];
-      $guideData->specialty = $datas[4];
-      $guideData->category = $datas[5];
-      $guideData->message = $datas[6];
-      $guideData->timeZone = $datas[7];
-      $guideData->applicableNumber = $datas[8];
-      $guideData->fee = $datas[9];
-      $guideData->notes = $datas[10];
-      $guideData->schedules = $datas[11];
-      $guideData->loginDate = $datas[12];
+      $guideData->email = $datas[1];
+			$guideData->name = $datas[2];
+      $guideData->nationality = $datas[3];
+      $guideData->language = $datas[4];
+      $guideData->specialty = $datas[5];
+      $guideData->category = $datas[6];
+      $guideData->message = $datas[7];
+      $guideData->timeZone = $datas[8];
+      $guideData->applicableNumber = $datas[9];
+      $guideData->fee = $datas[10];
+      $guideData->notes = $datas[11];
+      $guideData->schedules = $datas[12];
+      $guideData->loginDate = $datas[13];
+      $guideData->stripeAccountId = $datas[14];
 			return $guideData;
 		}
 		return null;
@@ -40,6 +44,8 @@ class GuideData {
   function toFileString() {
     $str = "";
     $str .= $this->id;
+    $str .= ",";
+    $str .= $this->email;
     $str .= ",";
     $str .= $this->name;
     $str .= ",";
@@ -64,6 +70,8 @@ class GuideData {
     $str .= $this->schedules;
     $str .= ",";
     $str .= $this->loginDate;
+    $str .= ",";
+    $str .= $this->stripeAccountId;
     $str .= "\n";
     return $str;
   }
@@ -91,7 +99,7 @@ class Guide {
 		return [];
 	}
 
-  static function create($name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes) {
+  static function create($email, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes) {
 
     $maxGuideId = -1;
 
@@ -109,6 +117,7 @@ class Guide {
 
     $guideData = new GuideData();
     $guideData->id = "guide_" . $nextGuideId;
+    $guideData->email = $email;
     $guideData->name = $name;
     $guideData->nationality = $nationality;
     $guideData->language = $language;
@@ -121,6 +130,7 @@ class Guide {
     $guideData->notes = $notes;
     $guideData->schedules = "";
     $guideData->loginDate = date("YmdHis");
+    $guideData->stripeAccountId = "";
 
     if (file_put_contents(Guide::FILE_NAME, $guideData->toFileString(), FILE_APPEND) !== FALSE) {
       return $guideData->id;
@@ -129,7 +139,7 @@ class Guide {
     }
   }
 
-  static function update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes, $schedules) {
+  static function update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes, $schedules, $stripeAccountId) {
 
     $guideList = Guide::readAll();
     $find = false;
@@ -138,20 +148,23 @@ class Guide {
 
     foreach ($guideList as &$guideData) {
       if (strcmp($guideData->id, $id) == 0) {
-        $guideData = new GuideData();
-        $guideData->id = $id;
-        $guideData->name = $name;
-        $guideData->nationality = $nationality;
-        $guideData->language = $language;
-        $guideData->specialty = $specialty;
-        $guideData->category = $category;
-        $guideData->message = $message;
-        $guideData->timeZone = $timeZone;
-        $guideData->applicableNumber = $applicableNumber;
-        $guideData->fee = $fee;
-        $guideData->notes = $notes;
-        $guideData->schedules = $schedules;
-        $guideData->loginDate = date("YmdHis");
+        $newGuideData = new GuideData();
+        $newGuideData->id = $id;
+        $newGuideData->email = $guideData->email;
+        $newGuideData->name = $name;
+        $newGuideData->nationality = $nationality;
+        $newGuideData->language = $language;
+        $newGuideData->specialty = $specialty;
+        $newGuideData->category = $category;
+        $newGuideData->message = $message;
+        $newGuideData->timeZone = $timeZone;
+        $newGuideData->applicableNumber = $applicableNumber;
+        $newGuideData->fee = $fee;
+        $newGuideData->notes = $notes;
+        $newGuideData->schedules = $schedules;
+        $newGuideData->loginDate = date("YmdHis");
+        $newGuideData->stripeAccountId = $stripeAccountId;
+        $guideData = $newGuideData;
 
         $find = true;
         break;
@@ -166,28 +179,6 @@ class Guide {
       $str .= $data->toFileString();
     }
     return file_put_contents(Guide::FILE_NAME, $str) !== false;
-  }
-
-  static function getGuideArray() {
-
-    $ret = [];
-
-    $guideList = Guide::readAll();
-    foreach ($guideList as $guideData) {
-      $ret[] = Array("id" => $guideData->id,
-                      "name" => $guideData->name,
-                      "nationality" => $guideData->nationality,
-                      "language" => $guideData->language,
-                      "specialty" => $guideData->specialty,
-                      "category" => $guideData->category,
-                      "message" => $guideData->message,
-                      "timeZone" => $guideData->timeZone,
-                      "applicableNumber" => $guideData->applicableNumber,
-                      "fee" => $guideData->fee,
-                      "notes" => $guideData->notes,
-                      "loginDate" => $guideData->loginDate);
-    }
-    return $ret;
   }
 
   static function login() {
