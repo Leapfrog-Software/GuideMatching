@@ -72,7 +72,7 @@ class GuestRegisterViewController: UIViewController {
     
     @IBAction func onTapPassport(_ sender: Any) {
         self.pickerTarget = .passport
-        self.showImagePicker(sourceType: .camera)
+        self.showImagePicker(sourceType: .photoLibrary)
     }
     
     @IBAction func onTapDone(_ sender: Any) {
@@ -186,12 +186,13 @@ extension GuestRegisterViewController {
                         myGuestData.stripeCustomerId = customerId
                         AccountRequester.updateGuest(guestData: myGuestData, completion: { resultUpdate in
                             if resultUpdate {
-                                let saveData = SaveData.shared
-                                saveData.guestId = guestId
-                                saveData.save()
-                                
-                                self.stackTabbar()
-                                
+                                GuestRequester.shared.fetch(completion: { _ in
+                                    let saveData = SaveData.shared
+                                    saveData.guestId = guestId
+                                    saveData.save()
+                                    
+                                    self.stackTabbar()
+                                })                                
                             } else {
                                 self.showCommunicateError()
                             }

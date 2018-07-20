@@ -22,9 +22,11 @@ class GuideDetailScheduleView: UIView {
     private var weekOffset = 0
     
     private var scheduleDatas = [GuideScheduleData]()
+    private var didSelect: ((Int, Int) -> ())?
     
-    func set(schedules: [GuideScheduleData]) {
+    func set(schedules: [GuideScheduleData], didSelect: @escaping ((Int, Int) -> ())) {
         self.scheduleDatas = schedules
+        self.didSelect = didSelect
     }
 
     override func didMoveToSuperview() {
@@ -97,8 +99,8 @@ extension GuideDetailScheduleView: UITableViewDelegate, UITableViewDataSource {
             states.append(state)
         }
         
-        cell.configure(cellIndex: indexPath.row, states:states, onTap: { dateOffset, timeOffset in
-            
+        cell.configure(cellIndex: indexPath.row, states:states, onTap: { [weak self] dateOffset, timeOffset in
+            self?.didSelect?(dateOffset, timeOffset)
         })
         
         return cell

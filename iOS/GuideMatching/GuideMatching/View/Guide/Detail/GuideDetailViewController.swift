@@ -65,7 +65,9 @@ class GuideDetailViewController: UIViewController {
         self.estimateNumberLabel.text = "(\(estimateDatas.count))"
         
         if let scheduleView = UINib(nibName: "GuideDetailScheduleView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? GuideDetailScheduleView {
-            scheduleView.set(schedules: self.guideData.schedules)
+            scheduleView.set(schedules: self.guideData.schedules, didSelect: { [weak self] dateOffset, timeOffset in
+                self?.showPayment()
+            })
             self.scheduleBaseView.addSubview(scheduleView)
             scheduleView.translatesAutoresizingMaskIntoConstraints = false
             scheduleView.topAnchor.constraint(equalTo: self.scheduleBaseView.topAnchor).isActive = true
@@ -77,8 +79,15 @@ class GuideDetailViewController: UIViewController {
     
     private func showPayment() {
         
-        // TODO
-        let customerId = ""
+        let guestId = SaveData.shared.guestId
+        guard guestId.count > 0, let myGuestData = GuestRequester.shared.query(id: guestId) else {
+            let alert = UIAlertController(title: "Error", message: "ガイドは購入できません", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let customerId = myGuestData.stripeCustomerId
         let customerContext = STPCustomerContext(keyProvider:StripeApiClient(customerId: customerId))
         let paymentMethodsViewController = STPPaymentMethodsViewController(configuration: STPPaymentConfiguration.shared(),
                                                                            theme: STPTheme.default(),
@@ -152,11 +161,10 @@ extension GuideDetailViewController: STPPaymentMethodsViewControllerDelegate {
         
         // TODO Loading
         
-        // TODO
-        let customerId = ""
-        let amount = 100
-        let applicationFee = 50
-        let destination = ""
+        let customerId = GuestRequester.shared.query(id: SaveData.shared.guestId)?.stripeCustomerId ?? ""
+        let amount = 1000
+        let applicationFee = 10
+        let destination = self.guideData.stripeAccountId
         StripeManager.charge(customerId: customerId, cardId: cardId, amount: amount, applicationFee: applicationFee, destination: destination, completion: { result in
             if result {
                 paymentMethodsViewController.dismiss(animated: true, completion: nil)
