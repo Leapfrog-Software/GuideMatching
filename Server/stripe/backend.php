@@ -6,7 +6,9 @@ require('stripe-php-6.10.4/init.php');
 
 $command = $_POST["command"];
 
-if (strcmp($command, "createCustomer") == 0) {
+if (strcmp($command, "createAccount") == 0) {
+  createAccount();
+} else if (strcmp($command, "createCustomer") == 0) {
   createCustomer();
 } else if (strcmp($command, "createEphemeralKey") == 0) {
   createEphemeralKey();
@@ -14,6 +16,38 @@ if (strcmp($command, "createCustomer") == 0) {
   createCharge();
 } else {
   echo("unknown");
+}
+
+function createAccount() {
+
+  $email = $_POST["email"];
+  if (!isValidEmail($email)) {
+    echo(json_encode(Array("result" => "1")));
+    return;
+  }
+
+  try {
+    $account = \Stripe\Account::create(
+      Array(
+        "country" => "JP",
+        "type" => "standard",
+        "email" => $email
+      )
+    );
+  } catch (Exception $e) {
+    echo(json_encode(Array("result" => "2")));
+    return;
+  }
+
+  $json = json_decode($account->__toJSON());
+  if (!is_null($json)) {
+    $accountId = $json->id;
+    if ((!is_null($accountId)) && (strlen($accountId) > 0)) {
+      echo(json_encode(Array("result" => "0", "accountId" => $accountId)));
+      return;
+    }
+  }
+  echo(json_encode(Array("result" => "2")));
 }
 
 function createCustomer() {
@@ -24,27 +58,19 @@ function createCustomer() {
     return;
   }
 
-  $customer = \Stripe\Customer::create(
-    Array(
-      "email" => $email
-    )
-  );
-  $decoded = json_decode($customer->__toJSON());
-  if (is_null($decoded)) {
+  try {
+    $customer = \Stripe\Customer::create(
+      Array(
+        "email" => $email
+      )
+    );
+  } catch (Exception $e) {
     echo(json_encode(Array("result" => "2")));
     return;
   }
-   
-  $customerId = $decoded->id;
-  if (is_null($customerId)) {
-    echo(json_encode(Array("result" => "2")));
-    return;
-  }
-  if (strlen($customerId) == 0) {
-    echo(json_encode(Array("result" => "2")));
-    return;
-  }
-  echo(json_encode(Array("result" => "0", "customerId" => $customerId)));
+  $customerId = json_decode($customer->__toJSON())->id;
+  echo(json_encode(Array("result" => "0",
+                          "customerId" => $customerId)));
 }
 
 function createEphemeralKey() {
@@ -53,8 +79,7 @@ function createEphemeralKey() {
   $customerId = $_POST["customerId"];
 
   if ((!isset($apiVersion)) || (!isset($customerId))) {
-    echo(json_encode(Array("result" => "1")));
-    return;
+    exit(http_response_code(400));
   }
 
   try {
@@ -62,9 +87,10 @@ function createEphemeralKey() {
       Array("customer" => $customerId),
       Array("stripe_version" => $apiVersion)
     );
-    echo(json_encode(Array("result" => "0", "key" => $key)));
+    echo(json_encode($key));
+    
   } catch (Exception $e) {
-    echo(json_encode(Array("result" => "2")));
+    exit(http_response_code(500));
   }
 }
 
@@ -87,20 +113,23 @@ function createCharge() {
     return;
   }
 
-  $charge = \Stripe\Charge::create(
-    Array(
-      "customer" => $customerId,
-      "amount" => $amountInt,
-      "currency" => "jpy",
-      "source" => $cardId,
-      "application_fee" => $applicationFeeInt,
-      "destination" => Array(
-        "account" => $destination
+  try {
+    $charge = \Stripe\Charge::create(
+      Array(
+        "customer" => $customerId,
+        "amount" => $amountInt,
+        "currency" => "jpy",
+        "source" => $cardId,
+        "application_fee" => $applicationFeeInt,
+        "destination" => Array(
+          "account" => $destination
+        )
       )
-    )
-  );
-
-  echo(json_encode(Array("result" => "0")));
+    );
+    echo(json_encode(Array("result" => "0")));
+  } catch (Exception $e) {
+    echo(json_encode(Array("result" => "1")));
+  }
 }
 
 function isValidEmail($email) {
