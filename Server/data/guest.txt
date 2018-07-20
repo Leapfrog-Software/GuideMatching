@@ -4,3 +4,5 @@
 3,,test,test,
 4,,,,
 5,,test,test,
+guest_1,guest1@mail.com,Z3Vlc3Qx,amFwYW4=,
+guest_2,guest3@mail.com,Z3Vlc3Qz,amFwYW4=,cus_DGU55IYpQ0iaj7
