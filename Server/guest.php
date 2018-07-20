@@ -2,16 +2,20 @@
 
 class GuestData {
   public $id;
+  public $email;
   public $name;
   public $nationality;
+  public $stripeCustomerId;
 
   static function initFromFileString($line) {
     $datas = explode(",", $line);
-    if (count($datas) == 3) {
+    if (count($datas) == 5) {
       $guestData = new GuestData();
       $guestData->id = $datas[0];
-      $guestData->name = $datas[1];
-      $guestData->nationality = $datas[2];
+      $guestData->email = $datas[1];
+      $guestData->name = $datas[2];
+      $guestData->nationality = $datas[3];
+      $guestData->stripeCustomerId = $datas[4];
       return $guestData;
     }
     return null;
@@ -21,9 +25,13 @@ class GuestData {
     $str = "";
     $str .= $this->id;
     $str .= ",";
+    $str .= $this->email;
+    $str .= ",";
     $str .= $this->name;
     $str .= ",";
     $str .= $this->nationality;
+    $str .= ",";
+    $str .= $this->stripeCustomerId;
     $str .= "\n";
     return $str;
   }
@@ -51,7 +59,7 @@ class Guest {
     return [];
   }
 
-  static function create($name, $nationality) {
+  static function create($email, $name, $nationality) {
 
     $maxGuestId = -1;
 
@@ -67,6 +75,7 @@ class Guest {
 
     $guestData = new GuestData();
     $guestData->id = "guest_" . $nextGuestId;
+    $guestData->email = $email;
     $guestData->name = $name;
     $guestData->nationality = $nationality;
 
@@ -77,17 +86,20 @@ class Guest {
     }
   }
 
-  static function update($id, $name, $nationality) {
+  static function update($id, $name, $nationality, $stripeCustomerId) {
 
     $guestList = Guest::readAll();
     $find = false;
 
     foreach ($guestList as &$guestData) {
       if (strcmp($guestData->id, $id) == 0) {
-        $guestData = new GuestData();
-        $guestData->id = $id;
-        $guestData->name = $name;
-        $guestData->nationality = $nationality;
+        $newGuestData = new GuestData();
+        $newGuestData->id = $id;
+        $newGuestData->email = $guestData->email;
+        $newGuestData->name = $name;
+        $newGuestData->nationality = $nationality;
+        $newGuestData->stripeCustomerId = $stripeCustomerId;
+        $guestData = $newGuestData;
 
         $find = true;
         break;
@@ -102,19 +114,6 @@ class Guest {
       $str .= $data->toFileString();
     }
     return file_put_contents(Guest::FILE_NAME, $str) !== false;
-  }
-
-  static function getGuestArray() {
-
-    $ret = [];
-
-    $guestList = Guest::readAll();
-    foreach ($guestList as $guestData) {
-      $ret[] = Array("id" => $guestData->id,
-                      "name" => $guestData->name,
-                      "nationality" => $guestData->nationality);
-    }
-    return $ret;
   }
 }
 
