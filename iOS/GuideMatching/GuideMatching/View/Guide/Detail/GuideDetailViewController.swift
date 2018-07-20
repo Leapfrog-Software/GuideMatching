@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Stripe
 
 class GuideDetailViewController: UIViewController {
     
@@ -25,6 +26,7 @@ class GuideDetailViewController: UIViewController {
     @IBOutlet private weak var scheduleBaseView: UIView!
     
     private var guideData: GuideData!
+    private var selectedCardId: String?
     
     func set(guideData: GuideData) {
         self.guideData = guideData
@@ -73,6 +75,19 @@ class GuideDetailViewController: UIViewController {
         }
     }
     
+    private func showPayment() {
+        
+        // TODO
+        let customerId = ""
+        let customerContext = STPCustomerContext(keyProvider:StripeApiClient(customerId: customerId))
+        let paymentMethodsViewController = STPPaymentMethodsViewController(configuration: STPPaymentConfiguration.shared(),
+                                                                           theme: STPTheme.default(),
+                                                                           customerContext: customerContext,
+                                                                           delegate: self)
+        let navigationController = UINavigationController(rootViewController: paymentMethodsViewController)
+        present(navigationController, animated: true)
+    }
+    
     @IBAction func onTapImageLeft(_ sender: Any) {
         let page = Int(self.imageScrollView.contentOffset.x / self.imageScrollView.frame.size.width)
         if page >= 1 {
@@ -119,5 +134,44 @@ class GuideDetailViewController: UIViewController {
     
     @IBAction func onTapBack(_ sender: Any) {
         self.pop(animationType: .horizontal)
+    }
+}
+
+extension GuideDetailViewController: STPPaymentMethodsViewControllerDelegate {
+    
+    func paymentMethodsViewController(_ paymentMethodsViewController: STPPaymentMethodsViewController, didFailToLoadWithError error: Error) {
+        
+    }
+    
+    func paymentMethodsViewControllerDidFinish(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
+        
+        guard let cardId = self.selectedCardId else {
+            paymentMethodsViewController.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        // TODO Loading
+        
+        // TODO
+        let customerId = ""
+        let amount = 100
+        let applicationFee = 50
+        let destination = ""
+        StripeManager.charge(customerId: customerId, cardId: cardId, amount: amount, applicationFee: applicationFee, destination: destination, completion: { result in
+            if result {
+                paymentMethodsViewController.dismiss(animated: true, completion: nil)
+            } else {
+                // TODO
+            }
+        })
+        
+    }
+    
+    func paymentMethodsViewControllerDidCancel(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
+        paymentMethodsViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func paymentMethodsViewController(_ paymentMethodsViewController: STPPaymentMethodsViewController, didSelect paymentMethod: STPPaymentMethod) {
+        self.selectedCardId = (paymentMethod as? STPCard)?.cardId
     }
 }

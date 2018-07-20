@@ -16,6 +16,8 @@
 		2E12A0BD20EDB6190035107F /* MyPageScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0BC20EDB6190035107F /* MyPageScheduleViewController.swift */; };
 		2E12A0BF20EDC9220035107F /* MyPageScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0BE20EDC9220035107F /* MyPageScheduleTableViewCell.swift */; };
 		2E12A0C120EE031E0035107F /* ReserveRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0C020EE031E0035107F /* ReserveRequester.swift */; };
+		2E67BDA92101B427004E3B17 /* StripeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E67BDA82101B427004E3B17 /* StripeManager.swift */; };
+		2E67BDAB2101B475004E3B17 /* StripeApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E67BDAA2101B475004E3B17 /* StripeApiClient.swift */; };
 		2E94040020E3307600362878 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9403FF20E3307600362878 /* Constants.swift */; };
 		2E94040220E3458F00362878 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040120E3458F00362878 /* ImageUploader.swift */; };
 		2E94040420E3508700362878 /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040320E3508700362878 /* SaveData.swift */; };
@@ -82,6 +84,8 @@
 		2E12A0BC20EDB6190035107F /* MyPageScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScheduleViewController.swift; sourceTree = "<group>"; };
 		2E12A0BE20EDC9220035107F /* MyPageScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		2E12A0C020EE031E0035107F /* ReserveRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveRequester.swift; sourceTree = "<group>"; };
+		2E67BDA82101B427004E3B17 /* StripeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeManager.swift; sourceTree = "<group>"; };
+		2E67BDAA2101B475004E3B17 /* StripeApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApiClient.swift; sourceTree = "<group>"; };
 		2E9403FF20E3307600362878 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2E94040120E3458F00362878 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		2E94040320E3508700362878 /* SaveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
@@ -179,6 +183,15 @@
 				2E12A0BA20EDB5F10035107F /* CustomerReviewViewController.swift */,
 			);
 			path = Review;
+			sourceTree = "<group>";
+		};
+		2E67BDA72101B40E004E3B17 /* Stripe */ = {
+			isa = PBXGroup;
+			children = (
+				2E67BDA82101B427004E3B17 /* StripeManager.swift */,
+				2E67BDAA2101B475004E3B17 /* StripeApiClient.swift */,
+			);
+			path = Stripe;
 			sourceTree = "<group>";
 		};
 		2E9403FE20E3306400362878 /* System */ = {
@@ -373,6 +386,7 @@
 				BB505A0320E26F8D00491506 /* ApiManager.swift */,
 				BB505A0520E2702100491506 /* Requester */,
 				2E94040120E3458F00362878 /* ImageUploader.swift */,
+				2E67BDA72101B40E004E3B17 /* Stripe */,
 			);
 			path = Http;
 			sourceTree = "<group>";
@@ -539,9 +553,11 @@
 				2E94040020E3307600362878 /* Constants.swift in Sources */,
 				2E94041620E370BD00362878 /* PlaceholderTextView.swift in Sources */,
 				2E94041120E36B7600362878 /* PickerViewController.swift in Sources */,
+				2E67BDA92101B427004E3B17 /* StripeManager.swift in Sources */,
 				BBFEBB2420E4DFC300C9F01C /* BookViewController.swift in Sources */,
 				BBFEBB2C20E504AB00C9F01C /* MessageRequester.swift in Sources */,
 				2E94042120E37BF500362878 /* GuideViewController.swift in Sources */,
+				2E67BDAB2101B475004E3B17 /* StripeApiClient.swift in Sources */,
 				BBFEBB2E20E50B9300C9F01C /* GuestRequester.swift in Sources */,
 				2E94040720E3528800362878 /* TabbarViewController.swift in Sources */,
 				BBFEBB2220E4DD5800C9F01C /* MyPageButtonTableViewCell.swift in Sources */,

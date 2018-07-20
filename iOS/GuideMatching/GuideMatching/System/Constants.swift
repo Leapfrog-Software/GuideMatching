@@ -13,6 +13,7 @@ class Constants {
     static let ServerRootUrl = "http://localhost/tourguide/"
 //    static let ServerRootUrl = "http://lfrogs.sakura.ne.jp/guide_matching/"
     static let ServerApiUrl = Constants.ServerRootUrl + "srv.php"
+    static let StripeBackendUrl = Constants.ServerRootUrl + "stripe/backend.php"
     static let ServerGuideImageRootUrl = Constants.ServerRootUrl + "data/image/guide/"
     static let ServerGuestImageRootUrl = Constants.ServerRootUrl + "data/image/guest/"
     static let StringEncoding = String.Encoding.utf8
@@ -21,5 +22,9 @@ class Constants {
     struct UserDefaultsKey {
         static let GuestId = "GuestId"
         static let GuideId = "GuideId"
+    }
+    
+    struct Stripe {
+        static let Key = "pk_test_YA3x9LrmFX1C7annyyM1iEg3"
     }
 }
