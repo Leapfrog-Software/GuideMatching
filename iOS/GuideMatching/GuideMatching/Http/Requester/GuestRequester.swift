@@ -11,8 +11,10 @@ import Foundation
 struct GuestData {
     
     let id: String
+    let email: String
     let name: String
     let nationality: String
+    var stripeCustomerId: String
     
     init?(data: Dictionary<String, Any>) {
         
@@ -21,8 +23,10 @@ struct GuestData {
         }
         self.id = id
         
+        self.email = data["email"] as? String ?? ""
         self.name = (data["name"] as? String)?.base64Decode() ?? ""
         self.nationality = (data["nationality"] as? String)?.base64Decode() ?? ""
+        self.stripeCustomerId = data["stripeCustomerId"] as? String ?? ""
     }
 }
 
@@ -43,5 +47,9 @@ class GuestRequester {
                 completion(false)
             }
         }
+    }
+    
+    func query(id: String) -> GuestData? {
+        return self.dataList.filter { $0.id == id }.first
     }
 }

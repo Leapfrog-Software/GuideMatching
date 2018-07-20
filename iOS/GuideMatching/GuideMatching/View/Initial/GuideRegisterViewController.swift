@@ -21,6 +21,7 @@ class GuideRegisterViewController: UIViewController {
     @IBOutlet private weak var face1ImageView: UIImageView!
     @IBOutlet private weak var face2ImageView: UIImageView!
     @IBOutlet private weak var face3ImageView: UIImageView!
+    @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var nationalityTextField: UITextField!
     @IBOutlet private weak var languageLabel: UILabel!
@@ -44,32 +45,6 @@ class GuideRegisterViewController: UIViewController {
     private var applicableNumbers: [Int] = (Array<Int>)(1...20)
     private var applicableNumberIndex = 0
     
-    private func uploadImage(type: ImageType, completion: @escaping ((Bool) -> ())) {
-        
-        let image: UIImage?
-        var params: [String: String] = ["command": "uploadGuideImage"]
-        
-        switch type {
-        case .face1:
-            image = self.face1Image
-            params["type"] = "face1"
-        case .face2:
-            image = self.face2Image
-            params["type"] = "face2"
-        case .face3:
-            image = self.face3Image
-            params["type"] = "face3"
-        }
-        
-        guard let img = image else {
-            completion(true)
-            return
-        }
-        ImageUploader.post(url: Constants.ServerApiUrl, image: img, params: params, completion: { result in
-            completion(result)
-        })
-    }
-    
     private func stackTabbar() {
         if let splashViewController = self.parent?.parent {
             let tabbar = self.viewController(storyboard: "Initial", identifier: "TabbarViewController") as! TabbarViewController
@@ -83,6 +58,10 @@ class GuideRegisterViewController: UIViewController {
         let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func showCommunicateError() {
+        self.showError(message: "通信に失敗しました")
     }
     
     @IBAction func didEndEdit(_ sender: Any) {
@@ -135,6 +114,16 @@ class GuideRegisterViewController: UIViewController {
     
     @IBAction func onTapDone(_ sender: Any) {
         self.view.endEditing(true)
+        
+        let email = self.emailTextField.text ?? ""
+        if email.count == 0 {
+            self.showError(message: "メールアドレスが入力されていません")
+            return
+        }
+        if email.contains(",") || !email.contains("@") {
+            self.showError(message: "不正なメールアドレスです")
+            return
+        }
 
         let name = self.nameTextField.text ?? ""
         if name.count == 0 {
@@ -161,19 +150,15 @@ class GuideRegisterViewController: UIViewController {
             self.uploadImage(type: .face2, completion: { resultFace2 in
                 self.uploadImage(type: .face3, completion: { resultFace3 in
                     if resultFace1 && resultFace2 && resultFace3 {
-                        AccountRequester.createGuide(name: name, nationality: nationality, language: language, specialty: specialty, category: category, message: message, timeZone: timeZone, applicableNumber: applicableNumber, fee: fee, notes: notes, completion: { resultCreate, guideId in
+                        AccountRequester.createGuide(email: email, name: name, nationality: nationality, language: language, specialty: specialty, category: category, message: message, timeZone: timeZone, applicableNumber: applicableNumber, fee: fee, notes: notes, completion: { resultCreate, guideId in
                             if resultCreate, let guideId = guideId {
-                                let saveData = SaveData.shared
-                                saveData.guideId = guideId
-                                saveData.save()
-                                
-                                self.stackTabbar()
+                                self.refetchGuide(guideId: guideId)                                
                             } else {
-                                self.showError(message: "通信に失敗しました")
+                                self.showCommunicateError()
                             }
                         })
                     } else {
-                        self.showError(message: "通信に失敗しました")
+                        self.showCommunicateError()
                     }
                 })
             })
@@ -226,5 +211,67 @@ extension GuideRegisterViewController: UIImagePickerControllerDelegate, UINaviga
             }
         }
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension GuideRegisterViewController {
+    
+    private func refetchGuide(guideId: String) {
+        
+        GuideRequester.shared.fetch(completion: { resultFetch in
+            if resultFetch {
+                guard var myGuideData = GuideRequester.shared.query(id: guideId) else {
+                    self.showCommunicateError()
+                    return
+                }
+                StripeManager.createAccount(email: myGuideData.email, completion: { resultStripe, accountId in
+                    if resultStripe, let accountId = accountId {
+                        myGuideData.stripeAccountId = accountId
+                        AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
+                            if resultUpdate {
+                                let saveData = SaveData.shared
+                                saveData.guideId = guideId
+                                saveData.save()
+                                
+                                self.stackTabbar()
+                                
+                            } else {
+                                self.showCommunicateError()
+                            }
+                        })
+                    } else {
+                        self.showCommunicateError()
+                    }
+                })
+            } else {
+                self.showCommunicateError()
+            }
+        })
+    }
+    
+    private func uploadImage(type: ImageType, completion: @escaping ((Bool) -> ())) {
+        
+        let image: UIImage?
+        var params: [String: String] = ["command": "uploadGuideImage"]
+        
+        switch type {
+        case .face1:
+            image = self.face1Image
+            params["type"] = "face1"
+        case .face2:
+            image = self.face2Image
+            params["type"] = "face2"
+        case .face3:
+            image = self.face3Image
+            params["type"] = "face3"
+        }
+        
+        guard let img = image else {
+            completion(true)
+            return
+        }
+        ImageUploader.post(url: Constants.ServerApiUrl, image: img, params: params, completion: { result in
+            completion(result)
+        })
     }
 }

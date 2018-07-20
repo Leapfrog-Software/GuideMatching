@@ -49,6 +49,7 @@ struct GuideScheduleData {
 struct GuideData {
     
     let id: String
+    let email: String
     let name: String
     let nationality: String
     let language: String
@@ -61,6 +62,7 @@ struct GuideData {
     let notes: String
     var schedules: [GuideScheduleData]
     let loginDate: Date
+    var stripeAccountId: String
     
     init?(data: Dictionary<String, Any>) {
         
@@ -69,6 +71,7 @@ struct GuideData {
         }
         self.id = id
         
+        self.email = data["email"] as? String ?? ""
         self.name = (data["name"] as? String)?.base64Decode() ?? ""
         self.nationality = (data["nationality"] as? String)?.base64Decode() ?? ""
         self.language = (data["language"] as? String)?.base64Decode() ?? ""
@@ -87,6 +90,8 @@ struct GuideData {
             return nil
         }
         self.loginDate = loginDate
+        
+        self.stripeAccountId = data["stripeAccountId"] as? String ?? ""
     }
 }
 

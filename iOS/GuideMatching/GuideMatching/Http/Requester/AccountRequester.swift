@@ -10,10 +10,11 @@ import Foundation
 
 class AccountRequester {
     
-    class func createGuest(name: String, nationality: String, completion: @escaping ((Bool, String?) -> ())) {
+    class func createGuest(email: String, name: String, nationality: String, completion: @escaping ((Bool, String?) -> ())) {
         
         let params = [
             "command": "createGuest",
+            "email": email,
             "name": name.base64Encode() ?? "",
             "nationality": nationality.base64Encode() ?? ""
         ]
@@ -32,6 +33,7 @@ class AccountRequester {
         params["id"] = guestData.id
         params["name"] = guestData.name.base64Encode() ?? ""
         params["nationality"] = guestData.nationality.base64Encode() ?? ""
+        params["stripeCustomerId"] = guestData.stripeCustomerId
         
         ApiManager.post(params: params, completion: { (result, data) in
             if result, ((data as? NSDictionary)?.object(forKey: "result") as? String) == "0" {
@@ -42,11 +44,12 @@ class AccountRequester {
         })
     }
     
-    class func createGuide(name: String, nationality: String, language: String, specialty: String,
+    class func createGuide(email: String, name: String, nationality: String, language: String, specialty: String,
                            category: String, message: String, timeZone: String, applicableNumber: Int,
                            fee: String, notes: String, completion: @escaping ((Bool, String?) -> ())) {
         
         var params: [String: String] = ["command": "createGuide"]
+        params["email"] = email
         params["name"] = name.base64Encode() ?? ""
         params["nationality"] = nationality.base64Encode() ?? ""
         params["language"] = language.base64Encode() ?? ""
@@ -82,6 +85,7 @@ class AccountRequester {
         params["fee"] = guideData.fee
         params["notes"] = guideData.notes
         params["schedules"] = guideData.schedules.compactMap { $0.toString() }.joined(separator: "/")
+        params["stripeAccountId"] = guideData.stripeAccountId
         
         ApiManager.post(params: params, completion: { (result, data) in
             if result, ((data as? NSDictionary)?.object(forKey: "result") as? String) == "0" {
