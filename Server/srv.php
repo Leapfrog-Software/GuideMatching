@@ -110,6 +110,7 @@ function getGuide() {
                       "applicableNumber" => $guideData->applicableNumber,
                       "fee" => $guideData->fee,
                       "notes" => $guideData->notes,
+                      "schedules" => $guideData->schedules,
                       "loginDate" => $guideData->loginDate,
                       "stripeAccountId" => $guideData->stripeAccountId);
   }
