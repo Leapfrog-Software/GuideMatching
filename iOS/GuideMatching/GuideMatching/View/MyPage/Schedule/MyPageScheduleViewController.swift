@@ -26,7 +26,6 @@ class MyPageScheduleViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
 
     private var weekOffset = 0
-    private var scheduleDatas = [GuideScheduleData]()
     private var editedSchedules = [EditedScheduleData]()
     
     override func viewDidLoad() {
@@ -49,6 +48,10 @@ class MyPageScheduleViewController: UIViewController {
         self.date7Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 6))
         
         self.tableView.reloadData()
+    }
+    
+    private func showCommunicateError() {
+        Dialog.show(style: .error, title: "エラー", message: "通信に失敗しました", actions: [DialogAction(title: "OK", action: nil)])
     }
     
     @IBAction func onTapPreviousWeek(_ sender: Any) {
@@ -92,8 +95,27 @@ class MyPageScheduleViewController: UIViewController {
                 }
             }
         }
-        AccountRequester.updateGuide(guideData: myGuideData, completion: { result in
-            
+        
+        Loading.start()
+        
+        AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
+            if resultUpdate {
+                GuideRequester.shared.fetch(completion: { resultFetch in
+                    Loading.stop()
+                    
+                    if resultFetch {
+                        let action = DialogAction(title: "OK", action: { [weak self] in
+                            self?.pop(animationType: .horizontal)
+                        })
+                        Dialog.show(style: .success, title: "確認", message: "スケジュールを更新しました", actions: [action])
+                    } else {
+                        self.showCommunicateError()
+                    }
+                })
+            } else {
+                Loading.stop()
+                self.showCommunicateError()
+            }
         })
     }
     
@@ -160,5 +182,7 @@ extension MyPageScheduleViewController: UITableViewDelegate, UITableViewDataSour
         
         let editedSchedule = EditedScheduleData(date: targetDateStr, timeIndex: timeOffset, isFree: isFree)
         self.editedSchedules.append(editedSchedule)
+        
+        self.tableView.reloadData()
     }
 }

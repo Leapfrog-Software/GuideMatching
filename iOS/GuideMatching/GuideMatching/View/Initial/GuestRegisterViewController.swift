@@ -42,9 +42,7 @@ class GuestRegisterViewController: UIViewController {
     }
     
     private func showError(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        Dialog.show(style: .error, title: "Error", message: message, actions: [DialogAction(title: "OK", action: nil)])
     }
     
     private func showCommunicateError() {
@@ -105,6 +103,8 @@ class GuestRegisterViewController: UIViewController {
             return
         }
         
+        Loading.start()
+        
         self.uploadImage(type: .face1, completion: { resultFace1 in
             self.uploadImage(type: .face2, completion: { resultFace2 in
                 self.uploadImage(type: .face3, completion: { resultFace3 in
@@ -114,10 +114,12 @@ class GuestRegisterViewController: UIViewController {
                                 if resultCreate, let guestId = guestId {                                    
                                     self.refetchGuest(guestId: guestId)
                                 } else {
+                                    Loading.stop()
                                     self.showCommunicateError()
                                 }
                             })
                         } else {
+                            Loading.stop()
                             self.showCommunicateError()
                         }
                     })
@@ -187,6 +189,8 @@ extension GuestRegisterViewController {
                         AccountRequester.updateGuest(guestData: myGuestData, completion: { resultUpdate in
                             if resultUpdate {
                                 GuestRequester.shared.fetch(completion: { _ in
+                                    Loading.stop()
+                                    
                                     let saveData = SaveData.shared
                                     saveData.guestId = guestId
                                     saveData.save()
@@ -194,14 +198,17 @@ extension GuestRegisterViewController {
                                     self.stackTabbar()
                                 })                                
                             } else {
+                                Loading.stop()
                                 self.showCommunicateError()
                             }
                         })
                     } else {
+                        Loading.stop()
                         self.showCommunicateError()
                     }
                 })
             } else {
+                Loading.stop()
                 self.showCommunicateError()
             }
         })

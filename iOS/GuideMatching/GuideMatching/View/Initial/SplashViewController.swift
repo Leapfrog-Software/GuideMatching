@@ -79,11 +79,10 @@ class SplashViewController: UIViewController {
     }
     
     private func showError() {
-        let alert = UIAlertController(title: "Error", message: "Failed to communicate", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { [weak self] _ in
+        let action = DialogAction(title: "Retry", action: { [weak self] in
             self?.fetch()
-        }))
-        self.present(alert, animated: true, completion: nil)
+        })
+        Dialog.show(style: .error, title: "Error", message: "Failed to communicate", actions: [action])
     }
     
     private func stack(viewController: UIViewController) {

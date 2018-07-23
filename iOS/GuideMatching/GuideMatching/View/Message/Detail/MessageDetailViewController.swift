@@ -125,15 +125,11 @@ class MessageDetailViewController: KeyboardRespondableViewController {
                         self?.tmpMessageIds.removeAll()
                         self?.refresh()
                     } else {
-                        let alert = UIAlertController(title: "Error", message: "Failed to communicate", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self?.present(alert, animated: true, completion: nil)
+                        Dialog.show(style: .error, title: "Error", message: "Failed to communicate", actions: [DialogAction(title: "OK", action: nil)])
                     }
                 })
             } else {
-                let alert = UIAlertController(title: "Error", message: "Failed to communicate", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self?.present(alert, animated: true, completion: nil)
+                Dialog.show(style: .error, title: "Error", message: "Failed to communicate", actions: [DialogAction(title: "OK", action: nil)])
             }
         })
         self.textField.text = ""

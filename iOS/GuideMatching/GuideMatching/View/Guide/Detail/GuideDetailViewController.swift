@@ -65,8 +65,8 @@ class GuideDetailViewController: UIViewController {
         self.estimateNumberLabel.text = "(\(estimateDatas.count))"
         
         if let scheduleView = UINib(nibName: "GuideDetailScheduleView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? GuideDetailScheduleView {
-            scheduleView.set(schedules: self.guideData.schedules, didSelect: { [weak self] dateOffset, timeOffset in
-                self?.showPayment()
+            scheduleView.set(schedules: self.guideData.schedules, didSelect: { [weak self] targetDate, timeOffset in
+                self?.didSelectSchedule(targetDate: targetDate, timeOffset: timeOffset)
             })
             self.scheduleBaseView.addSubview(scheduleView)
             scheduleView.translatesAutoresizingMaskIntoConstraints = false
@@ -77,13 +77,20 @@ class GuideDetailViewController: UIViewController {
         }
     }
     
+    private func didSelectSchedule(targetDate: Date, timeOffset: Int) {
+        
+        if let schedule = (self.guideData.schedules.filter { $0.date.isSameDay(with: targetDate) }).first {
+            if schedule.isFreeList[timeOffset] {
+                self.showPayment()
+            }
+        }
+    }
+    
     private func showPayment() {
         
         let guestId = SaveData.shared.guestId
         guard guestId.count > 0, let myGuestData = GuestRequester.shared.query(id: guestId) else {
-            let alert = UIAlertController(title: "Error", message: "ガイドは購入できません", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            Dialog.show(style: .error, title: "エラー", message: "ガイドは購入できません", actions: [DialogAction(title: "OK", action: nil)])
             return
         }
         
