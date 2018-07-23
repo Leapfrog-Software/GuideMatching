@@ -55,9 +55,7 @@ class GuideRegisterViewController: UIViewController {
     }
     
     private func showError(message: String) {
-        let alert = UIAlertController(title: "エラー", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        Dialog.show(style: .error, title: "エラー", message: message, actions: [DialogAction(title: "OK", action: nil)])
     }
     
     private func showCommunicateError() {
@@ -146,6 +144,8 @@ class GuideRegisterViewController: UIViewController {
         let fee = self.feeTextField.text ?? ""
         let notes = self.notesTextView.text ?? ""
         
+        Loading.start()
+        
         self.uploadImage(type: .face1, completion: { resultFace1 in
             self.uploadImage(type: .face2, completion: { resultFace2 in
                 self.uploadImage(type: .face3, completion: { resultFace3 in
@@ -154,10 +154,12 @@ class GuideRegisterViewController: UIViewController {
                             if resultCreate, let guideId = guideId {
                                 self.refetchGuide(guideId: guideId)                                
                             } else {
+                                Loading.stop()
                                 self.showCommunicateError()
                             }
                         })
                     } else {
+                        Loading.stop()
                         self.showCommunicateError()
                     }
                 })
@@ -228,6 +230,8 @@ extension GuideRegisterViewController {
                     if resultStripe, let accountId = accountId {
                         myGuideData.stripeAccountId = accountId
                         AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
+                            Loading.stop()
+                            
                             if resultUpdate {
                                 GuideRequester.shared.fetch(completion: { _ in
                                     let saveData = SaveData.shared
@@ -241,10 +245,12 @@ extension GuideRegisterViewController {
                             }
                         })
                     } else {
+                        Loading.stop()
                         self.showCommunicateError()
                     }
                 })
             } else {
+                Loading.stop()
                 self.showCommunicateError()
             }
         })

@@ -51,9 +51,7 @@ class MyPageScheduleViewController: UIViewController {
     }
     
     private func showCommunicateError() {
-        let alert = UIAlertController(title: "エラー", message: "通信に失敗しました", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        Dialog.show(style: .error, title: "エラー", message: "通信に失敗しました", actions: [DialogAction(title: "OK", action: nil)])
     }
     
     @IBAction func onTapPreviousWeek(_ sender: Any) {
@@ -97,20 +95,25 @@ class MyPageScheduleViewController: UIViewController {
                 }
             }
         }
+        
+        Loading.start()
+        
         AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
             if resultUpdate {
                 GuideRequester.shared.fetch(completion: { resultFetch in
+                    Loading.stop()
+                    
                     if resultFetch {
-                        let alert = UIAlertController(title: "確認", message: "スケジュールを更新しました", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-                            self.pop(animationType: .horizontal)
-                        }))
-                        self.present(alert, animated: true, completion: nil)
+                        let action = DialogAction(title: "OK", action: { [weak self] in
+                            self?.pop(animationType: .horizontal)
+                        })
+                        Dialog.show(style: .success, title: "確認", message: "スケジュールを更新しました", actions: [action])
                     } else {
                         self.showCommunicateError()
                     }
                 })
             } else {
+                Loading.stop()
                 self.showCommunicateError()
             }
         })

@@ -90,9 +90,7 @@ class GuideDetailViewController: UIViewController {
         
         let guestId = SaveData.shared.guestId
         guard guestId.count > 0, let myGuestData = GuestRequester.shared.query(id: guestId) else {
-            let alert = UIAlertController(title: "Error", message: "ガイドは購入できません", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            Dialog.show(style: .error, title: "エラー", message: "ガイドは購入できません", actions: [DialogAction(title: "OK", action: nil)])
             return
         }
         
