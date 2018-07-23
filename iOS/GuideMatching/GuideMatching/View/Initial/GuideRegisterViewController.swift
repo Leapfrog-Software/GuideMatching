@@ -229,12 +229,13 @@ extension GuideRegisterViewController {
                         myGuideData.stripeAccountId = accountId
                         AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
                             if resultUpdate {
-                                let saveData = SaveData.shared
-                                saveData.guideId = guideId
-                                saveData.save()
-                                
-                                self.stackTabbar()
-                                
+                                GuideRequester.shared.fetch(completion: { _ in
+                                    let saveData = SaveData.shared
+                                    saveData.guideId = guideId
+                                    saveData.save()
+                                    
+                                    self.stackTabbar()
+                                })
                             } else {
                                 self.showCommunicateError()
                             }

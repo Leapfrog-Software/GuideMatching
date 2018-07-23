@@ -65,8 +65,8 @@ class GuideDetailViewController: UIViewController {
         self.estimateNumberLabel.text = "(\(estimateDatas.count))"
         
         if let scheduleView = UINib(nibName: "GuideDetailScheduleView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? GuideDetailScheduleView {
-            scheduleView.set(schedules: self.guideData.schedules, didSelect: { [weak self] dateOffset, timeOffset in
-                self?.showPayment()
+            scheduleView.set(schedules: self.guideData.schedules, didSelect: { [weak self] targetDate, timeOffset in
+                self?.didSelectSchedule(targetDate: targetDate, timeOffset: timeOffset)
             })
             self.scheduleBaseView.addSubview(scheduleView)
             scheduleView.translatesAutoresizingMaskIntoConstraints = false
@@ -74,6 +74,15 @@ class GuideDetailViewController: UIViewController {
             scheduleView.leadingAnchor.constraint(equalTo: self.scheduleBaseView.leadingAnchor).isActive = true
             scheduleView.trailingAnchor.constraint(equalTo: self.scheduleBaseView.trailingAnchor).isActive = true
             scheduleView.bottomAnchor.constraint(equalTo: self.scheduleBaseView.bottomAnchor).isActive = true
+        }
+    }
+    
+    private func didSelectSchedule(targetDate: Date, timeOffset: Int) {
+        
+        if let schedule = (self.guideData.schedules.filter { $0.date.isSameDay(with: targetDate) }).first {
+            if schedule.isFreeList[timeOffset] {
+                self.showPayment()
+            }
         }
     }
     
