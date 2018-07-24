@@ -3,6 +3,7 @@
 require('stripe-php-6.10.4/init.php');
 
 \Stripe\Stripe::setApiKey("sk_test_LcKqhnYm6KRh4Jmk5ANNos0C");
+//\Stripe\Stripe::setApiKey("sk_test_FR3TfcFZ8lnbPRlBWk7h1sdG");  // 開発用
 
 $command = $_POST["command"];
 
@@ -35,7 +36,7 @@ function createAccount() {
       )
     );
   } catch (Exception $e) {
-    echo(json_encode(Array("result" => "2")));
+    echo(json_encode(Array("result" => "2", "message" => $e->getMessage())));
     return;
   }
 
@@ -128,7 +129,7 @@ function createCharge() {
     );
     echo(json_encode(Array("result" => "0")));
   } catch (Exception $e) {
-    echo(json_encode(Array("result" => "1")));
+    echo(json_encode(Array("result" => "1", "message" => $e->getMessage())));
   }
 }
 

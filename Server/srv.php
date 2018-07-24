@@ -110,8 +110,8 @@ function getGuide() {
                       "applicableNumber" => $guideData->applicableNumber,
                       "fee" => $guideData->fee,
                       "notes" => $guideData->notes,
-                      "schedules" => $guideData->schedules,
                       "loginDate" => $guideData->loginDate,
+                      "schedules" => $guideData->schedules,
                       "stripeAccountId" => $guideData->stripeAccountId);
   }
   $ret = Array("result" => "0", "guides" => $guides);
@@ -178,14 +178,11 @@ function login() {
 
 function createReserve() {
 
-  $guestId = $_POST["guestId"];
+  $requesterId = $_POST["requesterId"];
   $guideId = $_POST["guideId"];
-  $meetingPlace = $_POST["meetingPlace"];
-  $day = $_POST["day"];
-  $startTime = $_POST["startTime"];
-  $endTime = $_POST["endTime"];
+  $area = $_POST["area"];
 
-  if (Reserve::create($guestId, $guideId, $meetingPlace, $day, $startTime, $endTime)) {
+  if (Reserve::create($requesterId, $guideId, $area)) {
     echo(json_encode(Array("result" => "0")));
   } else {
     echo(json_encode(Array("result" => "1")));
@@ -198,13 +195,10 @@ function getReserve() {
   $reserveList = Reserve::readAll();
   foreach ($reserveList as $reserveData) {
     $data[] = Array("id" => $reserveData->id,
-                    "guestId" => $reserveData->guestId,
+                    "requesterId" => $reserveData->requesterId,
                     "guideId" => $reserveData->guideId,
-                    "meetingPlace" => $reserveData->meetingPlace,
-                    "day" => $reserveData->day,
-                    "startTime" => $reserveData->startTime,
-                    "endTime" => $reserveData->endTime,
-                    "reserveDate" => $reserveData->reserveDate);
+                    "area" => $reserveData->area,
+                    "date" => $reserveData->date);
   }
   $ret = Array("result" => "0", "reserves" => $data);
   echo(json_encode($ret));
