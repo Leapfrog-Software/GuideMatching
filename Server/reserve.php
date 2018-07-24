@@ -2,26 +2,20 @@
 
 class ReserveData {
   public $id;
-	public $guestId;
+	public $requesterId;
   public $guideId;
-  public $meetingPlace;
-  public $day;
-  public $startTime;
-  public $endTime;
-  public $reserveDate;
+  public $area;
+  public $date;
 
 	static function initFromFileString($line) {
 		$datas = explode(",", $line);
-		if (count($datas) == 8) {
+		if (count($datas) == 5) {
       $reserveData = new ReserveData();
       $reserveData->id = $datas[0];
-			$reserveData->guestId = $datas[1];
+			$reserveData->requesterId = $datas[1];
       $reserveData->guideId = $datas[2];
-      $reserveData->meetingPlace = $datas[3];
-      $reserveData->day = $datas[4];
-      $reserveData->startTime = $datas[5];
-      $reserveData->endTime = $datas[6];
-      $reserveData->reserveDate = $datas[7];
+      $reserveData->area = $datas[3];
+      $reserveData->date = $datas[4];
 			return $reserveData;
 		}
 		return null;
@@ -31,19 +25,13 @@ class ReserveData {
     $str = "";
     $str .= $this->id;
     $str .= ",";
-    $str .= $this->guestId;
+    $str .= $this->requesterId;
     $str .= ",";
     $str .= $this->guideId;
     $str .= ",";
-    $str .= $this->meetingPlace;
+    $str .= $this->area;
     $str .= ",";
-    $str .= $this->day;
-    $str .= ",";
-    $str .= $this->startTime;
-    $str .= ",";
-    $str .= $this->endTime;
-    $str .= ",";
-    $str .= $this->reserveDate;
+    $str .= $this->date;
     $str .= "\n";
     return $str;
   }
@@ -71,7 +59,7 @@ class Reserve {
 		return [];
 	}
 
-  static function create($guestId, $guideId, $meetingPlace, $day, $startTime, $endTime) {
+  static function create($requesterId, $guideId, $area) {
 
     $maxReserveId = -1;
 
@@ -89,13 +77,10 @@ class Reserve {
 
     $reserveData = new ReserveData();
     $reserveData->id = $nextReserveId;
-    $reserveData->guestId = $guestId;
+    $reserveData->requesterId = $requesterId;
     $reserveData->guideId = $guideId;
-    $reserveData->meetingPlace = $meetingPlace;
-    $reserveData->day = $day;
-    $reserveData->startTime = $startTime;
-    $reserveData->endTime = $endTime;
-    $reserveData->reserveDate = date("YmdHis");
+    $reserveData->area = $area;
+    $reserveData->date = date("YmdHis");
 
    $str = $reserveData->toFileString();
     return file_put_contents(Reserve::FILE_NAME, $str, FILE_APPEND) !== false;
