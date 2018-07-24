@@ -82,7 +82,7 @@ class MyPageScheduleViewController: UIViewController {
             self.monthBaseView.addSubview(label2)
             
             let separator = UIView()
-            separator.backgroundColor = UIColor(white: 174 / 255, alpha: 1.0)
+            separator.backgroundColor = .scheduleSeparator
             separator.frame = CGRect(x: label1.frame.size.width, y: 0, width: 1, height: self.monthBaseView.frame.size.height)
             self.monthBaseView.addSubview(separator)
         }

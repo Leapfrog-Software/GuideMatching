@@ -53,13 +53,13 @@ class MyPageScheduleTableViewCell: UITableViewCell {
                 label?.text = "■"
             }
             if states[i].isPast {
-                label?.backgroundColor = UIColor(white: 213 / 255, alpha: 1.0)
+                label?.backgroundColor = .scheduleIsPast
             } else if states[i].edited {
-                label?.backgroundColor = UIColor(red: 121 / 255, green: 252 / 255, blue: 233 / 252, alpha: 1.0)
+                label?.backgroundColor = .scheduleEdited
             } else if states[i].type == .reserved {
-                label?.backgroundColor = UIColor(red: 254 / 255, green: 151 / 255, blue: 143 / 255, alpha: 1.0)
+                label?.backgroundColor = .scheduleReserved
             } else {
-                label?.backgroundColor = UIColor(red: 250 / 255, green: 247 / 255, blue: 234 / 255, alpha: 1.0)
+                label?.backgroundColor = .scheduleNone
             }
         }
         

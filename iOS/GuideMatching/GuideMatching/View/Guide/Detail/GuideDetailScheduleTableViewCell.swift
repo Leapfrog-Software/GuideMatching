@@ -44,11 +44,18 @@ class GuideDetailScheduleTableViewCell: UITableViewCell {
             case .free:
                 label?.text = "○"
             case .ng:
-                label?.text = "×"
+                label?.text = "-"
             case .unselected:
                 label?.text = "-"
             case .reserved:
-                label?.text = "□"
+                label?.text = "■"
+            }
+            if states[i].isPast {
+                label?.backgroundColor = .scheduleIsPast
+            } else if states[i].type == .reserved {
+                label?.backgroundColor = .scheduleReserved
+            } else {
+                label?.backgroundColor = .scheduleNone
             }
         }
 

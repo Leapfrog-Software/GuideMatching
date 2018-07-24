@@ -266,7 +266,7 @@
             <objects>
                 <viewController storyboardIdentifier="GuideDetailViewController" id="mn8-Jp-CKt" customClass="GuideDetailViewController" customModule="GuideMatching" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dbM-o7-yd3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="1400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ftR-XB-baC">
@@ -304,7 +304,7 @@
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWg-2h-kDL">
-                                <rect key="frame" x="0.0" y="64" width="375" height="1336"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="1436"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgg-SL-Z4q">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
@@ -708,27 +708,49 @@
                                         <rect key="frame" x="20" y="960" width="335" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ec-XO-NUl">
-                                                <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="Fn7-Kv-DN0"/>
+                                                    <constraint firstAttribute="width" constant="90" id="Fn7-Kv-DN0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="&lt; Back">
+                                                <state key="normal" title="&lt; Before">
                                                     <color key="titleColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                        <color key="value" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onTapPreviousMonth1:" destination="mn8-Jp-CKt" eventType="touchUpInside" id="fXl-3e-ye7"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZW-9f-oUW">
-                                                <rect key="frame" x="255" y="0.0" width="80" height="50"/>
+                                                <rect key="frame" x="245" y="0.0" width="90" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="q8T-Dp-BDb"/>
+                                                    <constraint firstAttribute="width" constant="90" id="q8T-Dp-BDb"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Next &gt;">
                                                     <color key="titleColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                        <color key="value" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onTapNextMonth1:" destination="mn8-Jp-CKt" eventType="touchUpInside" id="STR-zz-9bT"/>
                                                 </connections>
@@ -756,27 +778,49 @@
                                         <rect key="frame" x="20" y="1350.5" width="335" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMR-Q7-Rr9">
-                                                <rect key="frame" x="0.0" y="-0.5" width="80" height="50"/>
+                                                <rect key="frame" x="0.0" y="-0.5" width="90" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="91X-Ul-L12"/>
+                                                    <constraint firstAttribute="width" constant="90" id="91X-Ul-L12"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="&lt; Back">
+                                                <state key="normal" title="&lt; Before">
                                                     <color key="titleColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                        <color key="value" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onTapPreviousMonth2:" destination="mn8-Jp-CKt" eventType="touchUpInside" id="OIJ-9g-e5j"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vru-vl-9Lg">
-                                                <rect key="frame" x="255" y="-0.5" width="80" height="50"/>
+                                                <rect key="frame" x="245" y="-0.5" width="90" height="50"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="80" id="Izc-Tl-7Bi"/>
+                                                    <constraint firstAttribute="width" constant="90" id="Izc-Tl-7Bi"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Next &gt;">
                                                     <color key="titleColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                                        <color key="value" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="onTapNextMonth2:" destination="mn8-Jp-CKt" eventType="touchUpInside" id="IDA-HF-KQA"/>
                                                 </connections>
@@ -882,7 +926,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DeD-wR-I9a"/>
                     </view>
-                    <size key="freeformSize" width="375" height="1400"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="1500"/>
                     <connections>
                         <outlet property="applicableNumberLabel" destination="UB2-F1-ZTj" id="Nps-ir-8bb"/>
                         <outlet property="categoryLabel" destination="PcL-y8-kzQ" id="9Su-pT-rvC"/>
