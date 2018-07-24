@@ -10,10 +10,13 @@ import Foundation
 
 struct ReserveData {
     let id: String
-    let requesterId: String
+    let guestId: String
     let guideId: String
-    let area: String
-    let date: Date
+    let meetingPlace: String
+    let day: Date
+    let startTime: Int
+    let endTime: Int
+    let reserveDate: Date
     
     init?(data: Dictionary<String, Any>) {
         
@@ -22,15 +25,22 @@ struct ReserveData {
         }
         self.id = id
         
-        self.requesterId = data["requesterId"] as? String ?? ""
+        self.guestId = data["guestId"] as? String ?? ""
         self.guideId = data["guideId"] as? String ?? ""
-        self.area = (data["area"] as? String)?.base64Decode() ?? ""
+        self.meetingPlace = (data["meetingPlace"] as? String)?.base64Decode() ?? ""
         
-        let dateString = data["date"] as? String ?? ""
-        guard dateString.count == 14, let date = DateFormatter(dateFormat: "yyyyMMddHHmmss").date(from: dateString) else {
+        guard let day = DateFormatter(dateFormat: "yyyyMMdd").date(from: data["day"] as? String ?? "") else {
             return nil
         }
-        self.date = date
+        self.day = day
+        
+        self.startTime = Int(data["startTime"] as? String ?? "") ?? 0
+        self.endTime = Int(data["endTime"] as? String ?? "") ?? 0
+        
+        guard let reserveDate = DateFormatter(dateFormat: "yyyyMMddHHmmss").date(from: data["reserveDate"] as? String ?? "") else {
+            return nil
+        }
+        self.reserveDate = reserveDate
     }
 }
 
@@ -53,12 +63,15 @@ class ReserveRequester {
         }
     }
     
-    class func reserve(requesterId: String, guideId: String, area: String, completion: @escaping ((Bool) -> ())) {
+    class func reserve(guestId: String, guideId: String, meetingPlace: String, day: Date, startTime: Int, endTime: Int, completion: @escaping ((Bool) -> ())) {
 
         var params: [String: String] = ["command": "createReserve"]
-        params["requesterId"] = requesterId
+        params["guestId"] = guestId
         params["guideId"] = guideId
-        params["area"] = area
+        params["meetingPlace"] = meetingPlace
+        params["day"] = DateFormatter(dateFormat: "yyyyMMdd").string(from: day)
+        params["startTime"] = "\(startTime)"
+        params["endTime"] = "\(endTime)"
         
         ApiManager.post(params: params) { result, data in
             if result, ((data as? NSDictionary)?.object(forKey: "result") as? String) == "0" {

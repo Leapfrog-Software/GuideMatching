@@ -151,7 +151,7 @@ class BookViewController: UIViewController {
         let guestId = SaveData.shared.guestId
         let guideId = self.guideData.id
         let meetingPlace = self.meetingPlace ?? ""
-        ReserveRequester.reserve(requesterId: guestId, guideId: guideId, area: meetingPlace, completion: { result in
+        ReserveRequester.reserve(guestId: guestId, guideId: guideId, meetingPlace: meetingPlace, day: self.targetDate, startTime: self.startTimeIndex, endTime: self.endTimeIndex ?? 0, completion: { result in
             if result {
                 self.charge()
             } else {
