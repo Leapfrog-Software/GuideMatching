@@ -71,7 +71,7 @@ class SearchViewController: UIViewController {
         for i in 0..<48 {
             times.append(i)
         }
-        let dataArray = times.map { String(format: "%02d", Int($0 / 2)) + ":" + String(format: "%02d", 30 * Int($0 % 2)) }
+        let dataArray = times.map { CommonUtility.timeOffsetToString(offset: $0) }
         let defaultIndex = self.selectedTime ?? 0
         let picker = self.viewController(storyboard: "Common", identifier: "PickerViewController") as! PickerViewController
         picker.set(title: "Time", dataArray: dataArray, defaultIndex: defaultIndex, completion: { [weak self] index in

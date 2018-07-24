@@ -108,15 +108,15 @@ class BookViewController: UIViewController {
         if let endTimeIndex = self.endTimeIndex, let meetingPlace = self.meetingPlace {
             self.timeInputView.isHidden = true
             self.timeInputViewHeightConstraint.constant = 0
-            self.timeConfirmStartLabel.text = String(format: "%02d", Int(self.startTimeIndex / 2)) + ":" + String(format: "%02d", 30 * Int(self.startTimeIndex % 2))
-            self.timeConfirmEndLabel.text = String(format: "%02d", Int(endTimeIndex / 2)) + ":" + String(format: "%02d", 30 * Int(endTimeIndex % 2))
+            self.timeConfirmStartLabel.text = CommonUtility.timeOffsetToString(offset: self.startTimeIndex)
+            self.timeConfirmEndLabel.text = CommonUtility.timeOffsetToString(offset: endTimeIndex)
             self.selectedEndTimeIndex = self.startTimeIndex + 1
             self.placeInputView.isHidden = true
             self.placeInputViewHeightConstraint.constant = 0
             self.placeConfirmLabel.text = meetingPlace
         } else {
-            self.timeInputStartLabel.text = String(format: "%02d", Int(self.startTimeIndex / 2)) + ":" + String(format: "%02d", 30 * Int(self.startTimeIndex % 2))
-            self.timeInputEndButton.setTitle(String(format: "%02d", Int((self.startTimeIndex + 1) / 2)) + ":" + String(format: "%02d", 30 * Int((self.startTimeIndex + 1) % 2)), for: .normal)
+            self.timeInputStartLabel.text = CommonUtility.timeOffsetToString(offset: self.startTimeIndex)
+            self.timeInputEndButton.setTitle(CommonUtility.timeOffsetToString(offset: self.startTimeIndex + 1), for: .normal)
             self.timeConfirmView.isHidden = true
             self.timeConfirmViewHeightConstraint.constant = 0
             self.placeConfirmView.isHidden = true
@@ -144,6 +144,44 @@ class BookViewController: UIViewController {
         }
     }
     
+    private func postReserve() {
+        
+        Loading.start()
+        
+        let guestId = SaveData.shared.guestId
+        let guideId = self.guideData.id
+        let meetingPlace = self.meetingPlace ?? ""
+        ReserveRequester.reserve(requesterId: guestId, guideId: guideId, area: meetingPlace, completion: { result in
+            if result {
+                self.charge()
+            } else {
+                Loading.stop()
+                Dialog.show(style: .error, title: "Error", message: "Failed to communicate", actions: [DialogAction(title: "OK", action: nil)])
+            }
+        })
+    }
+    
+    private func charge() {
+        
+        let customerId = GuestRequester.shared.query(id: SaveData.shared.guestId)?.stripeCustomerId ?? ""
+        let cardId = self.selectedCardId ?? ""
+        let endTimeIndex = self.endTimeIndex ?? 0
+        let amount = self.guideData.fee * (endTimeIndex - self.startTimeIndex)
+        let applicationFee = amount * 15 / 100
+        let destination = self.guideData.stripeAccountId
+        StripeManager.charge(customerId: customerId, cardId: cardId, amount: amount, applicationFee: applicationFee, destination: destination, completion: { result in
+            Loading.stop()
+            
+            if result {
+                let complete = self.viewController(storyboard: "Guide", identifier: "BookCompleteViewController") as! BookCompleteViewController
+                complete.set(guideData: self.guideData, date: self.targetDate, startTimeIndex: self.startTimeIndex, endTimeIndex: self.endTimeIndex ?? 0, meetingPlace: self.meetingPlace ?? "")
+                self.stack(viewController: complete, animationType: .horizontal)
+            } else {
+                Dialog.show(style: .error, title: "Error", message: "Failed to communicate", actions: [DialogAction(title: "OK", action: nil)])
+            }
+        })
+    }
+    
     @IBAction func didEndEdit(_ sender: Any) {
         self.view.endEditing(true)
     }
@@ -154,11 +192,11 @@ class BookViewController: UIViewController {
         for i in (self.startTimeIndex + 1)...48 {
             timeOffsets.append(i)
         }
-        let timeStrs = timeOffsets.map { String(format: "%02d", Int($0 / 2)) + ":" + String(format: "%02d", 30 * Int($0 % 2)) }
+        let timeStrs = timeOffsets.map { CommonUtility.timeOffsetToString(offset: $0) }
         let picker = self.viewController(storyboard: "Common", identifier: "PickerViewController") as! PickerViewController
         picker.set(title: "Time", dataArray: timeStrs, defaultIndex: self.selectedEndTimeIndex, completion: { [weak self] index in
             self?.selectedEndTimeIndex = index
-            let timeStr = String(format: "%02d", Int(index / 2)) + ":" + String(format: "%02d", 30 * Int(index % 2))
+            let timeStr = CommonUtility.timeOffsetToString(offset: index)
             self?.timeInputEndButton.setTitle(timeStr, for: .normal)
         })
         self.stack(viewController: picker, animationType: .none)
@@ -206,26 +244,10 @@ extension BookViewController: STPPaymentMethodsViewControllerDelegate {
         
          paymentMethodsViewController.dismiss(animated: true, completion: nil)
         
-        guard let cardId = self.selectedCardId else {
+        guard let _ = self.selectedCardId else {
             return
         }
-        
-        Loading.start()
-        
-        let customerId = GuestRequester.shared.query(id: SaveData.shared.guestId)?.stripeCustomerId ?? ""
-        let amount = 1000
-        let applicationFee = 10
-        let destination = self.guideData.stripeAccountId
-        StripeManager.charge(customerId: customerId, cardId: cardId, amount: amount, applicationFee: applicationFee, destination: destination, completion: { result in
-            Loading.stop()
-            
-            if result {
-                let complete = self.viewController(storyboard: "Guide", identifier: "BookCompleteViewController") as! BookCompleteViewController
-                self.stack(viewController: complete, animationType: .horizontal)
-            } else {
-                Dialog.show(style: .error, title: "Error", message: "Failed to communicate", actions: [DialogAction(title: "OK", action: nil)])
-            }
-        })
+        self.postReserve()
     }
     
     func paymentMethodsViewControllerDidCancel(_ paymentMethodsViewController: STPPaymentMethodsViewController) {

@@ -10,26 +10,70 @@ import UIKit
 
 class BookCompleteViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var dayLabel: UILabel!
+    @IBOutlet private weak var startTimeLabel: UILabel!
+    @IBOutlet private weak var endTimeLabel: UILabel!
+    @IBOutlet private weak var placeViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var placeTitleLabel: UILabel!
+    @IBOutlet private weak var placeLabel: UILabel!
+    @IBOutlet private weak var guideFeeLabel: UILabel!
+    @IBOutlet private weak var transactionFeeLabel: UILabel!
+    @IBOutlet private weak var totalFeeLabel: UILabel!
+    
+    private var guideData: GuideData!
+    private var date: Date!
+    private var startTimeIndex: Int!
+    private var endTimeIndex: Int!
+    private var meetingPlace: String!
+    
+    func set(guideData: GuideData, date: Date, startTimeIndex: Int, endTimeIndex: Int, meetingPlace: String) {
+        self.guideData = guideData
+        self.date = date
+        self.startTimeIndex = startTimeIndex
+        self.endTimeIndex = endTimeIndex
+        self.meetingPlace = meetingPlace
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.initContents()
     }
-    */
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.adjustLayout()
+    }
+    
+    private func initContents() {
+        
+        self.nameLabel.text = self.guideData.name
+        self.dayLabel.text = self.date.toDayMonthYearText()
+        self.startTimeLabel.text = CommonUtility.timeOffsetToString(offset: self.startTimeIndex)
+        self.endTimeLabel.text = CommonUtility.timeOffsetToString(offset: self.endTimeIndex)
+        self.placeLabel.text = self.meetingPlace
+        let guideFee = (self.endTimeIndex - self.startTimeIndex) * self.guideData.fee
+        self.guideFeeLabel.text = CommonUtility.digit3Format(value: guideFee) + " JPY"
+        let transactionFee = guideFee * 15 / 100
+        self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + " JPY"
+        self.totalFeeLabel.text = CommonUtility.digit3Format(value: guideFee + transactionFee) + " JPY"
+    }
+    
+    private func adjustLayout() {
+        
+        let placeTitleHeight = self.placeTitleLabel.frame.size.height
+        let placeHeight = self.placeLabel.frame.size.height
+        self.placeViewHeightConstraint.constant = ((placeTitleHeight > placeHeight) ? placeTitleHeight : placeHeight) + 28
+    }
+    
+    @IBAction func onTapOk(_ sender: Any) {
+        
+        if let tabbar = self.tabbarViewController() {
+            tabbar.childViewControllers.forEach {
+                $0.pop(animationType: .horizontal)
+            }
+        }
+    }
 }
