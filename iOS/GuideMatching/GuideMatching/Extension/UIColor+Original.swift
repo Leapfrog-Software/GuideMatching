@@ -34,6 +34,34 @@ extension UIColor {
         return UIColor(red: 94 / 255, green: 94 / 255, blue: 94 / 255, alpha: 1)
     }
     
+    class var weekdaySunday: UIColor {
+        return UIColor(red: 234 / 255, green: 38 / 255, blue: 31 / 255, alpha: 1)
+    }
+    
+    class var weekdaySuturday: UIColor {
+        return UIColor(red: 28 / 255, green: 164 / 255, blue: 252 / 255, alpha: 1)
+    }
+    
+    class var scheduleSeparator: UIColor {
+        return UIColor(white: 174 / 255, alpha: 1.0)
+    }
+    
+    class var scheduleIsPast: UIColor {
+        return UIColor(white: 213 / 255, alpha: 1.0)
+    }
+    
+    class var scheduleEdited: UIColor {
+        return UIColor(red: 121 / 255, green: 252 / 255, blue: 233 / 252, alpha: 1.0)
+    }
+    
+    class var scheduleReserved: UIColor {
+        return UIColor(red: 254 / 255, green: 151 / 255, blue: 143 / 255, alpha: 1.0)
+    }
+    
+    class var scheduleNone: UIColor {
+        return UIColor(red: 250 / 255, green: 247 / 255, blue: 234 / 255, alpha: 1.0)
+    }
+    
     class var dialogActionSuccess: UIColor {
         return UIColor(red: 123 / 255, green: 209 / 255, blue: 249 / 255, alpha: 1)
     }

@@ -16,6 +16,7 @@
 		2E12A0BD20EDB6190035107F /* MyPageScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0BC20EDB6190035107F /* MyPageScheduleViewController.swift */; };
 		2E12A0BF20EDC9220035107F /* MyPageScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0BE20EDC9220035107F /* MyPageScheduleTableViewCell.swift */; };
 		2E12A0C120EE031E0035107F /* ReserveRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0C020EE031E0035107F /* ReserveRequester.swift */; };
+		2E4FC0972106E3FA007FA061 /* BookCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC0962106E3FA007FA061 /* BookCompleteViewController.swift */; };
 		2E67BDA92101B427004E3B17 /* StripeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E67BDA82101B427004E3B17 /* StripeManager.swift */; };
 		2E67BDAB2101B475004E3B17 /* StripeApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E67BDAA2101B475004E3B17 /* StripeApiClient.swift */; };
 		2E7DAA8F2105D2440076EE12 /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DAA8E2105D2440076EE12 /* Loading.swift */; };
@@ -90,6 +91,7 @@
 		2E12A0BC20EDB6190035107F /* MyPageScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScheduleViewController.swift; sourceTree = "<group>"; };
 		2E12A0BE20EDC9220035107F /* MyPageScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		2E12A0C020EE031E0035107F /* ReserveRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveRequester.swift; sourceTree = "<group>"; };
+		2E4FC0962106E3FA007FA061 /* BookCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCompleteViewController.swift; sourceTree = "<group>"; };
 		2E67BDA82101B427004E3B17 /* StripeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeManager.swift; sourceTree = "<group>"; };
 		2E67BDAA2101B475004E3B17 /* StripeApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApiClient.swift; sourceTree = "<group>"; };
 		2E7DAA8E2105D2440076EE12 /* Loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				2E94043320E37F3B00362878 /* GuideTableViewCell.swift */,
 				2E11B3E720EC7591002441EB /* Detail */,
 				BBFEBB2320E4DFC300C9F01C /* BookViewController.swift */,
+				2E4FC0962106E3FA007FA061 /* BookCompleteViewController.swift */,
 			);
 			path = Guide;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				2E94043A20E386A200362878 /* EstimateRequester.swift in Sources */,
 				2E12A0BF20EDC9220035107F /* MyPageScheduleTableViewCell.swift in Sources */,
 				2E12A0BD20EDB6190035107F /* MyPageScheduleViewController.swift in Sources */,
+				2E4FC0972106E3FA007FA061 /* BookCompleteViewController.swift in Sources */,
 				BBFEBB1A20E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift in Sources */,
 				2E94040220E3458F00362878 /* ImageUploader.swift in Sources */,
 				2E94041C20E3746A00362878 /* SplashViewController.swift in Sources */,

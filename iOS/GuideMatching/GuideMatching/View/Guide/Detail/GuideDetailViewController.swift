@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Stripe
 
 class GuideDetailViewController: UIViewController {
     
@@ -26,7 +25,6 @@ class GuideDetailViewController: UIViewController {
     @IBOutlet private weak var scheduleBaseView: UIView!
     
     private var guideData: GuideData!
-    private var selectedCardId: String?
     
     func set(guideData: GuideData) {
         self.guideData = guideData
@@ -53,7 +51,7 @@ class GuideDetailViewController: UIViewController {
         self.messageLabel.text = self.guideData.message
         self.timeZoneLabel.text = self.guideData.timeZone
         self.applicableNumberLabel.text = "\(self.guideData.applicableNumber)人"
-        self.priceLabel.text = self.guideData.fee + " JPY/円"
+        self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee)
         self.notesLabel.text = self.guideData.notes
         
         let estimateDatas = EstimateRequester.shared.dataList.filter { $0.targetId == guideData.id && $0.isGuide == true }
@@ -81,27 +79,15 @@ class GuideDetailViewController: UIViewController {
         
         if let schedule = (self.guideData.schedules.filter { $0.date.isSameDay(with: targetDate) }).first {
             if schedule.isFreeList[timeOffset] {
-                self.showPayment()
+                if SaveData.shared.guestId.count == 0 {
+                    Dialog.show(style: .error, title: "エラー", message: "ガイドは予約できません", actions: [DialogAction(title: "OK", action: nil)])
+                    return
+                }
+                let book = self.viewController(storyboard: "Guide", identifier: "BookViewController") as! BookViewController
+                book.set(guideData: self.guideData, targetDate: targetDate, startTimeIndex: timeOffset)
+                self.stack(viewController: book, animationType: .horizontal)
             }
         }
-    }
-    
-    private func showPayment() {
-        
-        let guestId = SaveData.shared.guestId
-        guard guestId.count > 0, let myGuestData = GuestRequester.shared.query(id: guestId) else {
-            Dialog.show(style: .error, title: "エラー", message: "ガイドは購入できません", actions: [DialogAction(title: "OK", action: nil)])
-            return
-        }
-        
-        let customerId = myGuestData.stripeCustomerId
-        let customerContext = STPCustomerContext(keyProvider:StripeApiClient(customerId: customerId))
-        let paymentMethodsViewController = STPPaymentMethodsViewController(configuration: STPPaymentConfiguration.shared(),
-                                                                           theme: STPTheme.default(),
-                                                                           customerContext: customerContext,
-                                                                           delegate: self)
-        let navigationController = UINavigationController(rootViewController: paymentMethodsViewController)
-        present(navigationController, animated: true)
     }
     
     @IBAction func onTapImageLeft(_ sender: Any) {
@@ -150,43 +136,5 @@ class GuideDetailViewController: UIViewController {
     
     @IBAction func onTapBack(_ sender: Any) {
         self.pop(animationType: .horizontal)
-    }
-}
-
-extension GuideDetailViewController: STPPaymentMethodsViewControllerDelegate {
-    
-    func paymentMethodsViewController(_ paymentMethodsViewController: STPPaymentMethodsViewController, didFailToLoadWithError error: Error) {
-        
-    }
-    
-    func paymentMethodsViewControllerDidFinish(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
-        
-        guard let cardId = self.selectedCardId else {
-            paymentMethodsViewController.dismiss(animated: true, completion: nil)
-            return
-        }
-        
-        // TODO Loading
-        
-        let customerId = GuestRequester.shared.query(id: SaveData.shared.guestId)?.stripeCustomerId ?? ""
-        let amount = 1000
-        let applicationFee = 10
-        let destination = self.guideData.stripeAccountId
-        StripeManager.charge(customerId: customerId, cardId: cardId, amount: amount, applicationFee: applicationFee, destination: destination, completion: { result in
-            if result {
-                paymentMethodsViewController.dismiss(animated: true, completion: nil)
-            } else {
-                // TODO
-            }
-        })
-        
-    }
-    
-    func paymentMethodsViewControllerDidCancel(_ paymentMethodsViewController: STPPaymentMethodsViewController) {
-        paymentMethodsViewController.dismiss(animated: true, completion: nil)
-    }
-    
-    func paymentMethodsViewController(_ paymentMethodsViewController: STPPaymentMethodsViewController, didSelect paymentMethod: STPPaymentMethod) {
-        self.selectedCardId = (paymentMethod as? STPCard)?.cardId
     }
 }

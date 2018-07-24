@@ -56,4 +56,29 @@ extension Date {
         let components2 = calendar.dateComponents([.year, .month], from: with)
         return components1.year == components2.year
     }
+    
+    func isSunday() -> Bool {
+        return calendar.dateComponents([.weekday], from: self).weekday == 1
+    }
+    
+    func isSuturday() -> Bool {
+        return calendar.dateComponents([.weekday], from: self).weekday == 7
+    }
+    
+    func toMonthYearText() -> String {
+        let monthAry = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        let components = calendar.dateComponents([.year, .month], from: self)
+        let month = (components.month ?? 0) - 1
+        let year = components.year ?? 0
+        return monthAry[month] + ". \(year)"
+    }
+    
+    func toDayMonthYearText() -> String {
+        let monthAry = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        let components = calendar.dateComponents([.year, .month, .day], from: self)
+        let day = components.day ?? 0
+        let month = (components.month ?? 0) - 1
+        let year = components.year ?? 0
+        return monthAry[month] + " \(day) \(year)"
+    }
 }

@@ -34,10 +34,11 @@ class MyPageScheduleTableViewCell: UITableViewCell {
     
     private var cellIndex = 0
     private var onTap: ((Int, Int) -> ())?
+    private var states = [State]()
     
     func configure(cellIndex: Int, states: [State], onTap: @escaping ((Int, Int) -> ())) {
         
-        self.timeLabel.text = String(format: "%02d", Int(cellIndex / 2)) + ":" + String(format: "%02d", 30 * Int(cellIndex % 2))
+        self.timeLabel.text = CommonUtility.timeOffsetToString(offset: cellIndex)
         
         for i in 0..<7 {
             let label = [date1Label, date2Label, date3Label, date4Label, date5Label, date6Label, date7Label][i]
@@ -45,43 +46,61 @@ class MyPageScheduleTableViewCell: UITableViewCell {
             case .free:
                 label?.text = "○"
             case .ng:
-                label?.text = "×"
+                label?.text = "-"
             case .unselected:
                 label?.text = "-"
             case .reserved:
-                label?.text = "□"
+                label?.text = "■"
+            }
+            if states[i].isPast {
+                label?.backgroundColor = .scheduleIsPast
+            } else if states[i].edited {
+                label?.backgroundColor = .scheduleEdited
+            } else if states[i].type == .reserved {
+                label?.backgroundColor = .scheduleReserved
+            } else {
+                label?.backgroundColor = .scheduleNone
             }
         }
         
         self.cellIndex = cellIndex
         self.onTap = onTap
+        self.states = states
+    }
+    
+    private func onTapDate(offset: Int) {
+        let state = self.states[offset]
+        if state.isPast || state.type == .reserved {
+            return
+        }
+        self.onTap?(offset, self.cellIndex)
     }
     
     @IBAction func onTapDate1(_ sender: Any) {
-        self.onTap?(0, self.cellIndex)
+        self.onTapDate(offset: 0)
     }
     
     @IBAction func onTapDate2(_ sender: Any) {
-        self.onTap?(1, self.cellIndex)
+        self.onTapDate(offset: 1)
     }
     
     @IBAction func onTapDate3(_ sender: Any) {
-        self.onTap?(2, self.cellIndex)
+        self.onTapDate(offset: 2)
     }
     
     @IBAction func onTapDate4(_ sender: Any) {
-        self.onTap?(3, self.cellIndex)
+        self.onTapDate(offset: 3)
     }
     
     @IBAction func onTapDate5(_ sender: Any) {
-        self.onTap?(4, self.cellIndex)
+        self.onTapDate(offset: 4)
     }
     
     @IBAction func onTapDate6(_ sender: Any) {
-        self.onTap?(5, self.cellIndex)
+        self.onTapDate(offset: 5)
     }
     
     @IBAction func onTapDate7(_ sender: Any) {
-        self.onTap?(6, self.cellIndex)
+        self.onTapDate(offset: 6)
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class GuideDetailScheduleView: UIView {
     
+    @IBOutlet private weak var monthBaseView: UIView!
     @IBOutlet private weak var date1Label: UILabel!
     @IBOutlet private weak var date2Label: UILabel!
     @IBOutlet private weak var date3Label: UILabel!
@@ -54,16 +55,65 @@ class GuideDetailScheduleView: UIView {
     private func reload() {
         
         let latestSunday = Date().latestSunday()
+
         let dateFormatter = DateFormatter(dateFormat: "d\nE")
-        self.date1Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7))
-        self.date2Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 1))
-        self.date3Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 2))
-        self.date4Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 3))
-        self.date5Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 4))
-        self.date6Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 5))
-        self.date7Label.text = dateFormatter.string(from: latestSunday.add(day: self.weekOffset * 7 + 6))
+        let dates = [0, 1, 2, 3, 4, 5, 6].map { latestSunday.add(day: self.weekOffset * 7 + $0) }
+        [self.date1Label, self.date2Label, self.date3Label, self.date4Label, self.date5Label, self.date6Label, self.date7Label].enumerated().forEach { index, label in
+            let date = dates[index]
+            label?.text = dateFormatter.string(from: date)
+            if date.isSunday() {
+                label?.textColor = .weekdaySunday
+            } else if date.isSuturday() {
+                label?.textColor = .weekdaySuturday
+            } else {
+                label?.textColor = .black
+            }
+        }
+        
+        self.monthBaseView.subviews.forEach { $0.removeFromSuperview() }
+        if dates[0].isSameMonth(with: dates[6]) {
+            let label = self.createMonthLabel(text: dates[0].toMonthYearText(),
+                                              frame: CGRect(origin: .zero, size: self.monthBaseView.frame.size))
+            self.monthBaseView.addSubview(label)
+        } else {
+            var firstMonthLength = 1
+            for i in 1..<7 {
+                if dates[0].isSameMonth(with: dates[i]) {
+                    firstMonthLength += 1
+                }
+            }
+            let frame1 = CGRect(x: 0, y: 0,
+                                width: CGFloat(firstMonthLength) * self.monthBaseView.frame.size.width / 7,
+                                height: self.monthBaseView.frame.size.height)
+            let label1 = self.createMonthLabel(text: dates[0].toMonthYearText(),
+                                               frame: frame1)
+            self.monthBaseView.addSubview(label1)
+            
+            let frame2 = CGRect(x: label1.frame.size.width, y: 0,
+                                width: self.monthBaseView.frame.size.width - label1.frame.size.width,
+                                height: self.monthBaseView.frame.size.height)
+            let label2 = self.createMonthLabel(text: dates[6].toMonthYearText(),
+                                               frame: frame2)
+            self.monthBaseView.addSubview(label2)
+            
+            let separator = UIView()
+            separator.backgroundColor = .scheduleSeparator
+            separator.frame = CGRect(x: label1.frame.size.width, y: 0, width: 1, height: self.monthBaseView.frame.size.height)
+            self.monthBaseView.addSubview(separator)
+        }
         
         self.tableView.reloadData()
+    }
+    
+    private func createMonthLabel(text: String, frame: CGRect) -> UILabel {
+        
+        let label = UILabel()
+        label.text = text
+        label.textColor = .white
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.frame = frame
+        return label
     }
 }
 

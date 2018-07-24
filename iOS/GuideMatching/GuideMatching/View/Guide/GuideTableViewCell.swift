@@ -50,24 +50,8 @@ class GuideTableViewCell: UITableViewCell {
         
         self.specialtyLabel.text = guideData.specialty
         
-        let timeInterval = Date().timeIntervalSince(guideData.loginDate)
-        if timeInterval > 7 * 24 * 60 * 60 {
-            self.loginStateView.backgroundColor = UIColor.loginStateOver1w
-            self.loginStateLabel.text = "over a week"
-        } else if timeInterval > 3 * 24 * 60 * 60 {
-            self.loginStateView.backgroundColor = UIColor.loginStateWithin1w
-            self.loginStateLabel.text = "within a week"
-        } else if timeInterval > 1 * 24 * 60 * 60 {
-            self.loginStateView.backgroundColor = UIColor.loginStateWithin3d
-            self.loginStateLabel.text = "within a few days"
-        } else if timeInterval > 3 * 60 * 60 {
-            self.loginStateView.backgroundColor = UIColor.loginStateWithin24h
-            self.loginStateLabel.text = "within 24 hours"
-        } else {
-            self.loginStateView.backgroundColor = UIColor.loginStateOnline
-            self.loginStateLabel.text = "online"
-        }
+        CommonUtility.setOnLineState(loginDate: guideData.loginDate, view: self.loginStateView, label: self.loginStateLabel)
         
-        self.feeLabel.text = guideData.fee + " JPY/h"
+        self.feeLabel.text = CommonUtility.digit3Format(value: guideData.fee) + " JPY/h"
     }
 }

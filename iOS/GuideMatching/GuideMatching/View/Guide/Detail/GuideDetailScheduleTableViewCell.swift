@@ -36,7 +36,7 @@ class GuideDetailScheduleTableViewCell: UITableViewCell {
     
     func configure(cellIndex: Int, states: [State], onTap: @escaping ((Int, Int) -> ())) {
         
-        self.timeLabel.text = String(format: "%02d", Int(cellIndex / 2)) + ":" + String(format: "%02d", 30 * Int(cellIndex % 2))
+        self.timeLabel.text = CommonUtility.timeOffsetToString(offset: cellIndex)
         
         for i in 0..<7 {
             let label = [date1Label, date2Label, date3Label, date4Label, date5Label, date6Label, date7Label][i]
@@ -44,11 +44,18 @@ class GuideDetailScheduleTableViewCell: UITableViewCell {
             case .free:
                 label?.text = "○"
             case .ng:
-                label?.text = "×"
+                label?.text = "-"
             case .unselected:
                 label?.text = "-"
             case .reserved:
-                label?.text = "□"
+                label?.text = "■"
+            }
+            if states[i].isPast {
+                label?.backgroundColor = .scheduleIsPast
+            } else if states[i].type == .reserved {
+                label?.backgroundColor = .scheduleReserved
+            } else {
+                label?.backgroundColor = .scheduleNone
             }
         }
 
