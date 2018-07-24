@@ -72,4 +72,13 @@ extension Date {
         let year = components.year ?? 0
         return monthAry[month] + ". \(year)"
     }
+    
+    func toDayMonthYearText() -> String {
+        let monthAry = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        let components = calendar.dateComponents([.year, .month, .day], from: self)
+        let day = components.day ?? 0
+        let month = (components.month ?? 0) - 1
+        let year = components.year ?? 0
+        return monthAry[month] + " \(day) \(year)"
+    }
 }

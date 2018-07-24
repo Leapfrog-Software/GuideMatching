@@ -21,5 +21,35 @@ class CommonUtility {
                 return UIImage(named: "star_full_14_14")
             }
         }
-    }    
+    }
+    
+    class func setOnLineState(loginDate: Date, view: UIView, label: UILabel) {
+        
+        let timeInterval = Date().timeIntervalSince(loginDate)
+        if timeInterval > 7 * 24 * 60 * 60 {
+            view.backgroundColor = UIColor.loginStateOver1w
+            label.text = "over a week"
+        } else if timeInterval > 3 * 24 * 60 * 60 {
+            view.backgroundColor = UIColor.loginStateWithin1w
+            label.text = "within a week"
+        } else if timeInterval > 1 * 24 * 60 * 60 {
+            view.backgroundColor = UIColor.loginStateWithin3d
+            label.text = "within a few days"
+        } else if timeInterval > 3 * 60 * 60 {
+            view.backgroundColor = UIColor.loginStateWithin24h
+            label.text = "within 24 hours"
+        } else {
+            view.backgroundColor = UIColor.loginStateOnline
+            label.text = "online"
+        }
+    }
+    
+    class func digit3Format(value: Int) -> String {
+
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSize = 3
+        formatter.groupingSeparator = ","
+        return formatter.string(from: NSNumber(value: value)) ?? ""
+    }
 }

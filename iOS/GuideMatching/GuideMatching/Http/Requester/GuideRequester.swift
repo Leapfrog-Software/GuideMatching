@@ -58,7 +58,7 @@ struct GuideData {
     let message: String
     let timeZone: String
     let applicableNumber: Int
-    let fee: String
+    let fee: Int
     let notes: String
     var schedules: [GuideScheduleData]
     let loginDate: Date
@@ -80,7 +80,7 @@ struct GuideData {
         self.message = (data["message"] as? String)?.base64Decode() ?? ""
         self.timeZone = (data["timeZone"] as? String)?.base64Decode() ?? ""
         self.applicableNumber = Int(data["applicableNumber"] as? String ?? "") ?? 0
-        self.fee = data["fee"] as? String ?? ""
+        self.fee = Int(data["fee"] as? String ?? "") ?? 0
         self.notes = (data["notes"] as? String)?.base64Decode() ?? ""
         
         self.schedules = (data["schedules"] as? String ?? "").components(separatedBy: "/").compactMap { GuideScheduleData(data: $0) }
