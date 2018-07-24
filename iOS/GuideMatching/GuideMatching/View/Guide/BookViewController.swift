@@ -110,7 +110,6 @@ class BookViewController: UIViewController {
             self.timeInputViewHeightConstraint.constant = 0
             self.timeConfirmStartLabel.text = CommonUtility.timeOffsetToString(offset: self.startTimeIndex)
             self.timeConfirmEndLabel.text = CommonUtility.timeOffsetToString(offset: endTimeIndex)
-            self.selectedEndTimeIndex = self.startTimeIndex + 1
             self.placeInputView.isHidden = true
             self.placeInputViewHeightConstraint.constant = 0
             self.placeConfirmLabel.text = meetingPlace
@@ -121,6 +120,8 @@ class BookViewController: UIViewController {
             self.timeConfirmViewHeightConstraint.constant = 0
             self.placeConfirmView.isHidden = true
             self.placeConfirmViewHeightConstraint.constant = 0
+            
+            self.selectedEndTimeIndex = self.startTimeIndex + 1
         }
         
         self.guideFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
@@ -194,9 +195,11 @@ class BookViewController: UIViewController {
         }
         let timeStrs = timeOffsets.map { CommonUtility.timeOffsetToString(offset: $0) }
         let picker = self.viewController(storyboard: "Common", identifier: "PickerViewController") as! PickerViewController
-        picker.set(title: "Time", dataArray: timeStrs, defaultIndex: self.selectedEndTimeIndex, completion: { [weak self] index in
-            self?.selectedEndTimeIndex = index
-            let timeStr = CommonUtility.timeOffsetToString(offset: index)
+        let defaultIndex = self.selectedEndTimeIndex - self.startTimeIndex - 1
+        picker.set(title: "Time", dataArray: timeStrs, defaultIndex: defaultIndex, completion: { [weak self] index in
+            let endTimeIndex = (self?.startTimeIndex ?? 0) + 1 + index
+            self?.selectedEndTimeIndex = endTimeIndex
+            let timeStr = CommonUtility.timeOffsetToString(offset: endTimeIndex)
             self?.timeInputEndButton.setTitle(timeStr, for: .normal)
         })
         self.stack(viewController: picker, animationType: .none)
@@ -225,7 +228,8 @@ class BookViewController: UIViewController {
                                                                                theme: STPTheme.default(),
                                                                                customerContext: customerContext,
                                                                                delegate: self)
-            self.present(paymentMethodsViewController, animated: true)
+            let navigationController = UINavigationController(rootViewController: paymentMethodsViewController)
+            self.present(navigationController, animated: true)
         }
     }
 

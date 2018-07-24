@@ -71,8 +71,8 @@ class BookCompleteViewController: UIViewController {
     @IBAction func onTapOk(_ sender: Any) {
         
         if let tabbar = self.tabbarViewController() {
-            tabbar.childViewControllers.forEach {
-                $0.pop(animationType: .horizontal)
+            if let guideDetail = (tabbar.childViewControllers.compactMap { $0 as? GuideDetailViewController }).first {
+                guideDetail.pop(animationType: .horizontal)
             }
         }
     }
