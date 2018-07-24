@@ -34,6 +34,14 @@ extension UIColor {
         return UIColor(red: 94 / 255, green: 94 / 255, blue: 94 / 255, alpha: 1)
     }
     
+    class var weekdaySunday: UIColor {
+        return UIColor(red: 234 / 255, green: 38 / 255, blue: 31 / 255, alpha: 1)
+    }
+    
+    class var weekdaySuturday: UIColor {
+        return UIColor(red: 28 / 255, green: 164 / 255, blue: 252 / 255, alpha: 1)
+    }
+    
     class var dialogActionSuccess: UIColor {
         return UIColor(red: 123 / 255, green: 209 / 255, blue: 249 / 255, alpha: 1)
     }
