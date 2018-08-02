@@ -49,6 +49,10 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // TODO ガイドとゲスト両方のマイページを作れるようにする
+        // TODO ゲストの場合はOrderHistoryセルタップで評価画面に遷移するようにする
+        
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageReservationTitleTableViewCell", for: indexPath) as! MyPageReservationTitleTableViewCell
             return cell

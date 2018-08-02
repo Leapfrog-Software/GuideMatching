@@ -124,10 +124,11 @@ class BookViewController: UIViewController {
             self.selectedEndTimeIndex = self.startTimeIndex + 1
         }
         
+        // TODO 入力画面で設定した終了時刻に適した金額になってない
         self.guideFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
         let transactionFee = self.guideData.fee * 15 / 100
         self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
-        self.totalFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee + transactionFee) + " JPY/30min"
+        self.totalFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee + transactionFee) + " JPY"
         
         self.notesLabel.text = self.guideData.notes
         
@@ -201,6 +202,8 @@ class BookViewController: UIViewController {
             self?.selectedEndTimeIndex = endTimeIndex
             let timeStr = CommonUtility.timeOffsetToString(offset: endTimeIndex)
             self?.timeInputEndButton.setTitle(timeStr, for: .normal)
+            
+            // TODO 金額が反映されてない
         })
         self.stack(viewController: picker, animationType: .none)
     }

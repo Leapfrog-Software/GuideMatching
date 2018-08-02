@@ -51,7 +51,7 @@ class GuideDetailViewController: UIViewController {
         self.messageLabel.text = self.guideData.message
         self.timeZoneLabel.text = self.guideData.timeZone
         self.applicableNumberLabel.text = "\(self.guideData.applicableNumber)人"
-        self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee)
+        self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
         self.notesLabel.text = self.guideData.notes
         
         let estimateDatas = EstimateRequester.shared.dataList.filter { $0.targetId == guideData.id && $0.isGuide == true }

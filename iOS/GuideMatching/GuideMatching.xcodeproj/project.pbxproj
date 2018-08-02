@@ -63,6 +63,9 @@
 		BB505A0220E26F8500491506 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0120E26F8500491506 /* HttpManager.swift */; };
 		BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0320E26F8D00491506 /* ApiManager.swift */; };
 		BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0620E2703C00491506 /* AccountRequester.swift */; };
+		BB9F4209211338E400350461 /* MyPageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */; };
+		BB9F420C2113394000350461 /* MyPageProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F420B2113394000350461 /* MyPageProfileViewController.swift */; };
+		BB9F420F2113395E00350461 /* MyPagePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */; };
 		BBFEBB1520E4D60D00C9F01C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */; };
 		BBFEBB1820E4D6FE00C9F01C /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1720E4D6FE00C9F01C /* MessageDetailViewController.swift */; };
 		BBFEBB1A20E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1920E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift */; };
@@ -141,6 +144,9 @@
 		BB505A0120E26F8500491506 /* HttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		BB505A0320E26F8D00491506 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		BB505A0620E2703C00491506 /* AccountRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRequester.swift; sourceTree = "<group>"; };
+		BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHistoryViewController.swift; sourceTree = "<group>"; };
+		BB9F420B2113394000350461 /* MyPageProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageProfileViewController.swift; sourceTree = "<group>"; };
+		BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentViewController.swift; sourceTree = "<group>"; };
 		BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		BBFEBB1720E4D6FE00C9F01C /* MessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
 		BBFEBB1920E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailLeftTableViewCell.swift; sourceTree = "<group>"; };
@@ -315,7 +321,10 @@
 				BBFEBB1F20E4DD3600C9F01C /* MyPageReservationTableViewCell.swift */,
 				BBFEBB2720E4E14F00C9F01C /* MyPageReservationNoneTableViewCell.swift */,
 				BBFEBB2120E4DD5800C9F01C /* MyPageButtonTableViewCell.swift */,
+				BB9F4207211338C200350461 /* History */,
 				2E12A0B820EDB5D10035107F /* Schedule */,
+				BB9F420A2113393000350461 /* Profile */,
+				BB9F420D2113394D00350461 /* Payment */,
 				2E12A0B920EDB5DA0035107F /* Review */,
 			);
 			path = MyPage;
@@ -439,6 +448,30 @@
 				2E12A0C020EE031E0035107F /* ReserveRequester.swift */,
 			);
 			path = Requester;
+			sourceTree = "<group>";
+		};
+		BB9F4207211338C200350461 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		BB9F420A2113393000350461 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				BB9F420B2113394000350461 /* MyPageProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		BB9F420D2113394D00350461 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */,
+			);
+			path = Payment;
 			sourceTree = "<group>";
 		};
 		BBFEBB1620E4D6ED00C9F01C /* Detail */ = {
@@ -587,7 +620,9 @@
 				2E94043820E3857A00362878 /* CommonUtility.swift in Sources */,
 				2E11B3EB20EC75ED002441EB /* GuideDetailScheduleView.swift in Sources */,
 				BBFEBB1820E4D6FE00C9F01C /* MessageDetailViewController.swift in Sources */,
+				BB9F4209211338E400350461 /* MyPageHistoryViewController.swift in Sources */,
 				BBFEBB2020E4DD3600C9F01C /* MyPageReservationTableViewCell.swift in Sources */,
+				BB9F420F2113395E00350461 /* MyPagePaymentViewController.swift in Sources */,
 				2E94043620E3811100362878 /* ImageStorage.swift in Sources */,
 				BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */,
 				2E94040020E3307600362878 /* Constants.swift in Sources */,
@@ -607,6 +642,7 @@
 				2E94040420E3508700362878 /* SaveData.swift in Sources */,
 				BB5059FA20E2677200491506 /* String+Base64.swift in Sources */,
 				2E7DAA952105D26D0076EE12 /* DialogButton.swift in Sources */,
+				BB9F420C2113394000350461 /* MyPageProfileViewController.swift in Sources */,
 				BBFEBB3220E5129100C9F01C /* Date+Util.swift in Sources */,
 				2E94042720E37C2600362878 /* MessageViewController.swift in Sources */,
 				BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */,

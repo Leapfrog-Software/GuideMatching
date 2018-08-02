@@ -143,6 +143,7 @@ class SearchViewController: UIViewController {
         }
         
         guides.sort(by: { guide1, guide2 in
+            // TODO 3パターンある
             return guide1.loginDate > guide2.loginDate
         })
         
