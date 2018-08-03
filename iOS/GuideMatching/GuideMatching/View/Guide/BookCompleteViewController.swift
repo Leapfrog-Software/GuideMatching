@@ -2,7 +2,7 @@
 //  BookCompleteViewController.swift
 //  GuideMatching
 //
-//  Created by 藤田 祥一 on 2018/07/24.
+//  Created by Leapfrog-Software on 2018/07/24.
 //  Copyright © 2018年 Leapfrog-Inc. All rights reserved.
 //
 

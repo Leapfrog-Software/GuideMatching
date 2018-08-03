@@ -179,7 +179,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             
         case .schedule:
             let schedule = self.viewController(storyboard: "MyPage", identifier: "MyPageScheduleViewController") as! MyPageScheduleViewController
-            self.stack(viewController: schedule, animationType: .horizontal)
+            self.tabbarViewController()?.stack(viewController: schedule, animationType: .horizontal)
             
         case .profile:
             // TODO
@@ -191,7 +191,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             
         case .review:
             let review = self.viewController(storyboard: "MyPage", identifier: "CustomerReviewViewController") as! CustomerReviewViewController
-            self.stack(viewController: review, animationType: .horizontal)
+            self.tabbarViewController()?.stack(viewController: review, animationType: .horizontal)
         }
     }
 }

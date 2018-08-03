@@ -27,6 +27,8 @@
 		2E7DAA992105D2800076EE12 /* DialogButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DAA982105D2800076EE12 /* DialogButton.xib */; };
 		2E8D37612113E48100AF21E0 /* MyPageGuestButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8D37602113E48100AF21E0 /* MyPageGuestButtonTableViewCell.swift */; };
 		2E8D37632113EA4900AF21E0 /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8D37622113EA4800AF21E0 /* ImageStorage.swift */; };
+		2E8D3765211413D200AF21E0 /* MyPageHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8D3764211413D200AF21E0 /* MyPageHistoryTableViewCell.swift */; };
+		2E8D3767211415AB00AF21E0 /* CustomerReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8D3766211415AB00AF21E0 /* CustomerReviewTableViewCell.swift */; };
 		2E94040020E3307600362878 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9403FF20E3307600362878 /* Constants.swift */; };
 		2E94040220E3458F00362878 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040120E3458F00362878 /* ImageUploader.swift */; };
 		2E94040420E3508700362878 /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040320E3508700362878 /* SaveData.swift */; };
@@ -106,6 +108,8 @@
 		2E7DAA982105D2800076EE12 /* DialogButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DialogButton.xib; sourceTree = "<group>"; };
 		2E8D37602113E48100AF21E0 /* MyPageGuestButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageGuestButtonTableViewCell.swift; sourceTree = "<group>"; };
 		2E8D37622113EA4800AF21E0 /* ImageStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStorage.swift; sourceTree = "<group>"; };
+		2E8D3764211413D200AF21E0 /* MyPageHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		2E8D3766211415AB00AF21E0 /* CustomerReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReviewTableViewCell.swift; sourceTree = "<group>"; };
 		2E9403FF20E3307600362878 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2E94040120E3458F00362878 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		2E94040320E3508700362878 /* SaveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				2E12A0BA20EDB5F10035107F /* CustomerReviewViewController.swift */,
+				2E8D3766211415AB00AF21E0 /* CustomerReviewTableViewCell.swift */,
 			);
 			path = Review;
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */,
+				2E8D3764211413D200AF21E0 /* MyPageHistoryTableViewCell.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -645,6 +651,7 @@
 				BB5059FA20E2677200491506 /* String+Base64.swift in Sources */,
 				2E7DAA952105D26D0076EE12 /* DialogButton.swift in Sources */,
 				BB9F420C2113394000350461 /* MyPageProfileViewController.swift in Sources */,
+				2E8D3765211413D200AF21E0 /* MyPageHistoryTableViewCell.swift in Sources */,
 				BBFEBB3220E5129100C9F01C /* Date+Util.swift in Sources */,
 				2E8D37612113E48100AF21E0 /* MyPageGuestButtonTableViewCell.swift in Sources */,
 				2E94042720E37C2600362878 /* MessageViewController.swift in Sources */,
@@ -661,6 +668,7 @@
 				2E94040920E3562200362878 /* UIImage+Resize.swift in Sources */,
 				BB5059F120E2658200491506 /* GuestRegisterViewController.swift in Sources */,
 				2E94041E20E3767D00362878 /* GuideRequester.swift in Sources */,
+				2E8D3767211415AB00AF21E0 /* CustomerReviewTableViewCell.swift in Sources */,
 				2E11B3E920EC75B6002441EB /* GuideDetailViewController.swift in Sources */,
 				2E11B3EF20EC9099002441EB /* GuideDetailScheduleTableViewCell.swift in Sources */,
 				2E94041A20E3711300362878 /* UIColor+Original.swift in Sources */,
