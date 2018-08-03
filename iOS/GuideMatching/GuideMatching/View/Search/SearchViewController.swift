@@ -142,14 +142,29 @@ class SearchViewController: UIViewController {
             return true
         }
         
-        guides.sort(by: { guide1, guide2 in
-            // TODO 3パターンある
-            return guide1.loginDate > guide2.loginDate
-        })
+        let sortedGuides = self.sortGuides(guides)
         
         let guideList = self.viewController(storyboard: "Guide", identifier: "GuideViewController") as! GuideViewController
-        guideList.set(searchResult: guides)
+        guideList.set(searchResult: sortedGuides)
         self.tabbarViewController()?.stack(viewController: guideList, animationType: .horizontal)
+    }
+    
+    private func sortGuides(_ guides: [GuideData]) -> [GuideData] {
+
+        return guides.sorted(by: { guide1, guide2 -> Bool in
+            switch self.selectedOrderType {
+            case .login:
+                return guide1.loginDate > guide2.loginDate
+            case .estimate:
+                let score1 = EstimateRequester.shared.queryAverage(targetId: guide1.id)
+                let score2 = EstimateRequester.shared.queryAverage(targetId: guide2.id)
+                return score1 > score2
+            case .number:
+                let number1 = ReserveRequester.shared.dataList.filter { $0.guideId == guide1.id }.count
+                let number2 = ReserveRequester.shared.dataList.filter { $0.guideId == guide2.id }.count
+                return number1 > number2
+            }
+        })
     }
 
     @IBAction func onTapReset(_ sender: Any) {
