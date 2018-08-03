@@ -49,17 +49,17 @@ struct GuideScheduleData {
 struct GuideData {
     
     let id: String
-    let email: String
-    let name: String
-    let nationality: String
-    let language: String
-    let specialty: String
-    let category: String
-    let message: String
-    let timeZone: String
-    let applicableNumber: Int
-    let fee: Int
-    let notes: String
+    var email: String
+    var name: String
+    var nationality: String
+    var language: String
+    var specialty: String
+    var category: String
+    var message: String
+    var timeZone: String
+    var applicableNumber: Int
+    var fee: Int
+    var notes: String
     var schedules: [GuideScheduleData]
     let loginDate: Date
     var stripeAccountId: String

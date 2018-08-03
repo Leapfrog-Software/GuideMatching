@@ -11,9 +11,9 @@ import Foundation
 struct GuestData {
     
     let id: String
-    let email: String
-    let name: String
-    let nationality: String
+    var email: String
+    var name: String
+    var nationality: String
     var stripeCustomerId: String
     
     init?(data: Dictionary<String, Any>) {
