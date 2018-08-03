@@ -178,11 +178,14 @@ function login() {
 
 function createReserve() {
 
-  $requesterId = $_POST["requesterId"];
+  $guestId = $_POST["guestId"];
   $guideId = $_POST["guideId"];
-  $area = $_POST["area"];
+  $meetingPlace = $_POST["meetingPlace"];
+  $day = $_POST["day"];
+  $startTime = $_POST["startTime"];
+  $endTime = $_POST["endTime"];
 
-  if (Reserve::create($requesterId, $guideId, $area)) {
+  if (Reserve::create($guestId, $guideId, $meetingPlace, $day, $startTime, $endTime)) {
     echo(json_encode(Array("result" => "0")));
   } else {
     echo(json_encode(Array("result" => "1")));
@@ -195,10 +198,13 @@ function getReserve() {
   $reserveList = Reserve::readAll();
   foreach ($reserveList as $reserveData) {
     $data[] = Array("id" => $reserveData->id,
-                    "requesterId" => $reserveData->requesterId,
+                    "guestId" => $reserveData->guestId,
                     "guideId" => $reserveData->guideId,
-                    "area" => $reserveData->area,
-                    "date" => $reserveData->date);
+                    "meetingPlace" => $reserveData->meetingPlace,
+                    "day" => $reserveData->day,
+                    "startTime" => $reserveData->startTime,
+                    "endTime" => $reserveData->endTime,
+                    "reserveDate" => $reserveData->reserveDate);
   }
   $ret = Array("result" => "0", "reserves" => $data);
   echo(json_encode($ret));
@@ -242,7 +248,8 @@ function getEstimate() {
   $data = [];
   $estimateList = Estimate::readAll();
   foreach ($estimateList as $estimateData) {
-    $data[] = Array("requesterId" => $estimateData->requesterId,
+    $data[] = Array("reserveId" => $estimateData->reserveId,
+                    "guestId" => $estimateData->guestId,
                     "guideId" => $estimateData->guideId,
                     "score" => $estimateData->score,
                     "comment" => $estimateData->comment);
@@ -254,7 +261,8 @@ function getEstimate() {
 function postEstimate() {
 
   $estimateData = new EstimateData();
-  $estimateData->requesterId = $_GET["requesterId"];
+  $estimateData->reserveId = $_GET["reserveId"];
+  $estimateData->guestId = $_GET["guestId"];
   $estimateData->guideId = $_GET["guideId"];
   $estimateData->score = $_GET["score"];
   $estimateData->comment = $_GET["comment"];
