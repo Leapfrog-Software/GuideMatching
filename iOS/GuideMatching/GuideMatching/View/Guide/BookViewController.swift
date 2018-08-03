@@ -87,7 +87,7 @@ class BookViewController: UIViewController {
         ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + self.guideData.id + "-0", imageView: self.faceImageView)
         self.nameLabel.text = self.guideData.name
         
-        let estimateDatas = EstimateRequester.shared.dataList.filter { $0.targetId == self.guideData.id && $0.isGuide == true }
+        let estimateDatas = EstimateRequester.shared.dataList.filter { $0.guideId == self.guideData.id }
         var score = 0
         estimateDatas.forEach {
             score += $0.score

@@ -35,7 +35,7 @@ class GuideTableViewCell: UITableViewCell {
         
         self.nameLabel.text = guideData.name
         
-        let estimateDatas = EstimateRequester.shared.dataList.filter { $0.targetId == guideData.id && $0.isGuide == true }
+        let estimateDatas = EstimateRequester.shared.dataList.filter { $0.guideId == guideData.id }
         var score = 0
         estimateDatas.forEach {
             score += $0.score

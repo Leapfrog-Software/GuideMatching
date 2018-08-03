@@ -156,8 +156,8 @@ class SearchViewController: UIViewController {
             case .login:
                 return guide1.loginDate > guide2.loginDate
             case .estimate:
-                let score1 = EstimateRequester.shared.queryAverage(targetId: guide1.id)
-                let score2 = EstimateRequester.shared.queryAverage(targetId: guide2.id)
+                let score1 = EstimateRequester.shared.queryAverage(guideId: guide1.id)
+                let score2 = EstimateRequester.shared.queryAverage(guideId: guide2.id)
                 return score1 > score2
             case .number:
                 let number1 = ReserveRequester.shared.dataList.filter { $0.guideId == guide1.id }.count

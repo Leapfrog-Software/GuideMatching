@@ -54,7 +54,7 @@ class GuideDetailViewController: UIViewController {
         self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
         self.notesLabel.text = self.guideData.notes
         
-        let estimateDatas = EstimateRequester.shared.dataList.filter { $0.targetId == guideData.id && $0.isGuide == true }
+        let estimateDatas = EstimateRequester.shared.dataList.filter { $0.guideId == guideData.id }
         var score = 0
         estimateDatas.forEach {
             score += $0.score

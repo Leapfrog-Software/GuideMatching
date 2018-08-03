@@ -103,7 +103,7 @@ class MyPageViewController: UIViewController {
                 pastReserves.forEach { reserveData in
                     var needEstimate = true
                     EstimateRequester.shared.dataList.forEach { estimateData in
-                        if estimateData.reserveId == reserveData.id && estimateData.senderId == SaveData.shared.guestId {
+                        if estimateData.reserveId == reserveData.id && estimateData.guestId == SaveData.shared.guestId {
                             needEstimate = false
                         }
                     }

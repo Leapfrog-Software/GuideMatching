@@ -11,9 +11,8 @@ import Foundation
 struct EstimateData {
     
     let reserveId: String
-    let senderId: String
-    let targetId: String
-    let isGuide: Bool
+    let guestId: String
+    let guideId: String
     let score: Int
     let comment: String
     
@@ -24,17 +23,16 @@ struct EstimateData {
         }
         self.reserveId = reserveId
         
-        guard let senderId = data["senderId"] as? String else {
+        guard let guestId = data["guestId"] as? String else {
             return nil
         }
-        self.senderId = senderId
+        self.guestId = guestId
         
-        guard let targetId = data["targetId"] as? String else {
+        guard let guideId = data["guideId"] as? String else {
             return nil
         }
-        self.targetId = targetId
+        self.guideId = guideId
         
-        self.isGuide = (data["isGuide"] as? String) == "1"
         self.score = Int(data["score"] as? String ?? "") ?? 0
         self.comment = (data["comment"] as? String)?.base64Decode() ?? ""
     }
@@ -59,19 +57,12 @@ class EstimateRequester {
         }
     }
     
-    class func post(reserveId: String, guideId: String, score: Int, comment: String, completion: @escaping ((Bool) -> ())) {
-        
-        let userId: String
-        if SaveData.shared.guestId.count > 0 {
-            userId = SaveData.shared.guestId
-        } else {
-            userId = SaveData.shared.guideId
-        }
+    class func post(reserveId: String, guestId: String, guideId: String, score: Int, comment: String, completion: @escaping ((Bool) -> ())) {
         
         let params = [
             "command": "postEstimate",
             "reserveId": reserveId,
-            "requesterId": userId,
+            "guestId": guestId,
             "guideId": guideId,
             "score": "\(score)",
             "comment": comment.base64Encode() ?? ""
@@ -79,5 +70,21 @@ class EstimateRequester {
         ApiManager.post(params: params) { (result, data) in
             completion(result)
         }
+    }
+    
+    func queryAverage(guideId: String) -> Int {
+        
+        var count = 0
+        var total = 0
+        self.dataList.forEach { estimate in
+            if estimate.guideId == guideId {
+                count += 1
+                total += estimate.score
+            }
+        }
+        if count == 0 {
+            return 0
+        }
+        return total / count
     }
 }

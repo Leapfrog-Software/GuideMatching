@@ -16,7 +16,7 @@ class CustomerReviewViewController: UIViewController {
         super.viewDidLoad()
         
         self.estimates = EstimateRequester.shared.dataList.filter { estimate in
-            return estimate.targetId == SaveData.shared.guideId
+            return estimate.guideId == SaveData.shared.guideId
         }
     }
     

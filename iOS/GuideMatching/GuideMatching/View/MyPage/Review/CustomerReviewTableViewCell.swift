@@ -28,7 +28,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
     
     func configure(estimateData: EstimateData) {
         
-        guard let guestData = GuestRequester.shared.query(id: estimateData.senderId) else {
+        guard let guestData = GuestRequester.shared.query(id: estimateData.guestId) else {
             self.faceImageView.image = nil
             self.nameLabel.text = ""
             self.scoreLabel.text = ""
@@ -40,7 +40,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
             self.commentLabel.text = ""
             return
         }
-        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + estimateData.senderId + "-0", imageView: self.faceImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + estimateData.guestId + "-0", imageView: self.faceImageView)
         
         self.nameLabel.text = guestData.name
         self.scoreLabel.text = "\(estimateData.score)"
