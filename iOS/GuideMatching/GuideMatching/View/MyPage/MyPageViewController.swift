@@ -112,6 +112,7 @@ class MyPageViewController: UIViewController {
             }
             cellDatas.append(CellData(type: .guestButton, title: nil, reserveData: nil, needEstimate: nil))
         }
+        self.cellDatas = cellDatas
     }
     
     private func sortReserveDataByStartDate(reserveDatas: [ReserveData]) -> [ReserveData] {
@@ -164,7 +165,8 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         case .guestButton:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageGuestButtonTableViewCell", for: indexPath) as! MyPageGuestButtonTableViewCell
             cell.configure(didTap: { [weak self] in
-                let profile = self?.viewController(storyboard: "MyPage", identifier: "MyPageGuestProfileViewController") as! MyPageGuestProfileViewController
+                let profile = self?.viewController(storyboard: "Initial", identifier: "GuestRegisterViewController") as! GuestRegisterViewController
+                profile.set(isEdit: true)
                 self?.tabbarViewController()?.stack(viewController: profile, animationType: .horizontal)
             })
             return cell
@@ -183,7 +185,8 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             self.tabbarViewController()?.stack(viewController: schedule, animationType: .horizontal)
             
         case .profile:
-            let profile = self.viewController(storyboard: "MyPage", identifier: "MyPageGuideProfileViewController") as! MyPageGuideProfileViewController
+            let profile = self.viewController(storyboard: "Initial", identifier: "GuideRegisterViewController") as! GuideRegisterViewController
+            profile.set(isEdit: true)
             self.tabbarViewController()?.stack(viewController: profile, animationType: .horizontal)
             
         case .payment:

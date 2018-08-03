@@ -95,7 +95,7 @@ class SearchViewController: UIViewController {
     
     @IBAction func onTapSearch(_ sender: Any) {
         
-        var guides = GuideRequester.shared.dataList.filter { guideData -> Bool in
+        let guides = GuideRequester.shared.dataList.filter { guideData -> Bool in
             let language = self.languageTextField.text ?? ""
             if language.count > 0 && !guideData.language.contains(language) {
                 return false

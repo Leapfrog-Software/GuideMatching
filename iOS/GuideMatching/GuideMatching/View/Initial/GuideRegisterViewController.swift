@@ -45,6 +45,43 @@ class GuideRegisterViewController: UIViewController {
     private var applicableNumbers: [Int] = (Array<Int>)(1...20)
     private var applicableNumberIndex = 0
     
+    private var isEdit = false
+    
+    func set(isEdit: Bool) {
+        self.isEdit = true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if self.isEdit {
+            self.initContents()
+        }
+    }
+    
+    private func initContents() {
+        
+        guard let myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId) else {
+            return
+        }
+        
+        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuideData.id + "-0", imageView: self.face1ImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuideData.id + "-1", imageView: self.face2ImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuideData.id + "-2", imageView: self.face3ImageView)
+        
+        self.emailTextField.text = myGuideData.email
+        self.nameTextField.text = myGuideData.name
+        self.nationalityTextField.text = myGuideData.nationality
+        self.languageLabel.text = myGuideData.language
+        self.specialtyTextView.text = myGuideData.specialty
+        self.categoryLabel.text = myGuideData.category
+        self.messageTextView.text = myGuideData.message
+        self.timeZoneTextView.text = myGuideData.timeZone
+        self.applicableNumberLabel.text = "\(myGuideData.applicableNumber)"
+        self.feeTextField.text = "\(myGuideData.fee)"
+        self.notesTextView.text = myGuideData.notes
+    }
+    
     private func stackTabbar() {
         if let splashViewController = self.parent?.parent {
             let tabbar = self.viewController(storyboard: "Initial", identifier: "TabbarViewController") as! TabbarViewController
@@ -135,6 +172,57 @@ class GuideRegisterViewController: UIViewController {
             return
         }
         
+        Loading.start()
+        
+        self.uploadImage(type: .face1, completion: { resultFace1 in
+            self.uploadImage(type: .face2, completion: { resultFace2 in
+                self.uploadImage(type: .face3, completion: { resultFace3 in
+                    if resultFace1 && resultFace2 && resultFace3 {
+                        if self.isEdit {
+                            self.updateGuide()
+                        } else {
+                            self.createGuide()
+                        }
+                    } else {
+                        Loading.stop()
+                        self.showCommunicateError()
+                    }
+                })
+            })
+        })
+    }
+    
+    private func updateGuide() {
+        
+        var myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId)!
+        myGuideData.email = self.emailTextField.text ?? ""
+        myGuideData.name = self.nameTextField.text ?? ""
+        myGuideData.nationality = self.nationalityTextField.text ?? ""
+        myGuideData.language = self.languages[self.languageIndex]
+        myGuideData.specialty = self.specialtyTextView.text ?? ""
+        myGuideData.category = self.categories[self.categoryIndex]
+        myGuideData.message = self.messageTextView.text ?? ""
+        myGuideData.timeZone = self.timeZoneTextView.text ?? ""
+        myGuideData.applicableNumber = self.applicableNumbers[self.applicableNumberIndex]
+        myGuideData.fee = Int(self.feeTextField.text ?? "0") ?? 0
+        myGuideData.notes = self.notesTextView.text ?? ""
+        
+        AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
+            Loading.stop()
+            
+            if resultUpdate {
+                Dialog.show(style: .success, title: "確認", message: "更新しました", actions: [DialogAction(title: "OK", action: nil)])
+            } else {
+                self.showError(message: "通信に失敗しました")
+            }
+        })
+    }
+    
+    private func createGuide() {
+        
+        let email = self.emailTextField.text ?? ""
+        let name = self.nameTextField.text ?? ""
+        let nationality = self.nationalityTextField.text ?? ""
         let language = self.languages[self.languageIndex]
         let specialty = self.specialtyTextView.text ?? ""
         let category = self.categories[self.categoryIndex]
@@ -144,26 +232,13 @@ class GuideRegisterViewController: UIViewController {
         let fee = self.feeTextField.text ?? ""
         let notes = self.notesTextView.text ?? ""
         
-        Loading.start()
-        
-        self.uploadImage(type: .face1, completion: { resultFace1 in
-            self.uploadImage(type: .face2, completion: { resultFace2 in
-                self.uploadImage(type: .face3, completion: { resultFace3 in
-                    if resultFace1 && resultFace2 && resultFace3 {
-                        AccountRequester.createGuide(email: email, name: name, nationality: nationality, language: language, specialty: specialty, category: category, message: message, timeZone: timeZone, applicableNumber: applicableNumber, fee: fee, notes: notes, completion: { resultCreate, guideId in
-                            if resultCreate, let guideId = guideId {
-                                self.refetchGuide(guideId: guideId)                                
-                            } else {
-                                Loading.stop()
-                                self.showCommunicateError()
-                            }
-                        })
-                    } else {
-                        Loading.stop()
-                        self.showCommunicateError()
-                    }
-                })
-            })
+        AccountRequester.createGuide(email: email, name: name, nationality: nationality, language: language, specialty: specialty, category: category, message: message, timeZone: timeZone, applicableNumber: applicableNumber, fee: fee, notes: notes, completion: { resultCreate, guideId in
+            if resultCreate, let guideId = guideId {
+                self.refetchGuide(guideId: guideId)
+            } else {
+                Loading.stop()
+                self.showCommunicateError()
+            }
         })
     }
     
@@ -260,17 +335,18 @@ extension GuideRegisterViewController {
         
         let image: UIImage?
         var params: [String: String] = ["command": "uploadGuideImage"]
+        params["guideId"] = SaveData.shared.guideId
         
         switch type {
         case .face1:
             image = self.face1Image
-            params["type"] = "face1"
+            params["suffix"] = "0"
         case .face2:
             image = self.face2Image
-            params["type"] = "face2"
+            params["suffix"] = "1"
         case .face3:
             image = self.face3Image
-            params["type"] = "face3"
+            params["suffix"] = "2"
         }
         
         guard let img = image else {
