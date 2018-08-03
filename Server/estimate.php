@@ -1,19 +1,21 @@
 <?php
 
 class EstimateData {
-  public $requesterId;
+  public $reserveId;
+  public $guestId;
   public $guideId;
   public $score;
   public $comment;
 
 	static function initFromFileString($line) {
 		$datas = explode(",", $line);
-		if (count($datas) == 4) {
-      $estimateData = new EstimateData();
-			$estimateData->requesterId = $datas[0];
-      $estimateData->guideId = $datas[1];
-      $estimateData->score = $datas[2];
-      $estimateData->comment = $datas[3];
+		if (count($datas) == 5) {
+    		$estimateData = new EstimateData();
+    		$estimateData->reserveId = $datas[0];
+			$estimateData->guestId = $datas[1];
+      		$estimateData->guideId = $datas[2];
+      		$estimateData->score = $datas[3];
+      		$estimateData->comment = $datas[4];
 			return $estimateData;
 		}
 		return null;
@@ -21,7 +23,9 @@ class EstimateData {
 
   function toFileString() {
     $str = "";
-    $str .= $this->requesterId;
+    $str .= $this->reserveId;
+    $str .= ",";
+    $str .= $this->guestId;
     $str .= ",";
     $str .= $this->guideId;
     $str .= ",";

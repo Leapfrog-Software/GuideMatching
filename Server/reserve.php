@@ -2,20 +2,26 @@
 
 class ReserveData {
   public $id;
-	public $requesterId;
+	public $guestId;
   public $guideId;
-  public $area;
-  public $date;
+  public $meetingPlace;
+  public $day;
+  public $startTime;
+  public $endTime;
+  public $reserveDate;
 
 	static function initFromFileString($line) {
 		$datas = explode(",", $line);
-		if (count($datas) == 5) {
+		if (count($datas) == 8) {
       $reserveData = new ReserveData();
       $reserveData->id = $datas[0];
-			$reserveData->requesterId = $datas[1];
+			$reserveData->guestId = $datas[1];
       $reserveData->guideId = $datas[2];
-      $reserveData->area = $datas[3];
-      $reserveData->date = $datas[4];
+      $reserveData->meetingPlace = $datas[3];
+      $reserveData->day = $datas[4];
+      $reserveData->startTime = $datas[5];
+      $reserveData->endTime = $datas[6];
+      $reserveData->reserveDate = $datas[7];
 			return $reserveData;
 		}
 		return null;
@@ -25,13 +31,19 @@ class ReserveData {
     $str = "";
     $str .= $this->id;
     $str .= ",";
-    $str .= $this->requesterId;
+    $str .= $this->guestId;
     $str .= ",";
     $str .= $this->guideId;
     $str .= ",";
-    $str .= $this->area;
+    $str .= $this->meetingPlace;
     $str .= ",";
-    $str .= $this->date;
+    $str .= $this->day;
+    $str .= ",";
+    $str .= $this->startTime;
+    $str .= ",";
+    $str .= $this->endTime;
+    $str .= ",";
+    $str .= $this->reserveDate;
     $str .= "\n";
     return $str;
   }
@@ -59,7 +71,7 @@ class Reserve {
 		return [];
 	}
 
-  static function create($requesterId, $guideId, $area) {
+  static function create($guestId, $guideId, $meetingPlace, $day, $startTime, $endTime) {
 
     $maxReserveId = -1;
 
@@ -77,10 +89,13 @@ class Reserve {
 
     $reserveData = new ReserveData();
     $reserveData->id = $nextReserveId;
-    $reserveData->requesterId = $requesterId;
+    $reserveData->guestId = $guestId;
     $reserveData->guideId = $guideId;
-    $reserveData->area = $area;
-    $reserveData->date = date("YmdHis");
+    $reserveData->meetingPlace = $meetingPlace;
+    $reserveData->day = $day;
+    $reserveData->startTime = $startTime;
+    $reserveData->endTime = $endTime;
+    $reserveData->reserveDate = date("YmdHis");
 
    $str = $reserveData->toFileString();
     return file_put_contents(Reserve::FILE_NAME, $str, FILE_APPEND) !== false;
