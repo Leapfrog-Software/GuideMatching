@@ -163,8 +163,9 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .guestButton:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageGuestButtonTableViewCell", for: indexPath) as! MyPageGuestButtonTableViewCell
-            cell.configure(didTap: {
-                // TODO MyAccount
+            cell.configure(didTap: { [weak self] in
+                let profile = self?.viewController(storyboard: "MyPage", identifier: "MyPageGuestProfileViewController") as! MyPageGuestProfileViewController
+                self?.tabbarViewController()?.stack(viewController: profile, animationType: .horizontal)
             })
             return cell
         }
@@ -174,20 +175,20 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch type {
         case .history:
-            // TODO
-            break
+            let history = self.viewController(storyboard: "MyPage", identifier: "MyPageHistoryViewController") as! MyPageHistoryViewController
+            self.tabbarViewController()?.stack(viewController: history, animationType: .horizontal)
             
         case .schedule:
             let schedule = self.viewController(storyboard: "MyPage", identifier: "MyPageScheduleViewController") as! MyPageScheduleViewController
             self.tabbarViewController()?.stack(viewController: schedule, animationType: .horizontal)
             
         case .profile:
-            // TODO
-            break
+            let profile = self.viewController(storyboard: "MyPage", identifier: "MyPageGuideProfileViewController") as! MyPageGuideProfileViewController
+            self.tabbarViewController()?.stack(viewController: profile, animationType: .horizontal)
             
         case .payment:
-            // TODO
-            break
+            let payment = self.viewController(storyboard: "MyPage", identifier: "MyPagePaymentViewController") as! MyPagePaymentViewController
+            self.tabbarViewController()?.stack(viewController: payment, animationType: .horizontal)
             
         case .review:
             let review = self.viewController(storyboard: "MyPage", identifier: "CustomerReviewViewController") as! CustomerReviewViewController

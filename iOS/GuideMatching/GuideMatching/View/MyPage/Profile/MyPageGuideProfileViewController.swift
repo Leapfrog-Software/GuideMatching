@@ -1,5 +1,5 @@
 //
-//  MyPageProfileViewController.swift
+//  MyPageGuideProfileViewController.swift
 //  GuideMatching
 //
 //  Created by Leapfrog-Software on 2018/08/02.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyPageProfileViewController: UIViewController {
+class MyPageGuideProfileViewController: UIViewController {
 
     // TODO
 

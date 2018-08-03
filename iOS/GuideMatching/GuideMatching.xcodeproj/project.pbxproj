@@ -29,6 +29,8 @@
 		2E8D37632113EA4900AF21E0 /* ImageStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8D37622113EA4800AF21E0 /* ImageStorage.swift */; };
 		2E8D3765211413D200AF21E0 /* MyPageHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8D3764211413D200AF21E0 /* MyPageHistoryTableViewCell.swift */; };
 		2E8D3767211415AB00AF21E0 /* CustomerReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8D3766211415AB00AF21E0 /* CustomerReviewTableViewCell.swift */; };
+		2E8D37692114422700AF21E0 /* MyPageGuestProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8D37682114422700AF21E0 /* MyPageGuestProfileViewController.swift */; };
+		2E8D376C2114434C00AF21E0 /* EstimateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8D376B2114434C00AF21E0 /* EstimateViewController.swift */; };
 		2E94040020E3307600362878 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9403FF20E3307600362878 /* Constants.swift */; };
 		2E94040220E3458F00362878 /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040120E3458F00362878 /* ImageUploader.swift */; };
 		2E94040420E3508700362878 /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94040320E3508700362878 /* SaveData.swift */; };
@@ -67,7 +69,7 @@
 		BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0320E26F8D00491506 /* ApiManager.swift */; };
 		BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0620E2703C00491506 /* AccountRequester.swift */; };
 		BB9F4209211338E400350461 /* MyPageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */; };
-		BB9F420C2113394000350461 /* MyPageProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F420B2113394000350461 /* MyPageProfileViewController.swift */; };
+		BB9F420C2113394000350461 /* MyPageGuideProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F420B2113394000350461 /* MyPageGuideProfileViewController.swift */; };
 		BB9F420F2113395E00350461 /* MyPagePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */; };
 		BBFEBB1520E4D60D00C9F01C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */; };
 		BBFEBB1820E4D6FE00C9F01C /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1720E4D6FE00C9F01C /* MessageDetailViewController.swift */; };
@@ -110,6 +112,8 @@
 		2E8D37622113EA4800AF21E0 /* ImageStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageStorage.swift; sourceTree = "<group>"; };
 		2E8D3764211413D200AF21E0 /* MyPageHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		2E8D3766211415AB00AF21E0 /* CustomerReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReviewTableViewCell.swift; sourceTree = "<group>"; };
+		2E8D37682114422700AF21E0 /* MyPageGuestProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageGuestProfileViewController.swift; sourceTree = "<group>"; };
+		2E8D376B2114434C00AF21E0 /* EstimateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateViewController.swift; sourceTree = "<group>"; };
 		2E9403FF20E3307600362878 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2E94040120E3458F00362878 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		2E94040320E3508700362878 /* SaveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
@@ -151,7 +155,7 @@
 		BB505A0320E26F8D00491506 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		BB505A0620E2703C00491506 /* AccountRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRequester.swift; sourceTree = "<group>"; };
 		BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHistoryViewController.swift; sourceTree = "<group>"; };
-		BB9F420B2113394000350461 /* MyPageProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageProfileViewController.swift; sourceTree = "<group>"; };
+		BB9F420B2113394000350461 /* MyPageGuideProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageGuideProfileViewController.swift; sourceTree = "<group>"; };
 		BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentViewController.swift; sourceTree = "<group>"; };
 		BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		BBFEBB1720E4D6FE00C9F01C /* MessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +243,14 @@
 				2E7DAA982105D2800076EE12 /* DialogButton.xib */,
 			);
 			path = Dialog;
+			sourceTree = "<group>";
+		};
+		2E8D376A2114433B00AF21E0 /* Estimate */ = {
+			isa = PBXGroup;
+			children = (
+				2E8D376B2114434C00AF21E0 /* EstimateViewController.swift */,
+			);
+			path = Estimate;
 			sourceTree = "<group>";
 		};
 		2E9403FE20E3306400362878 /* System */ = {
@@ -333,6 +345,7 @@
 				BB9F420A2113393000350461 /* Profile */,
 				BB9F420D2113394D00350461 /* Payment */,
 				2E12A0B920EDB5DA0035107F /* Review */,
+				2E8D376A2114433B00AF21E0 /* Estimate */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -470,7 +483,8 @@
 		BB9F420A2113393000350461 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				BB9F420B2113394000350461 /* MyPageProfileViewController.swift */,
+				BB9F420B2113394000350461 /* MyPageGuideProfileViewController.swift */,
+				2E8D37682114422700AF21E0 /* MyPageGuestProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -627,12 +641,14 @@
 				BBFEBB2A20E4E79C00C9F01C /* DateFormatter+Init.swift in Sources */,
 				2E94041320E36B8400362878 /* PickerTableViewCell.swift in Sources */,
 				2E94043820E3857A00362878 /* CommonUtility.swift in Sources */,
+				2E8D37692114422700AF21E0 /* MyPageGuestProfileViewController.swift in Sources */,
 				2E11B3EB20EC75ED002441EB /* GuideDetailScheduleView.swift in Sources */,
 				BBFEBB1820E4D6FE00C9F01C /* MessageDetailViewController.swift in Sources */,
 				BB9F4209211338E400350461 /* MyPageHistoryViewController.swift in Sources */,
 				BBFEBB2020E4DD3600C9F01C /* MyPageReservationTableViewCell.swift in Sources */,
 				BB9F420F2113395E00350461 /* MyPagePaymentViewController.swift in Sources */,
 				BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */,
+				2E8D376C2114434C00AF21E0 /* EstimateViewController.swift in Sources */,
 				2E94040020E3307600362878 /* Constants.swift in Sources */,
 				2E7DAA8F2105D2440076EE12 /* Loading.swift in Sources */,
 				2E7DAA932105D2600076EE12 /* Dialog.swift in Sources */,
@@ -650,7 +666,7 @@
 				2E94040420E3508700362878 /* SaveData.swift in Sources */,
 				BB5059FA20E2677200491506 /* String+Base64.swift in Sources */,
 				2E7DAA952105D26D0076EE12 /* DialogButton.swift in Sources */,
-				BB9F420C2113394000350461 /* MyPageProfileViewController.swift in Sources */,
+				BB9F420C2113394000350461 /* MyPageGuideProfileViewController.swift in Sources */,
 				2E8D3765211413D200AF21E0 /* MyPageHistoryTableViewCell.swift in Sources */,
 				BBFEBB3220E5129100C9F01C /* Date+Util.swift in Sources */,
 				2E8D37612113E48100AF21E0 /* MyPageGuestButtonTableViewCell.swift in Sources */,
