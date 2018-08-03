@@ -10,6 +10,7 @@ import Foundation
 
 struct EstimateData {
     
+    let reserveId: String
     let senderId: String
     let targetId: String
     let isGuide: Bool
@@ -17,6 +18,11 @@ struct EstimateData {
     let comment: String
     
     init?(data: Dictionary<String, Any>) {
+        
+        guard let reserveId = data["reserveId"] as? String else {
+            return nil
+        }
+        self.reserveId = reserveId
         
         guard let senderId = data["senderId"] as? String else {
             return nil
@@ -53,7 +59,7 @@ class EstimateRequester {
         }
     }
     
-    class func post(guideId: String, score: Int, comment: String, completion: @escaping ((Bool) -> ())) {
+    class func post(reserveId: String, guideId: String, score: Int, comment: String, completion: @escaping ((Bool) -> ())) {
         
         let userId: String
         if SaveData.shared.guestId.count > 0 {
@@ -64,6 +70,7 @@ class EstimateRequester {
         
         let params = [
             "command": "postEstimate",
+            "reserveId": reserveId,
             "requesterId": userId,
             "guideId": guideId,
             "score": "\(score)",

@@ -56,7 +56,7 @@ class BookCompleteViewController: UIViewController {
         self.placeLabel.text = self.meetingPlace
         let guideFee = (self.endTimeIndex - self.startTimeIndex) * self.guideData.fee
         self.guideFeeLabel.text = CommonUtility.digit3Format(value: guideFee) + " JPY"
-        let transactionFee = guideFee * 15 / 100
+        let transactionFee = CommonUtility.calculateTransactionFee(of: guideFee)
         self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + " JPY"
         self.totalFeeLabel.text = CommonUtility.digit3Format(value: guideFee + transactionFee) + " JPY"
     }

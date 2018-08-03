@@ -155,7 +155,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyPageButtonTableViewCell" rowHeight="257" id="JGY-xb-jA1" customClass="MyPageButtonTableViewCell" customModule="GuideMatching" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyPageGuideButtonTableViewCell" rowHeight="257" id="JGY-xb-jA1" customClass="MyPageGuideButtonTableViewCell" customModule="GuideMatching" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="240" width="375" height="257"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JGY-xb-jA1" id="e5Q-Gx-ZyR">
@@ -421,6 +421,21 @@
                                                 <constraint firstItem="fxQ-QJ-BaP" firstAttribute="leading" secondItem="h19-uL-pqk" secondAttribute="trailing" constant="20" id="taM-2B-okT"/>
                                                 <constraint firstItem="fxQ-QJ-BaP" firstAttribute="top" secondItem="Ywi-ea-pVo" secondAttribute="bottom" constant="20" id="wpu-gt-LSc"/>
                                             </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyPageGuestButtonTableViewCell" id="Yyw-bR-7Pj" customClass="MyPageGuestButtonTableViewCell" customModule="GuideMatching" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="497" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yyw-bR-7Pj" id="hVf-9a-gkP">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aS-WL-Rxw">
+                                                    <rect key="frame" x="146" y="7" width="82" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="My Account"/>
+                                                </button>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>

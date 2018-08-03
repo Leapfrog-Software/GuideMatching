@@ -42,6 +42,18 @@ struct ReserveData {
         }
         self.reserveDate = reserveDate
     }
+
+    func toStartDate() -> Date? {
+        let yyyymmdd = DateFormatter(dateFormat: "yyyyMMdd").string(from: self.day)
+        let hhmm = CommonUtility.timeOffsetToString(offset: self.startTime)
+        return DateFormatter(dateFormat: "yyyyMMddHH:mm").date(from: yyyymmdd + hhmm)
+    }
+    
+    func toEndDate() -> Date? {
+        let yyyymmdd = DateFormatter(dateFormat: "yyyyMMdd").string(from: self.day)
+        let hhmm = CommonUtility.timeOffsetToString(offset: self.endTime)
+        return DateFormatter(dateFormat: "yyyyMMddHH:mm").date(from: yyyymmdd + hhmm)
+    }
 }
 
 class ReserveRequester {

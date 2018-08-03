@@ -10,5 +10,9 @@ import UIKit
 
 class MyPageReservationTitleTableViewCell: UITableViewCell {
 
-    // TODO
+    @IBOutlet private weak var reservationTitleLabel: UILabel!
+    
+    func configure(title: String) {
+        self.reservationTitleLabel.text = title
+    }
 }

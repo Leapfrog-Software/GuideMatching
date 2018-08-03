@@ -56,4 +56,8 @@ class CommonUtility {
     class func timeOffsetToString(offset: Int) -> String {
         return String(format: "%02d", (offset / 2)) + ":" + String(format: "%02d", 30 * (offset % 2))
     }
+    
+    class func calculateTransactionFee(of guideFee: Int) -> Int {
+        return guideFee * 15 / 100
+    }
 }

@@ -10,5 +10,4 @@ import UIKit
 
 class MyPageReservationNoneTableViewCell: UITableViewCell {
 
-    // TODO
 }

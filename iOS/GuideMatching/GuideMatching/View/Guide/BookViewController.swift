@@ -126,7 +126,7 @@ class BookViewController: UIViewController {
         
         // TODO 入力画面で設定した終了時刻に適した金額になってない
         self.guideFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
-        let transactionFee = self.guideData.fee * 15 / 100
+        let transactionFee = CommonUtility.calculateTransactionFee(of: self.guideData.fee)
         self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
         self.totalFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee + transactionFee) + " JPY"
         
@@ -169,7 +169,7 @@ class BookViewController: UIViewController {
         let cardId = self.selectedCardId ?? ""
         let endTimeIndex = self.endTimeIndex ?? 0
         let amount = self.guideData.fee * (endTimeIndex - self.startTimeIndex)
-        let applicationFee = amount * 15 / 100
+        let applicationFee = CommonUtility.calculateTransactionFee(of: amount)
         let destination = self.guideData.stripeAccountId
         StripeManager.charge(customerId: customerId, cardId: cardId, amount: amount, applicationFee: applicationFee, destination: destination, completion: { result in
             Loading.stop()
