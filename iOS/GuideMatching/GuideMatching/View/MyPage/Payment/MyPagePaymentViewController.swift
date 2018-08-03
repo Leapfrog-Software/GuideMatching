@@ -11,5 +11,9 @@ import UIKit
 class MyPagePaymentViewController: UIViewController {
 
     // TODO
+    
+    @IBAction func onTapBack(_ sender: Any) {
+        self.pop(animationType: .horizontal)
+    }
 
 }

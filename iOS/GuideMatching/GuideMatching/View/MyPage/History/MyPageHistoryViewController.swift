@@ -10,6 +10,9 @@ import UIKit
 
 class MyPageHistoryViewController: UIViewController {
 
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var noDataLabel: UILabel!
+    
     private var histories = [ReserveData]()
 
     override func viewDidLoad() {
@@ -24,6 +27,8 @@ class MyPageHistoryViewController: UIViewController {
             }
             return false
         }
+        self.tableView.isHidden = self.histories.isEmpty
+        self.noDataLabel.isHidden = !self.histories.isEmpty
     }
     
     @IBAction func onTapBack(_ sender: Any) {
