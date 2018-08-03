@@ -134,6 +134,10 @@ class MyPageGuideProfileViewController: UIViewController {
     @IBAction func onTapDone(_ sender: Any) {
         self.view.endEditing(true)
         
+        guard var myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId) else {
+            return
+        }
+        
         let email = self.emailTextField.text ?? ""
         if email.count == 0 {
             self.showError(message: "メールアドレスが入力されていません")
@@ -143,27 +147,30 @@ class MyPageGuideProfileViewController: UIViewController {
             self.showError(message: "不正なメールアドレスです")
             return
         }
+        myGuideData.email = email
         
         let name = self.nameTextField.text ?? ""
         if name.count == 0 {
             self.showError(message: "名前が入力されていません")
             return
         }
+        myGuideData.name = name
         
         let nationality = self.nationalityTextField.text ?? ""
         if nationality.count == 0 {
             self.showError(message: "国籍が入力されていません")
             return
         }
+        myGuideData.nationality = nationality
         
-        let language = self.languages[self.languageIndex]
-        let specialty = self.specialtyTextView.text ?? ""
-        let category = self.categories[self.categoryIndex]
-        let message = self.messageTextView.text ?? ""
-        let timeZone = self.timeZoneTextView.text ?? ""
-        let applicableNumber = self.applicableNumbers[self.applicableNumberIndex]
-        let fee = self.feeTextField.text ?? ""
-        let notes = self.notesTextView.text ?? ""
+        myGuideData.language = self.languages[self.languageIndex]
+        myGuideData.specialty = self.specialtyTextView.text ?? ""
+        myGuideData.category = self.categories[self.categoryIndex]
+        myGuideData.message = self.messageTextView.text ?? ""
+        myGuideData.timeZone = self.timeZoneTextView.text ?? ""
+        myGuideData.applicableNumber = self.applicableNumbers[self.applicableNumberIndex]
+        myGuideData.fee = Int(self.feeTextField.text ?? "0") ?? 0
+        myGuideData.notes = self.notesTextView.text ?? ""
         
         Loading.start()
         
@@ -171,10 +178,10 @@ class MyPageGuideProfileViewController: UIViewController {
             self.uploadImage(type: .face2, completion: { resultFace2 in
                 self.uploadImage(type: .face3, completion: { resultFace3 in
                     if resultFace1 && resultFace2 && resultFace3 {
-                        AccountRequester.createGuide(email: email, name: name, nationality: nationality, language: language, specialty: specialty, category: category, message: message, timeZone: timeZone, applicableNumber: applicableNumber, fee: fee, notes: notes, completion: { resultCreate, guideId in
+                        AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
                             Loading.stop()
                             
-                            if resultCreate, let guideId = guideId {
+                            if resultUpdate {
                                 Dialog.show(style: .success, title: "確認", message: "更新しました", actions: [DialogAction(title: "OK", action: nil)])
                             } else {
                                 self.showError(message: "通信に失敗しました")
