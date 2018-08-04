@@ -10,6 +10,16 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    struct SearchCondition {
+        let language: String?
+        let keyword: String?
+        let date: Date?
+        let time: Int?
+        let nationality: String?
+        let category: String?
+        let order: OrderType
+    }
+    
     enum OrderType: Int {
         case login = 0
         case estimate = 1
@@ -95,76 +105,20 @@ class SearchViewController: UIViewController {
     
     @IBAction func onTapSearch(_ sender: Any) {
         
-        let guides = GuideRequester.shared.dataList.filter { guideData -> Bool in
-            let language = self.languageTextField.text ?? ""
-            if language.count > 0 && !guideData.language.contains(language) {
-                return false
-            }
-            
-            let keyword = self.keywordTextField.text ?? ""
-            if keyword.count > 0 {
-                if !guideData.email.contains(keyword)
-                    && !guideData.name.contains(keyword)
-                    && !guideData.nationality.contains(keyword)
-                    && !guideData.category.contains(keyword)
-                    && !guideData.specialty.contains(keyword)
-                    && !guideData.notes.contains(keyword) {
-                    return false
-                }
-            }
-            
-            if let day = self.selectedDay {
-                if let schedules = (guideData.schedules.filter { $0.date.isSameDay(with: day) }).first {
-                    if !schedules.isFreeList.contains(true) {
-                        return false
-                    }
-                } else {
-                    return false
-                }
-            }
-            
-            if let time = self.selectedTime {
-                let isFreeList = guideData.schedules.map { $0.isFreeList[time] }
-                if isFreeList.isEmpty {
-                    return false
-                }
-            }
-            
-            let nationality = self.nationalityTextField.text ?? ""
-            if nationality.count > 0 && !guideData.nationality.contains(nationality) {
-                return false
-            }
-            
-            let category = self.categoryTextField.text ?? ""
-            if category.count > 0 && !guideData.category.contains(category) {
-                return false
-            }
-            return true
-        }
-        
-        let sortedGuides = self.sortGuides(guides)
-        
+        let language = self.languageTextField.text ?? ""
+        let keyword = self.keywordTextField.text ?? ""
+        let nationality = self.nationalityTextField.text ?? ""
+        let category = self.categoryTextField.text ?? ""
+        let condition = SearchCondition(language: (language.count > 0) ? language : nil,
+                                        keyword: (keyword.count > 0) ? keyword : nil,
+                                        date: self.selectedDay,
+                                        time: self.selectedTime,
+                                        nationality: (nationality.count > 0) ? nationality : nil,
+                                        category: (category.count > 0) ? category : nil,
+                                        order: self.selectedOrderType)
         let guideList = self.viewController(storyboard: "Guide", identifier: "GuideViewController") as! GuideViewController
-        guideList.set(searchResult: sortedGuides)
+        guideList.set(searchCondition: condition)
         self.tabbarViewController()?.stack(viewController: guideList, animationType: .horizontal)
-    }
-    
-    private func sortGuides(_ guides: [GuideData]) -> [GuideData] {
-
-        return guides.sorted(by: { guide1, guide2 -> Bool in
-            switch self.selectedOrderType {
-            case .login:
-                return guide1.loginDate > guide2.loginDate
-            case .estimate:
-                let score1 = EstimateRequester.shared.queryAverage(guideId: guide1.id)
-                let score2 = EstimateRequester.shared.queryAverage(guideId: guide2.id)
-                return score1 > score2
-            case .number:
-                let number1 = ReserveRequester.shared.dataList.filter { $0.guideId == guide1.id }.count
-                let number2 = ReserveRequester.shared.dataList.filter { $0.guideId == guide2.id }.count
-                return number1 > number2
-            }
-        })
     }
 
     @IBAction func onTapReset(_ sender: Any) {

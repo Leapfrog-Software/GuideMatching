@@ -46,7 +46,7 @@ class AccountRequester {
     
     class func createGuide(email: String, name: String, nationality: String, language: String, specialty: String,
                            category: String, message: String, timeZone: String, applicableNumber: Int,
-                           fee: String, notes: String, completion: @escaping ((Bool, String?) -> ())) {
+                           fee: Int, notes: String, completion: @escaping ((Bool, String?) -> ())) {
         
         var params: [String: String] = ["command": "createGuide"]
         params["email"] = email
@@ -58,7 +58,7 @@ class AccountRequester {
         params["message"] = message.base64Encode() ?? ""
         params["timeZone"] = timeZone.base64Encode() ?? ""
         params["applicableNumber"] = "\(applicableNumber)"
-        params["fee"] = fee.base64Encode() ?? ""
+        params["fee"] = "\(fee)"
         params["notes"] = notes.base64Encode() ?? ""
         
         ApiManager.post(params: params) { result, data in

@@ -25,6 +25,10 @@ class TabbarViewController: UIViewController {
         super.viewDidLoad()
         
         self.initContents()
+        
+        Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { [weak self] _ in
+            self?.refreshData()
+        })
     }
     
     private func initContents() {
@@ -81,5 +85,14 @@ class TabbarViewController: UIViewController {
     
     @IBAction func onTapTab4(_ sender: Any) {
         self.changeContents(index: 3)
+    }
+    
+    func refreshData(completion: (() -> ())? = nil) {
+        
+        GuideRequester.shared.fetch(completion: { _ in
+            NotificationCenter.default.post(name: .guide, object: nil, userInfo: nil)
+        })
+        
+        completion?()
     }
 }

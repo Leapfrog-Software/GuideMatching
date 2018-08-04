@@ -80,7 +80,7 @@ class ReserveRequester {
         var params: [String: String] = ["command": "createReserve"]
         params["guestId"] = guestId
         params["guideId"] = guideId
-        params["meetingPlace"] = meetingPlace
+        params["meetingPlace"] = meetingPlace.base64Encode() ?? ""
         params["day"] = DateFormatter(dateFormat: "yyyyMMdd").string(from: day)
         params["startTime"] = "\(startTime)"
         params["endTime"] = "\(endTime)"

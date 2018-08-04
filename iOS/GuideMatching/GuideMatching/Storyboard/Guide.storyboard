@@ -255,6 +255,7 @@
                     <connections>
                         <outlet property="backButton" destination="Eb9-7n-ymx" id="TKX-I0-Ens"/>
                         <outlet property="noDataLabel" destination="2k6-Ev-yv8" id="XYQ-3n-3uL"/>
+                        <outlet property="tableView" destination="Ovf-Uo-6Gs" id="Adr-fO-y5P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LiY-xU-K8N" userLabel="First Responder" sceneMemberID="firstResponder"/>

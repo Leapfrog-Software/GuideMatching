@@ -67,6 +67,7 @@
 		BB505A0220E26F8500491506 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0120E26F8500491506 /* HttpManager.swift */; };
 		BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0320E26F8D00491506 /* ApiManager.swift */; };
 		BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0620E2703C00491506 /* AccountRequester.swift */; };
+		BB7077C121150123004136F3 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7077C021150123004136F3 /* Notification+Name.swift */; };
 		BB9F4209211338E400350461 /* MyPageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */; };
 		BB9F420F2113395E00350461 /* MyPagePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */; };
 		BBFEBB1520E4D60D00C9F01C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */; };
@@ -151,6 +152,7 @@
 		BB505A0120E26F8500491506 /* HttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		BB505A0320E26F8D00491506 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		BB505A0620E2703C00491506 /* AccountRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRequester.swift; sourceTree = "<group>"; };
+		BB7077C021150123004136F3 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHistoryViewController.swift; sourceTree = "<group>"; };
 		BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentViewController.swift; sourceTree = "<group>"; };
 		BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 				2E94041920E3711300362878 /* UIColor+Original.swift */,
 				BBFEBB2920E4E79C00C9F01C /* DateFormatter+Init.swift */,
 				BBFEBB3120E5129100C9F01C /* Date+Util.swift */,
+				BB7077C021150123004136F3 /* Notification+Name.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				2E94041320E36B8400362878 /* PickerTableViewCell.swift in Sources */,
 				2E94043820E3857A00362878 /* CommonUtility.swift in Sources */,
 				2E11B3EB20EC75ED002441EB /* GuideDetailScheduleView.swift in Sources */,
+				BB7077C121150123004136F3 /* Notification+Name.swift in Sources */,
 				BBFEBB1820E4D6FE00C9F01C /* MessageDetailViewController.swift in Sources */,
 				BB9F4209211338E400350461 /* MyPageHistoryViewController.swift in Sources */,
 				BBFEBB2020E4DD3600C9F01C /* MyPageReservationTableViewCell.swift in Sources */,

@@ -172,6 +172,12 @@ class GuideRegisterViewController: UIViewController {
             return
         }
         
+        let fee = Int(self.feeTextField.text ?? "0") ?? 0
+        if fee <= 0 {
+            self.showError(message: "不適切な料金設定です")
+            return
+        }
+        
         Loading.start()
         
         self.uploadImage(type: .face1, completion: { resultFace1 in
@@ -229,7 +235,7 @@ class GuideRegisterViewController: UIViewController {
         let message = self.messageTextView.text ?? ""
         let timeZone = self.timeZoneTextView.text ?? ""
         let applicableNumber = self.applicableNumbers[self.applicableNumberIndex]
-        let fee = self.feeTextField.text ?? ""
+        let fee = Int(self.feeTextField.text ?? "0") ?? 0
         let notes = self.notesTextView.text ?? ""
         
         AccountRequester.createGuide(email: email, name: name, nationality: nationality, language: language, specialty: specialty, category: category, message: message, timeZone: timeZone, applicableNumber: applicableNumber, fee: fee, notes: notes, completion: { resultCreate, guideId in

@@ -35,7 +35,7 @@ class MyPageReservationTableViewCell: UITableViewCell {
             
             let guideFee = guideData.fee * (reserveData.endTime - reserveData.startTime)
             let transactionFee = CommonUtility.calculateTransactionFee(of: guideFee)
-            self.priceLabel.text = CommonUtility.digit3Format(value: guideFee + transactionFee)
+            self.priceLabel.text = CommonUtility.digit3Format(value: guideFee + transactionFee) +  "JPY"
         } else {
             self.nameLabel.text = ""
             self.priceLabel.text = ""
