@@ -180,6 +180,7 @@ class GuideRegisterViewController: UIViewController {
         
         Loading.start()
         
+        // TODO guideIDが決まってからアップする
         self.uploadImage(type: .face1, completion: { resultFace1 in
             self.uploadImage(type: .face2, completion: { resultFace2 in
                 self.uploadImage(type: .face3, completion: { resultFace3 in

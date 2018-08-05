@@ -142,6 +142,8 @@ class GuestRegisterViewController: UIViewController {
     }
     
     private func uploadAllImage() {
+        
+        // TODO guestIDが決まってからアップする
         self.uploadImage(type: .face1, completion: { resultFace1 in
             self.uploadImage(type: .face2, completion: { resultFace2 in
                 self.uploadImage(type: .face3, completion: { resultFace3 in
