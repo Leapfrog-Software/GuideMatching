@@ -106,6 +106,8 @@ class GuideViewController: UIViewController {
             self.guideDatas = GuideRequester.shared.dataList
         }
         
+        ImageStorage.shared.removeAll()
+        
         self.tableView.reloadData()
         self.noDataLabel.isHidden = !self.guideDatas.isEmpty
     }

@@ -10,4 +10,8 @@ import Foundation
 
 extension Notification.Name {
     static let guide = Notification.Name("Guide")
+    static let guest = Notification.Name("Guest")
+    static let estimate = Notification.Name("Estimate")
+    static let message = Notification.Name("Message")
+    static let reserve = Notification.Name("Reserve")
 }

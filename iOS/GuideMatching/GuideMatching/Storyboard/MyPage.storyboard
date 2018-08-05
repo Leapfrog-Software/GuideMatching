@@ -45,7 +45,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyPageReservationTitleTableViewCell" rowHeight="50" id="bCR-rn-4rX" customClass="MyPageReservationTitleTableViewCell" customModule="GuideMatching" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyPageReservationTitleTableViewCell" rowHeight="50" id="bCR-rn-4rX" customClass="MyPageReservationTitleTableViewCell" customModule="GuideMatching" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bCR-rn-4rX" id="Q69-Tj-QOd">
@@ -79,7 +79,7 @@
                                             <outlet property="reservationTitleLabel" destination="Dar-LP-YXd" id="lqx-kE-LNj"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyPageReservationTableViewCell" rowHeight="99" id="iYV-QA-zJb" customClass="MyPageReservationTableViewCell" customModule="GuideMatching" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyPageReservationTableViewCell" rowHeight="99" id="iYV-QA-zJb" customClass="MyPageReservationTableViewCell" customModule="GuideMatching" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="78" width="375" height="99"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iYV-QA-zJb" id="2pK-8w-ajC">
@@ -193,7 +193,7 @@
                                             <outlet property="timeLabel" destination="8Dw-eB-mtc" id="2w9-fH-VV3"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyPageReservationNoneTableViewCell" rowHeight="80" id="AHU-AL-3Rq" customClass="MyPageReservationNoneTableViewCell" customModule="GuideMatching" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyPageReservationNoneTableViewCell" rowHeight="80" id="AHU-AL-3Rq" customClass="MyPageReservationNoneTableViewCell" customModule="GuideMatching" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="177" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AHU-AL-3Rq" id="0Ep-3M-Kfx">
@@ -214,7 +214,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyPageGuideButtonTableViewCell" rowHeight="257" id="JGY-xb-jA1" customClass="MyPageGuideButtonTableViewCell" customModule="GuideMatching" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyPageGuideButtonTableViewCell" rowHeight="257" id="JGY-xb-jA1" customClass="MyPageGuideButtonTableViewCell" customModule="GuideMatching" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="257" width="375" height="257"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JGY-xb-jA1" id="e5Q-Gx-ZyR">
@@ -482,15 +482,15 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyPageGuestButtonTableViewCell" rowHeight="82" id="Yyw-bR-7Pj" customClass="MyPageGuestButtonTableViewCell" customModule="GuideMatching" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="514" width="375" height="82"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyPageGuestButtonTableViewCell" rowHeight="98" id="Yyw-bR-7Pj" customClass="MyPageGuestButtonTableViewCell" customModule="GuideMatching" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="514" width="375" height="98"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Yyw-bR-7Pj" id="hVf-9a-gkP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aS-WL-Rxw">
-                                                    <rect key="frame" x="24" y="16" width="327" height="50"/>
+                                                    <rect key="frame" x="24" y="32" width="327" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="E50-fj-VkX"/>
                                                     </constraints>
@@ -518,7 +518,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="3aS-WL-Rxw" secondAttribute="bottom" constant="16" id="1ZS-4C-I36"/>
                                                 <constraint firstAttribute="trailing" secondItem="3aS-WL-Rxw" secondAttribute="trailing" constant="24" id="SrZ-ND-xRM"/>
                                                 <constraint firstItem="3aS-WL-Rxw" firstAttribute="leading" secondItem="hVf-9a-gkP" secondAttribute="leading" constant="24" id="a7m-58-MR9"/>
-                                                <constraint firstItem="3aS-WL-Rxw" firstAttribute="top" secondItem="hVf-9a-gkP" secondAttribute="top" constant="16" id="wBg-DE-PeL"/>
+                                                <constraint firstItem="3aS-WL-Rxw" firstAttribute="top" secondItem="hVf-9a-gkP" secondAttribute="top" constant="32" id="wBg-DE-PeL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

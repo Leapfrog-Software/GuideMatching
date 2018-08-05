@@ -128,7 +128,7 @@ class GuestRegisterViewController: UIViewController {
             return
         }
         
-        if self.passportImage == nil {
+        if !self.isEdit && self.passportImage == nil {
             self.showError(message: "Passport is not captured")
             return
         }

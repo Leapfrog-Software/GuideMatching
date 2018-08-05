@@ -35,10 +35,21 @@ class MyPageViewController: UIViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         
-        self.initCellDatas()
+        self.resetCellDatas()
+        
+        NotificationCenter.default.addObserver(forName: .reserve, object: nil, queue: nil, using: { [weak self] _ in
+            self?.resetCellDatas()
+            self?.tableView.reloadData()
+        })
     }
     
-    private func initCellDatas() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: .reserve, object: nil)
+    }
+    
+    private func resetCellDatas() {
         
         var cellDatas = [CellData]()
         let today = Date()
