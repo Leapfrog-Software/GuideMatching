@@ -28,8 +28,8 @@
                         <action selector="onTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="EjF-YQ-dga"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puQ-27-ofK">
-                    <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OK" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="puQ-27-ofK">
+                    <rect key="frame" x="12" y="12" width="276" height="26"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -38,12 +38,12 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="TPV-z8-MFO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4CE-tc-Q5c"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="puQ-27-ofK" secondAttribute="bottom" id="XBv-3w-9Z7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="puQ-27-ofK" secondAttribute="bottom" constant="12" id="XBv-3w-9Z7"/>
                 <constraint firstItem="TPV-z8-MFO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="beE-G6-ubA"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="puQ-27-ofK" secondAttribute="trailing" id="glc-AH-J77"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="puQ-27-ofK" secondAttribute="trailing" constant="12" id="glc-AH-J77"/>
                 <constraint firstItem="TPV-z8-MFO" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="jCS-TM-8oG"/>
-                <constraint firstItem="puQ-27-ofK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="lp9-kP-Qbv"/>
-                <constraint firstItem="puQ-27-ofK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="mlz-UH-mxi"/>
+                <constraint firstItem="puQ-27-ofK" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="lp9-kP-Qbv"/>
+                <constraint firstItem="puQ-27-ofK" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="mlz-UH-mxi"/>
                 <constraint firstItem="TPV-z8-MFO" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="qDv-w3-f0k"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

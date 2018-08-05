@@ -26,7 +26,7 @@ class TabbarViewController: UIViewController {
         
         self.initContents()
         
-        Timer.scheduledTimer(withTimeInterval: 180, repeats: true, block: { [weak self] _ in
+        Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { [weak self] _ in
             self?.refreshData()
         })
     }

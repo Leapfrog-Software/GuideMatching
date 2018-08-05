@@ -159,7 +159,9 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageReservationTableViewCell", for: indexPath) as! MyPageReservationTableViewCell
             if cellData.needEstimate == true {
                 cell.configure(reserveData: cellData.reserveData!, didTapEstimate: {
-                    // TODO 評価画面
+                    let estimate = self.viewController(storyboard: "MyPage", identifier: "EstimateViewController") as! EstimateViewController
+                    estimate.set(reserveData: cellData.reserveData!)
+                    self.stack(viewController: estimate, animationType: .horizontal)
                 })
             } else {
                 cell.configure(reserveData: cellData.reserveData!, didTapEstimate: nil)
