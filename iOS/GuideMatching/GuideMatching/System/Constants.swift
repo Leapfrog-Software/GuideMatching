@@ -22,6 +22,7 @@ class Constants {
     struct UserDefaultsKey {
         static let GuestId = "GuestId"
         static let GuideId = "GuideId"
+        static let BankAccount = "BankAccount"
     }
     
     struct Stripe {
