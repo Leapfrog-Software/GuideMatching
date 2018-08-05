@@ -66,7 +66,15 @@ function createGuide() {
 }
 
 function uploadGuideImage() {
-	echo(json_encode(Array("result" => "0")));
+
+  $guideId = $_POST["guideId"];
+  $suffix = $_POST["suffix"];
+  $file = $_FILES['image']['tmp_name'];
+  if (Guide::uploadImage($guideId, $suffix, $file)) {
+    echo(json_encode(Array("result" => "0")));
+  } else {
+    echo(json_encode(Array("result" => "1")));
+  }
 }
 
 function updateGuide() {
@@ -133,7 +141,15 @@ function createGuest() {
 }
 
 function uploadGuestImage() {
-	echo(json_encode(Array("result" => "0")));
+  
+  $guestId = $_POST["guestId"];
+  $suffix = $_POST["suffix"];
+  $file = $_FILES['image']['tmp_name'];
+  if (Guest::uploadImage($guestId, $suffix, $file)) {
+    echo(json_encode(Array("result" => "0")));
+  } else {
+    echo(json_encode(Array("result" => "1")));
+  }
 }
 
 function updateGuest() {
@@ -261,11 +277,11 @@ function getEstimate() {
 function postEstimate() {
 
   $estimateData = new EstimateData();
-  $estimateData->reserveId = $_GET["reserveId"];
-  $estimateData->guestId = $_GET["guestId"];
-  $estimateData->guideId = $_GET["guideId"];
-  $estimateData->score = $_GET["score"];
-  $estimateData->comment = $_GET["comment"];
+  $estimateData->reserveId = $_POST["reserveId"];
+  $estimateData->guestId = $_POST["guestId"];
+  $estimateData->guideId = $_POST["guideId"];
+  $estimateData->score = $_POST["score"];
+  $estimateData->comment = $_POST["comment"];
 
   if (Estimate::append($estimateData)) {
     echo(json_encode(Array("result" => "0")));

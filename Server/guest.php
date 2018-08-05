@@ -40,6 +40,7 @@ class GuestData {
 class Guest {
 
   const FILE_NAME = "data/guest.txt";
+  const IMAGE_DIRECTORY = "data/image/guest/";
 
   static function readAll() {
     if (file_exists(Guest::FILE_NAME)) {
@@ -114,6 +115,12 @@ class Guest {
       $str .= $data->toFileString();
     }
     return file_put_contents(Guest::FILE_NAME, $str) !== false;
+  }
+
+  static function uploadImage($guestId, $suffix, $file) {
+
+    $fileName = Guest::IMAGE_DIRECTORY . $guestId . "-" . $suffix;
+    return move_uploaded_file($file, $fileName);
   }
 }
 

@@ -80,6 +80,7 @@ class GuideData {
 class Guide {
 
   const FILE_NAME = "data/guide.txt";
+  const IMAGE_DIRECTORY = "data/image/guide/";
 
 	static function readAll() {
 		if (file_exists(Guide::FILE_NAME)) {
@@ -203,6 +204,12 @@ class Guide {
       $str .= $data->toFileString();
     }
     return file_put_contents(Guide::FILE_NAME, $str) !== false;
+  }
+
+  static function uploadImage($guideId, $suffix, $file) {
+
+    $fileName = Guide::IMAGE_DIRECTORY . $guideId . "-" . $suffix;
+    return move_uploaded_file($file, $fileName);
   }
 }
 
