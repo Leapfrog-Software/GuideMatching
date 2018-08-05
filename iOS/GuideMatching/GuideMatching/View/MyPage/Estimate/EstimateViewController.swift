@@ -10,6 +10,8 @@ import UIKit
 
 class EstimateViewController: UIViewController {
 
+    @IBOutlet private weak var faceImageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var starsView: UIView!
     @IBOutlet private weak var estimate1ImageView: UIImageView!
     @IBOutlet private weak var estimate2ImageView: UIImageView!
@@ -26,7 +28,23 @@ class EstimateViewController: UIViewController {
         self.reserveData = reserveData
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.initContents()
+    }
+    
+    private func initContents() {
+        
+        ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + self.reserveData.guideId + "-0", imageView: self.faceImageView)
+        
+        let name = GuideRequester.shared.query(id: self.reserveData.guideId)?.name ?? ""
+        self.nameLabel.text = name
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        self.view.endEditing(true)
         
         guard let location = touches.first?.location(in: self.starsView) else {
             return

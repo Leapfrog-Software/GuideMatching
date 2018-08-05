@@ -113,6 +113,13 @@ class BookViewController: UIViewController {
             self.placeInputView.isHidden = true
             self.placeInputViewHeightConstraint.constant = 0
             self.placeConfirmLabel.text = meetingPlace
+            
+            let fee = self.guideData.fee * (endTimeIndex - self.startTimeIndex)
+            self.guideFeeLabel.text = CommonUtility.digit3Format(value: fee) + " JPY/30min"
+            let transactionFee = CommonUtility.calculateTransactionFee(of: fee)
+            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
+            self.totalFeeLabel.text = CommonUtility.digit3Format(value: fee + transactionFee) + " JPY"
+            
         } else {
             self.timeInputStartLabel.text = CommonUtility.timeOffsetToString(offset: self.startTimeIndex)
             self.timeInputEndButton.setTitle(CommonUtility.timeOffsetToString(offset: self.startTimeIndex + 1), for: .normal)
@@ -122,13 +129,12 @@ class BookViewController: UIViewController {
             self.placeConfirmViewHeightConstraint.constant = 0
             
             self.selectedEndTimeIndex = self.startTimeIndex + 1
+            
+            self.guideFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
+            let transactionFee = CommonUtility.calculateTransactionFee(of: self.guideData.fee)
+            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
+            self.totalFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee + transactionFee) + " JPY"
         }
-        
-        // TODO 入力画面で設定した終了時刻に適した金額になってない
-        self.guideFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
-        let transactionFee = CommonUtility.calculateTransactionFee(of: self.guideData.fee)
-        self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
-        self.totalFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee + transactionFee) + " JPY"
         
         self.notesLabel.text = self.guideData.notes
         
@@ -198,12 +204,19 @@ class BookViewController: UIViewController {
         let picker = self.viewController(storyboard: "Common", identifier: "PickerViewController") as! PickerViewController
         let defaultIndex = self.selectedEndTimeIndex - self.startTimeIndex - 1
         picker.set(title: "Time", dataArray: timeStrs, defaultIndex: defaultIndex, completion: { [weak self] index in
-            let endTimeIndex = (self?.startTimeIndex ?? 0) + 1 + index
-            self?.selectedEndTimeIndex = endTimeIndex
+            guard let nSelf = self else {
+                return
+            }
+            let endTimeIndex = nSelf.startTimeIndex + 1 + index
+            nSelf.selectedEndTimeIndex = endTimeIndex
             let timeStr = CommonUtility.timeOffsetToString(offset: endTimeIndex)
-            self?.timeInputEndButton.setTitle(timeStr, for: .normal)
+            nSelf.timeInputEndButton.setTitle(timeStr, for: .normal)
             
-            // TODO 金額が反映されてない
+            let fee = nSelf.guideData.fee * (endTimeIndex - nSelf.startTimeIndex)
+            nSelf.guideFeeLabel.text = CommonUtility.digit3Format(value: fee) + " JPY/30min"
+            let transactionFee = CommonUtility.calculateTransactionFee(of: fee)
+            nSelf.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
+            nSelf.totalFeeLabel.text = CommonUtility.digit3Format(value: fee + transactionFee) + " JPY"
         })
         self.stack(viewController: picker, animationType: .none)
     }

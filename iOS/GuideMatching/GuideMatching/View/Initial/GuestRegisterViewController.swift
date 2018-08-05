@@ -32,6 +32,36 @@ class GuestRegisterViewController: UIViewController {
     private var face3Image: UIImage?
     private var passportImage: UIImage?
     
+    private var isEdit = false
+    
+    func set(isEdit: Bool) {
+        self.isEdit = true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if self.isEdit {
+            self.initContents()
+        }
+    }
+    
+    private func initContents() {
+        
+        guard let myGuestData = GuestRequester.shared.query(id: SaveData.shared.guestId) else {
+            return
+        }
+        
+        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuestData.id + "-0", imageView: self.face1ImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuestData.id + "-1", imageView: self.face2ImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuestData.id + "-2", imageView: self.face3ImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuestData.id + "-p", imageView: self.passportImageView)
+        
+        self.emailTextField.text = myGuestData.email
+        self.nameTextField.text = myGuestData.name
+        self.nationalityTextField.text = myGuestData.nationality
+    }
+    
     private func stackTabbar() {
         if let splashViewController = self.parent?.parent {
             let tabbar = self.viewController(storyboard: "Initial", identifier: "TabbarViewController") as! TabbarViewController
@@ -98,26 +128,30 @@ class GuestRegisterViewController: UIViewController {
             return
         }
         
-        if self.passportImage == nil {
+        if !self.isEdit && self.passportImage == nil {
             self.showError(message: "Passport is not captured")
             return
         }
         
         Loading.start()
-        
+        self.uploadAllImage()
+    }
+    
+    @IBAction func onTapClose(_ sender: Any) {
+        self.pop(animationType: .vertical)
+    }
+    
+    private func uploadAllImage() {
         self.uploadImage(type: .face1, completion: { resultFace1 in
             self.uploadImage(type: .face2, completion: { resultFace2 in
                 self.uploadImage(type: .face3, completion: { resultFace3 in
                     self.uploadImage(type: .passport, completion: { resultPassport in
                         if resultFace1 && resultFace2 && resultFace3 && resultPassport {
-                            AccountRequester.createGuest(email: email, name: name, nationality: nationality, completion: { resultCreate, guestId in
-                                if resultCreate, let guestId = guestId {                                    
-                                    self.refetchGuest(guestId: guestId)
-                                } else {
-                                    Loading.stop()
-                                    self.showCommunicateError()
-                                }
-                            })
+                            if self.isEdit {
+                                self.updateGuest()
+                            } else {
+                                self.createGuest()
+                            }
                         } else {
                             Loading.stop()
                             self.showCommunicateError()
@@ -128,8 +162,106 @@ class GuestRegisterViewController: UIViewController {
         })
     }
     
-    @IBAction func onTapClose(_ sender: Any) {
-        self.pop(animationType: .vertical)
+    private func updateGuest() {
+        
+        var myGuestData = GuestRequester.shared.query(id: SaveData.shared.guestId)!
+        myGuestData.email = self.emailTextField.text ?? ""
+        myGuestData.name = self.nameTextField.text ?? ""
+        myGuestData.nationality = self.nationalityTextField.text ?? ""
+        
+        AccountRequester.updateGuest(guestData: myGuestData, completion: { resultAccount in
+            Loading.stop()
+            if resultAccount {
+                Dialog.show(style: .success, title: "Done", message: "Updating is done", actions: [DialogAction(title: "OK", action: nil)])
+            } else {
+                self.showCommunicateError()
+            }
+        })
+    }
+    
+    private func createGuest() {
+        
+        let email = self.emailTextField.text ?? ""
+        let name = self.nameTextField.text ?? ""
+        let nationality = self.nationalityTextField.text ?? ""
+        
+        AccountRequester.createGuest(email: email, name: name, nationality: nationality, completion: { result, guestId in
+            if result, let guestId = guestId {
+                self.refetchGuest(guestId: guestId)
+            } else {
+                Loading.stop()
+                self.showCommunicateError()
+            }
+        })
+    }
+    
+    private func uploadImage(type: ImageType, completion: @escaping ((Bool) -> ())) {
+        
+        let image: UIImage?
+        var params: [String: String] = ["command": "uploadGuestImage"]
+        params["guestId"] = SaveData.shared.guestId
+        
+        switch type {
+        case .face1:
+            image = self.face1Image
+            params["suffix"] = "0"
+        case .face2:
+            image = self.face2Image
+            params["suffix"] = "1"
+        case .face3:
+            image = self.face3Image
+            params["suffix"] = "2"
+        case .passport:
+            image = self.passportImage
+            params["suffix"] = "p"
+        }
+        
+        guard let img = image else {
+            completion(true)
+            return
+        }
+        ImageUploader.post(url: Constants.ServerApiUrl, image: img, params: params, completion: { result in
+            completion(result)
+        })
+    }
+    
+    private func refetchGuest(guestId: String) {
+        
+        GuestRequester.shared.fetch(completion: { resultFetch in
+            if resultFetch {
+                guard var myGuestData = GuestRequester.shared.query(id: guestId) else {
+                    self.showCommunicateError()
+                    return
+                }
+                StripeManager.createCustomer(email: myGuestData.email, completion: { resultStripe, customerId in
+                    if resultStripe, let customerId = customerId {
+                        myGuestData.stripeCustomerId = customerId
+                        AccountRequester.updateGuest(guestData: myGuestData, completion: { resultUpdate in
+                            if resultUpdate {
+                                GuestRequester.shared.fetch(completion: { _ in
+                                    Loading.stop()
+                                    
+                                    let saveData = SaveData.shared
+                                    saveData.guestId = guestId
+                                    saveData.save()
+                                    
+                                    self.stackTabbar()
+                                })
+                            } else {
+                                Loading.stop()
+                                self.showCommunicateError()
+                            }
+                        })
+                    } else {
+                        Loading.stop()
+                        self.showCommunicateError()
+                    }
+                })
+            } else {
+                Loading.stop()
+                self.showCommunicateError()
+            }
+        })
     }
 }
 
@@ -170,76 +302,5 @@ extension GuestRegisterViewController: UIImagePickerControllerDelegate, UINaviga
             }
         }
         picker.dismiss(animated: true, completion: nil)
-    }
-}
-
-extension GuestRegisterViewController {
-    
-    private func refetchGuest(guestId: String) {
-        
-        GuestRequester.shared.fetch(completion: { resultFetch in
-            if resultFetch {
-                guard var myGuestData = GuestRequester.shared.query(id: guestId) else {
-                    self.showCommunicateError()
-                    return
-                }
-                StripeManager.createCustomer(email: myGuestData.email, completion: { resultStripe, customerId in
-                    if resultStripe, let customerId = customerId {
-                        myGuestData.stripeCustomerId = customerId
-                        AccountRequester.updateGuest(guestData: myGuestData, completion: { resultUpdate in
-                            if resultUpdate {
-                                GuestRequester.shared.fetch(completion: { _ in
-                                    Loading.stop()
-                                    
-                                    let saveData = SaveData.shared
-                                    saveData.guestId = guestId
-                                    saveData.save()
-                                    
-                                    self.stackTabbar()
-                                })                                
-                            } else {
-                                Loading.stop()
-                                self.showCommunicateError()
-                            }
-                        })
-                    } else {
-                        Loading.stop()
-                        self.showCommunicateError()
-                    }
-                })
-            } else {
-                Loading.stop()
-                self.showCommunicateError()
-            }
-        })
-    }
-    
-    private func uploadImage(type: ImageType, completion: @escaping ((Bool) -> ())) {
-        
-        let image: UIImage?
-        var params: [String: String] = ["command": "uploadGuestImage"]
-        
-        switch type {
-        case .face1:
-            image = self.face1Image
-            params["type"] = "face1"
-        case .face2:
-            image = self.face2Image
-            params["type"] = "face2"
-        case .face3:
-            image = self.face3Image
-            params["type"] = "face3"
-        case .passport:
-            image = self.passportImage
-            params["type"] = "passport"
-        }
-        
-        guard let img = image else {
-            completion(true)
-            return
-        }
-        ImageUploader.post(url: Constants.ServerApiUrl, image: img, params: params, completion: { result in
-            completion(result)
-        })
     }
 }

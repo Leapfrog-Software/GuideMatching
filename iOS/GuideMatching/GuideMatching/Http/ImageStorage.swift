@@ -83,4 +83,9 @@ class ImageStorage {
             self.imageList.remove(at: index)
         }
     }
+    
+    func removeAll() {
+        self.imageList.removeAll()
+        self.requestList.removeAll()
+    }
 }

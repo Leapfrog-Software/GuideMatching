@@ -25,6 +25,10 @@ class TabbarViewController: UIViewController {
         super.viewDidLoad()
         
         self.initContents()
+        
+        Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { [weak self] _ in
+            self?.refreshData()
+        })
     }
     
     private func initContents() {
@@ -81,5 +85,36 @@ class TabbarViewController: UIViewController {
     
     @IBAction func onTapTab4(_ sender: Any) {
         self.changeContents(index: 3)
+    }
+    
+    func refreshData(completion: (() -> ())? = nil) {
+        
+        GuideRequester.shared.fetch(completion: { result in
+            if result {
+                NotificationCenter.default.post(name: .guide, object: nil, userInfo: nil)
+            }
+        })
+        GuestRequester.shared.fetch(completion: { result in
+            if result {
+                NotificationCenter.default.post(name: .guest, object: nil, userInfo: nil)
+            }
+        })
+        EstimateRequester.shared.fetch(completion: { result in
+            if result {
+                NotificationCenter.default.post(name: .estimate, object: nil, userInfo: nil)
+            }
+        })
+        MessageRequester.shared.fetch(completion: { result in
+            if result {
+                NotificationCenter.default.post(name: .message, object: nil, userInfo: nil)
+            }
+        })
+        ReserveRequester.shared.fetch(completion: { result in
+            if result {
+                NotificationCenter.default.post(name: .reserve, object: nil, userInfo: nil)
+            }
+        })
+        
+        completion?()
     }
 }

@@ -35,10 +35,21 @@ class MyPageViewController: UIViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         
-        self.initCellDatas()
+        self.resetCellDatas()
+        
+        NotificationCenter.default.addObserver(forName: .reserve, object: nil, queue: nil, using: { [weak self] _ in
+            self?.resetCellDatas()
+            self?.tableView.reloadData()
+        })
     }
     
-    private func initCellDatas() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: .reserve, object: nil)
+    }
+    
+    private func resetCellDatas() {
         
         var cellDatas = [CellData]()
         let today = Date()
@@ -112,6 +123,7 @@ class MyPageViewController: UIViewController {
             }
             cellDatas.append(CellData(type: .guestButton, title: nil, reserveData: nil, needEstimate: nil))
         }
+        self.cellDatas = cellDatas
     }
     
     private func sortReserveDataByStartDate(reserveDatas: [ReserveData]) -> [ReserveData] {
@@ -147,7 +159,9 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageReservationTableViewCell", for: indexPath) as! MyPageReservationTableViewCell
             if cellData.needEstimate == true {
                 cell.configure(reserveData: cellData.reserveData!, didTapEstimate: {
-                    // TODO 評価画面
+                    let estimate = self.viewController(storyboard: "MyPage", identifier: "EstimateViewController") as! EstimateViewController
+                    estimate.set(reserveData: cellData.reserveData!)
+                    self.stack(viewController: estimate, animationType: .horizontal)
                 })
             } else {
                 cell.configure(reserveData: cellData.reserveData!, didTapEstimate: nil)
@@ -164,7 +178,8 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
         case .guestButton:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageGuestButtonTableViewCell", for: indexPath) as! MyPageGuestButtonTableViewCell
             cell.configure(didTap: { [weak self] in
-                let profile = self?.viewController(storyboard: "MyPage", identifier: "MyPageGuestProfileViewController") as! MyPageGuestProfileViewController
+                let profile = self?.viewController(storyboard: "Initial", identifier: "GuestRegisterViewController") as! GuestRegisterViewController
+                profile.set(isEdit: true)
                 self?.tabbarViewController()?.stack(viewController: profile, animationType: .horizontal)
             })
             return cell
@@ -183,7 +198,8 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             self.tabbarViewController()?.stack(viewController: schedule, animationType: .horizontal)
             
         case .profile:
-            let profile = self.viewController(storyboard: "MyPage", identifier: "MyPageGuideProfileViewController") as! MyPageGuideProfileViewController
+            let profile = self.viewController(storyboard: "Initial", identifier: "GuideRegisterViewController") as! GuideRegisterViewController
+            profile.set(isEdit: true)
             self.tabbarViewController()?.stack(viewController: profile, animationType: .horizontal)
             
         case .payment:

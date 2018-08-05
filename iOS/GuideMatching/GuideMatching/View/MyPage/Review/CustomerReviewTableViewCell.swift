@@ -43,7 +43,9 @@ class CustomerReviewTableViewCell: UITableViewCell {
         ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + estimateData.guestId + "-0", imageView: self.faceImageView)
         
         self.nameLabel.text = guestData.name
-        self.scoreLabel.text = "\(estimateData.score)"
+        
+        let score = "\(Int(estimateData.score / 10)).\(Int((estimateData.score * 10) % 10))"
+        self.scoreLabel.text = score
         
         let estimateImages = CommonUtility.createEstimateImages(estimateData.score)
         self.estimate1ImageView.image = estimateImages[0]

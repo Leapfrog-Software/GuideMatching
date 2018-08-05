@@ -25,7 +25,7 @@ extension UIImage {
                                                    width: self.size.height,
                                                    height: self.size.height))
         }
-        return trimmedImage?.resize(size: CGSize(width: 400, height: 400))
+        return trimmedImage?.resize(size: CGSize(width: 200, height: 200))
     }
     
     private func resize(size: CGSize) -> UIImage? {
