@@ -70,6 +70,7 @@
 		BB7077C121150123004136F3 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7077C021150123004136F3 /* Notification+Name.swift */; };
 		BB9F4209211338E400350461 /* MyPageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */; };
 		BB9F420F2113395E00350461 /* MyPagePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */; };
+		BBBE5FA22116A93200842BC3 /* MyPageAccountEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBE5FA12116A93200842BC3 /* MyPageAccountEditViewController.swift */; };
 		BBC64C922116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC64C912116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift */; };
 		BBC64C942116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC64C932116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift */; };
 		BBC64C962116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC64C952116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift */; };
@@ -158,6 +159,7 @@
 		BB7077C021150123004136F3 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHistoryViewController.swift; sourceTree = "<group>"; };
 		BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentViewController.swift; sourceTree = "<group>"; };
+		BBBE5FA12116A93200842BC3 /* MyPageAccountEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageAccountEditViewController.swift; sourceTree = "<group>"; };
 		BBC64C912116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentTotalTableViewCell.swift; sourceTree = "<group>"; };
 		BBC64C932116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		BBC64C952116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentAccountTableViewCell.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 				BBC64C912116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift */,
 				BBC64C932116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift */,
 				BBC64C952116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift */,
+				BBBE5FA12116A93200842BC3 /* MyPageAccountEditViewController.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				2E94042720E37C2600362878 /* MessageViewController.swift in Sources */,
 				BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */,
 				BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */,
+				BBBE5FA22116A93200842BC3 /* MyPageAccountEditViewController.swift in Sources */,
 				2E94041820E370CD00362878 /* PlaceholderTextField.swift in Sources */,
 				2E94043A20E386A200362878 /* EstimateRequester.swift in Sources */,
 				2E12A0BF20EDC9220035107F /* MyPageScheduleTableViewCell.swift in Sources */,

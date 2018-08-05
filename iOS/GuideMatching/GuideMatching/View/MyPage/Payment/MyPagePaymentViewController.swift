@@ -38,8 +38,9 @@ extension MyPagePaymentViewController: UITableViewDelegate, UITableViewDataSourc
             return tableView.dequeueReusableCell(withIdentifier: "MyPagePaymentNoHistoryTableViewCell", for: indexPath)
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyPagePaymentAccountTableViewCell", for: indexPath) as! MyPagePaymentAccountTableViewCell
-            cell.configure(didTapEdit: {
-                
+            cell.configure(didTapEdit: { [weak self] in
+                let edit = self?.viewController(storyboard: "MyPage", identifier: "MyPageAccountEditViewController") as! MyPageAccountEditViewController
+                self?.stack(viewController: edit, animationType: .horizontal)
             })
             return cell
         }
