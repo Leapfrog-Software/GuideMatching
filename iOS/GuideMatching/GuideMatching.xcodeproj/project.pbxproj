@@ -70,6 +70,9 @@
 		BB7077C121150123004136F3 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7077C021150123004136F3 /* Notification+Name.swift */; };
 		BB9F4209211338E400350461 /* MyPageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */; };
 		BB9F420F2113395E00350461 /* MyPagePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */; };
+		BBC64C922116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC64C912116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift */; };
+		BBC64C942116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC64C932116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift */; };
+		BBC64C962116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC64C952116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift */; };
 		BBFEBB1520E4D60D00C9F01C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */; };
 		BBFEBB1820E4D6FE00C9F01C /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1720E4D6FE00C9F01C /* MessageDetailViewController.swift */; };
 		BBFEBB1A20E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1920E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift */; };
@@ -155,6 +158,9 @@
 		BB7077C021150123004136F3 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHistoryViewController.swift; sourceTree = "<group>"; };
 		BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentViewController.swift; sourceTree = "<group>"; };
+		BBC64C912116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentTotalTableViewCell.swift; sourceTree = "<group>"; };
+		BBC64C932116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		BBC64C952116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentAccountTableViewCell.swift; sourceTree = "<group>"; };
 		BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		BBFEBB1720E4D6FE00C9F01C /* MessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
 		BBFEBB1920E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailLeftTableViewCell.swift; sourceTree = "<group>"; };
@@ -482,6 +488,9 @@
 			isa = PBXGroup;
 			children = (
 				BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */,
+				BBC64C912116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift */,
+				BBC64C932116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift */,
+				BBC64C952116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -626,6 +635,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBC64C922116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift in Sources */,
 				2E12A0BB20EDB5F10035107F /* CustomerReviewViewController.swift in Sources */,
 				BBFEBB2A20E4E79C00C9F01C /* DateFormatter+Init.swift in Sources */,
 				2E94041320E36B8400362878 /* PickerTableViewCell.swift in Sources */,
@@ -651,6 +661,7 @@
 				BBFEBB2E20E50B9300C9F01C /* GuestRequester.swift in Sources */,
 				2E94040720E3528800362878 /* TabbarViewController.swift in Sources */,
 				BBFEBB2220E4DD5800C9F01C /* MyPageGuideButtonTableViewCell.swift in Sources */,
+				BBC64C962116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift in Sources */,
 				2E94042A20E37C3700362878 /* MyPageViewController.swift in Sources */,
 				2E94040420E3508700362878 /* SaveData.swift in Sources */,
 				BB5059FA20E2677200491506 /* String+Base64.swift in Sources */,
@@ -671,6 +682,7 @@
 				2E94041C20E3746A00362878 /* SplashViewController.swift in Sources */,
 				2E94040920E3562200362878 /* UIImage+Resize.swift in Sources */,
 				BB5059F120E2658200491506 /* GuestRegisterViewController.swift in Sources */,
+				BBC64C942116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift in Sources */,
 				2E94041E20E3767D00362878 /* GuideRequester.swift in Sources */,
 				2E8D3767211415AB00AF21E0 /* CustomerReviewTableViewCell.swift in Sources */,
 				2E11B3E920EC75B6002441EB /* GuideDetailViewController.swift in Sources */,
