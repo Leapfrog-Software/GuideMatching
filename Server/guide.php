@@ -16,10 +16,11 @@ class GuideData {
   public $schedules;
   public $loginDate;
   public $stripeAccountId;
+  public $bankAccount;
 
 	static function initFromFileString($line) {
 		$datas = explode(",", $line);
-		if (count($datas) == 15) {
+		if (count($datas) == 16) {
       $guideData = new GuideData();
       $guideData->id = $datas[0];
       $guideData->email = $datas[1];
@@ -36,6 +37,7 @@ class GuideData {
       $guideData->schedules = $datas[12];
       $guideData->loginDate = $datas[13];
       $guideData->stripeAccountId = $datas[14];
+      $guideData->bankAccount = $datas[15];
 			return $guideData;
 		}
 		return null;
@@ -72,6 +74,8 @@ class GuideData {
     $str .= $this->loginDate;
     $str .= ",";
     $str .= $this->stripeAccountId;
+    $str .= ",";
+    $str .= $this->bankAccount;
     $str .= "\n";
     return $str;
   }
@@ -140,7 +144,7 @@ class Guide {
     }
   }
 
-  static function update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes, $schedules, $stripeAccountId) {
+  static function update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes, $schedules, $stripeAccountId, $bankAccount) {
 
     $guideList = Guide::readAll();
     $find = false;
@@ -165,6 +169,7 @@ class Guide {
         $newGuideData->schedules = $schedules;
         $newGuideData->loginDate = date("YmdHis");
         $newGuideData->stripeAccountId = $stripeAccountId;
+        $newGuideData->bankAccount = $bankAccount;
         $guideData = $newGuideData;
 
         $find = true;
