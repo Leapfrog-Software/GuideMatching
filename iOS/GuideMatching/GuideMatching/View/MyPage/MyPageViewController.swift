@@ -186,9 +186,11 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             if cellData.needEstimate == true {
                 let estimate = self.viewController(storyboard: "MyPage", identifier: "EstimateViewController") as! EstimateViewController
                 estimate.set(reserveData: cellData.reserveData!)
-                self.stack(viewController: estimate, animationType: .horizontal)
+                self.tabbarViewController()?.stack(viewController: estimate, animationType: .horizontal)
             } else {
-                // TODO 予約詳細へ
+                let detail = self.viewController(storyboard: "MyPage", identifier: "ReserveDetailViewController") as! ReserveDetailViewController
+                detail.set(reserveData: cellData.reserveData!)
+                self.tabbarViewController()?.stack(viewController: detail, animationType: .horizontal)
             }
         }
     }

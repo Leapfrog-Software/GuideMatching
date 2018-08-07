@@ -54,6 +54,7 @@
 		2E94043420E37F3B00362878 /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94043320E37F3B00362878 /* GuideTableViewCell.swift */; };
 		2E94043820E3857A00362878 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94043720E3857A00362878 /* CommonUtility.swift */; };
 		2E94043A20E386A200362878 /* EstimateRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94043920E386A200362878 /* EstimateRequester.swift */; };
+		2EDE6209211990BC00DA956A /* ReserveDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDE6208211990BC00DA956A /* ReserveDetailViewController.swift */; };
 		BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059D820E262AD00491506 /* AppDelegate.swift */; };
 		BB5059E020E262AE00491506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5059DF20E262AE00491506 /* Assets.xcassets */; };
 		BB5059E320E262AE00491506 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5059E120E262AE00491506 /* LaunchScreen.storyboard */; };
@@ -140,6 +141,7 @@
 		2E94043320E37F3B00362878 /* GuideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
 		2E94043720E3857A00362878 /* CommonUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtility.swift; sourceTree = "<group>"; };
 		2E94043920E386A200362878 /* EstimateRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateRequester.swift; sourceTree = "<group>"; };
+		2EDE6208211990BC00DA956A /* ReserveDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveDetailViewController.swift; sourceTree = "<group>"; };
 		85D8F097BB5D617C900E952E /* Pods-GuideMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuideMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GuideMatching/Pods-GuideMatching.debug.xcconfig"; sourceTree = "<group>"; };
 		BB5059D520E262AD00491506 /* GuideMatching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuideMatching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5059D820E262AD00491506 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				BBFEBB2720E4E14F00C9F01C /* MyPageReservationNoneTableViewCell.swift */,
 				BBFEBB2120E4DD5800C9F01C /* MyPageGuideButtonTableViewCell.swift */,
 				2E8D37602113E48100AF21E0 /* MyPageGuestButtonTableViewCell.swift */,
+				2EDE62072119909100DA956A /* ReserveDetail */,
 				BB9F4207211338C200350461 /* History */,
 				2E12A0B820EDB5D10035107F /* Schedule */,
 				BB9F420D2113394D00350461 /* Payment */,
@@ -353,6 +356,14 @@
 				2E8D376A2114433B00AF21E0 /* Estimate */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		2EDE62072119909100DA956A /* ReserveDetail */ = {
+			isa = PBXGroup;
+			children = (
+				2EDE6208211990BC00DA956A /* ReserveDetailViewController.swift */,
+			);
+			path = ReserveDetail;
 			sourceTree = "<group>";
 		};
 		B011FE2620F66DDF86D51329 /* Pods */ = {
@@ -681,6 +692,7 @@
 				2E12A0BF20EDC9220035107F /* MyPageScheduleTableViewCell.swift in Sources */,
 				2E12A0BD20EDB6190035107F /* MyPageScheduleViewController.swift in Sources */,
 				2E4FC0972106E3FA007FA061 /* BookCompleteViewController.swift in Sources */,
+				2EDE6209211990BC00DA956A /* ReserveDetailViewController.swift in Sources */,
 				BBFEBB1A20E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift in Sources */,
 				2E94040220E3458F00362878 /* ImageUploader.swift in Sources */,
 				2E94041C20E3746A00362878 /* SplashViewController.swift in Sources */,

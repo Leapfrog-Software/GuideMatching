@@ -79,6 +79,9 @@ class BookCompleteViewController: UIViewController {
                 if let guideDetail = (tabbar.childViewControllers.compactMap { $0 as? GuideDetailViewController }).first {
                     guideDetail.pop(animationType: .horizontal)
                 }
+                if let reserveDetail = (tabbar.childViewControllers.compactMap { $0 as? ReserveDetailViewController }).first {
+                    reserveDetail.pop(animationType: .horizontal)
+                }
             })
         }
     }
