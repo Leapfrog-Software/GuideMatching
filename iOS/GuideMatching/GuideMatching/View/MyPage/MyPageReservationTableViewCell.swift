@@ -18,16 +18,14 @@ class MyPageReservationTableViewCell: UITableViewCell {
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var estimateButton: UIButton!
 
-    private var didTapEstimate: (() -> ())?
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         
         ImageStorage.shared.cancelRequest(imageView: self.faceImageView)
     }
     
-    func configure(reserveData: ReserveData, didTapEstimate: (() -> ())?) {
-
+    func configure(reserveData: ReserveData, needEstimate: Bool) {
+        
         ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + reserveData.guideId + "-0", imageView: self.faceImageView)
 
         if let guideData = GuideRequester.shared.query(id: reserveData.guideId) {
@@ -45,11 +43,6 @@ class MyPageReservationTableViewCell: UITableViewCell {
         self.timeLabel.text = CommonUtility.timeOffsetToString(offset: reserveData.startTime) + " - " + CommonUtility.timeOffsetToString(offset: reserveData.endTime)
         self.meetingPlaceLabel.text = reserveData.meetingPlace
         
-        self.didTapEstimate = didTapEstimate
-        self.estimateButton.isHidden = (didTapEstimate == nil)
-    }
-    
-    @IBAction func onTapEstimate(_ sender: Any) {
-        self.didTapEstimate?()
+        self.estimateButton.isHidden = !needEstimate
     }
 }

@@ -157,15 +157,7 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .reservationData:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageReservationTableViewCell", for: indexPath) as! MyPageReservationTableViewCell
-            if cellData.needEstimate == true {
-                cell.configure(reserveData: cellData.reserveData!, didTapEstimate: {
-                    let estimate = self.viewController(storyboard: "MyPage", identifier: "EstimateViewController") as! EstimateViewController
-                    estimate.set(reserveData: cellData.reserveData!)
-                    self.stack(viewController: estimate, animationType: .horizontal)
-                })
-            } else {
-                cell.configure(reserveData: cellData.reserveData!, didTapEstimate: nil)
-            }
+            cell.configure(reserveData: cellData.reserveData!, needEstimate: cellData.needEstimate ?? false)
             return cell
         case .reservationNoData:
             return tableView.dequeueReusableCell(withIdentifier: "MyPageReservationNoneTableViewCell", for: indexPath) as! MyPageReservationNoneTableViewCell
@@ -183,6 +175,21 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
                 self?.tabbarViewController()?.stack(viewController: profile, animationType: .horizontal)
             })
             return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cellData = self.cellDatas[indexPath.row]
+        
+        if cellData.type == .reservationData {
+            if cellData.needEstimate == true {
+                let estimate = self.viewController(storyboard: "MyPage", identifier: "EstimateViewController") as! EstimateViewController
+                estimate.set(reserveData: cellData.reserveData!)
+                self.stack(viewController: estimate, animationType: .horizontal)
+            } else {
+                // TODO 予約詳細へ
+            }
         }
     }
     
