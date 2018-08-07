@@ -86,6 +86,7 @@ class AccountRequester {
         params["notes"] = guideData.notes.base64Encode() ?? ""
         params["schedules"] = guideData.schedules.compactMap { $0.toString() }.joined(separator: "/")
         params["stripeAccountId"] = guideData.stripeAccountId
+        params["bankAccount"] = guideData.bankAccountData.toString()
         
         ApiManager.post(params: params, completion: { (result, data) in
             if result, ((data as? NSDictionary)?.object(forKey: "result") as? String) == "0" {

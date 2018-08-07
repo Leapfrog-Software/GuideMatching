@@ -10,15 +10,15 @@ import UIKit
 
 class MyPagePaymentHistoryTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    // TODO 紐付け
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var paymentTitleLabel: UILabel!
+    @IBOutlet private weak var amountLabel: UILabel!
+    
+    func configure(month: Date, amount: Int) {
+        
+        self.dateLabel.text = DateFormatter(dateFormat: "M/25").string(from: month)
+        self.paymentTitleLabel.text = DateFormatter(dateFormat: "M月分").string(from: month)
+        self.amountLabel.text = "¥" + CommonUtility.digit3Format(value: amount)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

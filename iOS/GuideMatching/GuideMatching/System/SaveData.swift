@@ -18,8 +18,10 @@ class SaveData {
     
     init() {
         let userDefaults = UserDefaults()
-        self.guestId = userDefaults.string(forKey: Constants.UserDefaultsKey.GuestId) ?? ""
-        self.guideId = userDefaults.string(forKey: Constants.UserDefaultsKey.GuideId) ?? ""
+//        self.guestId = userDefaults.string(forKey: Constants.UserDefaultsKey.GuestId) ?? ""
+//        self.guideId = userDefaults.string(forKey: Constants.UserDefaultsKey.GuideId) ?? ""
+        self.guestId = ""
+        self.guideId = "aaa"
         self.bankAccount = userDefaults.string(forKey: Constants.UserDefaultsKey.BankAccount) ?? ""
     }
     

@@ -10,15 +10,10 @@ import UIKit
 
 class MyPagePaymentTotalTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    // TODO 紐付け
+    @IBOutlet private weak var amountLabel: UILabel!
+    
+    func configure(amount: Int) {
+        self.amountLabel.text = "¥" + CommonUtility.digit3Format(value: amount)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

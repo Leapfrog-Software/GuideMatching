@@ -46,6 +46,41 @@ struct GuideScheduleData {
     }
 }
 
+struct BankAccountData {
+    let name: String
+    let kana: String
+    let bankName: String
+    let bankBranchName: String
+    let accountType: String
+    let accountNumber: String
+    
+    init(data: String) {
+        
+        let decoded = data.base64Decode() ?? ""
+        let components = decoded.components(separatedBy: ",")
+        if components.count == 6 {
+            self.name = components[0]
+            self.kana = components[1]
+            self.bankName = components[2]
+            self.bankBranchName = components[3]
+            self.accountType = components[4]
+            self.accountNumber = components[5]
+        } else {
+            self.name = ""
+            self.kana = ""
+            self.bankName = ""
+            self.bankBranchName = ""
+            self.accountType = ""
+            self.accountNumber = ""
+        }
+    }
+    
+    func toString() -> String {
+        let joined = [self.name, self.kana, self.bankName, self.bankBranchName, self.accountType, self.accountNumber].joined(separator: ",")
+        return joined.base64Encode() ?? ""
+    }
+}
+
 struct GuideData {
     
     let id: String
@@ -63,6 +98,7 @@ struct GuideData {
     var schedules: [GuideScheduleData]
     let loginDate: Date
     var stripeAccountId: String
+    var bankAccountData: BankAccountData
     
     init?(data: Dictionary<String, Any>) {
         
@@ -92,6 +128,8 @@ struct GuideData {
         self.loginDate = loginDate
         
         self.stripeAccountId = data["stripeAccountId"] as? String ?? ""
+        
+        self.bankAccountData = BankAccountData(data: data["bankAccount"] as? String ?? "")
     }
 }
 
