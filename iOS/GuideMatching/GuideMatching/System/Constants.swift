@@ -20,6 +20,7 @@ class Constants {
     static let HttpTimeOutInterval = TimeInterval(10)
     
     struct UserDefaultsKey {
+        static let Version = "Version"
         static let GuestId = "GuestId"
         static let GuideId = "GuideId"
     }
