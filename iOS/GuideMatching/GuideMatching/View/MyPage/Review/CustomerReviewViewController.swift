@@ -10,6 +10,9 @@ import UIKit
 
 class CustomerReviewViewController: UIViewController {
 
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var noDataLabel: UILabel!
+    
     private var estimates = [EstimateData]()
     
     override func viewDidLoad() {
@@ -18,6 +21,9 @@ class CustomerReviewViewController: UIViewController {
         self.estimates = EstimateRequester.shared.dataList.filter { estimate in
             return estimate.guideId == SaveData.shared.guideId
         }
+        
+        self.tableView.isHidden = self.estimates.isEmpty
+        self.noDataLabel.isHidden = !self.estimates.isEmpty
     }
     
     @IBAction func onTapBack(_ sender: Any) {

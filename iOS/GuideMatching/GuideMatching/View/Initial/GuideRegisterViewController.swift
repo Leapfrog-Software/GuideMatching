@@ -18,6 +18,7 @@ class GuideRegisterViewController: UIViewController {
         case face3
     }
     
+    @IBOutlet private weak var headerTitleLabel: UILabel!
     @IBOutlet private weak var face1ImageView: UIImageView!
     @IBOutlet private weak var face2ImageView: UIImageView!
     @IBOutlet private weak var face3ImageView: UIImageView!
@@ -56,9 +57,10 @@ class GuideRegisterViewController: UIViewController {
         
         if self.isEdit {
             self.initContents()
+            self.headerTitleLabel.text = "Edit Profile"
+        } else {
+            self.headerTitleLabel.text = "New Registration"
         }
-        
-        // TODO タイトル変更
     }
     
     private func initContents() {

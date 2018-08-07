@@ -528,6 +528,7 @@
                         <outlet property="face1ImageView" destination="ajF-hw-fpw" id="1Bu-KG-7fc"/>
                         <outlet property="face2ImageView" destination="u3O-gV-W5b" id="snE-vL-xzN"/>
                         <outlet property="face3ImageView" destination="xY7-3c-flC" id="ccT-71-cZs"/>
+                        <outlet property="headerTitleLabel" destination="FXL-Ec-uja" id="E3U-eY-RAp"/>
                         <outlet property="nameTextField" destination="JNa-Ka-gcf" id="avJ-qg-cYV"/>
                         <outlet property="nationalityTextField" destination="4TP-wZ-DAe" id="fIY-gS-IQ9"/>
                         <outlet property="passportImageView" destination="ZjT-sw-bzU" id="hm8-31-bgm"/>
@@ -1410,6 +1411,7 @@ Sun. 13:00 - 18:00</string>
                         <outlet property="face2ImageView" destination="ia6-5f-i6y" id="xPB-GG-KAU"/>
                         <outlet property="face3ImageView" destination="xKG-V6-0ev" id="AwX-2H-z8g"/>
                         <outlet property="feeTextField" destination="pKu-yN-54d" id="D5a-AS-xLb"/>
+                        <outlet property="headerTitleLabel" destination="8qx-Iv-RY1" id="csp-h6-72r"/>
                         <outlet property="languageLabel" destination="KEe-NX-39f" id="Sbo-tw-hmz"/>
                         <outlet property="messageTextView" destination="yZE-fI-CfD" id="Ztc-8Y-rpz"/>
                         <outlet property="nameTextField" destination="N0C-01-ahk" id="fa2-DZ-mBE"/>

@@ -17,6 +17,7 @@ class GuestRegisterViewController: UIViewController {
         case passport
     }
     
+    @IBOutlet private weak var headerTitleLabel: UILabel!
     @IBOutlet private weak var face1ImageView: UIImageView!
     @IBOutlet private weak var face2ImageView: UIImageView!
     @IBOutlet private weak var face3ImageView: UIImageView!
@@ -43,9 +44,10 @@ class GuestRegisterViewController: UIViewController {
         
         if self.isEdit {
             self.initContents()
-        }
-        
-        // TODO タイトル変更
+            self.headerTitleLabel.text = "Edit Profile"
+        } else {
+            self.headerTitleLabel.text = "New Registration"
+        }        
     }
     
     private func initContents() {

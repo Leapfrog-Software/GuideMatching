@@ -3641,23 +3641,37 @@ place</string>
                                     <outlet property="delegate" destination="a3s-Xb-htn" id="YZm-kf-Cwo"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No reviews" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSE-1g-Sib">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cbe-nL-8vf" firstAttribute="trailing" secondItem="9Ln-CV-ocg" secondAttribute="trailing" id="8e7-Wi-hA4"/>
                             <constraint firstItem="cbe-nL-8vf" firstAttribute="top" secondItem="9Ln-CV-ocg" secondAttribute="top" id="I1o-17-lCa"/>
+                            <constraint firstAttribute="bottom" secondItem="FSE-1g-Sib" secondAttribute="bottom" id="PZD-Tg-Gma"/>
+                            <constraint firstAttribute="trailing" secondItem="FSE-1g-Sib" secondAttribute="trailing" id="Qv4-XJ-U9L"/>
+                            <constraint firstItem="FSE-1g-Sib" firstAttribute="top" secondItem="cbe-nL-8vf" secondAttribute="bottom" id="WQh-dy-mQ0"/>
                             <constraint firstItem="a1c-CM-5D0" firstAttribute="top" secondItem="IEK-jQ-1H8" secondAttribute="top" id="ZCd-aT-GiF"/>
                             <constraint firstItem="a1c-CM-5D0" firstAttribute="leading" secondItem="IEK-jQ-1H8" secondAttribute="leading" id="dHC-rE-tRc"/>
                             <constraint firstItem="ZLg-l8-dV5" firstAttribute="top" secondItem="cbe-nL-8vf" secondAttribute="bottom" id="hqy-VG-xhM"/>
                             <constraint firstItem="ZLg-l8-dV5" firstAttribute="leading" secondItem="9Ln-CV-ocg" secondAttribute="leading" id="htW-iE-lLz"/>
                             <constraint firstItem="cbe-nL-8vf" firstAttribute="leading" secondItem="9Ln-CV-ocg" secondAttribute="leading" id="igP-VD-bBj"/>
                             <constraint firstItem="9Ln-CV-ocg" firstAttribute="trailing" secondItem="ZLg-l8-dV5" secondAttribute="trailing" id="jOB-ab-dNk"/>
+                            <constraint firstItem="FSE-1g-Sib" firstAttribute="leading" secondItem="9Ln-CV-ocg" secondAttribute="leading" id="kZY-Bd-MiL"/>
                             <constraint firstAttribute="trailing" secondItem="a1c-CM-5D0" secondAttribute="trailing" id="qDJ-Mz-KiX"/>
                             <constraint firstItem="cbe-nL-8vf" firstAttribute="top" secondItem="a1c-CM-5D0" secondAttribute="bottom" id="ujN-5p-95z"/>
                             <constraint firstItem="9Ln-CV-ocg" firstAttribute="bottom" secondItem="ZLg-l8-dV5" secondAttribute="bottom" id="xPv-HP-SN4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Ln-CV-ocg"/>
                     </view>
+                    <connections>
+                        <outlet property="noDataLabel" destination="FSE-1g-Sib" id="caw-WT-SBO"/>
+                        <outlet property="tableView" destination="ZLg-l8-dV5" id="WBV-nN-Sq6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pEu-Sj-2Xh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

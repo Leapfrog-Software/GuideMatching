@@ -30,7 +30,7 @@ class MyPageHistoryViewController: UIViewController {
         self.tableView.isHidden = self.histories.isEmpty
         self.noDataLabel.isHidden = !self.histories.isEmpty
     }
-    
+    // TODO 履歴詳細
     @IBAction func onTapBack(_ sender: Any) {
         self.pop(animationType: .horizontal)
     }
