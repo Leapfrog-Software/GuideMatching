@@ -14,15 +14,11 @@ class SaveData {
     
     var guestId = ""
     var guideId = ""
-    var bankAccount = ""        // TODO 削除
     
     init() {
         let userDefaults = UserDefaults()
-//        self.guestId = userDefaults.string(forKey: Constants.UserDefaultsKey.GuestId) ?? ""
-//        self.guideId = userDefaults.string(forKey: Constants.UserDefaultsKey.GuideId) ?? ""
-        self.guestId = ""
-        self.guideId = "aaa"
-        self.bankAccount = userDefaults.string(forKey: Constants.UserDefaultsKey.BankAccount) ?? ""
+        self.guestId = userDefaults.string(forKey: Constants.UserDefaultsKey.GuestId) ?? ""
+        self.guideId = userDefaults.string(forKey: Constants.UserDefaultsKey.GuideId) ?? ""
     }
     
     func save() {
@@ -31,7 +27,6 @@ class SaveData {
         
         userDefaults.set(self.guestId, forKey: Constants.UserDefaultsKey.GuestId)
         userDefaults.set(self.guideId, forKey: Constants.UserDefaultsKey.GuideId)
-        userDefaults.set(self.bankAccount, forKey: Constants.UserDefaultsKey.BankAccount)
         
         userDefaults.synchronize()
     }

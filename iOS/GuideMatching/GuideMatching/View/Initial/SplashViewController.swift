@@ -27,6 +27,12 @@ class SplashViewController: UIViewController {
     }
     
     private func fetch() {
+
+        self.results.enumerated().forEach { i, result in
+            if result.value == false {
+                self.results[result.key] = nil
+            }
+        }
         
         if self.results[.guide] != true {
             GuideRequester.shared.fetch(completion: { [weak self] result in

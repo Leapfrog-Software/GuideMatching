@@ -10,7 +10,7 @@ import Foundation
 
 class Constants {
     
-//    static let ServerRootUrl = "http://localhost/tourguide/"
+//    static let ServerRootUrl = "http://localhost/guide_matching/"
     static let ServerRootUrl = "http://lfrogs.sakura.ne.jp/guide_matching/"
     static let ServerApiUrl = Constants.ServerRootUrl + "srv.php"
     static let StripeBackendUrl = Constants.ServerRootUrl + "stripe/backend.php"
@@ -22,7 +22,6 @@ class Constants {
     struct UserDefaultsKey {
         static let GuestId = "GuestId"
         static let GuideId = "GuideId"
-        static let BankAccount = "BankAccount"
     }
     
     struct Stripe {

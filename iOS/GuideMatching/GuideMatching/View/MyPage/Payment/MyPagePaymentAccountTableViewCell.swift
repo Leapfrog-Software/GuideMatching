@@ -21,22 +21,21 @@ class MyPagePaymentAccountTableViewCell: UITableViewCell {
     
     func configure(didTapEdit: @escaping (() -> ())) {
         
-        let bankAccounts = SaveData.shared.bankAccount.components(separatedBy: ",")
-        if bankAccounts.count == 6 {
-            self.nameLabel.text = bankAccounts[0]
-            self.kanaLabel.text = bankAccounts[1]
-            self.bankNameLabel.text = bankAccounts[2]
-            self.branchNameLabel.text = bankAccounts[3]
-            self.typeLabel.text = bankAccounts[4]
-            self.numberLabel.text = bankAccounts[5]
-        } else {
+        guard let myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId) else {
             self.nameLabel.text = ""
             self.kanaLabel.text = ""
             self.bankNameLabel.text = ""
             self.branchNameLabel.text = ""
             self.typeLabel.text = ""
             self.numberLabel.text = ""
+            return
         }
+        self.nameLabel.text = myGuideData.bankAccountData.name
+        self.kanaLabel.text = myGuideData.bankAccountData.kana
+        self.bankNameLabel.text = myGuideData.bankAccountData.bankName
+        self.branchNameLabel.text = myGuideData.bankAccountData.bankBranchName
+        self.typeLabel.text = myGuideData.bankAccountData.accountType
+        self.numberLabel.text = myGuideData.bankAccountData.accountNumber
         
         self.didTapEdit = didTapEdit
     }

@@ -10,7 +10,6 @@ import UIKit
 
 class MyPagePaymentHistoryTableViewCell: UITableViewCell {
 
-    // TODO 紐付け
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var paymentTitleLabel: UILabel!
     @IBOutlet private weak var amountLabel: UILabel!

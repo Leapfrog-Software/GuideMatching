@@ -25,22 +25,15 @@ class MyPageAccountEditViewController: UIViewController {
     
     private func initContents() {
         
-        let bankAccounts = SaveData.shared.bankAccount.components(separatedBy: ",")
-        if bankAccounts.count == 6 {
-            self.nameTextField.text = bankAccounts[0]
-            self.kanaTextField.text = bankAccounts[1]
-            self.bankNameTextField.text = bankAccounts[2]
-            self.branchNameTextField.text = bankAccounts[3]
-            self.typeTextField.text = bankAccounts[4]
-            self.numberTextField.text = bankAccounts[5]
-        } else {
-            self.nameTextField.text = ""
-            self.kanaTextField.text = ""
-            self.bankNameTextField.text = ""
-            self.branchNameTextField.text = ""
-            self.typeTextField.text = ""
-            self.numberTextField.text = ""
+        guard let myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId) else {
+            return
         }
+        self.nameTextField.text = myGuideData.bankAccountData.name
+        self.kanaTextField.text = myGuideData.bankAccountData.kana
+        self.bankNameTextField.text = myGuideData.bankAccountData.bankName
+        self.branchNameTextField.text = myGuideData.bankAccountData.bankBranchName
+        self.typeTextField.text = myGuideData.bankAccountData.accountType
+        self.numberTextField.text = myGuideData.bankAccountData.accountNumber
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -53,28 +46,35 @@ class MyPageAccountEditViewController: UIViewController {
     
     @IBAction func onTapRegister(_ sender: Any) {
         
-        let name = self.nameTextField.text ?? ""
-        let kana = self.kanaTextField.text ?? ""
-        let bankName = self.bankNameTextField.text ?? ""
-        let branchName = self.branchNameTextField.text ?? ""
-        let type = self.typeTextField.text ?? ""
-        let number = self.numberTextField.text ?? ""
+        guard var myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId) else {
+            return
+        }
         
-        let saveData = SaveData.shared
-        saveData.bankAccount = name + "," + kana + "," + bankName + "," + branchName + "," + type + "," + number
-        saveData.save()
-        
-        (self.parent as? MyPagePaymentViewController)?.reloadTable()
+        myGuideData.bankAccountData.name = self.nameTextField.text ?? ""
+        myGuideData.bankAccountData.kana = self.kanaTextField.text ?? ""
+        myGuideData.bankAccountData.bankName = self.bankNameTextField.text ?? ""
+        myGuideData.bankAccountData.bankBranchName = self.branchNameTextField.text ?? ""
+        myGuideData.bankAccountData.accountType = self.typeTextField.text ?? ""
+        myGuideData.bankAccountData.accountNumber = self.numberTextField.text ?? ""
         
         Loading.start()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            Loading.stop()
-            
-            let action = DialogAction(title: "OK", action: {
-                self.pop(animationType: .horizontal)
-            })
-            Dialog.show(style: .success, title: "確認", message: "登録が完了しました", actions: [action])
+        AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
+            if resultUpdate {
+                GuideRequester.shared.fetch(completion: { _ in
+                    Loading.stop()
+                    
+                    (self.parent as? MyPagePaymentViewController)?.reloadTable()
+                    
+                    let action = DialogAction(title: "OK", action: {
+                        self.pop(animationType: .horizontal)
+                    })
+                    Dialog.show(style: .success, title: "確認", message: "登録が完了しました", actions: [action])
+                })
+            } else {
+                Loading.stop()
+                Dialog.show(style: .error, title: "エラー", message: "通信に失敗しました", actions: [DialogAction(title: "OK", action: nil)])
+            }
         })
     }
     

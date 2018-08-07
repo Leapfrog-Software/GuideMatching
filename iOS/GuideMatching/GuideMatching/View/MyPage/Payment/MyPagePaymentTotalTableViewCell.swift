@@ -10,7 +10,6 @@ import UIKit
 
 class MyPagePaymentTotalTableViewCell: UITableViewCell {
 
-    // TODO 紐付け
     @IBOutlet private weak var amountLabel: UILabel!
     
     func configure(amount: Int) {

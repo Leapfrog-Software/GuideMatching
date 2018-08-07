@@ -47,12 +47,12 @@ struct GuideScheduleData {
 }
 
 struct BankAccountData {
-    let name: String
-    let kana: String
-    let bankName: String
-    let bankBranchName: String
-    let accountType: String
-    let accountNumber: String
+    var name: String
+    var kana: String
+    var bankName: String
+    var bankBranchName: String
+    var accountType: String
+    var accountNumber: String
     
     init(data: String) {
         

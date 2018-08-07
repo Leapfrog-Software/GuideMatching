@@ -38,7 +38,17 @@ class MyPagePaymentViewController: UIViewController {
         
         self.cellDatas.removeAll()
         
-        let totalCellData = CellData(cellType: .total, totalAmount: 100, month: nil, monthAmount: nil)
+        guard let myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId) else {
+            return
+        }
+        
+        var totalAmount = 0
+        ReserveRequester.shared.dataList.forEach { reserveData in
+            if reserveData.guideId == myGuideData.id {
+                totalAmount += myGuideData.fee * (reserveData.endTime - reserveData.startTime)
+            }
+        }
+        let totalCellData = CellData(cellType: .total, totalAmount: totalAmount, month: nil, monthAmount: nil)
         self.cellDatas.append(totalCellData)
         
         let monthList = self.getMonthList()
@@ -46,14 +56,12 @@ class MyPagePaymentViewController: UIViewController {
             let noDataCellData = CellData(cellType: .noData, totalAmount: nil, month: nil, monthAmount: nil)
             self.cellDatas.append(noDataCellData)
         } else {
-            let myFee = GuideRequester.shared.query(id: SaveData.shared.guideId)?.fee ?? 0
-            
             monthList.forEach { month in
                 var amount = 0
                 ReserveRequester.shared.dataList.forEach { reserveData in
                     if reserveData.guideId == SaveData.shared.guideId {
                         if reserveData.day.isSameMonth(with: month) {
-                            amount += myFee * (reserveData.endTime - reserveData.startTime)
+                            amount += myGuideData.fee * (reserveData.endTime - reserveData.startTime)
                         }
                     }
                 }
