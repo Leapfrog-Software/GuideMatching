@@ -69,9 +69,9 @@ class GuideRegisterViewController: UIViewController {
             return
         }
         
-        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuideData.id + "-0", imageView: self.face1ImageView)
-        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuideData.id + "-1", imageView: self.face2ImageView)
-        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuideData.id + "-2", imageView: self.face3ImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + myGuideData.id + "-0", imageView: self.face1ImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + myGuideData.id + "-1", imageView: self.face2ImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + myGuideData.id + "-2", imageView: self.face3ImageView)
         
         self.emailTextField.text = myGuideData.email
         self.nameTextField.text = myGuideData.name
