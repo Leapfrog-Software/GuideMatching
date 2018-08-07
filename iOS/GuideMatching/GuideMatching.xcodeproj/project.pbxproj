@@ -71,6 +71,7 @@
 		BB7077C121150123004136F3 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7077C021150123004136F3 /* Notification+Name.swift */; };
 		BB9F4209211338E400350461 /* MyPageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */; };
 		BB9F420F2113395E00350461 /* MyPagePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */; };
+		BBAB279B2119C26C00ECD09A /* MyPageHistoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAB279A2119C26C00ECD09A /* MyPageHistoryDetailViewController.swift */; };
 		BBBE5FA22116A93200842BC3 /* MyPageAccountEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBBE5FA12116A93200842BC3 /* MyPageAccountEditViewController.swift */; };
 		BBC64C922116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC64C912116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift */; };
 		BBC64C942116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC64C932116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift */; };
@@ -161,6 +162,7 @@
 		BB7077C021150123004136F3 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHistoryViewController.swift; sourceTree = "<group>"; };
 		BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentViewController.swift; sourceTree = "<group>"; };
+		BBAB279A2119C26C00ECD09A /* MyPageHistoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHistoryDetailViewController.swift; sourceTree = "<group>"; };
 		BBBE5FA12116A93200842BC3 /* MyPageAccountEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageAccountEditViewController.swift; sourceTree = "<group>"; };
 		BBC64C912116A11000D5660B /* MyPagePaymentTotalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentTotalTableViewCell.swift; sourceTree = "<group>"; };
 		BBC64C932116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentHistoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -493,6 +495,7 @@
 			children = (
 				BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */,
 				2E8D3764211413D200AF21E0 /* MyPageHistoryTableViewCell.swift */,
+				BBAB279A2119C26C00ECD09A /* MyPageHistoryDetailViewController.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				BBFEBB1A20E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift in Sources */,
 				2E94040220E3458F00362878 /* ImageUploader.swift in Sources */,
 				2E94041C20E3746A00362878 /* SplashViewController.swift in Sources */,
+				BBAB279B2119C26C00ECD09A /* MyPageHistoryDetailViewController.swift in Sources */,
 				2E94040920E3562200362878 /* UIImage+Resize.swift in Sources */,
 				BB5059F120E2658200491506 /* GuestRegisterViewController.swift in Sources */,
 				BBC64C942116A11D00D5660B /* MyPagePaymentHistoryTableViewCell.swift in Sources */,

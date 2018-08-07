@@ -17,6 +17,7 @@ struct ReserveData {
     let startTime: Int
     let endTime: Int
     let reserveDate: Date
+    let guideComment: String
     
     init?(data: Dictionary<String, Any>) {
         
@@ -41,6 +42,8 @@ struct ReserveData {
             return nil
         }
         self.reserveDate = reserveDate
+        
+        self.guideComment = data["guideComment"] as? String ?? ""
     }
 
     func toStartDate() -> Date? {
@@ -92,5 +95,17 @@ class ReserveRequester {
                 completion(false)
             }
         }
+    }
+    
+    class func comment(reserveId: String, comment: String) {
+        
+        var params: [String: String] = [:]
+        params["command"] = "commentReserve"
+        params["reserveId"] = reserveId
+        params["comment"] = comment.base64Encode() ?? ""
+        
+        ApiManager.post(params: params, completion: { _, _ in
+            
+        })
     }
 }

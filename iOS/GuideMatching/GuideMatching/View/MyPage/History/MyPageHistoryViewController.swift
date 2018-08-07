@@ -30,7 +30,7 @@ class MyPageHistoryViewController: UIViewController {
         self.tableView.isHidden = self.histories.isEmpty
         self.noDataLabel.isHidden = !self.histories.isEmpty
     }
-    // TODO 履歴詳細
+
     @IBAction func onTapBack(_ sender: Any) {
         self.pop(animationType: .horizontal)
     }
@@ -46,6 +46,13 @@ extension MyPageHistoryViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyPageHistoryTableViewCell", for: indexPath) as! MyPageHistoryTableViewCell
         cell.configure(reserveData: self.histories[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let detail = self.viewController(storyboard: "MyPage", identifier: "MyPageHistoryDetailViewController") as! MyPageHistoryDetailViewController
+        detail.set(reserveData: self.histories[indexPath.row])
+        self.stack(viewController: detail, animationType: .horizontal)
     }
 }
 
