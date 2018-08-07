@@ -41,6 +41,11 @@ class MyPageHistoryDetailViewController: KeyboardRespondableViewController {
         self.dayLabel.text = self.reserveData.day.toDayMonthYearText()
         self.timeLabel.text = CommonUtility.timeOffsetToString(offset: self.reserveData.startTime) + " - " + CommonUtility.timeOffsetToString(offset: self.reserveData.endTime)
         self.placeLabel.text = self.reserveData.meetingPlace
+        
+        let fee = GuideRequester.shared.query(id: self.reserveData.guideId)?.fee ?? 0
+        let amount = fee * (self.reserveData.endTime - self.reserveData.startTime)
+        self.feeLabel.text = "¥" + CommonUtility.digit3Format(value: amount)
+        
         self.commentTextView.text = self.reserveData.guideComment
     }
     

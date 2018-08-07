@@ -23,7 +23,9 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.fetch()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+            self.fetch()
+        })        
     }
     
     private func fetch() {

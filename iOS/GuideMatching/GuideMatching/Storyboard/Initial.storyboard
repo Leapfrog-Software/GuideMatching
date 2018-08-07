@@ -19,17 +19,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ガイドマッチング(仮)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-Yv-MpS">
-                                <rect key="frame" x="97.5" y="323" width="180" height="21.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdD-Ar-jjX">
+                                <rect key="frame" x="30" y="259" width="315" height="149.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_splash" translatesAutoresizingMaskIntoConstraints="NO" id="dcE-PS-uZN">
+                                        <rect key="frame" x="0.0" y="0.0" width="315" height="98"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="dcE-PS-uZN" secondAttribute="height" multiplier="320:100" id="dGX-q1-wwd"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ガイドマッチング(仮)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXP-Yv-MpS">
+                                        <rect key="frame" x="67.5" y="128" width="180" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" red="0.18823529410000001" green="0.18823529410000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="dcE-PS-uZN" secondAttribute="trailing" id="4iy-9q-rdN"/>
+                                    <constraint firstItem="dcE-PS-uZN" firstAttribute="top" secondItem="GdD-Ar-jjX" secondAttribute="top" id="75g-O8-HCr"/>
+                                    <constraint firstItem="gXP-Yv-MpS" firstAttribute="top" secondItem="dcE-PS-uZN" secondAttribute="bottom" constant="30" id="MHg-xo-q8I"/>
+                                    <constraint firstAttribute="bottom" secondItem="gXP-Yv-MpS" secondAttribute="bottom" id="SWq-p2-e4L"/>
+                                    <constraint firstItem="dcE-PS-uZN" firstAttribute="leading" secondItem="GdD-Ar-jjX" secondAttribute="leading" id="uOS-ji-3TP"/>
+                                    <constraint firstItem="gXP-Yv-MpS" firstAttribute="centerX" secondItem="GdD-Ar-jjX" secondAttribute="centerX" id="ug5-MW-2YX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gXP-Yv-MpS" firstAttribute="centerX" secondItem="0EJ-17-D6a" secondAttribute="centerX" id="4oL-jZ-doa"/>
-                            <constraint firstItem="gXP-Yv-MpS" firstAttribute="centerY" secondItem="0EJ-17-D6a" secondAttribute="centerY" id="XTv-Mg-XYe"/>
+                            <constraint firstItem="GdD-Ar-jjX" firstAttribute="leading" secondItem="gRr-VQ-vwx" secondAttribute="leading" constant="30" id="dxN-0x-byO"/>
+                            <constraint firstItem="gRr-VQ-vwx" firstAttribute="trailing" secondItem="GdD-Ar-jjX" secondAttribute="trailing" constant="30" id="vP0-qV-l8a"/>
+                            <constraint firstItem="GdD-Ar-jjX" firstAttribute="centerY" secondItem="0EJ-17-D6a" secondAttribute="centerY" id="xCW-SL-Ovk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gRr-VQ-vwx"/>
                     </view>
@@ -1609,6 +1630,7 @@ Sun. 13:00 - 18:00</string>
         </scene>
     </scenes>
     <resources>
+        <image name="icon_splash" width="320" height="100"/>
         <image name="image_guide" width="106" height="106"/>
     </resources>
 </document>
