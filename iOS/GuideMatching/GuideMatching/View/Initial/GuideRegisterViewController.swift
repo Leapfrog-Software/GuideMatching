@@ -179,24 +179,12 @@ class GuideRegisterViewController: UIViewController {
         }
         
         Loading.start()
-        
-        // TODO guideIDが決まってからアップする
-        self.uploadImage(type: .face1, completion: { resultFace1 in
-            self.uploadImage(type: .face2, completion: { resultFace2 in
-                self.uploadImage(type: .face3, completion: { resultFace3 in
-                    if resultFace1 && resultFace2 && resultFace3 {
-                        if self.isEdit {
-                            self.updateGuide()
-                        } else {
-                            self.createGuide()
-                        }
-                    } else {
-                        Loading.stop()
-                        self.showCommunicateError()
-                    }
-                })
-            })
-        })
+
+        if self.isEdit {
+            self.updateGuide()
+        } else {
+            self.createGuide()
+        }
     }
     
     private func updateGuide() {
@@ -215,12 +203,18 @@ class GuideRegisterViewController: UIViewController {
         myGuideData.notes = self.notesTextView.text ?? ""
         
         AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
-            Loading.stop()
-            
             if resultUpdate {
-                Dialog.show(style: .success, title: "確認", message: "更新しました", actions: [DialogAction(title: "OK", action: nil)])
+                self.uploadAllImage(guideId: SaveData.shared.guideId, completion: { resultImage in
+                    Loading.stop()
+                    if resultImage {
+                        Dialog.show(style: .success, title: "確認", message: "更新しました", actions: [DialogAction(title: "OK", action: nil)])
+                    } else {
+                        self.showCommunicateError()
+                    }
+                })
             } else {
-                self.showError(message: "通信に失敗しました")
+                Loading.stop()
+                self.showCommunicateError()
             }
         })
     }
@@ -241,7 +235,14 @@ class GuideRegisterViewController: UIViewController {
         
         AccountRequester.createGuide(email: email, name: name, nationality: nationality, language: language, specialty: specialty, category: category, message: message, timeZone: timeZone, applicableNumber: applicableNumber, fee: fee, notes: notes, completion: { resultCreate, guideId in
             if resultCreate, let guideId = guideId {
-                self.refetchGuide(guideId: guideId)
+                self.uploadAllImage(guideId: guideId, completion: { resultImage in
+                    if resultImage {
+                        self.refetchGuide(guideId: guideId)
+                    } else {
+                        Loading.stop()
+                        self.showCommunicateError()
+                    }
+                })
             } else {
                 Loading.stop()
                 self.showCommunicateError()
@@ -312,10 +313,10 @@ extension GuideRegisterViewController {
                     if resultStripe, let accountId = accountId {
                         myGuideData.stripeAccountId = accountId
                         AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
-                            Loading.stop()
-                            
                             if resultUpdate {
                                 GuideRequester.shared.fetch(completion: { _ in
+                                    Loading.stop()
+                                    
                                     let saveData = SaveData.shared
                                     saveData.guideId = guideId
                                     saveData.save()
@@ -323,6 +324,7 @@ extension GuideRegisterViewController {
                                     self.stackTabbar()
                                 })
                             } else {
+                                Loading.stop()
                                 self.showCommunicateError()
                             }
                         })
@@ -338,11 +340,26 @@ extension GuideRegisterViewController {
         })
     }
     
-    private func uploadImage(type: ImageType, completion: @escaping ((Bool) -> ())) {
+    private func uploadAllImage(guideId: String, completion: @escaping ((Bool) -> ())) {
+        
+        self.uploadImage(guideId: guideId, type: .face1, completion: { resultFace1 in
+            self.uploadImage(guideId: guideId, type: .face2, completion: { resultFace2 in
+                self.uploadImage(guideId: guideId, type: .face3, completion: { resultFace3 in
+                    if resultFace1 && resultFace2 && resultFace3 {
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
+                })
+            })
+        })
+    }
+    
+    private func uploadImage(guideId: String, type: ImageType, completion: @escaping ((Bool) -> ())) {
         
         let image: UIImage?
         var params: [String: String] = ["command": "uploadGuideImage"]
-        params["guideId"] = SaveData.shared.guideId
+        params["guideId"] = guideId
         
         switch type {
         case .face1:

@@ -134,29 +134,28 @@ class GuestRegisterViewController: UIViewController {
         }
         
         Loading.start()
-        self.uploadAllImage()
+        
+        if self.isEdit {
+            self.updateGuest()
+        } else {
+            self.createGuest()
+        }
     }
     
     @IBAction func onTapClose(_ sender: Any) {
         self.pop(animationType: .vertical)
     }
     
-    private func uploadAllImage() {
-        
-        // TODO guestIDが決まってからアップする
-        self.uploadImage(type: .face1, completion: { resultFace1 in
-            self.uploadImage(type: .face2, completion: { resultFace2 in
-                self.uploadImage(type: .face3, completion: { resultFace3 in
-                    self.uploadImage(type: .passport, completion: { resultPassport in
+    private func uploadAllImage(guestId: String, completion: @escaping ((Bool) -> ())) {
+
+        self.uploadImage(guestId: guestId, type: .face1, completion: { resultFace1 in
+            self.uploadImage(guestId: guestId, type: .face2, completion: { resultFace2 in
+                self.uploadImage(guestId: guestId, type: .face3, completion: { resultFace3 in
+                    self.uploadImage(guestId: guestId, type: .passport, completion: { resultPassport in
                         if resultFace1 && resultFace2 && resultFace3 && resultPassport {
-                            if self.isEdit {
-                                self.updateGuest()
-                            } else {
-                                self.createGuest()
-                            }
+                            completion(true)
                         } else {
-                            Loading.stop()
-                            self.showCommunicateError()
+                            completion(false)
                         }
                     })
                 })
@@ -172,10 +171,18 @@ class GuestRegisterViewController: UIViewController {
         myGuestData.nationality = self.nationalityTextField.text ?? ""
         
         AccountRequester.updateGuest(guestData: myGuestData, completion: { resultAccount in
-            Loading.stop()
             if resultAccount {
-                Dialog.show(style: .success, title: "Done", message: "Updating is done", actions: [DialogAction(title: "OK", action: nil)])
+                self.uploadAllImage(guestId: SaveData.shared.guestId, completion: { resultImage in
+                    Loading.stop()
+                    
+                    if resultImage {
+                        Dialog.show(style: .success, title: "Done", message: "Updating is done", actions: [DialogAction(title: "OK", action: nil)])
+                    } else {
+                        self.showCommunicateError()
+                    }
+                })
             } else {
+                Loading.stop()
                 self.showCommunicateError()
             }
         })
@@ -189,7 +196,14 @@ class GuestRegisterViewController: UIViewController {
         
         AccountRequester.createGuest(email: email, name: name, nationality: nationality, completion: { result, guestId in
             if result, let guestId = guestId {
-                self.refetchGuest(guestId: guestId)
+                self.uploadAllImage(guestId: guestId, completion: { resultImage in
+                    if resultImage {
+                        self.refetchGuest(guestId: guestId)
+                    } else {
+                        Loading.stop()
+                        self.showCommunicateError()
+                    }
+                })
             } else {
                 Loading.stop()
                 self.showCommunicateError()
@@ -197,11 +211,11 @@ class GuestRegisterViewController: UIViewController {
         })
     }
     
-    private func uploadImage(type: ImageType, completion: @escaping ((Bool) -> ())) {
+    private func uploadImage(guestId: String, type: ImageType, completion: @escaping ((Bool) -> ())) {
         
         let image: UIImage?
         var params: [String: String] = ["command": "uploadGuestImage"]
-        params["guestId"] = SaveData.shared.guestId
+        params["guestId"] = guestId
         
         switch type {
         case .face1:

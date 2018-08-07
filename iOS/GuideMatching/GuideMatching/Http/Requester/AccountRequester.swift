@@ -83,7 +83,7 @@ class AccountRequester {
         params["timeZone"] = guideData.timeZone.base64Encode() ?? ""
         params["applicableNumber"] = "\(guideData.applicableNumber)"
         params["fee"] = "\(guideData.fee)"
-        params["notes"] = guideData.notes
+        params["notes"] = guideData.notes.base64Encode() ?? ""
         params["schedules"] = guideData.schedules.compactMap { $0.toString() }.joined(separator: "/")
         params["stripeAccountId"] = guideData.stripeAccountId
         
