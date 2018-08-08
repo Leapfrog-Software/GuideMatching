@@ -50,6 +50,24 @@ public class GuideData {
             }
             return scheduleData;
         }
+
+        public String toString() {
+
+            StringBuffer str = new StringBuffer();
+
+            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+            String dayStr = format.format(day);
+            str.append(dayStr);
+            str.append("_");
+
+            for (int i = 0; i < isFreeList.length; i++) {
+                if (isFreeList[i]) str.append("1");
+                else str.append("0");
+                str.append("_");
+            }
+
+            return str.toString();
+        }
     }
 
     public static  class GuideBankAccountData {
@@ -79,6 +97,11 @@ public class GuideData {
             account.accountNumber = splited[5];
 
             return account;
+        }
+
+        public String toString() {
+            String str = name + "," + kana + "," + bankName + "," + bankBranchName + "," + accountType + "," + accountNumber;
+            return Base64Utility.encode(str);
         }
     }
 

@@ -23,6 +23,8 @@ public class SplashFragment extends BaseFragment {
     private FetchResult mGuideFetchResult = FetchResult.progress;
     private FetchResult mGuestFetchResult = FetchResult.progress;
 
+    // TODO reserve/message/estimate
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
 
