@@ -31,4 +31,8 @@ public class MainActivity extends AppCompatActivity {
             LoginRequester.login();
         }
     }
+
+    public int getSubContainerId() {
+        return R.id.subContainer;
+    }
 }
