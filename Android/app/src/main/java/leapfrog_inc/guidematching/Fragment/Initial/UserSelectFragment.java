@@ -16,7 +16,25 @@ public class UserSelectFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_user_select, null);
 
+        initAction(view);
 
         return view;
+    }
+
+    private void initAction(View view) {
+
+        view.findViewById(R.id.guestButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stackFragment(new GuestRegisterFragment(), AnimationType.vertical);
+            }
+        });
+
+        view.findViewById(R.id.guideButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stackFragment(new GuideRegisterFragment(), AnimationType.vertical);
+            }
+        });
     }
 }
