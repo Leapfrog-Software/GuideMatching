@@ -2,12 +2,11 @@ package leapfrog_inc.guidematching.Http.DataModel;
 
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.TimeZone;
 
 import leapfrog_inc.guidematching.System.Base64Utility;
+import leapfrog_inc.guidematching.System.DateUtility;
 
 public class GuideData {
 
@@ -24,15 +23,8 @@ public class GuideData {
             if (splited.length != 49) {
                 return null;
             }
-            String dayString = splited[0];
-            if (dayString.length() != 8) {
-                return null;
-            }
-            try {
-                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-                format.setTimeZone(TimeZone.getTimeZone("Asia/Tokyo"));
-                scheduleData.day = format.parse(dayString);
-            } catch (Exception e) {
+            scheduleData.day = DateUtility.stringToDate(splited[0], "yyyyMMdd");
+            if (scheduleData.day == null) {
                 return null;
             }
 
@@ -52,8 +44,7 @@ public class GuideData {
 
             StringBuffer str = new StringBuffer();
 
-            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-            String dayStr = format.format(day);
+            String dayStr = DateUtility.dateToString(day, "yyyyMMdd");
             str.append(dayStr);
             str.append("_");
 
@@ -144,10 +135,10 @@ public class GuideData {
                 }
             }
 
-            String loginDateStr = json.getString("loginDate");
-            SimpleDateFormat format = new SimpleDateFormat("yyyyMMddkkmmss");
-            format.setTimeZone(TimeZone.getTimeZone("Asia/Tokyo"));
-            guideData.loginDate = format.parse(loginDateStr);
+            guideData.loginDate = DateUtility.stringToDate(json.getString("loginDate"), "yyyyMMddkkmmss");
+            if (guideData.loginDate == null) {
+                return null;
+            }
 
             guideData.stripeAccountId = json.getString("stripeAccountId");
 
