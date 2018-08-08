@@ -6,17 +6,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import leapfrog_inc.guidematching.Http.DataModel.GuestData;
-import leapfrog_inc.guidematching.Http.DataModel.GuideData;
 import leapfrog_inc.guidematching.Http.HttpManager;
 import leapfrog_inc.guidematching.System.Constants;
 
-public class GetGuestRequester {
+public class FetchGuestRequester {
 
-    private static GetGuestRequester requester = new GetGuestRequester();
+    private static FetchGuestRequester requester = new FetchGuestRequester();
 
-    private GetGuestRequester(){}
+    private FetchGuestRequester(){}
 
-    public static GetGuestRequester getInstance() {
+    public static FetchGuestRequester getInstance() {
         return requester;
     }
 

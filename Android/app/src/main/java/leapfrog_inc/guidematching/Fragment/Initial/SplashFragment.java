@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
-import leapfrog_inc.guidematching.Http.Requester.GetGuestRequester;
-import leapfrog_inc.guidematching.Http.Requester.GetGuideRequester;
+import leapfrog_inc.guidematching.Http.Requester.FetchGuestRequester;
+import leapfrog_inc.guidematching.Http.Requester.FetchGuideRequester;
 import leapfrog_inc.guidematching.R;
 import leapfrog_inc.guidematching.System.SaveData;
 
@@ -43,7 +43,7 @@ public class SplashFragment extends BaseFragment {
     private void fetch() {
 
         if (mGuideFetchResult != FetchResult.ok) {
-            GetGuideRequester.getInstance().fetch(new GetGuideRequester.Callback() {
+            FetchGuideRequester.getInstance().fetch(new FetchGuideRequester.Callback() {
                 @Override
                 public void didReceiveData(boolean result) {
                     if (result)     mGuideFetchResult = FetchResult.ok;
@@ -53,7 +53,7 @@ public class SplashFragment extends BaseFragment {
             });
         }
         if (mGuestFetchResult != FetchResult.ok) {
-            GetGuestRequester.getInstance().fetch(new GetGuestRequester.Callback() {
+            FetchGuestRequester.getInstance().fetch(new FetchGuestRequester.Callback() {
                 @Override
                 public void didReceiveData(boolean result) {
                     if (result)     mGuestFetchResult = FetchResult.ok;

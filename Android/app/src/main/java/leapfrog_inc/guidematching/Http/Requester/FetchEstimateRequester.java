@@ -5,21 +5,22 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import leapfrog_inc.guidematching.Http.DataModel.GuideData;
+import leapfrog_inc.guidematching.Http.DataModel.EstimateData;
+import leapfrog_inc.guidematching.Http.DataModel.GuestData;
 import leapfrog_inc.guidematching.Http.HttpManager;
 import leapfrog_inc.guidematching.System.Constants;
 
-public class GetGuideRequester {
+public class FetchEstimateRequester {
 
-    private static GetGuideRequester requester = new GetGuideRequester();
+    private static FetchEstimateRequester requester = new FetchEstimateRequester();
 
-    private GetGuideRequester(){}
+    private FetchEstimateRequester(){}
 
-    public static GetGuideRequester getInstance() {
+    public static FetchEstimateRequester getInstance() {
         return requester;
     }
 
-    private ArrayList<GuideData> mDataList = new ArrayList<GuideData>();
+    private ArrayList<EstimateData> mDataList = new ArrayList<EstimateData>();
 
     public void fetch(final Callback callback) {
 
@@ -31,12 +32,12 @@ public class GetGuideRequester {
                         JSONObject jsonObject = new JSONObject(data);
                         String ret = jsonObject.getString("result");
                         if (ret.equals("0")) {
-                            JSONArray jsonArray = jsonObject.getJSONArray("guides");
-                            ArrayList<GuideData> dataList = new ArrayList<GuideData>();
+                            JSONArray jsonArray = jsonObject.getJSONArray("estimates");
+                            ArrayList<EstimateData> dataList = new ArrayList<EstimateData>();
                             for (int i = 0; i < jsonArray.length(); i++) {
-                                GuideData guideData = GuideData.create(jsonArray.getJSONObject(i));
-                                if (guideData != null) {
-                                    dataList.add(guideData);
+                                EstimateData estimateData = EstimateData.create(jsonArray.getJSONObject(i));
+                                if (estimateData != null) {
+                                    dataList.add(estimateData);
                                 }
                             }
                             mDataList = dataList;
@@ -49,7 +50,7 @@ public class GetGuideRequester {
             }
         });
         StringBuffer param = new StringBuffer();
-        param.append("command=getGuide");
+        param.append("command=getEstimate");
         httpManager.execute(Constants.ServerApiUrl, "POST", param.toString());
     }
 

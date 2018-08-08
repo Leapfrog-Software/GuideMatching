@@ -1,15 +1,12 @@
 package leapfrog_inc.guidematching.Http.DataModel;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import leapfrog_inc.guidematching.Http.Requester.GetGuideRequester;
 import leapfrog_inc.guidematching.System.Base64Utility;
 
 public class GuideData {
