@@ -82,9 +82,6 @@ class SplashViewController: UIViewController {
             if saveData.guestId.count > 0 || saveData.guideId.count > 0 {
                 let tabbar = self.viewController(storyboard: "Initial", identifier: "TabbarViewController") as! TabbarViewController
                 self.stack(viewController: tabbar)
-                
-                AccountRequester.login()
-                
             } else {
                 let userSelect = self.viewController(storyboard: "Initial", identifier: "UserSelectViewController") as! UserSelectViewController
                 self.stack(viewController: userSelect)

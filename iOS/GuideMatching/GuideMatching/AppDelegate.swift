@@ -20,5 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        let saveData = SaveData.shared
+        if saveData.guestId.count > 0 || saveData.guideId.count > 0 {
+            AccountRequester.login()
+        }
+    }
 }
 
