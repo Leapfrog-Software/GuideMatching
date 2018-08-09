@@ -32,9 +32,9 @@ public class GuideData {
 
             for (int i = 1; i < splited.length; i++) {
                 if (splited[i].equals("1")) {
-                    scheduleData.isFreeList[i] = true;
+                    scheduleData.isFreeList[i - 1] = true;
                 } else {
-                    scheduleData.isFreeList[i] = false;
+                    scheduleData.isFreeList[i - 1] = false;
                 }
             }
             return scheduleData;
@@ -127,6 +127,7 @@ public class GuideData {
             guideData.fee = Integer.parseInt(json.getString("fee"));
             guideData.notes = Base64Utility.decode(json.getString("notes"));
 
+            guideData.schedules = new ArrayList<GuideScheduleData>();
             String[] scheduleStrs = json.getString("schedules").split("/");
             for (String schedule : scheduleStrs) {
                 GuideScheduleData scheduleData = GuideScheduleData.create(schedule);

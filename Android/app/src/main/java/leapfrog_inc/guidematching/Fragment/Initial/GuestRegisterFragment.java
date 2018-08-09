@@ -20,6 +20,7 @@ import java.util.HashMap;
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
 import leapfrog_inc.guidematching.Fragment.Common.Dialog;
 import leapfrog_inc.guidematching.Fragment.Common.Loading;
+import leapfrog_inc.guidematching.Fragment.Tabbar.TabbarFragment;
 import leapfrog_inc.guidematching.Http.DataModel.GuestData;
 import leapfrog_inc.guidematching.Http.ImageUploader;
 import leapfrog_inc.guidematching.Http.Requester.CreateGuestRequester;
@@ -401,7 +402,7 @@ public class GuestRegisterFragment extends BaseFragment {
                             saveData.guestId = guestId;
                             saveData.save();
 
-                            stackTabbar();
+                            stackFragment(new TabbarFragment(), AnimationType.none);
                         }
                     });
                 } else {
@@ -410,9 +411,5 @@ public class GuestRegisterFragment extends BaseFragment {
                 }
             }
         });
-    }
-
-    private void stackTabbar() {
-
     }
 }
