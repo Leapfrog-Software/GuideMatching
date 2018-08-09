@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -27,8 +28,10 @@ import leapfrog_inc.guidematching.Http.Requester.FetchGuideRequester;
 import leapfrog_inc.guidematching.Http.Requester.UpdateGuestRequester;
 import leapfrog_inc.guidematching.Http.Stripe.StripeManager;
 import leapfrog_inc.guidematching.R;
+import leapfrog_inc.guidematching.System.Constants;
 import leapfrog_inc.guidematching.System.DeviceUtility;
 import leapfrog_inc.guidematching.System.GalleryManager;
+import leapfrog_inc.guidematching.System.PicassoUtility;
 import leapfrog_inc.guidematching.System.SaveData;
 
 public class GuestRegisterFragment extends BaseFragment {
@@ -66,11 +69,13 @@ public class GuestRegisterFragment extends BaseFragment {
         if (mIsEdit) {
             ((TextView)view.findViewById(R.id.headerTitleTextView)).setText("Edit Profile");
 
-            // TODO Picasso
-
-
             GuestData guestData = FetchGuestRequester.getInstance().query(SaveData.getInstance().guestId);
             if (guestData != null) {
+                PicassoUtility.getImage(getActivity(), Constants.ServerGuestImageDirectory + guestData.id + "-0", (ImageView)view.findViewById(R.id.face1ImageButton), R.drawable.image_guide);
+                PicassoUtility.getImage(getActivity(), Constants.ServerGuestImageDirectory + guestData.id + "-1", (ImageView)view.findViewById(R.id.face2ImageButton), R.drawable.image_guide);
+                PicassoUtility.getImage(getActivity(), Constants.ServerGuestImageDirectory + guestData.id + "-2", (ImageView)view.findViewById(R.id.face3ImageButton), R.drawable.image_guide);
+                PicassoUtility.getImage(getActivity(), Constants.ServerGuestImageDirectory + guestData.id + "-p", (ImageView)view.findViewById(R.id.passportImageButton), R.drawable.image_guide);
+
                 ((EditText)view.findViewById(R.id.emailEditText)).setText(guestData.email);
                 ((EditText)view.findViewById(R.id.nameEditText)).setText(guestData.name);
                 ((EditText)view.findViewById(R.id.nationalityEditText)).setText(guestData.nationality);
