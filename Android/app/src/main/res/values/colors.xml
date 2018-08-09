@@ -5,7 +5,9 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="mainBlack">#303030</color>
+    <color name="headerOrange">#F7B92B</color>
 
     <color name="dialogButtonSuccess">#7BD1F9</color>
     <color name="dialogButtonError">#E64942</color>
+
 </resources>

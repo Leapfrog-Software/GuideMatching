@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import leapfrog_inc.guidematching.Http.DataModel.GuestData;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;
 import leapfrog_inc.guidematching.Http.HttpManager;
 import leapfrog_inc.guidematching.System.Constants;
@@ -55,5 +56,15 @@ public class FetchGuideRequester {
 
     public interface Callback {
         void didReceiveData(boolean result);
+    }
+
+    public GuideData query(String guideId) {
+
+        for (int i = 0; i < mDataList.size(); i++) {
+            if (mDataList.get(i).id.equals(guideId)) {
+                return mDataList.get(i);
+            }
+        }
+        return null;
     }
 }

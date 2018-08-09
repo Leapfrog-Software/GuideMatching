@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import leapfrog_inc.guidematching.Http.DataModel.GuestData;
+import leapfrog_inc.guidematching.Http.DataModel.GuideData;
 import leapfrog_inc.guidematching.Http.DataModel.MessageData;
 import leapfrog_inc.guidematching.Http.HttpManager;
 import leapfrog_inc.guidematching.System.Constants;
