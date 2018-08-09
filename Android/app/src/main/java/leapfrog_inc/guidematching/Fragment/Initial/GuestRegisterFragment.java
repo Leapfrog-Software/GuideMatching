@@ -158,6 +158,13 @@ public class GuestRegisterFragment extends BaseFragment {
                 onClickDone();
             }
         });
+
+        view.findViewById(R.id.closeButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popFragment(AnimationType.vertical);
+            }
+        });
     }
 
     private void showError(String message) {
