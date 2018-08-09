@@ -24,6 +24,8 @@ import leapfrog_inc.guidematching.Http.ImageUploader;
 import leapfrog_inc.guidematching.Http.Requester.CreateGuestRequester;
 import leapfrog_inc.guidematching.Http.Requester.FetchGuestRequester;
 import leapfrog_inc.guidematching.Http.Requester.FetchGuideRequester;
+import leapfrog_inc.guidematching.Http.Requester.UpdateGuestRequester;
+import leapfrog_inc.guidematching.Http.Stripe.StripeManager;
 import leapfrog_inc.guidematching.R;
 import leapfrog_inc.guidematching.System.DeviceUtility;
 import leapfrog_inc.guidematching.System.GalleryManager;
@@ -184,10 +186,15 @@ public class GuestRegisterFragment extends BaseFragment {
             return;
         }
 
+        if ((!mIsEdit) && mPassportBitmap == null) {
+            showError("Passport is not captured");
+            return;
+        }
+
         Loading.start(getActivity());
 
         if (mIsEdit) {
-            updateGuest();
+            updateGuest(email, name, nationality);
         } else {
             createGuest(email, name, nationality);
         }
@@ -218,8 +225,37 @@ public class GuestRegisterFragment extends BaseFragment {
         });
     }
 
-    private void updateGuest() {
-        // TODO
+    private void updateGuest(String email, String name, String nationality) {
+
+        GuestData myGuestData = FetchGuestRequester.getInstance().query(SaveData.getInstance().guestId);
+        myGuestData.email = email;
+        myGuestData.name = name;
+        myGuestData.nationality = nationality;
+
+        Loading.start(getActivity());
+
+        UpdateGuestRequester.update(myGuestData, new UpdateGuestRequester.Callback() {
+            @Override
+            public void didReceiveData(boolean result) {
+                if (result) {
+                    uploadAllImage(SaveData.getInstance().guestId, new UploadImageCallback() {
+                        @Override
+                        public void didSent(boolean resultImage) {
+                            Loading.stop(getActivity());
+
+                            if (resultImage) {
+                                Dialog.show(getActivity(), Dialog.Style.success, "Done", "Updating is done", null);
+                            } else {
+                                showCommunicationError();
+                            }
+                        }
+                    });
+                } else {
+                    Loading.stop(getActivity());
+                    showCommunicationError();
+                }
+            }
+        });
     }
 
     private void uploadAllImage(final String guestId, final UploadImageCallback callback) {
@@ -309,8 +345,7 @@ public class GuestRegisterFragment extends BaseFragment {
                         showCommunicationError();
                         return;
                     }
-
-                    // TODO Stripe
+                    createStripeCustomer(guestId);
 
                 } else {
                     Loading.stop(getActivity());
@@ -318,5 +353,54 @@ public class GuestRegisterFragment extends BaseFragment {
                 }
             }
         });
+    }
+
+    private void createStripeCustomer(final String guestId) {
+
+        String email = ((EditText)getView().findViewById(R.id.emailEditText)).getText().toString();
+
+        StripeManager.createCustomer(email, new StripeManager.CreateCustomerCallback() {
+            @Override
+            public void didReceiveResponse(boolean result, String customerId) {
+                if (result) {
+                    updateGuest(guestId, customerId);
+                } else {
+                    Loading.stop(getActivity());
+                    showCommunicationError();
+                }
+            }
+        });
+    }
+
+    private void updateGuest(final String guestId, String stripeCustomerId) {
+
+        GuestData myGuestData = FetchGuestRequester.getInstance().query(guestId);
+        myGuestData.stripeCustomerId = stripeCustomerId;
+        UpdateGuestRequester.update(myGuestData, new UpdateGuestRequester.Callback() {
+            @Override
+            public void didReceiveData(boolean result) {
+                if (result) {
+                    FetchGuestRequester.getInstance().fetch(new FetchGuestRequester.Callback() {
+                        @Override
+                        public void didReceiveData(boolean result) {
+                            Loading.stop(getActivity());
+
+                            SaveData saveData = SaveData.getInstance();
+                            saveData.guestId = guestId;
+                            saveData.save();
+
+                            stackTabbar();
+                        }
+                    });
+                } else {
+                    Loading.stop(getActivity());
+                    showCommunicationError();
+                }
+            }
+        });
+    }
+
+    private void stackTabbar() {
+
     }
 }

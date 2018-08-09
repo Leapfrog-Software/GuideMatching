@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         if ((requestCode == GalleryManager.requestCodeGallery)
                 && (resultCode == RESULT_OK)) {
-            GalleryManager.getInstance().didSelectImage(data);
+            GalleryManager.getInstance().didSelectImage(this, data);
         }
     }
 }

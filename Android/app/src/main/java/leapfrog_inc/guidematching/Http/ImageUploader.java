@@ -85,6 +85,7 @@ public class ImageUploader extends AsyncTask<ImageUploader.Parameter, Integer, O
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             param.bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
             byteArray = byteArrayOutputStream.toByteArray();
+            outputStream.writeBytes("--boundary\r\nContent-Disposition: form-data; name=\"image\"; filename=\"image\"\r\nContent-Type: image/png\r\n\r\n");
             for (int i = 0; i < byteArray.length; i++) {
                 outputStream.writeByte(byteArray[i]);
             }

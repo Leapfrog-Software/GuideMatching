@@ -28,13 +28,15 @@ public class UpdateGuestRequester {
             }
         });
         StringBuffer param = new StringBuffer();
-        param.append("command=updateGuide");
+        param.append("command=updateGuest");
         param.append("&");
         param.append("id=" + guestData.id);
         param.append("&");
         param.append("name=" + Base64Utility.encode(guestData.name));
         param.append("&");
         param.append("nationality=" + Base64Utility.encode(guestData.nationality));
+        param.append("&");
+        param.append("stripeCustomerId=" + guestData.stripeCustomerId);
 
         httpManager.execute(Constants.ServerApiUrl, "POST", param.toString());
     }
