@@ -17,9 +17,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
+import leapfrog_inc.guidematching.Http.DataModel.EstimateData;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;
+import leapfrog_inc.guidematching.Http.Requester.FetchEstimateRequester;
 import leapfrog_inc.guidematching.Http.Requester.FetchGuideRequester;
 import leapfrog_inc.guidematching.R;
+import leapfrog_inc.guidematching.System.CommonUtility;
+import leapfrog_inc.guidematching.System.Constants;
+import leapfrog_inc.guidematching.System.PicassoUtility;
 
 public class GuideFragment extends BaseFragment {
 
@@ -71,6 +76,27 @@ public class GuideFragment extends BaseFragment {
             convertView = mInflater.inflate(R.layout.adapter_guide, parent, false);
 
             GuideData data = getItem(position);
+
+            PicassoUtility.getFaceImage(getActivity(), Constants.ServerGuideImageDirectory + data.id + "-0", (ImageView)convertView.findViewById(R.id.faceImageView));
+
+            ((TextView)convertView.findViewById(R.id.nameTextView)).setText(data.name);
+
+            int score = FetchEstimateRequester.getInstance().queryAverage(data.id);
+            ArrayList<Integer> estimateImages = CommonUtility.createEstimateImages(score);
+            ((ImageView)convertView.findViewById(R.id.estimate1ImageView)).setImageResource(estimateImages.get(0));
+            ((ImageView)convertView.findViewById(R.id.estimate2ImageView)).setImageResource(estimateImages.get(1));
+            ((ImageView)convertView.findViewById(R.id.estimate3ImageView)).setImageResource(estimateImages.get(2));
+            ((ImageView)convertView.findViewById(R.id.estimate4ImageView)).setImageResource(estimateImages.get(3));
+            ((ImageView)convertView.findViewById(R.id.estimate5ImageView)).setImageResource(estimateImages.get(4));
+
+            int estimateCount = FetchEstimateRequester.getInstance().query(data.id).size();
+            ((TextView)convertView.findViewById(R.id.estimateNumberTextView)).setText("(" + String.valueOf(estimateCount) + ")");
+
+            ((TextView)convertView.findViewById(R.id.specialtyTextView)).setText(data.specialty);
+
+            CommonUtility.setLoginState(data.loginDate, (View)convertView.findViewById(R.id.loginStateView), (TextView)convertView.findViewById(R.id.loginStateTextView));
+
+            ((TextView)convertView.findViewById(R.id.feeTextView)).setText(CommonUtility.digit3Format(data.fee) + " JPY/30min");
 
             return convertView;
         }

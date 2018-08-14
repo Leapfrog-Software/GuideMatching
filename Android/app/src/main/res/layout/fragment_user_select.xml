@@ -25,7 +25,7 @@
         <Button
             android:id="@+id/guestButton"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="50dp"
             android:text="Register as a guest"
             android:textSize="16dp"
             android:textColor="#fff"
@@ -37,7 +37,7 @@
         <Button
             android:id="@+id/guideButton"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="50dp"
             android:text="ガイドとして登録"
             android:textSize="16dp"
             android:textColor="#fff"

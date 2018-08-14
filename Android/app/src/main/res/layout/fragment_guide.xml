@@ -14,12 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/headerHeight"
             android:background="@color/headerOrange">
-            <ImageButton
-                android:layout_width="@dimen/headerHeight"
-                android:layout_height="@dimen/headerHeight"
-                android:src="@drawable/back_white"
-                android:scaleType="fitCenter"
-                android:background="#0000"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,6 +28,9 @@
             android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:divider="@null"
+            android:scrollbars="none"
+            android:overScrollMode="never"/>
     </LinearLayout>
 </FrameLayout>
