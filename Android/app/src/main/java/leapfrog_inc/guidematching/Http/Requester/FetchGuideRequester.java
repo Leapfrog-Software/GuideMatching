@@ -20,7 +20,7 @@ public class FetchGuideRequester {
         return requester;
     }
 
-    private ArrayList<GuideData> mDataList = new ArrayList<GuideData>();
+    public ArrayList<GuideData> mDataList = new ArrayList<GuideData>();
 
     public void fetch(final Callback callback) {
 
