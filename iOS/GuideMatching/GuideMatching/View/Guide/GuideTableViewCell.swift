@@ -35,6 +35,7 @@ class GuideTableViewCell: UITableViewCell {
         
         self.nameLabel.text = guideData.name
         
+        // TODO 平均値
         let estimateDatas = EstimateRequester.shared.dataList.filter { $0.guideId == guideData.id }
         var score = 0
         estimateDatas.forEach {
@@ -52,6 +53,7 @@ class GuideTableViewCell: UITableViewCell {
         
         CommonUtility.setOnLineState(loginDate: guideData.loginDate, view: self.loginStateView, label: self.loginStateLabel)
         
+        // TODO 30min
         self.feeLabel.text = CommonUtility.digit3Format(value: guideData.fee) + " JPY/h"
     }
 }

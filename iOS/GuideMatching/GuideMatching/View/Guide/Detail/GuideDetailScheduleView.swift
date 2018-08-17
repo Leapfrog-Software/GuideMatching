@@ -128,6 +128,8 @@ extension GuideDetailScheduleView: UITableViewDelegate, UITableViewDataSource {
         
         let today = Date()
         
+        // TODO 予約済みのパターン
+        
         var states = [GuideDetailScheduleTableViewCell.State]()
         for i in 0..<7 {
             let targetDate = Date().latestSunday().add(day: self.weekOffset * 7 + i)
