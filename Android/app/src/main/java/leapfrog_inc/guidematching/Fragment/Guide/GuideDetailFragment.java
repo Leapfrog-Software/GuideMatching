@@ -24,6 +24,7 @@ import leapfrog_inc.guidematching.Http.Requester.FetchEstimateRequester;
 import leapfrog_inc.guidematching.R;
 import leapfrog_inc.guidematching.System.CommonUtility;
 import leapfrog_inc.guidematching.System.Constants;
+import leapfrog_inc.guidematching.System.DateUtility;
 import leapfrog_inc.guidematching.System.DeviceUtility;
 import leapfrog_inc.guidematching.System.PicassoUtility;
 import leapfrog_inc.guidematching.System.SaveData;
@@ -102,7 +103,22 @@ public class GuideDetailFragment extends BaseFragment {
         }
 
         // TODO
-
+//        for (int i = 0; i < mGuideData.schedules.size(); i++) {
+//            Calendar targetDate = Calendar.getInstance();
+//            GuideData.GuideScheduleData schedule = mGuideData.schedules.get(i);
+//            targetDate.setTime(schedule.day);
+//            if (DateUtility.isSameDay(targetDate, date)) {
+//                if (schedule.isFreeList[timeIndex]) {
+//                    BookFragment fragment = new BookFragment();
+//                    fragment.set(mGuideData, targetDate, timeIndex);
+//                    stackFragment(fragment, AnimationType.horizontal);
+//                    return;
+//                }
+//            }
+//        }
+        BookFragment fragment = new BookFragment();
+        fragment.set(mGuideData, Calendar.getInstance(), timeIndex);
+        stackFragment(fragment, AnimationType.horizontal);
     }
 
     private void setFaceImage(ImageView imageView, String url) {

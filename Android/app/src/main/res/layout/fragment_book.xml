@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:clickable="true"
+    android:id="@+id/rootLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/headerHeight"
+            android:background="@color/headerOrange">
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="@dimen/headerHeight"
+                android:layout_height="@dimen/headerHeight"
+                android:src="@drawable/back_white"
+                android:scaleType="fitCenter"
+                android:background="#0000"/>
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservation form"
+                android:textSize="@dimen/headerTitleTextSize"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none"
+            android:overScrollMode="never">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!-- ガイド情報 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+                    <ImageView
+                        android:id="@+id/faceImageView"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_gravity="center_vertical"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp">
+                        <!-- 名前・評価 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="NameNameNameNameNameNameNameNameName"
+                                android:textSize="16dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/mainBlack"/>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="8dp">
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:src="@drawable/star_full_14_14"
+                                    android:scaleType="fitCenter"/>
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:src="@drawable/star_full_14_14"
+                                    android:scaleType="fitCenter"/>
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:src="@drawable/star_full_14_14"
+                                    android:scaleType="fitCenter"/>
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:src="@drawable/star_full_14_14"
+                                    android:scaleType="fitCenter"/>
+                                <ImageView
+                                    android:layout_width="14dp"
+                                    android:layout_height="14dp"
+                                    android:src="@drawable/star_full_14_14"
+                                    android:scaleType="fitCenter"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="(123)"
+                                    android:textSize="12dp"
+                                    android:textColor="@color/mainBlack"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginLeft="4dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <!-- カテゴリー -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tokyo, Izakaya"
+                            android:textSize="14dp"
+                            android:textColor="@color/mainBlack"
+                            android:layout_marginTop="4dp"/>
+
+                        <!-- ログイン状態・価格 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="12dp">
+                            <View
+                                android:id="@+id/loginStateView"
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:background="#f00"
+                                android:layout_gravity="center_vertical"/>
+                            <TextView
+                                android:id="@+id/loginStateTextView"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="online"
+                                android:textSize="12dp"
+                                android:textColor="@color/mainBlack"
+                                android:layout_marginLeft="4dp"
+                                android:layout_gravity="center_vertical"/>
+                            <TextView
+                                android:id="@+id/feeTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3,000 JPY/30min"
+                                android:textSize="12dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/mainBlack"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="12dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 日付 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="40dp">
+                    <TextView
+                        android:layout_width="@dimen/bookTitleWidth"
+                        android:layout_height="wrap_content"
+                        android:text="Day"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginLeft="@dimen/bookTitleLeftMargin"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="July 3 2018"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginRight="@dimen/bookValueRightMargin"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray"/>
+
+                <!-- 時間(入力) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="@dimen/bookTitleWidth"
+                        android:layout_height="wrap_content"
+                        android:text="Time"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginLeft="@dimen/bookTitleLeftMargin"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="13:00　　-　　"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin" />
+                    <Button
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:text="13:00"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/shape_book_button"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray"/>
+
+                <!-- 時間(確認) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="@dimen/bookTitleWidth"
+                        android:layout_height="wrap_content"
+                        android:text="Time"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginLeft="@dimen/bookTitleLeftMargin"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="13:00　　-　　13:00"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginRight="@dimen/bookValueRightMargin"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray"/>
+
+                <!-- 待ち合わせ(入力) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="@dimen/bookTitleWidth"
+                        android:layout_height="match_parent"
+                        android:text="Meeting\nPlace"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginLeft="@dimen/bookTitleLeftMargin"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:gravity="top"/>
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="80dp"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginRight="@dimen/bookValueRightMargin"
+                        android:background="@drawable/shape_book_edittext"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray"/>
+
+                <!-- 料金 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Guide fee"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginLeft="@dimen/bookTitleLeftMargin"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3,000 JPY"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:gravity="right"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginRight="@dimen/bookValueRightMargin"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray"/>
+
+                <!-- システム使用料 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Transaction fee"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginLeft="@dimen/bookTitleLeftMargin"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="450 JPY"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:gravity="right"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginRight="@dimen/bookValueRightMargin"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray"/>
+
+                <!-- Total -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginRight="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:textColor="#F79F03"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3,450 JPY"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:textColor="#F79F03"
+                        android:layout_marginLeft="12dp"/>
+                </LinearLayout>
+
+                <!-- 備考 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="備考"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Continue >>"
+                    android:textColor="#fff"
+                    android:textSize="16dp"
+                    android:textAllCaps="false"
+                    android:background="@drawable/shape_book_next_button"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="30dp"/>
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</FrameLayout>
