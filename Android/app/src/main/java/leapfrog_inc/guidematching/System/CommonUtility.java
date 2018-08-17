@@ -52,4 +52,9 @@ public class CommonUtility {
     public static String digit3Format(int number) {
         return String.format("%,d", number);
     }
+
+    public static String timeOffsetToString(int timeOffset) {
+        return String.format("%02d", (timeOffset / 2)) + ":" + String.format("%02d", 30 * (timeOffset % 2));
+    }
+
 }

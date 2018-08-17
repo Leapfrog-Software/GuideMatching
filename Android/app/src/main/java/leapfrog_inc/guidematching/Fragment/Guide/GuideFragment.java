@@ -54,7 +54,9 @@ public class GuideFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 GuideData guideData = (GuideData)adapterView.getItemAtPosition(i);
-                // TODO
+                GuideDetailFragment fragment = new GuideDetailFragment();
+                fragment.set(guideData);
+                stackFragment(fragment, AnimationType.horizontal);
             }
         });
     }

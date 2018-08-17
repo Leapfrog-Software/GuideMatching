@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:clickable="true"
+    android:id="@+id/rootLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/headerHeight"
+            android:background="@color/headerOrange">
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="@dimen/headerHeight"
+                android:layout_height="@dimen/headerHeight"
+                android:src="@drawable/back_white"
+                android:scaleType="fitCenter"
+                android:background="#0000"/>
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Taro Yamada"
+                android:textSize="@dimen/headerTitleTextSize"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none"
+            android:overScrollMode="never">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!-- 顔画像 -->
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <HorizontalScrollView
+                        android:id="@+id/faceScrollView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="none">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:id="@+id/face1ImageView"
+                                android:layout_width="300dp"
+                                android:layout_height="300dp"
+                                android:paddingTop="20dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="20dp"/>
+                            <ImageView
+                                android:id="@+id/face2ImageView"
+                                android:layout_width="300dp"
+                                android:layout_height="300dp"
+                                android:paddingTop="20dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="20dp"/>
+                            <ImageView
+                                android:id="@+id/face3ImageView"
+                                android:layout_width="300dp"
+                                android:layout_height="300dp"
+                                android:paddingTop="20dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingBottom="20dp"/>
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                    <ImageButton
+                        android:id="@+id/faceLeftImageButton"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/arrow_left"
+                        android:scaleType="fitCenter"
+                        android:background="@drawable/shape_guide_detail_image_arrow_button"
+                        android:layout_gravity="center_vertical|left"
+                        android:layout_marginLeft="24dp"/>
+                    <ImageButton
+                        android:id="@+id/faceRightImageButton"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/arrow_right"
+                        android:scaleType="fitCenter"
+                        android:background="@drawable/shape_guide_detail_image_arrow_button"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="24dp"/>
+                </FrameLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray"
+                    android:layout_marginTop="20dp"/>
+
+                <!-- 言語 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Language"
+                        android:textSize="@dimen/guideDetailTitleTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
+                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
+                    <TextView
+                        android:id="@+id/languageTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textSize="@dimen/guideDetailvalueTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailValueLeftMargin"
+                        android:layout_marginRight="@dimen/guideDetailValueRightMargin"
+                        android:gravity="right"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray" />
+
+                <!-- カテゴリー -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Category"
+                        android:textSize="@dimen/guideDetailTitleTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
+                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
+                    <TextView
+                        android:id="@+id/categoryTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textSize="@dimen/guideDetailvalueTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailValueLeftMargin"
+                        android:layout_marginRight="@dimen/guideDetailValueRightMargin"
+                        android:gravity="right"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray" />
+
+                <!-- 特技 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Specialty"
+                        android:textSize="@dimen/guideDetailTitleTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
+                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
+                    <TextView
+                        android:id="@+id/specialtyTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textSize="@dimen/guideDetailvalueTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailValueLeftMargin"
+                        android:layout_marginRight="@dimen/guideDetailValueRightMargin"
+                        android:gravity="right"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray" />
+
+                <!-- メッセージ -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Message"
+                        android:textSize="@dimen/guideDetailTitleTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
+                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
+                    <TextView
+                        android:id="@+id/messageTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textSize="@dimen/guideDetailvalueTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailValueLeftMargin"
+                        android:layout_marginRight="@dimen/guideDetailValueRightMargin"
+                        android:gravity="right"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray" />
+
+                <!-- ガイド可能日時 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Available time"
+                        android:textSize="@dimen/guideDetailTitleTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
+                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
+                    <TextView
+                        android:id="@+id/timeZoneTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textSize="@dimen/guideDetailvalueTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailValueLeftMargin"
+                        android:layout_marginRight="@dimen/guideDetailValueRightMargin"
+                        android:gravity="right"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray" />
+
+                <!-- 最大人数 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Max"
+                        android:textSize="@dimen/guideDetailTitleTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
+                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
+                    <TextView
+                        android:id="@+id/applicableNumberTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textSize="@dimen/guideDetailvalueTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailValueLeftMargin"
+                        android:layout_marginRight="@dimen/guideDetailValueRightMargin"
+                        android:gravity="right"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray" />
+
+                <!-- 価格 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Price"
+                        android:textSize="@dimen/guideDetailTitleTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
+                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
+                    <TextView
+                        android:id="@+id/feeTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textSize="@dimen/guideDetailvalueTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailValueLeftMargin"
+                        android:layout_marginRight="@dimen/guideDetailValueRightMargin"
+                        android:gravity="right"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray" />
+
+                <!-- 備考 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="notes"
+                        android:textSize="@dimen/guideDetailTitleTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
+                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
+                    <TextView
+                        android:id="@+id/notesTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textSize="@dimen/guideDetailvalueTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailValueLeftMargin"
+                        android:layout_marginRight="@dimen/guideDetailValueRightMargin"
+                        android:gravity="right"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray" />
+
+                <!-- レビュー -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Customer review"
+                        android:textSize="@dimen/guideDetailTitleTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
+                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="1dp"/>
+                    <TextView
+                        android:id="@+id/scoreTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="3.5"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/guideDetailvalueTextSize"
+                        android:textColor="@color/headerOrange"
+                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
+                        android:gravity="right"/>
+                    <TextView
+                        android:id="@+id/reviewCountTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(123)"
+                        android:textSize="12dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginLeft="4dp"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+                    <Button
+                        android:id="@+id/before1Button"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="＜ Before"
+                        android:textColor="@color/mainBlack"
+                        android:textSize="12dp"
+                        android:background="@drawable/shape_guide_detail_button"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="1dp"/>
+                    <Button
+                        android:id="@+id/next1Button"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Next ＞"
+                        android:textColor="@color/mainBlack"
+                        android:textSize="12dp"
+                        android:background="@drawable/shape_guide_detail_button"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/scheduleLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+                    <Button
+                        android:id="@+id/before2Button"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="＜ Before"
+                        android:textColor="@color/mainBlack"
+                        android:textSize="12dp"
+                        android:background="@drawable/shape_guide_detail_button"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="1dp"/>
+                    <Button
+                        android:id="@+id/next2Button"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="Next ＞"
+                        android:textColor="@color/mainBlack"
+                        android:textSize="12dp"
+                        android:background="@drawable/shape_guide_detail_button"/>
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Inquiry"
+                    android:textSize="18dp"
+                    android:textColor="@color/mainBlack"
+                    android:background="@drawable/shape_guide_detail_button"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:textAllCaps="false"/>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</FrameLayout>
