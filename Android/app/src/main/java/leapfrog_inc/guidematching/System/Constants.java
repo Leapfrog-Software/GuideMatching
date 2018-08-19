@@ -17,4 +17,9 @@ public class Constants {
         public static String GuideId = "GuideId";
         public static String GuestId = "GuestId";
     }
+
+    public static class Stripe {
+//        public static String Key = "pk_test_YA3x9LrmFX1C7annyyM1iEg3";
+        public static String Key = "pk_test_PMO8LzsVdmpwxs0s3GXnRoRa";      // 開発用
+    }
 }

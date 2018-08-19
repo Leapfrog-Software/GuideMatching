@@ -129,6 +129,7 @@ public class BookFragment extends BaseFragment {
             ((TextView)view.findViewById(R.id.timeConfirmEndTextView)).setText(CommonUtility.timeOffsetToString(mEndTimeIndex));
 
             view.findViewById(R.id.meetingPlaceInputLayout).setVisibility(View.GONE);
+            ((TextView)view.findViewById(R.id.meetingPlaceConfirmTextView)).setText(mMeetingPlace);
 
             int fee = mGuideData.fee * (mEndTimeIndex - mStartTimeIndex);
             int transactionFee = CommonUtility.calculateTransactionFee(fee);
@@ -186,8 +187,9 @@ public class BookFragment extends BaseFragment {
         stackFragment(fragment, AnimationType.none);
     }
 
-
     private void onTapNext() {
+
+        DeviceUtility.hideSoftKeyboard(getActivity());
 
         if (isInput()) {
             String meetingPlace = ((EditText)getView().findViewById(R.id.meetingPlaceInputEditText)).getText().toString();
@@ -201,7 +203,11 @@ public class BookFragment extends BaseFragment {
             stackFragment(fragment, AnimationType.horizontal);
 
         } else {
-
+            CardInputFragment fragment = new CardInputFragment();
+            int guideFee = mGuideData.fee * (mEndTimeIndex - mStartTimeIndex);
+            int transactionFee = CommonUtility.calculateTransactionFee(guideFee);
+            fragment.set(mGuideData, guideFee, transactionFee);
+            stackFragment(fragment, AnimationType.horizontal);
         }
     }
 }
