@@ -87,6 +87,7 @@ class BookViewController: UIViewController {
         ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + self.guideData.id + "-0", imageView: self.faceImageView)
         self.nameLabel.text = self.guideData.name
         
+        // TODO 平均
         let estimateDatas = EstimateRequester.shared.dataList.filter { $0.guideId == self.guideData.id }
         var score = 0
         estimateDatas.forEach {
@@ -101,6 +102,8 @@ class BookViewController: UIViewController {
         self.score5ImageView.image = scoreImages[4]
         self.reviewLabel.text = "(\(estimateDatas.count))"
         
+        // TODO 特技
+        
         CommonUtility.setOnLineState(loginDate: self.guideData.loginDate, view: self.onlineStateView, label: self.onlineStateLabel)
         self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee)
         self.dayLabel.text = self.targetDate.toDayMonthYearText()
@@ -114,6 +117,7 @@ class BookViewController: UIViewController {
             self.placeInputViewHeightConstraint.constant = 0
             self.placeConfirmLabel.text = meetingPlace
             
+            // TODO 30min不要
             let fee = self.guideData.fee * (endTimeIndex - self.startTimeIndex)
             self.guideFeeLabel.text = CommonUtility.digit3Format(value: fee) + " JPY/30min"
             let transactionFee = CommonUtility.calculateTransactionFee(of: fee)
@@ -130,6 +134,7 @@ class BookViewController: UIViewController {
             
             self.selectedEndTimeIndex = self.startTimeIndex + 1
             
+            // TODO 30min不要
             self.guideFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
             let transactionFee = CommonUtility.calculateTransactionFee(of: self.guideData.fee)
             self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
