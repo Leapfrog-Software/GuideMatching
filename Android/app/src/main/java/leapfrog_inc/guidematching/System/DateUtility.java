@@ -104,6 +104,15 @@ public class DateUtility {
         return month + "." + year;
     }
 
+    public static String toDayMonthYearText(Calendar calendar) {
+
+        String day = String.valueOf(calendar.get(Calendar.DATE));
+        String[] monthAry = new String[] {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        String month = monthAry[calendar.get(Calendar.MONTH)];
+        String year = String.valueOf(calendar.get(Calendar.YEAR));
+        return month + " " + day + " " + year;
+    }
+
     public static String output(Calendar calendar) {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH) + 1;

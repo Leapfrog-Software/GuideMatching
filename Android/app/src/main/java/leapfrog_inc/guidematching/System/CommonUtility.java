@@ -57,4 +57,8 @@ public class CommonUtility {
         return String.format("%02d", (timeOffset / 2)) + ":" + String.format("%02d", 30 * (timeOffset % 2));
     }
 
+    public static int calculateTransactionFee(int guideFee) {
+        return guideFee * 15 / 100;
+    }
+
 }

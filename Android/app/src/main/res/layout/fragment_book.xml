@@ -22,7 +22,7 @@
                 android:scaleType="fitCenter"
                 android:background="#0000"/>
             <TextView
-                android:id="@+id/nameTextView"
+                android:id="@+id/headerTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Reservation form"
@@ -67,6 +67,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <TextView
+                                android:id="@+id/nameTextView"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="wrap_content"
@@ -80,31 +81,37 @@
                                 android:orientation="horizontal"
                                 android:layout_marginLeft="8dp">
                                 <ImageView
+                                    android:id="@+id/estimate1ImageView"
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
                                     android:src="@drawable/star_full_14_14"
                                     android:scaleType="fitCenter"/>
                                 <ImageView
+                                    android:id="@+id/estimate2ImageView"
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
                                     android:src="@drawable/star_full_14_14"
                                     android:scaleType="fitCenter"/>
                                 <ImageView
+                                    android:id="@+id/estimate3ImageView"
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
                                     android:src="@drawable/star_full_14_14"
                                     android:scaleType="fitCenter"/>
                                 <ImageView
+                                    android:id="@+id/estimate4ImageView"
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
                                     android:src="@drawable/star_full_14_14"
                                     android:scaleType="fitCenter"/>
                                 <ImageView
+                                    android:id="@+id/estimate5ImageView"
                                     android:layout_width="14dp"
                                     android:layout_height="14dp"
                                     android:src="@drawable/star_full_14_14"
                                     android:scaleType="fitCenter"/>
                                 <TextView
+                                    android:id="@+id/estimateCountTextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="(123)"
@@ -114,8 +121,9 @@
                                     android:layout_marginLeft="4dp"/>
                             </LinearLayout>
                         </LinearLayout>
-                        <!-- カテゴリー -->
+                        <!-- 特技 -->
                         <TextView
+                            android:id="@+id/specialtyTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Tokyo, Izakaya"
@@ -175,6 +183,7 @@
                         android:layout_marginTop="@dimen/bookContentsVerticalMargin"
                         android:layout_marginBottom="@dimen/bookContentsVerticalMargin"/>
                     <TextView
+                        android:id="@+id/dayTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="July 3 2018"
@@ -191,6 +200,7 @@
 
                 <!-- 時間(入力) -->
                 <LinearLayout
+                    android:id="@+id/timeInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -204,14 +214,26 @@
                         android:layout_marginTop="@dimen/bookContentsVerticalMargin"
                         android:layout_marginBottom="@dimen/bookContentsVerticalMargin"/>
                     <TextView
+                        android:id="@+id/timeInputStartTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="13:00　　-　　"
+                        android:text="13:00"
                         android:textSize="14dp"
                         android:textColor="@color/mainBlack"
                         android:layout_marginTop="@dimen/bookContentsVerticalMargin"
                         android:layout_marginBottom="@dimen/bookContentsVerticalMargin" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin" />
                     <Button
+                        android:id="@+id/timeInputEndButton"
                         android:layout_width="100dp"
                         android:layout_height="40dp"
                         android:text="13:00"
@@ -220,13 +242,10 @@
                         android:layout_gravity="center_vertical"
                         android:background="@drawable/shape_book_button"/>
                 </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/separatorGray"/>
 
                 <!-- 時間(確認) -->
                 <LinearLayout
+                    android:id="@+id/timeConfirmLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -240,14 +259,33 @@
                         android:layout_marginTop="@dimen/bookContentsVerticalMargin"
                         android:layout_marginBottom="@dimen/bookContentsVerticalMargin"/>
                     <TextView
-                        android:layout_width="match_parent"
+                        android:id="@+id/timeConfirmStartTextView"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="13:00　　-　　13:00"
+                        android:text="13:00"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
                         android:textSize="14dp"
                         android:textColor="@color/mainBlack"
                         android:layout_marginTop="@dimen/bookContentsVerticalMargin"
                         android:layout_marginBottom="@dimen/bookContentsVerticalMargin"
-                        android:layout_marginRight="@dimen/bookValueRightMargin"/>
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"/>
+                    <TextView
+                        android:id="@+id/timeConfirmEndTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="13:00"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin" />
                 </LinearLayout>
                 <View
                     android:layout_width="match_parent"
@@ -256,6 +294,7 @@
 
                 <!-- 待ち合わせ(入力) -->
                 <LinearLayout
+                    android:id="@+id/meetingPlaceInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -269,6 +308,37 @@
                         android:layout_marginTop="@dimen/bookContentsVerticalMargin"
                         android:gravity="top"/>
                     <EditText
+                        android:id="@+id/meetingPlaceInputEditText"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="80dp"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:gravity="top"
+                        android:padding="8dp"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginBottom="@dimen/bookContentsVerticalMargin"
+                        android:layout_marginRight="@dimen/bookValueRightMargin"
+                        android:background="@drawable/shape_book_edittext"/>
+                </LinearLayout>
+
+                <!-- 待ち合わせ(確認) -->
+                <LinearLayout
+                    android:id="@+id/meetingPlaceConfirmLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="@dimen/bookTitleWidth"
+                        android:layout_height="match_parent"
+                        android:text="Meeting\nPlace"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginLeft="@dimen/bookTitleLeftMargin"
+                        android:layout_marginTop="@dimen/bookContentsVerticalMargin"
+                        android:gravity="top"/>
+                    <TextView
+                        android:id="@+id/meetingPlaceConfirmTextView"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="80dp"
@@ -276,9 +346,10 @@
                         android:textColor="@color/mainBlack"
                         android:layout_marginTop="@dimen/bookContentsVerticalMargin"
                         android:layout_marginBottom="@dimen/bookContentsVerticalMargin"
-                        android:layout_marginRight="@dimen/bookValueRightMargin"
-                        android:background="@drawable/shape_book_edittext"/>
+                        android:layout_marginRight="@dimen/bookValueRightMargin" />
+
                 </LinearLayout>
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -299,6 +370,7 @@
                         android:layout_marginTop="@dimen/bookContentsVerticalMargin"
                         android:layout_marginBottom="@dimen/bookContentsVerticalMargin"/>
                     <TextView
+                        android:id="@+id/guideFeeTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="3,000 JPY"
@@ -329,6 +401,7 @@
                         android:layout_marginTop="@dimen/bookContentsVerticalMargin"
                         android:layout_marginBottom="@dimen/bookContentsVerticalMargin"/>
                     <TextView
+                        android:id="@+id/transactionFeeTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="450 JPY"
@@ -360,6 +433,7 @@
                         android:textStyle="bold"
                         android:textColor="#F79F03"/>
                     <TextView
+                        android:id="@+id/totalTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3,450 JPY"
@@ -371,6 +445,7 @@
 
                 <!-- 備考 -->
                 <TextView
+                    android:id="@+id/notesTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="備考"
@@ -381,6 +456,7 @@
                     android:layout_marginRight="20dp"/>
 
                 <Button
+                    android:id="@+id/nextButton"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:text="Continue >>"
