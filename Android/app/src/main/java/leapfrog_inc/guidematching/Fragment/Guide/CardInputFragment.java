@@ -13,11 +13,14 @@ import com.stripe.android.model.StripePaymentSource;
 import com.stripe.android.model.Token;
 import com.stripe.android.view.CardMultilineWidget;
 
+import java.util.Calendar;
+
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
 import leapfrog_inc.guidematching.Fragment.Common.Dialog;
 import leapfrog_inc.guidematching.Fragment.Common.Loading;
 import leapfrog_inc.guidematching.Http.DataModel.GuestData;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;
+import leapfrog_inc.guidematching.Http.Requester.CreateReserveRequester;
 import leapfrog_inc.guidematching.Http.Requester.FetchGuestRequester;
 import leapfrog_inc.guidematching.Http.Stripe.StripeManager;
 import leapfrog_inc.guidematching.R;
@@ -28,11 +31,19 @@ import leapfrog_inc.guidematching.System.SaveData;
 public class CardInputFragment extends BaseFragment {
 
     private GuideData mGuideData;
+    private Calendar mDate;
+    private int mStartIndex;
+    private int mEndIndex;
+    private String mMeetingPlace;
     private int mGuideFee;
     private int mTransactionFee;
 
-    public void set(GuideData guideData, int guideFee, int transactionFee) {
+    public void set(GuideData guideData, Calendar date, int startIndex, int endIndex, String meetingPlace, int guideFee, int transactionFee) {
         mGuideData = guideData;
+        mDate = date;
+        mStartIndex = startIndex;
+        mEndIndex = endIndex;
+        mMeetingPlace = meetingPlace;
         mGuideFee = guideFee;
         mTransactionFee = transactionFee;
     }
@@ -88,7 +99,21 @@ public class CardInputFragment extends BaseFragment {
             }
             @Override
             public void onSuccess(Token token) {
-                charge(token);
+                createReserve(token);
+            }
+        });
+    }
+
+    private void createReserve(final Token token) {
+
+        CreateReserveRequester.create(SaveData.getInstance().guestId, mGuideData.id, mMeetingPlace, mDate.getTime(), mStartIndex, mEndIndex, new CreateReserveRequester.Callback() {
+            @Override
+            public void didReceiveData(boolean result) {
+                if (result) {
+                    charge(token);
+                } else {
+                    Dialog.show(getActivity(), Dialog.Style.error, "Error", "Failed to communicate", null);
+                }
             }
         });
     }
@@ -110,6 +135,7 @@ public class CardInputFragment extends BaseFragment {
 
                 if (result) {
                     BookCompleteFragment fragment = new BookCompleteFragment();
+                    fragment.set(mGuideData, mDate, mStartIndex, mEndIndex, mMeetingPlace, mGuideFee, mTransactionFee);
                     stackFragment(fragment, AnimationType.horizontal);
                 } else {
                     Dialog.show(getActivity(), Dialog.Style.error, "Error", "Failed to communicate", null);

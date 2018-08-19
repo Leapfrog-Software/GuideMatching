@@ -206,7 +206,7 @@ public class BookFragment extends BaseFragment {
             CardInputFragment fragment = new CardInputFragment();
             int guideFee = mGuideData.fee * (mEndTimeIndex - mStartTimeIndex);
             int transactionFee = CommonUtility.calculateTransactionFee(guideFee);
-            fragment.set(mGuideData, guideFee, transactionFee);
+            fragment.set(mGuideData, mTargetDate, mStartTimeIndex, mEndTimeIndex, mMeetingPlace, guideFee, transactionFee);
             stackFragment(fragment, AnimationType.horizontal);
         }
     }
