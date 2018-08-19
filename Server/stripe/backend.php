@@ -99,7 +99,7 @@ function createCharge() {
 
   $customerId = $_POST["customerId"];
   $cardId = $_POST["cardId"];
-  $amount = $_POST["amount"];  
+  $amount = $_POST["amount"];
   $applicationFee = $_POST["applicationFee"];
   $destination = $_POST["destination"];
 
@@ -117,7 +117,7 @@ function createCharge() {
   try {
     $charge = \Stripe\Charge::create(
       Array(
-        "customer" => $customerId,
+//        "customer" => $customerId,
         "amount" => $amountInt,
         "currency" => "jpy",
         "source" => $cardId,
