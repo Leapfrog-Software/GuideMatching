@@ -58,7 +58,7 @@ public class GuideData {
         }
     }
 
-    public static  class GuideBankAccountData {
+    public static class GuideBankAccountData {
 
         public String name = "";
         public String kana = "";

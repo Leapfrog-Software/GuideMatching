@@ -14,6 +14,13 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/headerHeight"
             android:background="@color/headerOrange">
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="@dimen/headerHeight"
+                android:layout_height="@dimen/headerHeight"
+                android:src="@drawable/back_white"
+                android:scaleType="fitCenter"
+                android:background="#0000"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -24,13 +31,27 @@
                 android:layout_gravity="center"/>
         </FrameLayout>
 
-        <ListView
-            android:id="@+id/listView"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:divider="@null"
-            android:scrollbars="none"
-            android:overScrollMode="never"/>
+            android:layout_weight="1">
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:scrollbars="none"
+                android:overScrollMode="never"/>
+            <TextView
+                android:id="@+id/noDataTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="ガイドが見つかりません"
+                android:textSize="16dp"
+                android:textColor="#909090"
+                android:gravity="center"/>
+        </FrameLayout>
+
+
     </LinearLayout>
 </FrameLayout>
