@@ -21,8 +21,8 @@ public class MessageData {
             MessageData messageData = new MessageData();
             messageData.messageId = json.getString("messageId");
             messageData.senderId = json.getString("senderId");
-            messageData.receiverId = json.getString("senderId");
-            messageData.message = Base64Utility.decode(json.getString("senderId"));
+            messageData.receiverId = json.getString("receiverId");
+            messageData.message = Base64Utility.decode(json.getString("message"));
 
             messageData.datetime = DateUtility.stringToDate(json.getString("date"), "yyyyMMddkkmmss");
             if (messageData.datetime == null) {

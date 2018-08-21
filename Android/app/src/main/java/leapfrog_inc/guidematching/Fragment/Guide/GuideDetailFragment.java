@@ -16,6 +16,7 @@ import java.util.Date;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
 import leapfrog_inc.guidematching.Fragment.Common.Dialog;
+import leapfrog_inc.guidematching.Fragment.Message.MessageDetailFragment;
 import leapfrog_inc.guidematching.Fragment.Message.MessageFragment;
 import leapfrog_inc.guidematching.Fragment.MyPage.MyPageFragment;
 import leapfrog_inc.guidematching.Fragment.Search.SearchFragment;
@@ -188,6 +189,15 @@ public class GuideDetailFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 mScheduleFragment.changeToNextWeek();
+            }
+        });
+
+        view.findViewById(R.id.inqueryButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MessageDetailFragment fragment = new MessageDetailFragment();
+                fragment.set(mGuideData.id);
+                stackFragment(fragment, AnimationType.horizontal);
             }
         });
     }
