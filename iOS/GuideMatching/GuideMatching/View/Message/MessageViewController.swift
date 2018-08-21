@@ -63,6 +63,7 @@ extension MessageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageTableViewCell", for: indexPath) as! MessageTableViewCell
         let userId = self.userIds[indexPath.row]
+        // TODO guestは？
         if userId.contains("guide_") {
             if let guideData = (GuideRequester.shared.dataList.filter { $0.id == userId }).first {
                 cell.configure(guideData: guideData)
