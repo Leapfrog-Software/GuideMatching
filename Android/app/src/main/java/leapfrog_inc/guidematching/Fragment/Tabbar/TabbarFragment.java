@@ -30,6 +30,9 @@ public class TabbarFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_tabbar, null);
 
+        // TODO 定期更新
+
+
         initFragmentController();
         changeTab(0);
         initAction(view);
