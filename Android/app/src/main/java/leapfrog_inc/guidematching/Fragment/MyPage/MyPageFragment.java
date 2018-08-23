@@ -143,7 +143,8 @@ public class MyPageFragment extends BaseFragment {
     private void didSelectGuideButton(GuideButtonType type) {
 
         if (type == GuideButtonType.history) {
-            // TODO
+            MyPageHistoryFragment fragment = new MyPageHistoryFragment();
+            stackFragment(fragment, AnimationType.horizontal);
         } else if (type == GuideButtonType.schedule) {
             // TODO
         } else if (type == GuideButtonType.profile) {
@@ -288,10 +289,28 @@ public class MyPageFragment extends BaseFragment {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_reservation_none, parent, false);
             } else if (data.type == MyPageAdapterType.guideButton) {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_guidebutton, parent, false);
+
+                setGuideButtonCallback(convertView.findViewById(R.id.historyButton), GuideButtonType.history);
+                setGuideButtonCallback(convertView.findViewById(R.id.scheduleButton), GuideButtonType.schedule);
+                setGuideButtonCallback(convertView.findViewById(R.id.profileButton), GuideButtonType.profile);
+                setGuideButtonCallback(convertView.findViewById(R.id.paymentButton), GuideButtonType.payment);
+                setGuideButtonCallback(convertView.findViewById(R.id.reviewButton), GuideButtonType.review);
+
+
             } else if (data.type == MyPageAdapterType.guestButton) {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_guestbutton, parent, false);
             }
             return convertView;
+        }
+
+        private void setGuideButtonCallback(View button, final GuideButtonType type) {
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mGuideButtonCallback.didSelect(type);
+                }
+            });
         }
     }
 

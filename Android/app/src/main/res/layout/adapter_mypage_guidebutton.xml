@@ -7,7 +7,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
         <FrameLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -26,11 +27,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="History"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
                     android:textColor="@color/mainBlack"
+                    android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal"/>
             </LinearLayout>
             <Button
+                android:id="@+id/historyButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#0000"/>
@@ -54,11 +57,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Schedule"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/mainBlack"
                     android:layout_gravity="center_horizontal"/>
             </LinearLayout>
             <Button
+                android:id="@+id/scheduleButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#0000"/>
@@ -82,11 +87,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Profile"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/mainBlack"
                     android:layout_gravity="center_horizontal"/>
             </LinearLayout>
             <Button
+                android:id="@+id/profileButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#0000"/>
@@ -97,7 +104,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
         <FrameLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -116,11 +124,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Payment"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/mainBlack"
                     android:layout_gravity="center_horizontal"/>
             </LinearLayout>
             <Button
+                android:id="@+id/paymentButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#0000"/>
@@ -144,11 +154,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Review"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
                     android:textColor="@color/mainBlack"
-                    android:layout_gravity="center_horizontal"/>
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"/>
             </LinearLayout>
             <Button
+                android:id="@+id/reviewButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#0000"/>
