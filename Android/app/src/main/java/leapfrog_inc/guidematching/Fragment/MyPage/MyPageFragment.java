@@ -17,6 +17,8 @@ import java.util.Calendar;
 import java.util.Comparator;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
+import leapfrog_inc.guidematching.Fragment.Initial.GuestRegisterFragment;
+import leapfrog_inc.guidematching.Fragment.Initial.GuideRegisterFragment;
 import leapfrog_inc.guidematching.Fragment.Message.MessageDetailFragment;
 import leapfrog_inc.guidematching.Fragment.Message.MessageFragment;
 import leapfrog_inc.guidematching.Http.DataModel.EstimateData;
@@ -50,7 +52,12 @@ public class MyPageFragment extends BaseFragment {
 
     private void initListView(View view) {
 
-        MyPageAdapter adapter = new MyPageAdapter(getActivity());
+        MyPageAdapter adapter = new MyPageAdapter(getActivity(), new GuideButtonCallback() {
+            @Override
+            public void didSelect(GuideButtonType type) {
+                didSelectGuideButton(type);
+            }
+        });
 
         if (SaveData.getInstance().guideId.length() > 0) {
             adapter.add(createAdapterData(MyPageAdapterType.reservationTitle, "Reservation", null, false));
@@ -58,7 +65,7 @@ public class MyPageFragment extends BaseFragment {
             ArrayList<ReserveData> futureReserves = filterFutureReserves();
             if (futureReserves.size() > 0) {
                 for (int i = 0; i < futureReserves.size(); i++) {
-                    MyPageAdapterData adapterData = createAdapterData(MyPageAdapterType.reservatoinData, null, futureReserves.get(i), false);
+                    MyPageAdapterData adapterData = createAdapterData(MyPageAdapterType.reservationData, null, futureReserves.get(i), false);
                     adapter.add(adapterData);
                 }
             } else {
@@ -73,7 +80,7 @@ public class MyPageFragment extends BaseFragment {
             ArrayList<ReserveData> futureReserves = filterFutureReserves();
             if (futureReserves.size() > 0) {
                 for (int i = 0; i < futureReserves.size(); i++) {
-                    MyPageAdapterData adapterData = createAdapterData(MyPageAdapterType.reservatoinData, null, futureReserves.get(i), false);
+                    MyPageAdapterData adapterData = createAdapterData(MyPageAdapterType.reservationData, null, futureReserves.get(i), false);
                     adapter.add(adapterData);
                 }
             } else {
@@ -96,7 +103,7 @@ public class MyPageFragment extends BaseFragment {
                         }
                     }
 
-                    MyPageAdapterData adapterData = createAdapterData(MyPageAdapterType.reservatoinData, null, reserveData, needEstimate);
+                    MyPageAdapterData adapterData = createAdapterData(MyPageAdapterType.reservationData, null, reserveData, needEstimate);
                     adapter.add(adapterData);
                 }
             } else {
@@ -113,12 +120,37 @@ public class MyPageFragment extends BaseFragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String targetId = (String)adapterView.getItemAtPosition(i);
-                MessageDetailFragment fragment = new MessageDetailFragment();
-                fragment.set(targetId);
-                stackFragment(fragment, AnimationType.horizontal);
+                MyPageAdapterData data = (MyPageAdapterData)adapterView.getItemAtPosition(i);
+                if (data.type == MyPageAdapterType.reservationData) {
+                    if (data.needEstimate) {
+                        // TODO 評価画面
+                    } else {
+                        // TODO 予約詳細
+                    }
+                } else if (data.type == MyPageAdapterType.guestButton) {
+                    GuestRegisterFragment fragment = new GuestRegisterFragment();
+                    fragment.set(true);
+                    stackFragment(fragment, AnimationType.horizontal);
+                }
             }
         });
+    }
+
+    private void didSelectGuideButton(GuideButtonType type) {
+
+        if (type == GuideButtonType.history) {
+            // TODO
+        } else if (type == GuideButtonType.schedule) {
+            // TODO
+        } else if (type == GuideButtonType.profile) {
+            GuideRegisterFragment fragment = new GuideRegisterFragment();
+            fragment.set(true);
+            stackFragment(fragment, AnimationType.horizontal);
+        } else if (type == GuideButtonType.payment) {
+            // TODO
+        } else if (type == GuideButtonType.review) {
+            // TODO
+        }
     }
 
     private MyPageAdapterData createAdapterData(MyPageAdapterType type, String title, ReserveData reserveData, boolean needEstimate) {
@@ -181,7 +213,7 @@ public class MyPageFragment extends BaseFragment {
 
     private enum MyPageAdapterType {
         reservationTitle,
-        reservatoinData,
+        reservationData,
         reservationNoData,
         guideButton,
         guestButton
@@ -199,11 +231,13 @@ public class MyPageFragment extends BaseFragment {
 
         LayoutInflater mInflater;
         Context mContext;
+        GuideButtonCallback mGuideButtonCallback;
 
-        public MyPageAdapter(Context context){
+        public MyPageAdapter(Context context, GuideButtonCallback callback){
             super(context, 0);
             mInflater = LayoutInflater.from(context);
             mContext = context;
+            mGuideButtonCallback = callback;
         }
 
         @Override
@@ -214,7 +248,7 @@ public class MyPageFragment extends BaseFragment {
             if (data.type == MyPageAdapterType.reservationTitle) {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_reservation_title, parent, false);
                 ((TextView)convertView.findViewById(R.id.titleTextView)).setText(data.title);
-            } else if (data.type == MyPageAdapterType.reservatoinData) {
+            } else if (data.type == MyPageAdapterType.reservationData) {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_reservation, parent, false);
 
                 GuideData guideData = FetchGuideRequester.getInstance().query(data.reserveData.guideId);
@@ -251,5 +285,17 @@ public class MyPageFragment extends BaseFragment {
             }
             return convertView;
         }
+    }
+
+    private enum GuideButtonType {
+        history,
+        schedule,
+        profile,
+        payment,
+        review
+    }
+
+    private interface GuideButtonCallback {
+        void didSelect(GuideButtonType type);
     }
 }
