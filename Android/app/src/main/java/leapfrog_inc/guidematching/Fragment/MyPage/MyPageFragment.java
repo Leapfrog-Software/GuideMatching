@@ -127,7 +127,9 @@ public class MyPageFragment extends BaseFragment {
                         fragment.set(data.reserveData);
                         stackFragment(fragment, AnimationType.horizontal);
                     } else {
-                        // TODO 予約詳細
+                        MyPageReserveDetailFragment fragment = new MyPageReserveDetailFragment();
+                        fragment.set(data.reserveData);
+                        stackFragment(fragment, AnimationType.horizontal);
                     }
                 } else if (data.type == MyPageAdapterType.guestButton) {
                     GuestRegisterFragment fragment = new GuestRegisterFragment();
