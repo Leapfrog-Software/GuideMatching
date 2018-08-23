@@ -21,7 +21,7 @@ public class FetchReserveRequester {
         return requester;
     }
 
-    private ArrayList<ReserveData> mDataList = new ArrayList<ReserveData>();
+    public ArrayList<ReserveData> mDataList = new ArrayList<ReserveData>();
 
     public void fetch(final Callback callback) {
 

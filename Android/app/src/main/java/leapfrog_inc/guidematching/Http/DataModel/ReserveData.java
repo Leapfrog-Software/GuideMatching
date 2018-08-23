@@ -30,7 +30,7 @@ public class ReserveData {
             reserveData.guideId = json.getString("guideId");
             reserveData.meetingPlace = Base64Utility.decode(json.getString("meetingPlace"));
 
-            reserveData.day = DateUtility.stringToDate(json.getString("date"), "yyyyMMdd");
+            reserveData.day = DateUtility.stringToDate(json.getString("day"), "yyyyMMdd");
             if (reserveData.day == null) {
                 return null;
             }
@@ -43,7 +43,8 @@ public class ReserveData {
                 return null;
             }
 
-            reserveData.guideComment = json.getString("guideComment");
+            // TODO
+//            reserveData.guideComment = json.getString("guideComment");
 
             return reserveData;
 

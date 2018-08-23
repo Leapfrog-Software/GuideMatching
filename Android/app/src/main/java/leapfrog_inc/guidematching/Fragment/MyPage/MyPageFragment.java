@@ -123,7 +123,9 @@ public class MyPageFragment extends BaseFragment {
                 MyPageAdapterData data = (MyPageAdapterData)adapterView.getItemAtPosition(i);
                 if (data.type == MyPageAdapterType.reservationData) {
                     if (data.needEstimate) {
-                        // TODO 評価画面
+                        MyPageEstimateFragment fragment = new MyPageEstimateFragment();
+                        fragment.set(data.reserveData);
+                        stackFragment(fragment, AnimationType.horizontal);
                     } else {
                         // TODO 予約詳細
                     }
@@ -168,12 +170,14 @@ public class MyPageFragment extends BaseFragment {
         Calendar current = Calendar.getInstance();
 
         ArrayList<ReserveData> ret = new ArrayList<ReserveData>();
-        ArrayList<ReserveData> reserves = FetchReserveRequester.getInstance().query(SaveData.getInstance().guideId);
+        ArrayList<ReserveData> reserves = FetchReserveRequester.getInstance().mDataList;
         for (int i = 0; i < reserves.size(); i++) {
             ReserveData reserveData = reserves.get(i);
-            Calendar endTime = reserveData.toEndDate();
-            if (current.compareTo(endTime) < 0) {
-                ret.add(reserveData);
+            if ((reserveData.guideId.equals(SaveData.getInstance().guideId)) || (reserveData.guestId.equals(SaveData.getInstance().guestId))) {
+                Calendar endTime = reserveData.toEndDate();
+                if (current.compareTo(endTime) < 0) {
+                    ret.add(reserveData);
+                }
             }
         }
         ret.sort(new Comparator<ReserveData>() {
@@ -192,12 +196,14 @@ public class MyPageFragment extends BaseFragment {
         Calendar current = Calendar.getInstance();
 
         ArrayList<ReserveData> ret = new ArrayList<ReserveData>();
-        ArrayList<ReserveData> reserves = FetchReserveRequester.getInstance().query(SaveData.getInstance().guideId);
+        ArrayList<ReserveData> reserves = FetchReserveRequester.getInstance().mDataList;
         for (int i = 0; i < reserves.size(); i++) {
             ReserveData reserveData = reserves.get(i);
-            Calendar endTime = reserveData.toEndDate();
-            if (current.compareTo(endTime) >= 0) {
-                ret.add(reserveData);
+            if ((reserveData.guideId.equals(SaveData.getInstance().guideId)) || (reserveData.guestId.equals(SaveData.getInstance().guestId))) {
+                Calendar endTime = reserveData.toEndDate();
+                if (current.compareTo(endTime) >= 0) {
+                    ret.add(reserveData);
+                }
             }
         }
         ret.sort(new Comparator<ReserveData>() {
