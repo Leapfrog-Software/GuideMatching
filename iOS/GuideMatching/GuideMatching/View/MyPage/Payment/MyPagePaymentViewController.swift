@@ -42,6 +42,8 @@ class MyPagePaymentViewController: UIViewController {
             return
         }
         
+        // TODO トータルじゃなく今月
+        
         var totalAmount = 0
         ReserveRequester.shared.dataList.forEach { reserveData in
             if reserveData.guideId == myGuideData.id {
