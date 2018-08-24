@@ -140,7 +140,7 @@ public class TabbarFragment extends BaseFragment {
             @Override
             public void run() {
                 fetch();
-                new Handler().postDelayed(this, 5000);
+                new Handler().postDelayed(this, 60000);
             }
         };
         new Handler().post(runnable);
