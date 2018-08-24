@@ -36,7 +36,7 @@ public class MyPagePaymentFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_mypage_payment, null);
 
         initAction(view);
-        initListView(view);
+        resetListView(view);
 
         return view;
     }
@@ -51,9 +51,12 @@ public class MyPagePaymentFragment extends BaseFragment {
         });
     }
 
-    private void initListView(View view) {
+    public void resetListView(View v) {
 
-        MyPagePaymentAdapter adapter = new MyPagePaymentAdapter(getActivity());
+        View view = v;
+        if (view == null) view = getView();
+
+        MyPagePaymentAdapter adapter = new MyPagePaymentAdapter(getActivity(), this);
 
         GuideData myGuideData = FetchGuideRequester.getInstance().query(SaveData.getInstance().guideId);
 
@@ -104,7 +107,6 @@ public class MyPagePaymentFragment extends BaseFragment {
         adapter.add(accountAdapterData);
 
         ListView listView = (ListView)view.findViewById(R.id.listView);
-
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
     }
@@ -130,6 +132,10 @@ public class MyPagePaymentFragment extends BaseFragment {
         return ret;
     }
 
+    private void onTapRegisterAccount() {
+        stackFragment(new MyPageEditAccount(), AnimationType.horizontal);
+    }
+
     private enum MyPagePaymentAdapterType {
         currentFee,
         history,
@@ -149,39 +155,51 @@ public class MyPagePaymentFragment extends BaseFragment {
 
         LayoutInflater mInflater;
         Context mContext;
+        MyPagePaymentFragment mFragment;
 
-        public MyPagePaymentAdapter(Context context){
+        public MyPagePaymentAdapter(Context context, MyPagePaymentFragment fragment){
             super(context, 0);
             mInflater = LayoutInflater.from(context);
             mContext = context;
+            mFragment = fragment;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            MyPagePaymentAdapterData reserveData = getItem(position);
+            MyPagePaymentAdapterData data = getItem(position);
 
-            if (reserveData.type == MyPagePaymentAdapterType.currentFee) {
+            if (data.type == MyPagePaymentAdapterType.currentFee) {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_payment_currentfee, parent, false);
+                String fee = "¥" + CommonUtility.digit3Format(data.currentFee);
+                ((TextView)convertView.findViewById(R.id.feeTextView)).setText(fee);
 
-                // TODO
-
-
-            } else if (reserveData.type == MyPagePaymentAdapterType.history) {
+            } else if (data.type == MyPagePaymentAdapterType.history) {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_payment_history, parent, false);
 
-                // TODO
+                ((TextView)convertView.findViewById(R.id.monthTextView)).setText(data.monthString);
+                String fee = "¥" + CommonUtility.digit3Format(data.monthFee);
+                ((TextView)convertView.findViewById(R.id.feeTextView)).setText(fee);
 
-
-            } else if (reserveData.type == MyPagePaymentAdapterType.historyNone) {
+            } else if (data.type == MyPagePaymentAdapterType.historyNone) {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_payment_history_none, parent, false);
 
-                // TODO
-
-            } else if (reserveData.type == MyPagePaymentAdapterType.account) {
+            } else if (data.type == MyPagePaymentAdapterType.account) {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_payment_account, parent, false);
 
-                // TODO
+                ((TextView)convertView.findViewById(R.id.nameTextView)).setText(data.accountData.name);
+                ((TextView)convertView.findViewById(R.id.kanaTextView)).setText(data.accountData.kana);
+                ((TextView)convertView.findViewById(R.id.bankTextView)).setText(data.accountData.bankName);
+                ((TextView)convertView.findViewById(R.id.bankBranchTextView)).setText(data.accountData.bankBranchName);
+                ((TextView)convertView.findViewById(R.id.accountTypeTextView)).setText(data.accountData.accountType);
+                ((TextView)convertView.findViewById(R.id.accountNumberTextView)).setText(data.accountData.accountNumber);
+
+                convertView.findViewById(R.id.registerButton).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mFragment.onTapRegisterAccount();
+                    }
+                });
             }
 
             return convertView;

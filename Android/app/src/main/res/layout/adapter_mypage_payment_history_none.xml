@@ -3,4 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="振込履歴はありません"
+        android:textSize="18dp"
+        android:textColor="#909090"
+        android:textStyle="bold"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_horizontal"/>
+
 </LinearLayout>
