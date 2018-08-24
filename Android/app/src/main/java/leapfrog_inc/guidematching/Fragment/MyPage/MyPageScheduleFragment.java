@@ -305,6 +305,7 @@ public class MyPageScheduleFragment extends BaseFragment {
                 GuideData.GuideScheduleData newScheduleData = new GuideData.GuideScheduleData();
                 newScheduleData.day = targetDate.getTime();
                 newScheduleData.isFreeList = isFreeList;
+                myGuideData.schedules.add(newScheduleData);
             }
         }
 
@@ -379,13 +380,15 @@ public class MyPageScheduleFragment extends BaseFragment {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        float density = DeviceUtility.getDeviceDensity((Activity)mContext);
+                        int cellWidth = (DeviceUtility.getWindowSize((Activity)mContext).x - (int)((20 + 80 + 20) * density)) / 7;
                         int startX = (int)(80 * DeviceUtility.getDeviceDensity((Activity)mContext));
-                        int width = (DeviceUtility.getWindowSize((Activity)mContext).x - startX) / 6;
                         int touchX = (int)event.getX();
                         for (int i = 0; i < 7; i++) {
-                            if ((touchX > startX + i * width)
-                                    && (touchX < startX + (i + 1) * width)) {
+                            if ((touchX > startX + i * cellWidth)
+                                    && (touchX < startX + (i + 1) * cellWidth)) {
                                 mCallback.didTap(i, fPosition);
+                                return true;
                             }
                         }
                     }

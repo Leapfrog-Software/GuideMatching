@@ -41,9 +41,20 @@ public class MyPageHistoryFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_mypage_history, null);
 
+        initAction(view);
         initListView(view);
 
         return view;
+    }
+
+    private void initAction(View view) {
+
+        view.findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popFragment(AnimationType.horizontal);
+            }
+        });
     }
 
     private void initListView(View view) {

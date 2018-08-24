@@ -51,7 +51,9 @@ public class GuideData {
             for (int i = 0; i < isFreeList.length; i++) {
                 if (isFreeList[i]) str.append("1");
                 else str.append("0");
-                str.append("_");
+                if (i != isFreeList.length - 1) {
+                    str.append("_");
+                }
             }
 
             return str.toString();
