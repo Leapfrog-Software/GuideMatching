@@ -15,6 +15,7 @@ public class MyPageReviewFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_mypage_review, null);
 
+        // TODO
 
         return view;
     }
