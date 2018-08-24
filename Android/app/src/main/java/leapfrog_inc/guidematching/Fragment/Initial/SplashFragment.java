@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
+import leapfrog_inc.guidematching.Fragment.Common.Dialog;
 import leapfrog_inc.guidematching.Fragment.Tabbar.TabbarFragment;
 import leapfrog_inc.guidematching.Http.Requester.FetchEstimateRequester;
 import leapfrog_inc.guidematching.Http.Requester.FetchGuestRequester;
@@ -115,14 +116,12 @@ public class SplashFragment extends BaseFragment {
                 || (mMessageFetchResult == FetchResult.error)
                 || (mEstimateFetchResult == FetchResult.error)) {
 
-            // TODO
-//            Dialog.show(getActivity(), Dialog.Style.error, "エラー", "通信に失敗しました", new Dialog.DialogCallback() {
-//                @Override
-//                public void didClose() {
-//                    checkResult();
-//                }
-//            });
-
+            Dialog.show(getActivity(), Dialog.Style.error, "エラー", "通信に失敗しました", new Dialog.DialogCallback() {
+                @Override
+                public void didClose() {
+                    checkResult();
+                }
+            });
             return;
         }
 

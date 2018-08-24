@@ -103,23 +103,19 @@ public class GuideDetailFragment extends BaseFragment {
             return;
         }
 
-        // TODO
-//        for (int i = 0; i < mGuideData.schedules.size(); i++) {
-//            Calendar targetDate = Calendar.getInstance();
-//            GuideData.GuideScheduleData schedule = mGuideData.schedules.get(i);
-//            targetDate.setTime(schedule.day);
-//            if (DateUtility.isSameDay(targetDate, date)) {
-//                if (schedule.isFreeList[timeIndex]) {
-//                    BookFragment fragment = new BookFragment();
-//                    fragment.set(mGuideData, targetDate, timeIndex);
-//                    stackFragment(fragment, AnimationType.horizontal);
-//                    return;
-//                }
-//            }
-//        }
-        BookFragment fragment = new BookFragment();
-        fragment.set(mGuideData, Calendar.getInstance(), timeIndex);
-        stackFragment(fragment, AnimationType.horizontal);
+        for (int i = 0; i < mGuideData.schedules.size(); i++) {
+            Calendar targetDate = Calendar.getInstance();
+            GuideData.GuideScheduleData schedule = mGuideData.schedules.get(i);
+            targetDate.setTime(schedule.day);
+            if (DateUtility.isSameDay(targetDate, date)) {
+                if (schedule.isFreeList[timeIndex]) {
+                    BookFragment fragment = new BookFragment();
+                    fragment.set(mGuideData, targetDate, timeIndex);
+                    stackFragment(fragment, AnimationType.horizontal);
+                    return;
+                }
+            }
+        }
     }
 
     private void setFaceImage(ImageView imageView, String url) {

@@ -2,6 +2,7 @@ package leapfrog_inc.guidematching.Fragment.Tabbar;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -11,11 +12,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
 import leapfrog_inc.guidematching.Fragment.Guide.GuideFragment;
 import leapfrog_inc.guidematching.Fragment.Message.MessageFragment;
 import leapfrog_inc.guidematching.Fragment.MyPage.MyPageFragment;
+import leapfrog_inc.guidematching.Fragment.MyPage.MyPagePaymentFragment;
 import leapfrog_inc.guidematching.Fragment.Search.SearchFragment;
+import leapfrog_inc.guidematching.Http.Requester.FetchEstimateRequester;
+import leapfrog_inc.guidematching.Http.Requester.FetchGuestRequester;
+import leapfrog_inc.guidematching.Http.Requester.FetchGuideRequester;
+import leapfrog_inc.guidematching.Http.Requester.FetchMessageRequester;
+import leapfrog_inc.guidematching.Http.Requester.FetchReserveRequester;
 import leapfrog_inc.guidematching.R;
 
 public class TabbarFragment extends BaseFragment {
@@ -30,12 +39,11 @@ public class TabbarFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_tabbar, null);
 
-        // TODO 定期更新
-
-
         initFragmentController();
         changeTab(0);
         initAction(view);
+
+        startTimer();
 
         return view;
     }
@@ -123,6 +131,61 @@ public class TabbarFragment extends BaseFragment {
         } else {
             mMyPageFragment.getView().setVisibility(View.GONE);
             ((ImageView) view.findViewById(R.id.tab4ImageView)).setImageResource(R.drawable.tab4_off);
+        }
+    }
+
+    private void startTimer() {
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                fetch();
+                new Handler().postDelayed(this, 5000);
+            }
+        };
+        new Handler().post(runnable);
+
+        fetch();
+    }
+
+    private void fetch() {
+
+        FetchGuestRequester.getInstance().fetch(new FetchGuestRequester.Callback() {
+            @Override
+            public void didReceiveData(boolean result) {
+                FetchGuideRequester.getInstance().fetch(new FetchGuideRequester.Callback() {
+                    @Override
+                    public void didReceiveData(boolean result) {
+                        FetchReserveRequester.getInstance().fetch(new FetchReserveRequester.Callback() {
+                            @Override
+                            public void didReceiveData(boolean result) {
+                                FetchMessageRequester.getInstance().fetch(new FetchMessageRequester.Callback() {
+                                    @Override
+                                    public void didReceiveData(boolean result) {
+                                        FetchEstimateRequester.getInstance().fetch(new FetchEstimateRequester.Callback() {
+                                            @Override
+                                            public void didReceiveData(boolean result) {
+                                                reloadFragments();
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    private void reloadFragments() {
+
+        List<Fragment> fragments = getActivity().getSupportFragmentManager().getFragments();
+        for (int i = 0; i < fragments.size(); i++) {
+            BaseFragment fragment = (BaseFragment) fragments.get(i);
+            if (fragment instanceof GuideFragment) {
+                ((GuideFragment)fragment).resetListView(null);
+            }
         }
     }
 }

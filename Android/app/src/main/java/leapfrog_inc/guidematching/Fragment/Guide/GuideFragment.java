@@ -44,7 +44,7 @@ public class GuideFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_guide, null);
 
-        initListView(view);
+        resetListView(view);
         initAction(view);
 
         if (mSearchCondition == null) {
@@ -54,7 +54,10 @@ public class GuideFragment extends BaseFragment {
         return view;
     }
 
-    private void initListView(View view) {
+    public void resetListView(View v) {
+
+        View view = v;
+        if (view == null) view = getView();
 
         GuideAdapter adapter = new GuideAdapter(getActivity());
         boolean isEmpty = true;
