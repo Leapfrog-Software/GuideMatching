@@ -73,8 +73,9 @@ public class MyPageHistoryFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ReserveData data = (ReserveData) adapterView.getItemAtPosition(i);
-
-                // TODO
+                MyPageHistoryDetailFragment fragment = new MyPageHistoryDetailFragment();
+                fragment.set(data);
+                stackFragment(fragment, AnimationType.horizontal);
             }
         });
 
