@@ -4,7 +4,7 @@
     android:layout_height="44dp"
     android:orientation="horizontal"
     android:background="#F9F6E9">
-    
+
     <FrameLayout
         android:layout_width="80dp"
         android:layout_height="match_parent"
@@ -35,7 +35,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/date1Layout"
+        android:id="@+id/day1Layout"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
@@ -61,7 +61,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/date2Layout"
+        android:id="@+id/day2Layout"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
@@ -87,7 +87,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/date3Layout"
+        android:id="@+id/day3Layout"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
@@ -113,7 +113,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/date4Layout"
+        android:id="@+id/day4Layout"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
@@ -139,7 +139,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/date5Layout"
+        android:id="@+id/day5Layout"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
@@ -165,7 +165,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/date6Layout"
+        android:id="@+id/day6Layout"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"
@@ -191,7 +191,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/date7Layout"
+        android:id="@+id/day7Layout"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent"

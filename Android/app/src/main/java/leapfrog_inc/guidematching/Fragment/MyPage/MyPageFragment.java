@@ -1,6 +1,5 @@
 package leapfrog_inc.guidematching.Fragment.MyPage;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,17 +18,11 @@ import java.util.Comparator;
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
 import leapfrog_inc.guidematching.Fragment.Initial.GuestRegisterFragment;
 import leapfrog_inc.guidematching.Fragment.Initial.GuideRegisterFragment;
-import leapfrog_inc.guidematching.Fragment.Message.MessageDetailFragment;
-import leapfrog_inc.guidematching.Fragment.Message.MessageFragment;
 import leapfrog_inc.guidematching.Http.DataModel.EstimateData;
-import leapfrog_inc.guidematching.Http.DataModel.GuestData;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;
-import leapfrog_inc.guidematching.Http.DataModel.MessageData;
 import leapfrog_inc.guidematching.Http.DataModel.ReserveData;
 import leapfrog_inc.guidematching.Http.Requester.FetchEstimateRequester;
-import leapfrog_inc.guidematching.Http.Requester.FetchGuestRequester;
 import leapfrog_inc.guidematching.Http.Requester.FetchGuideRequester;
-import leapfrog_inc.guidematching.Http.Requester.FetchMessageRequester;
 import leapfrog_inc.guidematching.Http.Requester.FetchReserveRequester;
 import leapfrog_inc.guidematching.R;
 import leapfrog_inc.guidematching.System.CommonUtility;
@@ -146,15 +139,18 @@ public class MyPageFragment extends BaseFragment {
             MyPageHistoryFragment fragment = new MyPageHistoryFragment();
             stackFragment(fragment, AnimationType.horizontal);
         } else if (type == GuideButtonType.schedule) {
-            // TODO
+            MyPageScheduleFragment fragment = new MyPageScheduleFragment();
+            stackFragment(fragment, AnimationType.horizontal);
         } else if (type == GuideButtonType.profile) {
             GuideRegisterFragment fragment = new GuideRegisterFragment();
             fragment.set(true);
             stackFragment(fragment, AnimationType.horizontal);
         } else if (type == GuideButtonType.payment) {
-            // TODO
+            MyPagePaymentFragment fragment = new MyPagePaymentFragment();
+            stackFragment(fragment, AnimationType.horizontal);
         } else if (type == GuideButtonType.review) {
-            // TODO
+            MyPageReviewFragment fragment = new MyPageReviewFragment();
+            stackFragment(fragment, AnimationType.horizontal);
         }
     }
 

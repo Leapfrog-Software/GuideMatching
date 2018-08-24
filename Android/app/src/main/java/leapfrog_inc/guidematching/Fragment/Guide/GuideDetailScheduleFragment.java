@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -20,6 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
+import leapfrog_inc.guidematching.Fragment.MyPage.MyPageScheduleFragment;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;
 import leapfrog_inc.guidematching.Http.Requester.FetchEstimateRequester;
 import leapfrog_inc.guidematching.Http.Requester.FetchGuideRequester;
@@ -44,7 +46,7 @@ public class GuideDetailScheduleFragment extends BaseFragment {
         boolean isPast;
     }
 
-    private  ArrayList<GuideData.GuideScheduleData> mSchedules;
+    private ArrayList<GuideData.GuideScheduleData> mSchedules;
     private ScrollView mParentScrollView;
     private GuideDetailScheduleFragmentCallback mCallback;
     private int mWeekOffset = 0;
@@ -250,6 +252,13 @@ public class GuideDetailScheduleFragment extends BaseFragment {
             ((TextView)convertView.findViewById(R.id.date6TextView)).setText(stateToString(data.get(5).type));
             ((TextView)convertView.findViewById(R.id.date7TextView)).setText(stateToString(data.get(6).type));
 
+            ((FrameLayout)convertView.findViewById(R.id.date1Layout)).setBackgroundColor(ContextCompat.getColor(mContext, colorId(data.get(0))));
+            ((FrameLayout)convertView.findViewById(R.id.date2Layout)).setBackgroundColor(ContextCompat.getColor(mContext, colorId(data.get(1))));
+            ((FrameLayout)convertView.findViewById(R.id.date3Layout)).setBackgroundColor(ContextCompat.getColor(mContext, colorId(data.get(2))));
+            ((FrameLayout)convertView.findViewById(R.id.date4Layout)).setBackgroundColor(ContextCompat.getColor(mContext, colorId(data.get(3))));
+            ((FrameLayout)convertView.findViewById(R.id.date5Layout)).setBackgroundColor(ContextCompat.getColor(mContext, colorId(data.get(4))));
+            ((FrameLayout)convertView.findViewById(R.id.date6Layout)).setBackgroundColor(ContextCompat.getColor(mContext, colorId(data.get(5))));
+            ((FrameLayout)convertView.findViewById(R.id.date7Layout)).setBackgroundColor(ContextCompat.getColor(mContext, colorId(data.get(6))));
 
             final int fPosition = position;
             convertView.setOnTouchListener(new View.OnTouchListener() {
@@ -283,6 +292,17 @@ public class GuideDetailScheduleFragment extends BaseFragment {
                 return "-";
             } else {
                 return "■";
+            }
+        }
+
+        private int colorId(State state) {
+
+            if (state.isPast) {
+                return R.color.scheduleIsPast;
+            } else if (state.type == StateType.reserved) {
+                return R.color.scheduleReserved;
+            } else {
+                return R.color.scheduleNone;
             }
         }
     }
