@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#5000"
-    android:id="@+id/rootLayout">
+    android:id="@+id/rootLayout"
+    android:clickable="true">
 
     <LinearLayout
         android:id="@+id/contentsLayout"

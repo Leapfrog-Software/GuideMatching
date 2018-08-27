@@ -6,5 +6,94 @@
     android:clickable="true"
     android:id="@+id/rootLayout">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/contentsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal">
+            <!-- Tab1 -->
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/tab1ImageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/tab1_on"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:id="@+id/tab1Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#0000"/>
+            </FrameLayout>
+            <!-- Tab2 -->
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/tab2ImageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/tab2_off"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:id="@+id/tab2Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#0000"/>
+            </FrameLayout>
+            <!-- Tab3 -->
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/tab3ImageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/tab3_off"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:id="@+id/tab3Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#0000"/>
+            </FrameLayout>
+            <!-- Tab4 -->
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/tab4ImageView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/tab4_off"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center"/>
+                <Button
+                    android:id="@+id/tab4Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#0000"/>
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </FrameLayout>

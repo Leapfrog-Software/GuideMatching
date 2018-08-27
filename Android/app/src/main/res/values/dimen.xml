@@ -2,4 +2,17 @@
 <resources>
     <dimen name="headerHeight">44dp</dimen>
     <dimen name="headerTitleTextSize">16dp</dimen>
+
+    <dimen name="guideDetailTitleTextSize">14dp</dimen>
+    <dimen name="guideDetailvalueTextSize">14dp</dimen>
+    <dimen name="guideDetailTitleVerticalMargin">14dp</dimen>
+    <dimen name="guideDetailTitleLeftMargin">14dp</dimen>
+    <dimen name="guideDetailValueVerticalMargin">14dp</dimen>
+    <dimen name="guideDetailValueLeftMargin">14dp</dimen>
+    <dimen name="guideDetailValueRightMargin">14dp</dimen>
+
+    <dimen name="bookTitleLeftMargin">20dp</dimen>
+    <dimen name="bookTitleWidth">100dp</dimen>
+    <dimen name="bookValueRightMargin">20dp</dimen>
+    <dimen name="bookContentsVerticalMargin">20dp</dimen>
 </resources>

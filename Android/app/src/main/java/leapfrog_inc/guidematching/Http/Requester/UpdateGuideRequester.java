@@ -60,7 +60,7 @@ public class UpdateGuideRequester {
             }
             schedules.append(guideData.schedules.get(i).toString());
         }
-        param.append("schedules" + schedules.toString());
+        param.append("schedules=" + schedules.toString());
 
         param.append("&");
         param.append("stripeAccountId=" + guideData.stripeAccountId);

@@ -20,7 +20,7 @@ public class FetchEstimateRequester {
         return requester;
     }
 
-    private ArrayList<EstimateData> mDataList = new ArrayList<EstimateData>();
+    public ArrayList<EstimateData> mDataList = new ArrayList<EstimateData>();
 
     public void fetch(final Callback callback) {
 
@@ -56,5 +56,33 @@ public class FetchEstimateRequester {
 
     public interface Callback {
         void didReceiveData(boolean result);
+    }
+
+    public ArrayList<EstimateData> query(String guideId) {
+
+        ArrayList<EstimateData> ret = new ArrayList<EstimateData>();
+
+        for (int i = 0; i < mDataList.size(); i++) {
+            EstimateData estimateData = mDataList.get(i);
+            if (estimateData.guideId.equals(guideId)) {
+                ret.add(estimateData);
+            }
+        }
+        return ret;
+    }
+
+    public int queryAverage(String guideId) {
+
+        ArrayList<EstimateData> estimateDatas = query(guideId);
+
+        if (estimateDatas.size() == 0) {
+            return 0;
+        }
+
+        int score = 0;
+        for (int i = 0; i < estimateDatas.size(); i++) {
+            score += estimateDatas.get(i).score;
+        }
+        return score / estimateDatas.size();
     }
 }

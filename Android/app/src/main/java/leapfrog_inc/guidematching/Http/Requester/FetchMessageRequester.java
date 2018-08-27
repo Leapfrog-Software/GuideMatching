@@ -65,4 +65,30 @@ public class FetchMessageRequester {
     public interface Callback {
         void didReceiveData(boolean result);
     }
+
+    public ArrayList<MessageData> query(String userId) {
+
+        ArrayList<MessageData> ret = new ArrayList<MessageData>();
+        for (int i = 0; i < mDataList.size(); i++) {
+            MessageData messageData = mDataList.get(i);
+            if ((messageData.senderId.equals(userId)) || (messageData.receiverId.equals(userId))) {
+                ret.add(messageData);
+            }
+        }
+        return ret;
+    }
+
+    public ArrayList<MessageData> query(String userId1, String userId2) {
+
+        ArrayList<MessageData> ret = new ArrayList<MessageData>();
+        for (int i = 0; i < mDataList.size(); i++) {
+            MessageData messageData = mDataList.get(i);
+            if ((messageData.senderId.equals(userId1)) && (messageData.receiverId.equals(userId2))) {
+                ret.add(messageData);
+            } else if ((messageData.senderId.equals(userId2)) && (messageData.receiverId.equals(userId1))) {
+                ret.add(messageData);
+            }
+        }
+        return ret;
+    }
 }

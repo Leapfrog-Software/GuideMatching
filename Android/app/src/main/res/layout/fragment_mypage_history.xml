@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:clickable="true"
+    android:id="@+id/rootLayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/headerHeight"
+            android:background="@color/headerOrange">
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="@dimen/headerHeight"
+                android:layout_height="@dimen/headerHeight"
+                android:src="@drawable/back_white"
+                android:scaleType="fitCenter"
+                android:background="#0000"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guide History"
+                android:textSize="@dimen/headerTitleTextSize"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none"
+            android:overScrollMode="never" />
+
+        <TextView
+            android:id="@+id/noDataTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="No History"
+            android:textSize="18dp"
+            android:textColor="#909090"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</FrameLayout>

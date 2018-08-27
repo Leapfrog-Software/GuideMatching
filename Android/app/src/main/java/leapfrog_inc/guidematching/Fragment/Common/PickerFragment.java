@@ -69,7 +69,12 @@ public class PickerFragment extends BaseFragment {
     }
 
     private int getListViewHeight() {
-        return (int)(50 * DeviceUtility.getDeviceDensity(getActivity())) * mDataList.size();
+        int height = (int)(50 * DeviceUtility.getDeviceDensity(getActivity())) * mDataList.size();
+        if (height > DeviceUtility.getWindowSize(getActivity()).y - 100) {
+            return DeviceUtility.getWindowSize(getActivity()).y - 100;
+        } else {
+            return height;
+        }
     }
 
 

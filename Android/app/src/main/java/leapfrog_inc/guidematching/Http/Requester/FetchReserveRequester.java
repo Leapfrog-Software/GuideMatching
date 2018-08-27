@@ -21,7 +21,7 @@ public class FetchReserveRequester {
         return requester;
     }
 
-    private ArrayList<ReserveData> mDataList = new ArrayList<ReserveData>();
+    public ArrayList<ReserveData> mDataList = new ArrayList<ReserveData>();
 
     public void fetch(final Callback callback) {
 
@@ -58,5 +58,16 @@ public class FetchReserveRequester {
 
     public interface Callback {
         void didReceiveData(boolean result);
+    }
+
+    public ArrayList<ReserveData> query(String guideId) {
+
+        ArrayList<ReserveData> ret = new ArrayList<ReserveData>();
+        for (int i = 0; i < mDataList.size(); i++) {
+            if (mDataList.get(i).guideId.equals(guideId)) {
+                ret.add(mDataList.get(i));
+            }
+        }
+        return ret;
     }
 }

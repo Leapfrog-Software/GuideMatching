@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="今月の売り上げ"
+            android:textSize="14dp"
+            android:textColor="@color/mainBlack"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:id="@+id/feeTextView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="¥0"
+            android:textSize="14dp"
+            android:textColor="@color/mainBlack"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            android:gravity="right"
+            android:layout_marginRight="20dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/separatorGray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="振込履歴"
+            android:textSize="14dp"
+            android:textColor="@color/mainBlack"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="※振込手数料を控除した金額"
+            android:textSize="10dp"
+            android:textColor="@color/mainBlack"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/separatorGray"
+        android:layout_marginTop="8dp"/>
+
+</LinearLayout>
