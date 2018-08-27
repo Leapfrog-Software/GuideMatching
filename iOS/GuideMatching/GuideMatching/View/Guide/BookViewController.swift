@@ -87,20 +87,15 @@ class BookViewController: UIViewController {
         ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + self.guideData.id + "-0", imageView: self.faceImageView)
         self.nameLabel.text = self.guideData.name
         
-        // TODO 平均
-        let estimateDatas = EstimateRequester.shared.dataList.filter { $0.guideId == self.guideData.id }
-        var score = 0
-        estimateDatas.forEach {
-            score += $0.score
-        }
-        
+        let score = EstimateRequester.shared.queryAverage(guideId: self.guideData.id)
         let scoreImages = CommonUtility.createEstimateImages(score)
         self.score1ImageView.image = scoreImages[0]
         self.score2ImageView.image = scoreImages[1]
         self.score3ImageView.image = scoreImages[2]
         self.score4ImageView.image = scoreImages[3]
         self.score5ImageView.image = scoreImages[4]
-        self.reviewLabel.text = "(\(estimateDatas.count))"
+        let estimates = EstimateRequester.shared.query(guideId: self.guideData.id)
+        self.reviewLabel.text = "(\(estimates.count))"
         
         // TODO 特技
         
