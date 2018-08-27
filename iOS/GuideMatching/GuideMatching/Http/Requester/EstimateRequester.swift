@@ -72,11 +72,19 @@ class EstimateRequester {
         }
     }
     
+    func query(guideId: String) -> [EstimateData] {
+
+        return self.dataList.filter { estimate in
+            return estimate.guideId == guideId
+        }
+    }
+    
     func queryAverage(guideId: String) -> Int {
         
         var count = 0
         var total = 0
-        self.dataList.forEach { estimate in
+        
+        self.query(guideId: guideId).forEach { estimate in
             if estimate.guideId == guideId {
                 count += 1
                 total += estimate.score

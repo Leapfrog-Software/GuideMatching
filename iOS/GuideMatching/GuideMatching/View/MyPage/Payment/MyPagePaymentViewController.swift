@@ -11,7 +11,7 @@ import UIKit
 class MyPagePaymentViewController: UIViewController {
     
     enum CellType {
-        case total
+        case currentMonth
         case history
         case noData
         case account
@@ -19,7 +19,7 @@ class MyPagePaymentViewController: UIViewController {
     
     struct CellData {
         let cellType: CellType
-        let totalAmount: Int?
+        let currentMonthAmount: Int?
         let month: Date?
         let monthAmount: Int?
     }
@@ -42,18 +42,20 @@ class MyPagePaymentViewController: UIViewController {
             return
         }
         
-        var totalAmount = 0
+        var currentMonthAmount = 0
         ReserveRequester.shared.dataList.forEach { reserveData in
             if reserveData.guideId == myGuideData.id {
-                totalAmount += myGuideData.fee * (reserveData.endTime - reserveData.startTime)
+                if reserveData.day.isSameMonth(with: Date()) {
+                    currentMonthAmount += myGuideData.fee * (reserveData.endTime - reserveData.startTime)
+                }
             }
         }
-        let totalCellData = CellData(cellType: .total, totalAmount: totalAmount, month: nil, monthAmount: nil)
+        let totalCellData = CellData(cellType: .currentMonth, currentMonthAmount: currentMonthAmount, month: nil, monthAmount: nil)
         self.cellDatas.append(totalCellData)
         
         let monthList = self.getMonthList()
         if monthList.isEmpty {
-            let noDataCellData = CellData(cellType: .noData, totalAmount: nil, month: nil, monthAmount: nil)
+            let noDataCellData = CellData(cellType: .noData, currentMonthAmount: nil, month: nil, monthAmount: nil)
             self.cellDatas.append(noDataCellData)
         } else {
             monthList.forEach { month in
@@ -65,12 +67,12 @@ class MyPagePaymentViewController: UIViewController {
                         }
                     }
                 }
-                let historyCellData = CellData(cellType: .history, totalAmount: nil, month: month, monthAmount: amount)
+                let historyCellData = CellData(cellType: .history, currentMonthAmount: nil, month: month, monthAmount: amount)
                 self.cellDatas.append(historyCellData)
             }
         }
         
-        let accountTableCellData = CellData(cellType: .account, totalAmount: nil, month: nil, monthAmount: nil)
+        let accountTableCellData = CellData(cellType: .account, currentMonthAmount: nil, month: nil, monthAmount: nil)
         self.cellDatas.append(accountTableCellData)
         
         self.tableView.reloadData()
@@ -104,9 +106,9 @@ extension MyPagePaymentViewController: UITableViewDelegate, UITableViewDataSourc
         let cellData = self.cellDatas[indexPath.row]
         
         switch cellData.cellType {
-        case .total:
+        case .currentMonth:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyPagePaymentTotalTableViewCell", for: indexPath) as! MyPagePaymentTotalTableViewCell
-            cell.configure(amount: cellData.totalAmount!)
+            cell.configure(amount: cellData.currentMonthAmount!)
             return cell
         case .history:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyPagePaymentHistoryTableViewCell", for: indexPath) as! MyPagePaymentHistoryTableViewCell

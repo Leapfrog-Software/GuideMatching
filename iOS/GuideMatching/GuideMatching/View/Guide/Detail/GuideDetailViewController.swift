@@ -54,16 +54,13 @@ class GuideDetailViewController: UIViewController {
         self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
         self.notesLabel.text = self.guideData.notes
         
-        let estimateDatas = EstimateRequester.shared.dataList.filter { $0.guideId == guideData.id }
-        var score = 0
-        estimateDatas.forEach {
-            score += $0.score
-        }
-        self.scoreLabel.text = "\(score)"
-        self.estimateNumberLabel.text = "(\(estimateDatas.count))"
+        let score = EstimateRequester.shared.queryAverage(guideId: guideData.id)
+        self.scoreLabel.text = "\(score / 10)"
+        let estimates = EstimateRequester.shared.query(guideId: guideData.id)
+        self.estimateNumberLabel.text = "(\(estimates.count))"
         
         if let scheduleView = UINib(nibName: "GuideDetailScheduleView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? GuideDetailScheduleView {
-            scheduleView.set(schedules: self.guideData.schedules, didSelect: { [weak self] targetDate, timeOffset in
+            scheduleView.set(guideId: self.guideData.id, schedules: self.guideData.schedules, didSelect: { [weak self] targetDate, timeOffset in
                 self?.didSelectSchedule(targetDate: targetDate, timeOffset: timeOffset)
             })
             self.scheduleBaseView.addSubview(scheduleView)

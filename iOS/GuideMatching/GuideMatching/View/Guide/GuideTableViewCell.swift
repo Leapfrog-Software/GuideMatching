@@ -35,23 +35,20 @@ class GuideTableViewCell: UITableViewCell {
         
         self.nameLabel.text = guideData.name
         
-        let estimateDatas = EstimateRequester.shared.dataList.filter { $0.guideId == guideData.id }
-        var score = 0
-        estimateDatas.forEach {
-            score += $0.score
-        }
+        let score = EstimateRequester.shared.queryAverage(guideId: guideData.id)
         let estimateImages = CommonUtility.createEstimateImages(score)
         self.estimate1ImageView.image = estimateImages[0]
         self.estimate2ImageView.image = estimateImages[1]
         self.estimate3ImageView.image = estimateImages[2]
         self.estimate4ImageView.image = estimateImages[3]
         self.estimate5ImageView.image = estimateImages[4]
-        self.estimateNumberLabel.text = "(\(estimateDatas.count))"
+        let estimates = EstimateRequester.shared.query(guideId: guideData.id)
+        self.estimateNumberLabel.text = "(\(estimates.count))"
         
         self.specialtyLabel.text = guideData.specialty
         
         CommonUtility.setOnLineState(loginDate: guideData.loginDate, view: self.loginStateView, label: self.loginStateLabel)
         
-        self.feeLabel.text = CommonUtility.digit3Format(value: guideData.fee) + " JPY/h"
+        self.feeLabel.text = CommonUtility.digit3Format(value: guideData.fee) + " JPY/30min"
     }
 }

@@ -73,7 +73,7 @@ class GuideViewController: UIViewController {
                 }
                 if let time = condition.time {
                     let isFreeList = guideData.schedules.map { $0.isFreeList[time] }
-                    if isFreeList.isEmpty {
+                    if isFreeList.contains(true) {
                         return false
                     }
                 }

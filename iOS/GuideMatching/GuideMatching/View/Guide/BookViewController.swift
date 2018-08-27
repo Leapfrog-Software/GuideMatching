@@ -87,19 +87,15 @@ class BookViewController: UIViewController {
         ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + self.guideData.id + "-0", imageView: self.faceImageView)
         self.nameLabel.text = self.guideData.name
         
-        let estimateDatas = EstimateRequester.shared.dataList.filter { $0.guideId == self.guideData.id }
-        var score = 0
-        estimateDatas.forEach {
-            score += $0.score
-        }
-        
+        let score = EstimateRequester.shared.queryAverage(guideId: self.guideData.id)
         let scoreImages = CommonUtility.createEstimateImages(score)
         self.score1ImageView.image = scoreImages[0]
         self.score2ImageView.image = scoreImages[1]
         self.score3ImageView.image = scoreImages[2]
         self.score4ImageView.image = scoreImages[3]
         self.score5ImageView.image = scoreImages[4]
-        self.reviewLabel.text = "(\(estimateDatas.count))"
+        let estimates = EstimateRequester.shared.query(guideId: self.guideData.id)
+        self.reviewLabel.text = "(\(estimates.count))"
         
         CommonUtility.setOnLineState(loginDate: self.guideData.loginDate, view: self.onlineStateView, label: self.onlineStateLabel)
         self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee)
@@ -115,9 +111,9 @@ class BookViewController: UIViewController {
             self.placeConfirmLabel.text = meetingPlace
             
             let fee = self.guideData.fee * (endTimeIndex - self.startTimeIndex)
-            self.guideFeeLabel.text = CommonUtility.digit3Format(value: fee) + " JPY/30min"
+            self.guideFeeLabel.text = CommonUtility.digit3Format(value: fee) + " JPY"
             let transactionFee = CommonUtility.calculateTransactionFee(of: fee)
-            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
+            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY"
             self.totalFeeLabel.text = CommonUtility.digit3Format(value: fee + transactionFee) + " JPY"
             
         } else {
@@ -130,9 +126,9 @@ class BookViewController: UIViewController {
             
             self.selectedEndTimeIndex = self.startTimeIndex + 1
             
-            self.guideFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
+            self.guideFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY"
             let transactionFee = CommonUtility.calculateTransactionFee(of: self.guideData.fee)
-            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
+            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY"
             self.totalFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee + transactionFee) + " JPY"
         }
         
