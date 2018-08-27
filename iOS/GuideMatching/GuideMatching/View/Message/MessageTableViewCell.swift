@@ -23,4 +23,13 @@ class MessageTableViewCell: UITableViewCell {
         self.messageLabel.text = guideData.message
         self.loginLabel.text = DateFormatter(dateFormat: "MM/dd").string(from: guideData.loginDate)
     }
+    
+    func configure(guestData: GuestData) {
+        
+        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + guestData.id + "-0", imageView: self.faceImageView)
+        
+        self.nameLabel.text = guestData.name
+        self.messageLabel.text = ""
+        self.loginLabel.text = ""
+    }
 }

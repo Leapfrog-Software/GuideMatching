@@ -49,7 +49,6 @@ class GuideTableViewCell: UITableViewCell {
         
         CommonUtility.setOnLineState(loginDate: guideData.loginDate, view: self.loginStateView, label: self.loginStateLabel)
         
-        // TODO 30min
-        self.feeLabel.text = CommonUtility.digit3Format(value: guideData.fee) + " JPY/h"
+        self.feeLabel.text = CommonUtility.digit3Format(value: guideData.fee) + " JPY/30min"
     }
 }

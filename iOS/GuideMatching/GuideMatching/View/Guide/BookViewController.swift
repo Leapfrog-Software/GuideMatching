@@ -97,8 +97,6 @@ class BookViewController: UIViewController {
         let estimates = EstimateRequester.shared.query(guideId: self.guideData.id)
         self.reviewLabel.text = "(\(estimates.count))"
         
-        // TODO 特技
-        
         CommonUtility.setOnLineState(loginDate: self.guideData.loginDate, view: self.onlineStateView, label: self.onlineStateLabel)
         self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee)
         self.dayLabel.text = self.targetDate.toDayMonthYearText()
@@ -112,11 +110,10 @@ class BookViewController: UIViewController {
             self.placeInputViewHeightConstraint.constant = 0
             self.placeConfirmLabel.text = meetingPlace
             
-            // TODO 30min不要
             let fee = self.guideData.fee * (endTimeIndex - self.startTimeIndex)
-            self.guideFeeLabel.text = CommonUtility.digit3Format(value: fee) + " JPY/30min"
+            self.guideFeeLabel.text = CommonUtility.digit3Format(value: fee) + " JPY"
             let transactionFee = CommonUtility.calculateTransactionFee(of: fee)
-            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
+            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY"
             self.totalFeeLabel.text = CommonUtility.digit3Format(value: fee + transactionFee) + " JPY"
             
         } else {
@@ -129,10 +126,9 @@ class BookViewController: UIViewController {
             
             self.selectedEndTimeIndex = self.startTimeIndex + 1
             
-            // TODO 30min不要
-            self.guideFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
+            self.guideFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY"
             let transactionFee = CommonUtility.calculateTransactionFee(of: self.guideData.fee)
-            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
+            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY"
             self.totalFeeLabel.text = CommonUtility.digit3Format(value: self.guideData.fee + transactionFee) + " JPY"
         }
         
