@@ -23,9 +23,11 @@ class GuideDetailScheduleView: UIView {
     private var weekOffset = 0
     
     private var scheduleDatas = [GuideScheduleData]()
+    private var guideId: String!
     private var didSelect: ((Date, Int) -> ())?
     
-    func set(schedules: [GuideScheduleData], didSelect: @escaping ((Date, Int) -> ())) {
+    func set(guideId: String, schedules: [GuideScheduleData], didSelect: @escaping ((Date, Int) -> ())) {
+        self.guideId = guideId
         self.scheduleDatas = schedules
         self.didSelect = didSelect
     }
@@ -128,13 +130,23 @@ extension GuideDetailScheduleView: UITableViewDelegate, UITableViewDataSource {
         
         let today = Date()
         
-        // TODO 予約済みのパターン
-        
         var states = [GuideDetailScheduleTableViewCell.State]()
         for i in 0..<7 {
             let targetDate = Date().latestSunday().add(day: self.weekOffset * 7 + i)
             
             var type = GuideDetailScheduleTableViewCell.StateType.free
+            
+            let isReserved = ReserveRequester.shared.dataList.contains(where: { reserveData -> Bool in
+                if reserveData.guideId == self.guideId {
+                    if reserveData.day.isSameDay(with: targetDate) {
+                        if indexPath.row >= reserveData.startTime && indexPath.row <= reserveData.endTime {
+                            return true
+                        }
+                    }
+                }
+                return false
+            })
+            
             if let scheduleData = (self.scheduleDatas.filter { $0.date.isSameDay(with: targetDate) }).first {
                 if scheduleData.isFreeList[indexPath.row] {
                     type = .free

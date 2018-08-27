@@ -60,7 +60,7 @@ class GuideDetailViewController: UIViewController {
         self.estimateNumberLabel.text = "(\(estimates.count))"
         
         if let scheduleView = UINib(nibName: "GuideDetailScheduleView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? GuideDetailScheduleView {
-            scheduleView.set(schedules: self.guideData.schedules, didSelect: { [weak self] targetDate, timeOffset in
+            scheduleView.set(guideId: self.guideData.id, schedules: self.guideData.schedules, didSelect: { [weak self] targetDate, timeOffset in
                 self?.didSelectSchedule(targetDate: targetDate, timeOffset: timeOffset)
             })
             self.scheduleBaseView.addSubview(scheduleView)
