@@ -44,8 +44,8 @@ class AccountRequester {
         })
     }
     
-    class func createGuide(email: String, name: String, nationality: String, language: String, specialty: String,
-                           category: String, message: String, timeZone: String, applicableNumber: Int,
+    class func createGuide(email: String, name: String, nationality: String, language: String, area: String,
+                           keyword: String, category: String, message: String, applicableNumber: Int,
                            fee: Int, notes: String, completion: @escaping ((Bool, String?) -> ())) {
         
         var params: [String: String] = ["command": "createGuide"]
@@ -53,10 +53,10 @@ class AccountRequester {
         params["name"] = name.base64Encode() ?? ""
         params["nationality"] = nationality.base64Encode() ?? ""
         params["language"] = language.base64Encode() ?? ""
-        params["specialty"] = specialty.base64Encode() ?? ""
+        params["area"] = area.base64Encode() ?? ""
+        params["keyword"] = keyword.base64Encode() ?? ""
         params["category"] = category.base64Encode() ?? ""
         params["message"] = message.base64Encode() ?? ""
-        params["timeZone"] = timeZone.base64Encode() ?? ""
         params["applicableNumber"] = "\(applicableNumber)"
         params["fee"] = "\(fee)"
         params["notes"] = notes.base64Encode() ?? ""
@@ -77,10 +77,10 @@ class AccountRequester {
         params["name"] = guideData.name.base64Encode() ?? ""
         params["nationality"] = guideData.nationality.base64Encode() ?? ""
         params["language"] = guideData.language.base64Encode() ?? ""
-        params["specialty"] = guideData.specialty.base64Encode() ?? ""
+        params["area"] = guideData.area.base64Encode() ?? ""
+        params["keyword"] = guideData.keyword.base64Encode() ?? ""
         params["category"] = guideData.category.base64Encode() ?? ""
         params["message"] = guideData.message.base64Encode() ?? ""
-        params["timeZone"] = guideData.timeZone.base64Encode() ?? ""
         params["applicableNumber"] = "\(guideData.applicableNumber)"
         params["fee"] = "\(guideData.fee)"
         params["notes"] = guideData.notes.base64Encode() ?? ""

@@ -57,7 +57,7 @@ class GuideViewController: UIViewController {
                         && !guideData.name.contains(keyword)
                         && !guideData.nationality.contains(keyword)
                         && !guideData.category.contains(keyword)
-                        && !guideData.specialty.contains(keyword)
+                        && !guideData.keyword.contains(keyword)
                         && !guideData.notes.contains(keyword) {
                         return false
                     }

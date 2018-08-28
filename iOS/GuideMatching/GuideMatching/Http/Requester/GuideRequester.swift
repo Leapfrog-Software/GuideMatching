@@ -88,10 +88,10 @@ struct GuideData {
     var name: String
     var nationality: String
     var language: String
-    var specialty: String
+    var area: String
+    var keyword: String
     var category: String
     var message: String
-    var timeZone: String
     var applicableNumber: Int
     var fee: Int
     var notes: String
@@ -111,10 +111,10 @@ struct GuideData {
         self.name = (data["name"] as? String)?.base64Decode() ?? ""
         self.nationality = (data["nationality"] as? String)?.base64Decode() ?? ""
         self.language = (data["language"] as? String)?.base64Decode() ?? ""
-        self.specialty = (data["specialty"] as? String)?.base64Decode() ?? ""
+        self.area = (data["area"] as? String)?.base64Decode() ?? ""
+        self.keyword = (data["keyword"] as? String)?.base64Decode() ?? ""
         self.category = (data["category"] as? String)?.base64Decode() ?? ""
         self.message = (data["message"] as? String)?.base64Decode() ?? ""
-        self.timeZone = (data["timeZone"] as? String)?.base64Decode() ?? ""
         self.applicableNumber = Int(data["applicableNumber"] as? String ?? "") ?? 0
         self.fee = Int(data["fee"] as? String ?? "") ?? 0
         self.notes = (data["notes"] as? String)?.base64Decode() ?? ""

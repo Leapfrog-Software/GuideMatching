@@ -13,10 +13,10 @@ class GuideDetailViewController: UIViewController {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var imageScrollView: UIScrollView!
     @IBOutlet private weak var languageLabel: UILabel!
+    @IBOutlet private weak var areaLabel: UILabel!
     @IBOutlet private weak var categoryLabel: UILabel!
-    @IBOutlet private weak var specialtyLabel: UILabel!
+    @IBOutlet private weak var keywordLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
-    @IBOutlet private weak var timeZoneLabel: UILabel!
     @IBOutlet private weak var applicableNumberLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var notesLabel: UILabel!
@@ -46,10 +46,10 @@ class GuideDetailViewController: UIViewController {
         self.imageScrollView.contentSize = CGSize(width: windowWidth, height: windowWidth)
         
         self.languageLabel.text = self.guideData.language
+        self.areaLabel.text = self.guideData.area
         self.categoryLabel.text = self.guideData.category
-        self.specialtyLabel.text = self.guideData.specialty
+        self.keywordLabel.text = self.guideData.keyword
         self.messageLabel.text = self.guideData.message
-        self.timeZoneLabel.text = self.guideData.timeZone
         self.applicableNumberLabel.text = "\(self.guideData.applicableNumber)人"
         self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
         self.notesLabel.text = self.guideData.notes
