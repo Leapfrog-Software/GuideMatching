@@ -71,6 +71,7 @@
 		BB505A0220E26F8500491506 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0120E26F8500491506 /* HttpManager.swift */; };
 		BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0320E26F8D00491506 /* ApiManager.swift */; };
 		BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB505A0620E2703C00491506 /* AccountRequester.swift */; };
+		BB68506821357A7A00CBD20A /* MultiPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB68506721357A7A00CBD20A /* MultiPickerViewController.swift */; };
 		BB7077C121150123004136F3 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7077C021150123004136F3 /* Notification+Name.swift */; };
 		BB9F4209211338E400350461 /* MyPageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */; };
 		BB9F420F2113395E00350461 /* MyPagePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */; };
@@ -165,6 +166,7 @@
 		BB505A0120E26F8500491506 /* HttpManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		BB505A0320E26F8D00491506 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		BB505A0620E2703C00491506 /* AccountRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRequester.swift; sourceTree = "<group>"; };
+		BB68506721357A7A00CBD20A /* MultiPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPickerViewController.swift; sourceTree = "<group>"; };
 		BB7077C021150123004136F3 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		BB9F4208211338E400350461 /* MyPageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageHistoryViewController.swift; sourceTree = "<group>"; };
 		BB9F420E2113395E00350461 /* MyPagePaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentViewController.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 			children = (
 				2E94041020E36B7600362878 /* PickerViewController.swift */,
 				2E94041220E36B8400362878 /* PickerTableViewCell.swift */,
+				BB68506721357A7A00CBD20A /* MultiPickerViewController.swift */,
 			);
 			path = Picker;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				BB9F4209211338E400350461 /* MyPageHistoryViewController.swift in Sources */,
 				BBFEBB2020E4DD3600C9F01C /* MyPageReservationTableViewCell.swift in Sources */,
 				BB9F420F2113395E00350461 /* MyPagePaymentViewController.swift in Sources */,
+				BB68506821357A7A00CBD20A /* MultiPickerViewController.swift in Sources */,
 				BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */,
 				2E8D376C2114434C00AF21E0 /* EstimateViewController.swift in Sources */,
 				2E94040020E3307600362878 /* Constants.swift in Sources */,

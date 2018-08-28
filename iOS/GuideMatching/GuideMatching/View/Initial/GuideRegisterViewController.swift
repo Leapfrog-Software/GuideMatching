@@ -34,7 +34,6 @@ class GuideRegisterViewController: UIViewController {
     @IBOutlet private weak var feeTextField: UITextField!
     @IBOutlet private weak var notesTextView: UITextView!
     @IBOutlet private weak var tourBaseStackView: UIStackView!
-    @IBOutlet private weak var tourBaseViewHeightConstraint: NSLayoutConstraint!
     
     private var pickerTarget: ImageType?
     private var face1Image: UIImage?
@@ -209,7 +208,6 @@ class GuideRegisterViewController: UIViewController {
     }
     
     @IBAction func onTapCreateTour(_ sender: Any) {
-        
         let tour = self.viewController(storyboard: "Initial", identifier: "CreateTourViewController") as! CreateTourViewController
         self.stack(viewController: tour, animationType: .horizontal)
     }

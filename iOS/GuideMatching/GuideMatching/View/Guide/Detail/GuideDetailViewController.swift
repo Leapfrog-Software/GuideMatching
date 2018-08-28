@@ -93,54 +93,62 @@ class GuideDetailViewController: UIViewController {
     
     private func initScore() {
         
-        let score = EstimateRequester.shared.queryAverage(guideId: guideData.id)
-        self.scoreLabel.text = "\(score / 10)"
+        let score = Double(EstimateRequester.shared.queryAverage(guideId: guideData.id))
+        self.scoreLabel.text = String(format: "%.1f", score / 10)
         let estimates = EstimateRequester.shared.query(guideId: guideData.id)
         
         let totalCnt = estimates.count
         self.estimateNumberLabel.text = "(\(estimates.count))"
         
-        var score0Rate = estimates.filter { $0.score < 10 }.count * 100 / totalCnt
-        var score1Rate = estimates.filter { $0.score < 20 }.count * 100 / totalCnt
-        var score2Rate = estimates.filter { $0.score < 30 }.count * 100 / totalCnt
-        var score3Rate = estimates.filter { $0.score < 40 }.count * 100 / totalCnt
-        var score4Rate = estimates.filter { $0.score < 50 }.count * 100 / totalCnt
-        var score5Rate = estimates.filter { $0.score >= 50 }.count * 100 / totalCnt
-        
-        var maxRate = score0Rate
-        var maxIndex = 0
-        if score1Rate > maxRate {
-            maxRate = score1Rate
-            maxIndex = 1
-        }
-        if score2Rate > maxRate {
-            maxRate = score2Rate
-            maxIndex = 2
-        }
-        if score3Rate > maxRate {
-            maxRate = score3Rate
-            maxIndex = 3
-        }
-        if score4Rate > maxRate {
-            maxRate = score4Rate
-            maxIndex = 4
-        }
-        if score5Rate > maxRate {
-            maxRate = score5Rate
-            maxIndex = 5
-        }
-        if maxIndex == 0 {
-            score0Rate = 100 - score1Rate - score2Rate - score3Rate - score4Rate - score5Rate
-        } else if maxIndex == 1 {
-            score1Rate = 100 - score0Rate - score2Rate - score3Rate - score4Rate - score5Rate
-        } else if maxIndex == 2 {
-            score2Rate = 100 - score0Rate - score1Rate - score3Rate - score4Rate - score5Rate
-        } else if maxIndex == 3 {
-            score3Rate = 100 - score0Rate - score1Rate - score2Rate - score4Rate - score5Rate
-        } else if maxIndex == 4 {
-            score4Rate = 100 - score0Rate - score1Rate - score2Rate - score3Rate - score5Rate
-        } else if maxIndex == 5 {
-            score5Rate = 100 - score0Rate - score1Rate - score2Rate - score3Rate - score4Rate
+        var score0Rate = 0
+        var score1Rate = 0
+        var score2Rate = 0
+        var score3Rate = 0
+        var score4Rate = 0
+        var score5Rate = 0
+        if totalCnt > 0 {
+            score0Rate = estimates.filter { $0.score < 10 }.count * 100 / totalCnt
+            score1Rate = estimates.filter { $0.score >= 10 && $0.score < 20 }.count * 100 / totalCnt
+            score2Rate = estimates.filter { $0.score >= 20 && $0.score < 30 }.count * 100 / totalCnt
+            score3Rate = estimates.filter { $0.score >= 30 && $0.score < 40 }.count * 100 / totalCnt
+            score4Rate = estimates.filter { $0.score >= 40 && $0.score < 50 }.count * 100 / totalCnt
+            score5Rate = estimates.filter { $0.score >= 50 }.count * 100 / totalCnt
+            
+            var maxRate = score0Rate
+            var maxIndex = 0
+            if score1Rate > maxRate {
+                maxRate = score1Rate
+                maxIndex = 1
+            }
+            if score2Rate > maxRate {
+                maxRate = score2Rate
+                maxIndex = 2
+            }
+            if score3Rate > maxRate {
+                maxRate = score3Rate
+                maxIndex = 3
+            }
+            if score4Rate > maxRate {
+                maxRate = score4Rate
+                maxIndex = 4
+            }
+            if score5Rate > maxRate {
+                maxRate = score5Rate
+                maxIndex = 5
+            }
+            if maxIndex == 0 {
+                score0Rate = 100 - score1Rate - score2Rate - score3Rate - score4Rate - score5Rate
+            } else if maxIndex == 1 {
+                score1Rate = 100 - score0Rate - score2Rate - score3Rate - score4Rate - score5Rate
+            } else if maxIndex == 2 {
+                score2Rate = 100 - score0Rate - score1Rate - score3Rate - score4Rate - score5Rate
+            } else if maxIndex == 3 {
+                score3Rate = 100 - score0Rate - score1Rate - score2Rate - score4Rate - score5Rate
+            } else if maxIndex == 4 {
+                score4Rate = 100 - score0Rate - score1Rate - score2Rate - score3Rate - score5Rate
+            } else if maxIndex == 5 {
+                score5Rate = 100 - score0Rate - score1Rate - score2Rate - score3Rate - score4Rate
+            }
         }
 
         let barWidth = self.starBarView.frame.size.width
