@@ -26,13 +26,16 @@ class GuideRegisterViewController: UIViewController {
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var nationalityTextField: UITextField!
     @IBOutlet private weak var languageLabel: UILabel!
-    @IBOutlet private weak var specialtyTextView: UITextView!
+    @IBOutlet private weak var areaTextField: UITextField!
+    @IBOutlet private weak var keywordTextView: UITextView!
     @IBOutlet private weak var categoryLabel: UILabel!
     @IBOutlet private weak var messageTextView: UITextView!
-    @IBOutlet private weak var timeZoneTextView: UITextView!
     @IBOutlet private weak var applicableNumberLabel: UILabel!
     @IBOutlet private weak var feeTextField: UITextField!
     @IBOutlet private weak var notesTextView: UITextView!
+    @IBOutlet private weak var tourBaseStackView: UIStackView!
+    @IBOutlet private weak var createTourBaseView: UIView!
+    @IBOutlet private weak var createTourBaseViewHeightConstraint: NSLayoutConstraint!
     
     private var pickerTarget: ImageType?
     private var face1Image: UIImage?
@@ -55,15 +58,19 @@ class GuideRegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.resetContents()
+        
         if self.isEdit {
-            self.initContents()
             self.headerTitleLabel.text = "Edit Profile"
         } else {
             self.headerTitleLabel.text = "New Registration"
+            
+            self.createTourBaseView.isHidden = true
+            self.createTourBaseViewHeightConstraint.constant = 0
         }
     }
     
-    private func initContents() {
+    func resetContents() {
         
         guard let myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId) else {
             return
@@ -77,13 +84,28 @@ class GuideRegisterViewController: UIViewController {
         self.nameTextField.text = myGuideData.name
         self.nationalityTextField.text = myGuideData.nationality
         self.languageLabel.text = myGuideData.language
-        self.specialtyTextView.text = myGuideData.specialty
+        self.areaTextField.text = myGuideData.area
+        self.keywordTextView.text = myGuideData.keyword
         self.categoryLabel.text = myGuideData.category
         self.messageTextView.text = myGuideData.message
-        self.timeZoneTextView.text = myGuideData.timeZone
         self.applicableNumberLabel.text = "\(myGuideData.applicableNumber)"
         self.feeTextField.text = "\(myGuideData.fee)"
         self.notesTextView.text = myGuideData.notes
+        
+        self.tourBaseStackView.arrangedSubviews.forEach { self.tourBaseStackView.removeArrangedSubview($0) }
+        myGuideData.tours.forEach { tourData in
+            let tourView = UINib(nibName: "GuideRegisterTourView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! GuideRegisterTourView
+            tourView.set(tourData: tourData, didTap: { [weak self] tourData in
+                self?.onTapTour(tourData: tourData)
+            })
+            self.tourBaseStackView.addArrangedSubview(tourView)
+        }
+    }
+    
+    private func onTapTour(tourData: GuideTourData) {
+        let tour = self.viewController(storyboard: "Initial", identifier: "CreateTourViewController") as! CreateTourViewController
+        tour.set(guideTourData: tourData)
+        self.stack(viewController: tour, animationType: .horizontal)
     }
     
     private func stackTabbar() {
@@ -191,6 +213,11 @@ class GuideRegisterViewController: UIViewController {
         }
     }
     
+    @IBAction func onTapCreateTour(_ sender: Any) {
+        let tour = self.viewController(storyboard: "Initial", identifier: "CreateTourViewController") as! CreateTourViewController
+        self.stack(viewController: tour, animationType: .horizontal)
+    }
+    
     private func updateGuide() {
         
         var myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId)!
@@ -198,10 +225,10 @@ class GuideRegisterViewController: UIViewController {
         myGuideData.name = self.nameTextField.text ?? ""
         myGuideData.nationality = self.nationalityTextField.text ?? ""
         myGuideData.language = self.languages[self.languageIndex]
-        myGuideData.specialty = self.specialtyTextView.text ?? ""
+        myGuideData.area = self.areaTextField.text ?? ""
+        myGuideData.keyword = self.keywordTextView.text ?? ""
         myGuideData.category = self.categories[self.categoryIndex]
         myGuideData.message = self.messageTextView.text ?? ""
-        myGuideData.timeZone = self.timeZoneTextView.text ?? ""
         myGuideData.applicableNumber = self.applicableNumbers[self.applicableNumberIndex]
         myGuideData.fee = Int(self.feeTextField.text ?? "0") ?? 0
         myGuideData.notes = self.notesTextView.text ?? ""
@@ -229,15 +256,15 @@ class GuideRegisterViewController: UIViewController {
         let name = self.nameTextField.text ?? ""
         let nationality = self.nationalityTextField.text ?? ""
         let language = self.languages[self.languageIndex]
-        let specialty = self.specialtyTextView.text ?? ""
+        let area = self.areaTextField.text ?? ""
+        let keyword = self.keywordTextView.text ?? ""
         let category = self.categories[self.categoryIndex]
         let message = self.messageTextView.text ?? ""
-        let timeZone = self.timeZoneTextView.text ?? ""
         let applicableNumber = self.applicableNumbers[self.applicableNumberIndex]
         let fee = Int(self.feeTextField.text ?? "0") ?? 0
         let notes = self.notesTextView.text ?? ""
         
-        AccountRequester.createGuide(email: email, name: name, nationality: nationality, language: language, specialty: specialty, category: category, message: message, timeZone: timeZone, applicableNumber: applicableNumber, fee: fee, notes: notes, completion: { resultCreate, guideId in
+        AccountRequester.createGuide(email: email, name: name, nationality: nationality, language: language, area: area, keyword: keyword, category: category, message: message, applicableNumber: applicableNumber, fee: fee, notes: notes, completion: { resultCreate, guideId in
             if resultCreate, let guideId = guideId {
                 self.uploadAllImage(guideId: guideId, completion: { resultImage in
                     if resultImage {

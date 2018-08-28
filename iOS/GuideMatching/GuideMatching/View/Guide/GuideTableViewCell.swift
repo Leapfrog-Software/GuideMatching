@@ -18,7 +18,7 @@ class GuideTableViewCell: UITableViewCell {
     @IBOutlet private weak var estimate4ImageView: UIImageView!
     @IBOutlet private weak var estimate5ImageView: UIImageView!
     @IBOutlet private weak var estimateNumberLabel: UILabel!
-    @IBOutlet private weak var specialtyLabel: UILabel!
+    @IBOutlet private weak var keywordLabel: UILabel!
     @IBOutlet private weak var loginStateView: UIView!
     @IBOutlet private weak var loginStateLabel: UILabel!
     @IBOutlet private weak var feeLabel: UILabel!
@@ -45,7 +45,7 @@ class GuideTableViewCell: UITableViewCell {
         let estimates = EstimateRequester.shared.query(guideId: guideData.id)
         self.estimateNumberLabel.text = "(\(estimates.count))"
         
-        self.specialtyLabel.text = guideData.specialty
+        self.keywordLabel.text = guideData.keyword
         
         CommonUtility.setOnLineState(loginDate: guideData.loginDate, view: self.loginStateView, label: self.loginStateLabel)
         

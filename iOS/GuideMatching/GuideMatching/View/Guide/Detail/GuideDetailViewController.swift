@@ -13,15 +13,28 @@ class GuideDetailViewController: UIViewController {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var imageScrollView: UIScrollView!
     @IBOutlet private weak var languageLabel: UILabel!
+    @IBOutlet private weak var areaLabel: UILabel!
     @IBOutlet private weak var categoryLabel: UILabel!
-    @IBOutlet private weak var specialtyLabel: UILabel!
+    @IBOutlet private weak var keywordLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
-    @IBOutlet private weak var timeZoneLabel: UILabel!
     @IBOutlet private weak var applicableNumberLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
     @IBOutlet private weak var notesLabel: UILabel!
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private weak var estimateNumberLabel: UILabel!
+    @IBOutlet private weak var starBarView: UIView!
+    @IBOutlet private weak var star5BarWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var star4BarWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var star3BarWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var star2BarWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var star1BarWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var star0BarWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var star5RateLabel: UILabel!
+    @IBOutlet private weak var star4RateLabel: UILabel!
+    @IBOutlet private weak var star3RateLabel: UILabel!
+    @IBOutlet private weak var star2RateLabel: UILabel!
+    @IBOutlet private weak var star1RateLabel: UILabel!
+    @IBOutlet private weak var star0RateLabel: UILabel!
     @IBOutlet private weak var scheduleBaseView: UIView!
     
     private var guideData: GuideData!
@@ -32,6 +45,17 @@ class GuideDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.initContents()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.initScore()
+    }
+    
+    private func initContents() {
         
         self.nameLabel.text = self.guideData.name
         
@@ -46,18 +70,13 @@ class GuideDetailViewController: UIViewController {
         self.imageScrollView.contentSize = CGSize(width: windowWidth, height: windowWidth)
         
         self.languageLabel.text = self.guideData.language
+        self.areaLabel.text = self.guideData.area
         self.categoryLabel.text = self.guideData.category
-        self.specialtyLabel.text = self.guideData.specialty
+        self.keywordLabel.text = self.guideData.keyword
         self.messageLabel.text = self.guideData.message
-        self.timeZoneLabel.text = self.guideData.timeZone
         self.applicableNumberLabel.text = "\(self.guideData.applicableNumber)人"
         self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
         self.notesLabel.text = self.guideData.notes
-        
-        let score = EstimateRequester.shared.queryAverage(guideId: guideData.id)
-        self.scoreLabel.text = "\(score / 10)"
-        let estimates = EstimateRequester.shared.query(guideId: guideData.id)
-        self.estimateNumberLabel.text = "(\(estimates.count))"
         
         if let scheduleView = UINib(nibName: "GuideDetailScheduleView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? GuideDetailScheduleView {
             scheduleView.set(guideId: self.guideData.id, schedules: self.guideData.schedules, didSelect: { [weak self] targetDate, timeOffset in
@@ -70,6 +89,82 @@ class GuideDetailViewController: UIViewController {
             scheduleView.trailingAnchor.constraint(equalTo: self.scheduleBaseView.trailingAnchor).isActive = true
             scheduleView.bottomAnchor.constraint(equalTo: self.scheduleBaseView.bottomAnchor).isActive = true
         }
+    }
+    
+    private func initScore() {
+        
+        let score = Double(EstimateRequester.shared.queryAverage(guideId: guideData.id))
+        self.scoreLabel.text = String(format: "%.1f", score / 10)
+        let estimates = EstimateRequester.shared.query(guideId: guideData.id)
+        
+        let totalCnt = estimates.count
+        self.estimateNumberLabel.text = "(\(estimates.count))"
+        
+        var score0Rate = 0
+        var score1Rate = 0
+        var score2Rate = 0
+        var score3Rate = 0
+        var score4Rate = 0
+        var score5Rate = 0
+        if totalCnt > 0 {
+            score0Rate = estimates.filter { $0.score < 10 }.count * 100 / totalCnt
+            score1Rate = estimates.filter { $0.score >= 10 && $0.score < 20 }.count * 100 / totalCnt
+            score2Rate = estimates.filter { $0.score >= 20 && $0.score < 30 }.count * 100 / totalCnt
+            score3Rate = estimates.filter { $0.score >= 30 && $0.score < 40 }.count * 100 / totalCnt
+            score4Rate = estimates.filter { $0.score >= 40 && $0.score < 50 }.count * 100 / totalCnt
+            score5Rate = estimates.filter { $0.score >= 50 }.count * 100 / totalCnt
+            
+            var maxRate = score0Rate
+            var maxIndex = 0
+            if score1Rate > maxRate {
+                maxRate = score1Rate
+                maxIndex = 1
+            }
+            if score2Rate > maxRate {
+                maxRate = score2Rate
+                maxIndex = 2
+            }
+            if score3Rate > maxRate {
+                maxRate = score3Rate
+                maxIndex = 3
+            }
+            if score4Rate > maxRate {
+                maxRate = score4Rate
+                maxIndex = 4
+            }
+            if score5Rate > maxRate {
+                maxRate = score5Rate
+                maxIndex = 5
+            }
+            if maxIndex == 0 {
+                score0Rate = 100 - score1Rate - score2Rate - score3Rate - score4Rate - score5Rate
+            } else if maxIndex == 1 {
+                score1Rate = 100 - score0Rate - score2Rate - score3Rate - score4Rate - score5Rate
+            } else if maxIndex == 2 {
+                score2Rate = 100 - score0Rate - score1Rate - score3Rate - score4Rate - score5Rate
+            } else if maxIndex == 3 {
+                score3Rate = 100 - score0Rate - score1Rate - score2Rate - score4Rate - score5Rate
+            } else if maxIndex == 4 {
+                score4Rate = 100 - score0Rate - score1Rate - score2Rate - score3Rate - score5Rate
+            } else if maxIndex == 5 {
+                score5Rate = 100 - score0Rate - score1Rate - score2Rate - score3Rate - score4Rate
+            }
+        }
+
+        let barWidth = self.starBarView.frame.size.width
+        self.star0BarWidthConstraint.constant = (barWidth * CGFloat(score0Rate) / 100) - 2
+        self.star1BarWidthConstraint.constant = (barWidth * CGFloat(score1Rate) / 100) - 2
+        self.star2BarWidthConstraint.constant = (barWidth * CGFloat(score2Rate) / 100) - 2
+        self.star3BarWidthConstraint.constant = (barWidth * CGFloat(score3Rate) / 100) - 2
+        self.star4BarWidthConstraint.constant = (barWidth * CGFloat(score4Rate) / 100) - 2
+        self.star5BarWidthConstraint.constant = (barWidth * CGFloat(score5Rate) / 100) - 2
+        
+        self.star0RateLabel.text = "\(score0Rate)%"
+        self.star1RateLabel.text = "\(score1Rate)%"
+        self.star2RateLabel.text = "\(score2Rate)%"
+        self.star3RateLabel.text = "\(score3Rate)%"
+        self.star4RateLabel.text = "\(score4Rate)%"
+        self.star5RateLabel.text = "\(score5Rate)%"
     }
     
     private func didSelectSchedule(targetDate: Date, timeOffset: Int) {

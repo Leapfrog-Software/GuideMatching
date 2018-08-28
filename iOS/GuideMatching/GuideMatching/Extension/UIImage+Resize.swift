@@ -28,6 +28,18 @@ extension UIImage {
         return trimmedImage?.resize(size: CGSize(width: 200, height: 200))
     }
     
+    func toTourImage() -> UIImage? {
+        
+        var ratio = CGFloat(1.0)
+        
+        if self.size.width > self.size.height {
+            ratio = 300.0 / self.size.width
+        } else {
+            ratio = 300.0 / self.size.height
+        }
+        return self.resize(size: CGSize(width: self.size.width * ratio, height: self.size.height * ratio))
+    }
+    
     private func resize(size: CGSize) -> UIImage? {
 
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
