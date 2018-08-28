@@ -1337,8 +1337,31 @@
                                             <constraint firstAttribute="height" constant="30" placeholder="YES" id="GqW-Eo-sv1"/>
                                         </constraints>
                                     </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2k-98-2lF">
+                                        <rect key="frame" x="0.0" y="1539.5" width="375" height="80"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhv-HO-ihx">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="MwM-Cz-bP0"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal" title="ツアーを追加"/>
+                                                <connections>
+                                                    <action selector="onTapCreateTour:" destination="Ybk-ca-Z8S" eventType="touchUpInside" id="PVK-k4-Ex7"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="lhv-HO-ihx" secondAttribute="trailing" id="HzM-1n-Lo7"/>
+                                            <constraint firstAttribute="height" constant="80" id="SHJ-VU-mSA"/>
+                                            <constraint firstItem="lhv-HO-ihx" firstAttribute="leading" secondItem="v2k-98-2lF" secondAttribute="leading" id="XOk-nQ-L29"/>
+                                            <constraint firstItem="lhv-HO-ihx" firstAttribute="top" secondItem="v2k-98-2lF" secondAttribute="top" id="cdN-iY-4na"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tk8-CK-4af">
-                                        <rect key="frame" x="30" y="1659.5" width="315" height="50"/>
+                                        <rect key="frame" x="30" y="1629.5" width="315" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="f2b-M4-HoT"/>
                                         </constraints>
@@ -1361,17 +1384,6 @@
                                             <action selector="onTapDone:" destination="Ybk-ca-Z8S" eventType="touchUpInside" id="0ER-Mj-n6z"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhv-HO-ihx">
-                                        <rect key="frame" x="20" y="1559.5" width="335" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="MwM-Cz-bP0"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="ツアーを追加"/>
-                                        <connections>
-                                            <action selector="onTapCreateTour:" destination="Ybk-ca-Z8S" eventType="touchUpInside" id="PVK-k4-Ex7"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="lQv-ZF-7kc" secondAttribute="trailing" constant="30" id="0zB-vJ-1SW"/>
@@ -1383,7 +1395,7 @@
                                     <constraint firstItem="gXV-JC-DqE" firstAttribute="top" secondItem="sTE-X6-uzm" secondAttribute="top" constant="30" id="7F6-QM-3su"/>
                                     <constraint firstAttribute="trailing" secondItem="tk8-CK-4af" secondAttribute="trailing" constant="30" id="876-61-Ohz"/>
                                     <constraint firstItem="OaS-Cm-xgk" firstAttribute="top" secondItem="fi7-m5-Cnb" secondAttribute="bottom" constant="30" id="8Cz-R8-eT7"/>
-                                    <constraint firstAttribute="trailing" secondItem="lhv-HO-ihx" secondAttribute="trailing" constant="20" id="9Af-XN-G2e"/>
+                                    <constraint firstItem="v2k-98-2lF" firstAttribute="leading" secondItem="sTE-X6-uzm" secondAttribute="leading" id="AX0-sJ-Xg3"/>
                                     <constraint firstItem="SZz-80-uRy" firstAttribute="leading" secondItem="sTE-X6-uzm" secondAttribute="leading" constant="30" id="DpR-wi-kw2"/>
                                     <constraint firstAttribute="bottom" secondItem="tk8-CK-4af" secondAttribute="bottom" constant="50" id="Eba-55-BIb"/>
                                     <constraint firstAttribute="trailing" secondItem="8Lr-ae-JEC" secondAttribute="trailing" constant="30" id="HZY-H1-req"/>
@@ -1392,13 +1404,12 @@
                                     <constraint firstItem="tk8-CK-4af" firstAttribute="leading" secondItem="sTE-X6-uzm" secondAttribute="leading" constant="30" id="OOV-Dx-pQh"/>
                                     <constraint firstItem="9aJ-SK-ih4" firstAttribute="leading" secondItem="sTE-X6-uzm" secondAttribute="leading" constant="20" id="Olb-cm-cdh"/>
                                     <constraint firstAttribute="trailing" secondItem="gXV-JC-DqE" secondAttribute="trailing" constant="30" id="P2s-Vi-Qg0"/>
-                                    <constraint firstItem="tk8-CK-4af" firstAttribute="top" secondItem="lhv-HO-ihx" secondAttribute="bottom" constant="60" id="PIO-Jt-R8F"/>
-                                    <constraint firstItem="lhv-HO-ihx" firstAttribute="top" secondItem="9aJ-SK-ih4" secondAttribute="bottom" constant="20" id="PSn-YX-lRk"/>
                                     <constraint firstItem="eeA-Il-NQX" firstAttribute="top" secondItem="g0k-9J-SAx" secondAttribute="bottom" constant="30" id="Pz0-0G-S9q"/>
+                                    <constraint firstItem="v2k-98-2lF" firstAttribute="top" secondItem="9aJ-SK-ih4" secondAttribute="bottom" id="Rca-kG-lTX"/>
                                     <constraint firstAttribute="trailing" secondItem="Ma2-GY-Mtp" secondAttribute="trailing" constant="30" id="Svu-W8-DO0"/>
                                     <constraint firstItem="g0k-9J-SAx" firstAttribute="top" secondItem="pns-y3-kux" secondAttribute="bottom" constant="30" id="VeU-BZ-k6X"/>
                                     <constraint firstItem="fi7-m5-Cnb" firstAttribute="leading" secondItem="sTE-X6-uzm" secondAttribute="leading" constant="30" id="XN5-gE-MEA"/>
-                                    <constraint firstItem="lhv-HO-ihx" firstAttribute="leading" secondItem="sTE-X6-uzm" secondAttribute="leading" constant="20" id="YQP-37-3Xk"/>
+                                    <constraint firstAttribute="trailing" secondItem="v2k-98-2lF" secondAttribute="trailing" id="XTl-VI-1gV"/>
                                     <constraint firstAttribute="trailing" secondItem="eeA-Il-NQX" secondAttribute="trailing" constant="30" id="Z4J-0K-x6C"/>
                                     <constraint firstAttribute="trailing" secondItem="g0k-9J-SAx" secondAttribute="trailing" constant="30" id="ZcN-Dt-pLy"/>
                                     <constraint firstItem="SZz-80-uRy" firstAttribute="top" secondItem="OaS-Cm-xgk" secondAttribute="bottom" constant="30" id="bWa-9e-UMC"/>
@@ -1418,6 +1429,7 @@
                                     <constraint firstAttribute="trailing" secondItem="yAd-cm-ich" secondAttribute="trailing" constant="30" id="qsL-03-p00"/>
                                     <constraint firstItem="Ma2-GY-Mtp" firstAttribute="top" secondItem="SZz-80-uRy" secondAttribute="bottom" constant="30" id="rmJ-1x-2B6"/>
                                     <constraint firstAttribute="trailing" secondItem="pns-y3-kux" secondAttribute="trailing" constant="30" id="uZb-0p-HpB"/>
+                                    <constraint firstItem="tk8-CK-4af" firstAttribute="top" secondItem="v2k-98-2lF" secondAttribute="bottom" constant="10" id="wU0-ZZ-vWL"/>
                                     <constraint firstItem="8Lr-ae-JEC" firstAttribute="leading" secondItem="sTE-X6-uzm" secondAttribute="leading" constant="30" id="wVx-Ls-eef"/>
                                     <constraint firstAttribute="trailing" secondItem="SZz-80-uRy" secondAttribute="trailing" constant="30" id="zMQ-4O-WLg"/>
                                 </constraints>
@@ -1448,6 +1460,8 @@
                         <outlet property="applicableNumberLabel" destination="fED-wP-kAj" id="Stu-NQ-sz6"/>
                         <outlet property="areaTextField" destination="4qh-s6-adg" id="HYV-s2-zux"/>
                         <outlet property="categoryLabel" destination="mB0-g5-4Zc" id="rd2-aa-eY5"/>
+                        <outlet property="createTourBaseView" destination="v2k-98-2lF" id="UuO-gQ-TWd"/>
+                        <outlet property="createTourBaseViewHeightConstraint" destination="SHJ-VU-mSA" id="Pl3-Wj-Mr6"/>
                         <outlet property="emailTextField" destination="awZ-mI-Ady" id="Oiq-Gh-b5B"/>
                         <outlet property="face1ImageView" destination="V0H-79-0je" id="nJC-yC-w0X"/>
                         <outlet property="face2ImageView" destination="ia6-5f-i6y" id="xPB-GG-KAU"/>

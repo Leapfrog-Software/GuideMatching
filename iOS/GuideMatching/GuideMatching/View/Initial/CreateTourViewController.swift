@@ -368,21 +368,32 @@ class CreateTourViewController: UIViewController {
     
     @IBAction func onTapDelete(_ sender: Any) {
         
-        guard var myGUideData = GuideRequester.shared.query(id: SaveData.shared.guideId),
+        guard var myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId),
             let oldTourData = self.guideTourData else {
             return
         }
-        if let index = myGUideData.tours.index(where: { $0.id == oldTourData.id }) {
-            myGUideData.tours.remove(at: index)
+        if let index = myGuideData.tours.index(where: { $0.id == oldTourData.id }) {
+            myGuideData.tours.remove(at: index)
             
-            let action = DialogAction(title: "OK", action: { [weak self] in
-                self?.pop(animationType: .horizontal)
+            Loading.start()
+            
+            AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
+                GuideRequester.shared.fetch(completion: { resultFetch in
+                    Loading.stop()
+                    if resultUpdate && resultFetch {
+                        let action = DialogAction(title: "OK", action: { [weak self] in
+                            self?.pop(animationType: .horizontal)
+                        })
+                        Dialog.show(style: .success, title: "確認", message: "ツアーを削除しました", actions: [action])
+                        
+                        if let guideRegister = self.parent as? GuideRegisterViewController {
+                            guideRegister.resetContents()
+                        }
+                    } else {
+                        self.showError(message: "通信に失敗しました")
+                    }
+                })
             })
-            Dialog.show(style: .success, title: "確認", message: "ツアーを削除しました", actions: [action])
-            
-            if let guideRegister = self.parent as? GuideRegisterViewController {
-                guideRegister.resetContents()
-            }
         }
     }
 }
@@ -452,7 +463,7 @@ extension CreateTourViewController: UIImagePickerControllerDelegate, UINavigatio
         switch type {
         case .tour:
             image = self.tourImage
-            params["suffix"] = ""
+            params["suffix"] = "t"
         case .highlights1:
             image = self.highlights1Image
             params["suffix"] = "h1"

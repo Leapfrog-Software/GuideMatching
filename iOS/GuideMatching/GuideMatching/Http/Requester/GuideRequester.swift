@@ -68,7 +68,7 @@ struct GuideTourData {
     
     init?(data: String) {
         
-        let datas = data.components(separatedBy: "_")
+        let datas = data.components(separatedBy: "-")
         if datas.count == 18 {
             self.id = datas[0]
             self.name = datas[1].base64Decode() ?? ""
@@ -135,7 +135,7 @@ struct GuideTourData {
         let exclusions = self.exclusions.base64Encode() ?? ""
         
         return [self.id, name, area, description, fee, highlights1Title, highlights1Body, highlights2Title, highlights2Body, highlights3Title, highlights3Body,
-                days, startTime, endTime, departurePoint, returnDetail, inclusions, exclusions].joined(separator: "_")
+                days, startTime, endTime, departurePoint, returnDetail, inclusions, exclusions].joined(separator: "-")
     }
 }
 

@@ -34,6 +34,8 @@ class GuideRegisterViewController: UIViewController {
     @IBOutlet private weak var feeTextField: UITextField!
     @IBOutlet private weak var notesTextView: UITextView!
     @IBOutlet private weak var tourBaseStackView: UIStackView!
+    @IBOutlet private weak var createTourBaseView: UIView!
+    @IBOutlet private weak var createTourBaseViewHeightConstraint: NSLayoutConstraint!
     
     private var pickerTarget: ImageType?
     private var face1Image: UIImage?
@@ -62,6 +64,9 @@ class GuideRegisterViewController: UIViewController {
             self.headerTitleLabel.text = "Edit Profile"
         } else {
             self.headerTitleLabel.text = "New Registration"
+            
+            self.createTourBaseView.isHidden = true
+            self.createTourBaseViewHeightConstraint.constant = 0
         }
     }
     
@@ -87,6 +92,7 @@ class GuideRegisterViewController: UIViewController {
         self.feeTextField.text = "\(myGuideData.fee)"
         self.notesTextView.text = myGuideData.notes
         
+        self.tourBaseStackView.arrangedSubviews.forEach { self.tourBaseStackView.removeArrangedSubview($0) }
         myGuideData.tours.forEach { tourData in
             let tourView = UINib(nibName: "GuideRegisterTourView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! GuideRegisterTourView
             tourView.set(tourData: tourData, didTap: { [weak self] tourData in
