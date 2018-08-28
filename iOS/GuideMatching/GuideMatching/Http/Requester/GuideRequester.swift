@@ -46,6 +46,99 @@ struct GuideScheduleData {
     }
 }
 
+struct GuideTourData {
+    var id: String
+    var name: String
+    var area: String
+    var description: String
+    var fee: Int
+    var highlights1Title: String
+    var highlights1Body: String
+    var highlights2Title: String
+    var highlights2Body: String
+    var highlights3Title: String
+    var highlights3Body: String
+    var days: [Date]
+    var startTime: Int
+    var endTime: Int
+    var departurePoint: String
+    var returnDetail: String
+    var inclusions: String
+    var exclusions: String
+    
+    init?(data: String) {
+        
+        let datas = data.components(separatedBy: "_")
+        if datas.count == 18 {
+            self.id = datas[0]
+            self.name = datas[1].base64Decode() ?? ""
+            self.area = datas[2].base64Decode() ?? ""
+            self.description = datas[3].base64Decode() ?? ""
+            self.fee = Int(datas[4]) ?? 0
+            self.highlights1Title = datas[5].base64Decode() ?? ""
+            self.highlights1Body = datas[6].base64Decode() ?? ""
+            self.highlights2Title = datas[7].base64Decode() ?? ""
+            self.highlights2Body = datas[8].base64Decode() ?? ""
+            self.highlights3Title = datas[9].base64Decode() ?? ""
+            self.highlights3Body = datas[10].base64Decode() ?? ""
+            self.days = datas[11].components(separatedBy: "|").compactMap { DateFormatter(dateFormat: "yyyyMMdd").date(from: $0) }
+            self.startTime = Int(datas[12]) ?? 0
+            self.endTime = Int(datas[13]) ?? 0
+            self.departurePoint = datas[14].base64Decode() ?? ""
+            self.returnDetail = datas[15].base64Decode() ?? ""
+            self.inclusions = datas[16].base64Decode() ?? ""
+            self.exclusions = datas[17].base64Decode() ?? ""
+            return
+        }
+        return nil
+    }
+    
+    init() {
+        self.id = ""
+        self.name = ""
+        self.area = ""
+        self.description = ""
+        self.fee = 0
+        self.highlights1Title = ""
+        self.highlights1Body = ""
+        self.highlights2Title = ""
+        self.highlights2Body = ""
+        self.highlights3Title = ""
+        self.highlights3Body = ""
+        self.days = []
+        self.startTime = 0
+        self.endTime = 0
+        self.departurePoint = ""
+        self.returnDetail = ""
+        self.inclusions = ""
+        self.exclusions = ""
+    }
+    
+    func toString() -> String {
+        
+        let name = self.name.base64Encode() ?? ""
+        let area = self.area.base64Encode() ?? ""
+        let description = self.description.base64Encode() ?? ""
+        let fee = "\(self.fee)"
+        let highlights1Title = self.highlights1Title.base64Encode() ?? ""
+        let highlights1Body = self.highlights1Body.base64Encode() ?? ""
+        let highlights2Title = self.highlights2Title.base64Encode() ?? ""
+        let highlights2Body = self.highlights2Body.base64Encode() ?? ""
+        let highlights3Title = self.highlights3Title.base64Encode() ?? ""
+        let highlights3Body = self.highlights3Body.base64Encode() ?? ""
+        let days = self.days.map { DateFormatter(dateFormat: "yyyyMMdd").string(from: $0) }.joined(separator: "|")
+        let startTime = "\(self.startTime)"
+        let endTime = "\(self.endTime)"
+        let departurePoint = self.departurePoint.base64Encode() ?? ""
+        let returnDetail = self.returnDetail.base64Encode() ?? ""
+        let inclusions = self.inclusions.base64Encode() ?? ""
+        let exclusions = self.exclusions.base64Encode() ?? ""
+        
+        return [self.id, name, area, description, fee, highlights1Title, highlights1Body, highlights2Title, highlights2Body, highlights3Title, highlights3Body,
+                days, startTime, endTime, departurePoint, returnDetail, inclusions, exclusions].joined(separator: "_")
+    }
+}
+
 struct BankAccountData {
     var name: String
     var kana: String
@@ -96,6 +189,7 @@ struct GuideData {
     var fee: Int
     var notes: String
     var schedules: [GuideScheduleData]
+    var tours: [GuideTourData]
     let loginDate: Date
     var stripeAccountId: String
     var bankAccountData: BankAccountData
@@ -120,6 +214,7 @@ struct GuideData {
         self.notes = (data["notes"] as? String)?.base64Decode() ?? ""
         
         self.schedules = (data["schedules"] as? String ?? "").components(separatedBy: "/").compactMap { GuideScheduleData(data: $0) }
+        self.tours = (data["tours"] as? String ?? "").components(separatedBy: "/").compactMap { GuideTourData(data: $0) }
 
         let loginDateString = data["loginDate"] as? String ?? ""
         guard loginDateString.count == 14, let loginDate = DateFormatter(dateFormat: "yyyyMMddHHmmss").date(from: loginDateString) else {

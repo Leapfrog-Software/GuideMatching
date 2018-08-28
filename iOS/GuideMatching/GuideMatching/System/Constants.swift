@@ -16,6 +16,7 @@ class Constants {
     static let StripeBackendUrl = Constants.ServerRootUrl + "stripe/backend.php"
     static let ServerGuideImageRootUrl = Constants.ServerRootUrl + "data/image/guide/"
     static let ServerGuestImageRootUrl = Constants.ServerRootUrl + "data/image/guest/"
+    static let ServerTourImageRootUrl = Constants.ServerRootUrl + "data/image/tour/"
     static let StringEncoding = String.Encoding.utf8
     static let HttpTimeOutInterval = TimeInterval(10)
     

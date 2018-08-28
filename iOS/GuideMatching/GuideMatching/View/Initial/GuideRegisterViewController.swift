@@ -33,6 +33,8 @@ class GuideRegisterViewController: UIViewController {
     @IBOutlet private weak var applicableNumberLabel: UILabel!
     @IBOutlet private weak var feeTextField: UITextField!
     @IBOutlet private weak var notesTextView: UITextView!
+    @IBOutlet private weak var tourBaseStackView: UIStackView!
+    @IBOutlet private weak var tourBaseViewHeightConstraint: NSLayoutConstraint!
     
     private var pickerTarget: ImageType?
     private var face1Image: UIImage?
@@ -55,15 +57,16 @@ class GuideRegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.resetContents()
+        
         if self.isEdit {
-            self.initContents()
             self.headerTitleLabel.text = "Edit Profile"
         } else {
             self.headerTitleLabel.text = "New Registration"
         }
     }
     
-    private func initContents() {
+    func resetContents() {
         
         guard let myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId) else {
             return
@@ -84,6 +87,20 @@ class GuideRegisterViewController: UIViewController {
         self.applicableNumberLabel.text = "\(myGuideData.applicableNumber)"
         self.feeTextField.text = "\(myGuideData.fee)"
         self.notesTextView.text = myGuideData.notes
+        
+        myGuideData.tours.forEach { tourData in
+            let tourView = UINib(nibName: "GuideRegisterTourView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! GuideRegisterTourView
+            tourView.set(tourData: tourData, didTap: { [weak self] tourData in
+                self?.onTapTour(tourData: tourData)
+            })
+            self.tourBaseStackView.addArrangedSubview(tourView)
+        }
+    }
+    
+    private func onTapTour(tourData: GuideTourData) {
+        let tour = self.viewController(storyboard: "Initial", identifier: "CreateTourViewController") as! CreateTourViewController
+        tour.set(guideTourData: tourData)
+        self.stack(viewController: tour, animationType: .horizontal)
     }
     
     private func stackTabbar() {
@@ -189,6 +206,12 @@ class GuideRegisterViewController: UIViewController {
         } else {
             self.createGuide()
         }
+    }
+    
+    @IBAction func onTapCreateTour(_ sender: Any) {
+        
+        let tour = self.viewController(storyboard: "Initial", identifier: "CreateTourViewController") as! CreateTourViewController
+        self.stack(viewController: tour, animationType: .horizontal)
     }
     
     private func updateGuide() {

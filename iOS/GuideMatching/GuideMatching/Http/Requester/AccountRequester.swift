@@ -85,6 +85,7 @@ class AccountRequester {
         params["fee"] = "\(guideData.fee)"
         params["notes"] = guideData.notes.base64Encode() ?? ""
         params["schedules"] = guideData.schedules.compactMap { $0.toString() }.joined(separator: "/")
+        params["tours"] = guideData.schedules.compactMap { $0.toString() }.joined(separator: "/")
         params["stripeAccountId"] = guideData.stripeAccountId
         params["bankAccount"] = guideData.bankAccountData.toString()
         
