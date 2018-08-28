@@ -49,15 +49,15 @@ function createGuide() {
   $name = $_POST["name"];
   $nationality = $_POST["nationality"];
   $language = $_POST["language"];
-  $specialty = $_POST["specialty"];
+  $area = $_POST["area"];
+  $keyword = $_POST["keyword"];
   $category = $_POST["category"];
   $message = $_POST["message"];
-  $timeZone = $_POST["timeZone"];
   $applicableNumber = $_POST["applicableNumber"];
   $fee = $_POST["fee"];
   $notes = $_POST["notes"];
 
-  $guideId = Guide::create($email, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes);
+  $guideId = Guide::create($email, $name, $nationality, $language, $area, $keyword, $category, $message, $applicableNumber, $fee, $notes);
   if (is_null($guideId)) {
     echo(json_encode(Array("result" => "1")));
   } else {
@@ -83,10 +83,10 @@ function updateGuide() {
   $name = $_POST["name"];
   $nationality = $_POST["nationality"];
   $language = $_POST["language"];
-  $specialty = $_POST["specialty"];
+  $area = $_POST["area"];
+  $keyword = $_POST["keyword"];
   $category = $_POST["category"];
   $message = $_POST["message"];
-  $timeZone = $_POST["timeZone"];
   $applicableNumber = $_POST["applicableNumber"];
   $fee = $_POST["fee"];
   $notes = $_POST["notes"];
@@ -94,7 +94,7 @@ function updateGuide() {
   $stripeAccountId = $_POST["stripeAccountId"];
   $bankAccount = $_POST["bankAccount"];
 
-  if (Guide::update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes, $schedules, $stripeAccountId, $bankAccount)) {
+  if (Guide::update($id, $name, $nationality, $language, $area, $keyword, $category, $message, $applicableNumber, $fee, $notes, $schedules, $stripeAccountId, $bankAccount)) {
     echo(json_encode(Array("result" => "0")));
   } else {
     echo(json_encode(Array("result" => "1")));
@@ -112,10 +112,10 @@ function getGuide() {
                       "name" => $guideData->name,
                       "nationality" => $guideData->nationality,
                       "language" => $guideData->language,
-                      "specialty" => $guideData->specialty,
+                      "area" => $guideData->area,
+                      "keyword" => $guideData->keyword,
                       "category" => $guideData->category,
                       "message" => $guideData->message,
-                      "timeZone" => $guideData->timeZone,
                       "applicableNumber" => $guideData->applicableNumber,
                       "fee" => $guideData->fee,
                       "notes" => $guideData->notes,

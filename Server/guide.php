@@ -6,10 +6,10 @@ class GuideData {
 	public $name;
   public $nationality;
   public $language;
-  public $specialty;
+  public $area;
+  public $keyword;
   public $category;
   public $message;
-  public $timeZone;
   public $applicableNumber;
   public $fee;
   public $notes;
@@ -27,10 +27,10 @@ class GuideData {
 			$guideData->name = $datas[2];
       $guideData->nationality = $datas[3];
       $guideData->language = $datas[4];
-      $guideData->specialty = $datas[5];
-      $guideData->category = $datas[6];
-      $guideData->message = $datas[7];
-      $guideData->timeZone = $datas[8];
+      $guideData->area = $datas[5];
+      $guideData->keyword = $datas[6];
+      $guideData->category = $datas[7];
+      $guideData->message = $datas[8];
       $guideData->applicableNumber = $datas[9];
       $guideData->fee = $datas[10];
       $guideData->notes = $datas[11];
@@ -55,13 +55,13 @@ class GuideData {
     $str .= ",";
     $str .= $this->language;
     $str .= ",";
-    $str .= $this->specialty;
+    $str .= $this->area;
+    $str .= ",";
+    $str .= $this->keyword;
     $str .= ",";
     $str .= $this->category;
     $str .= ",";
     $str .= $this->message;
-    $str .= ",";
-    $str .= $this->timeZone;
     $str .= ",";
     $str .= $this->applicableNumber;
     $str .= ",";
@@ -104,7 +104,7 @@ class Guide {
 		return [];
 	}
 
-  static function create($email, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes) {
+  static function create($email, $name, $nationality, $language, $area, $keyword, $category, $message, $applicableNumber, $fee, $notes) {
 
     $maxGuideId = -1;
 
@@ -126,10 +126,10 @@ class Guide {
     $guideData->name = $name;
     $guideData->nationality = $nationality;
     $guideData->language = $language;
-    $guideData->specialty = $specialty;
+    $guideData->area = $area;
+    $guideData->keyword = $keyword;
     $guideData->category = $category;
     $guideData->message = $message;
-    $guideData->timeZone = $timeZone;
     $guideData->applicableNumber = $applicableNumber;
     $guideData->fee = $fee;
     $guideData->notes = $notes;
@@ -144,7 +144,7 @@ class Guide {
     }
   }
 
-  static function update($id, $name, $nationality, $language, $specialty, $category, $message, $timeZone, $applicableNumber, $fee, $notes, $schedules, $stripeAccountId, $bankAccount) {
+  static function update($id, $name, $nationality, $language, $area, $keyword, $category, $message, $applicableNumber, $fee, $notes, $schedules, $stripeAccountId, $bankAccount) {
 
     $guideList = Guide::readAll();
     $find = false;
@@ -159,10 +159,10 @@ class Guide {
         $newGuideData->name = $name;
         $newGuideData->nationality = $nationality;
         $newGuideData->language = $language;
-        $newGuideData->specialty = $specialty;
+        $newGuideData->area = $area;
+        $newGuideData->keyword = $keyword;
         $newGuideData->category = $category;
         $newGuideData->message = $message;
-        $newGuideData->timeZone = $timeZone;
         $newGuideData->applicableNumber = $applicableNumber;
         $newGuideData->fee = $fee;
         $newGuideData->notes = $notes;
