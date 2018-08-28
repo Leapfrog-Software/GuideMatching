@@ -18,12 +18,14 @@ if (strcmp($command, "createGuide") == 0) {
   getGuide();
 } else if (strcmp($command, "createGuest") == 0) {
   createGuest();
- } else if (strcmp($command, "uploadGuestImage") == 0) {
+} else if (strcmp($command, "uploadGuestImage") == 0) {
   uploadGuestImage();
 } else if (strcmp($command, "updateGuest") == 0) {
   updateGuest();
 } else if (strcmp($command, "getGuest") == 0) {
   getGuest();
+} else if (strcmp($command, "uploadTourImage") == 0) {
+  uploadTourImage();
 } else if (strcmp($command, "login") == 0) {
   login();
 } else if (strcmp($command, "createReserve") == 0) {
@@ -91,10 +93,11 @@ function updateGuide() {
   $fee = $_POST["fee"];
   $notes = $_POST["notes"];
   $schedules = $_POST["schedules"];
+  $tours = $_POST["tours"];
   $stripeAccountId = $_POST["stripeAccountId"];
   $bankAccount = $_POST["bankAccount"];
 
-  if (Guide::update($id, $name, $nationality, $language, $area, $keyword, $category, $message, $applicableNumber, $fee, $notes, $schedules, $stripeAccountId, $bankAccount)) {
+  if (Guide::update($id, $name, $nationality, $language, $area, $keyword, $category, $message, $applicableNumber, $fee, $notes, $schedules, $tours, $stripeAccountId, $bankAccount)) {
     echo(json_encode(Array("result" => "0")));
   } else {
     echo(json_encode(Array("result" => "1")));
@@ -121,6 +124,7 @@ function getGuide() {
                       "notes" => $guideData->notes,
                       "loginDate" => $guideData->loginDate,
                       "schedules" => $guideData->schedules,
+                      "tours" => $guideData->tours,
                       "stripeAccountId" => $guideData->stripeAccountId,
                       "bankAccount" => $guideData->bankAccount);
   }
@@ -182,6 +186,18 @@ function getGuest() {
   $ret = Array("result" => "0",
                 "guests" => $guests);
   echo(json_encode($ret));
+}
+
+function uploadTourImage() {
+
+  $tourId = $_POST["tourId"];
+  $suffix = $_POST["suffix"];
+  $file = $_FILES['image']['tmp_name'];
+  if (Guide::uploadTourImage($tourId, $suffix, $file)) {
+    echo(json_encode(Array("result" => "0")));
+  } else {
+    echo(json_encode(Array("result" => "1")));
+  }
 }
 
 function login() {

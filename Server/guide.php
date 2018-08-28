@@ -14,13 +14,14 @@ class GuideData {
   public $fee;
   public $notes;
   public $schedules;
+  public $tours;
   public $loginDate;
   public $stripeAccountId;
   public $bankAccount;
 
 	static function initFromFileString($line) {
 		$datas = explode(",", $line);
-		if (count($datas) == 16) {
+		if (count($datas) == 17) {
       $guideData = new GuideData();
       $guideData->id = $datas[0];
       $guideData->email = $datas[1];
@@ -35,9 +36,10 @@ class GuideData {
       $guideData->fee = $datas[10];
       $guideData->notes = $datas[11];
       $guideData->schedules = $datas[12];
-      $guideData->loginDate = $datas[13];
-      $guideData->stripeAccountId = $datas[14];
-      $guideData->bankAccount = $datas[15];
+      $guideData->tours = $datas[13];
+      $guideData->loginDate = $datas[14];
+      $guideData->stripeAccountId = $datas[15];
+      $guideData->bankAccount = $datas[16];
 			return $guideData;
 		}
 		return null;
@@ -71,6 +73,8 @@ class GuideData {
     $str .= ",";
     $str .= $this->schedules;
     $str .= ",";
+    $str .= $this->tours;
+    $str .= ",";
     $str .= $this->loginDate;
     $str .= ",";
     $str .= $this->stripeAccountId;
@@ -85,6 +89,7 @@ class Guide {
 
   const FILE_NAME = "data/guide.txt";
   const IMAGE_DIRECTORY = "data/image/guide/";
+  const TOUR_IMAGE_DIRECTORY = "data/image/tour/";
 
 	static function readAll() {
 		if (file_exists(Guide::FILE_NAME)) {
@@ -134,6 +139,7 @@ class Guide {
     $guideData->fee = $fee;
     $guideData->notes = $notes;
     $guideData->schedules = "";
+    $guideData->tours = "";
     $guideData->loginDate = date("YmdHis");
     $guideData->stripeAccountId = "";
 
@@ -144,7 +150,7 @@ class Guide {
     }
   }
 
-  static function update($id, $name, $nationality, $language, $area, $keyword, $category, $message, $applicableNumber, $fee, $notes, $schedules, $stripeAccountId, $bankAccount) {
+  static function update($id, $name, $nationality, $language, $area, $keyword, $category, $message, $applicableNumber, $fee, $notes, $schedules, $tours, $stripeAccountId, $bankAccount) {
 
     $guideList = Guide::readAll();
     $find = false;
@@ -167,6 +173,7 @@ class Guide {
         $newGuideData->fee = $fee;
         $newGuideData->notes = $notes;
         $newGuideData->schedules = $schedules;
+        $newGuideData->tours = $tours;
         $newGuideData->loginDate = date("YmdHis");
         $newGuideData->stripeAccountId = $stripeAccountId;
         $newGuideData->bankAccount = $bankAccount;
@@ -214,6 +221,12 @@ class Guide {
   static function uploadImage($guideId, $suffix, $file) {
 
     $fileName = Guide::IMAGE_DIRECTORY . $guideId . "-" . $suffix;
+    return move_uploaded_file($file, $fileName);
+  }
+
+  static function uploadTourImage($tourId, $suffix, $file) {
+
+    $fileName = Guide::TOUR_IMAGE_DIRECTORY . $tourId . "-" . $suffix;
     return move_uploaded_file($file, $fileName);
   }
 }
