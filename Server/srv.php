@@ -214,12 +214,14 @@ function createReserve() {
 
   $guestId = $_POST["guestId"];
   $guideId = $_POST["guideId"];
+  $fee = $_POST["fee"];
+  $applicationFee = $_POST["applicationFee"];
   $meetingPlace = $_POST["meetingPlace"];
   $day = $_POST["day"];
   $startTime = $_POST["startTime"];
   $endTime = $_POST["endTime"];
 
-  if (Reserve::create($guestId, $guideId, $meetingPlace, $day, $startTime, $endTime)) {
+  if (Reserve::create($guestId, $guideId, $fee, $applicationFee, $meetingPlace, $day, $startTime, $endTime)) {
     echo(json_encode(Array("result" => "0")));
   } else {
     echo(json_encode(Array("result" => "1")));
@@ -234,6 +236,8 @@ function getReserve() {
     $data[] = Array("id" => $reserveData->id,
                     "guestId" => $reserveData->guestId,
                     "guideId" => $reserveData->guideId,
+                    "fee" => $reserveData->fee,
+                    "applicationFee" => $reserveData->applicationFee,
                     "meetingPlace" => $reserveData->meetingPlace,
                     "day" => $reserveData->day,
                     "startTime" => $reserveData->startTime,

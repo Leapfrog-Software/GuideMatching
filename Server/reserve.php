@@ -4,6 +4,8 @@ class ReserveData {
   public $id;
 	public $guestId;
   public $guideId;
+  public $fee;
+  public $applicationFee;
   public $meetingPlace;
   public $day;
   public $startTime;
@@ -12,16 +14,18 @@ class ReserveData {
 
 	static function initFromFileString($line) {
 		$datas = explode(",", $line);
-		if (count($datas) == 8) {
+		if (count($datas) == 10) {
       $reserveData = new ReserveData();
       $reserveData->id = $datas[0];
 			$reserveData->guestId = $datas[1];
       $reserveData->guideId = $datas[2];
-      $reserveData->meetingPlace = $datas[3];
-      $reserveData->day = $datas[4];
-      $reserveData->startTime = $datas[5];
-      $reserveData->endTime = $datas[6];
-      $reserveData->reserveDate = $datas[7];
+      $reserveData->fee = $datas[3];
+      $reserveData->applicationFee = $datas[4];
+      $reserveData->meetingPlace = $datas[5];
+      $reserveData->day = $datas[6];
+      $reserveData->startTime = $datas[7];
+      $reserveData->endTime = $datas[8];
+      $reserveData->reserveDate = $datas[9];
 			return $reserveData;
 		}
 		return null;
@@ -34,6 +38,10 @@ class ReserveData {
     $str .= $this->guestId;
     $str .= ",";
     $str .= $this->guideId;
+    $str .= ",";
+    $str .= $this->fee;
+    $str .= ",";
+    $str .= $this->applicationFee;
     $str .= ",";
     $str .= $this->meetingPlace;
     $str .= ",";
@@ -71,7 +79,7 @@ class Reserve {
 		return [];
 	}
 
-  static function create($guestId, $guideId, $meetingPlace, $day, $startTime, $endTime) {
+  static function create($guestId, $guideId, $fee, $applicationFee, $meetingPlace, $day, $startTime, $endTime) {
 
     $maxReserveId = -1;
 
@@ -91,6 +99,8 @@ class Reserve {
     $reserveData->id = $nextReserveId;
     $reserveData->guestId = $guestId;
     $reserveData->guideId = $guideId;
+    $reserveData->fee = $fee;
+    $reserveData->applicationFee = $applicationFee;
     $reserveData->meetingPlace = $meetingPlace;
     $reserveData->day = $day;
     $reserveData->startTime = $startTime;
