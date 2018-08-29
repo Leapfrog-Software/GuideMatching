@@ -80,6 +80,8 @@ class GuideDetailTourViewController: UIViewController {
         
         ReserveRequester.reserve(guestId: SaveData.shared.guestId,
                                  guideId: self.guideId,
+                                 fee: self.tourData.fee,
+                                 applicationFee: CommonUtility.calculateTransactionFee(of: self.tourData.fee),
                                  meetingPlace: self.tourData.departurePoint,
                                  day: self.tourData.days[self.selectedDayIndex ?? 0],
                                  startTime: self.tourData.startTime,

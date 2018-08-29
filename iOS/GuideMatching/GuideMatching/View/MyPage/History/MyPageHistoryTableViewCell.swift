@@ -30,9 +30,7 @@ class MyPageHistoryTableViewCell: UITableViewCell {
         if let guideData = GuideRequester.shared.query(id: reserveData.guideId) {
             self.nameLabel.text = guideData.name
             
-            let guideFee = guideData.fee * (reserveData.endTime - reserveData.startTime)
-            let transactionFee = CommonUtility.calculateTransactionFee(of: guideFee)
-            self.priceLabel.text = CommonUtility.digit3Format(value: guideFee + transactionFee)
+            self.priceLabel.text = CommonUtility.digit3Format(value: reserveData.fee + reserveData.applicationFee)
         } else {
             self.nameLabel.text = ""
             self.priceLabel.text = ""

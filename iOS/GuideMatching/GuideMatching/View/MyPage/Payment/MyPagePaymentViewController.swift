@@ -46,7 +46,7 @@ class MyPagePaymentViewController: UIViewController {
         ReserveRequester.shared.dataList.forEach { reserveData in
             if reserveData.guideId == myGuideData.id {
                 if reserveData.day.isSameMonth(with: Date()) {
-                    currentMonthAmount += myGuideData.fee * (reserveData.endTime - reserveData.startTime)
+                    currentMonthAmount += reserveData.fee
                 }
             }
         }
@@ -63,7 +63,7 @@ class MyPagePaymentViewController: UIViewController {
                 ReserveRequester.shared.dataList.forEach { reserveData in
                     if reserveData.guideId == SaveData.shared.guideId {
                         if reserveData.day.isSameMonth(with: month) {
-                            amount += myGuideData.fee * (reserveData.endTime - reserveData.startTime)
+                            amount += reserveData.fee
                         }
                     }
                 }

@@ -74,11 +74,9 @@ class ReserveDetailViewController: UIViewController {
         self.timeEndLabel.text = CommonUtility.timeOffsetToString(offset: self.reserveData.endTime)
         self.placeLabel.text = self.reserveData.meetingPlace
             
-        let fee = guideData.fee * (self.reserveData.endTime - self.reserveData.startTime)
-        self.guideFeeLabel.text = CommonUtility.digit3Format(value: fee) + " JPY/30min"
-        let transactionFee = CommonUtility.calculateTransactionFee(of: fee)
-        self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + "JPY/30min"
-        self.totalFeeLabel.text = CommonUtility.digit3Format(value: fee + transactionFee) + " JPY"
+        self.guideFeeLabel.text = CommonUtility.digit3Format(value: self.reserveData.fee) + " JPY"
+        self.transactionFeeLabel.text = CommonUtility.digit3Format(value: self.reserveData.applicationFee) + "JPY"
+        self.totalFeeLabel.text = CommonUtility.digit3Format(value: self.reserveData.fee + self.reserveData.applicationFee) + " JPY"
             
         self.notesLabel.text = guideData.notes
     }

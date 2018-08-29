@@ -12,6 +12,8 @@ struct ReserveData {
     let id: String
     let guestId: String
     let guideId: String
+    let fee: Int
+    let applicationFee: Int
     let meetingPlace: String
     let day: Date
     let startTime: Int
@@ -28,6 +30,8 @@ struct ReserveData {
         
         self.guestId = data["guestId"] as? String ?? ""
         self.guideId = data["guideId"] as? String ?? ""
+        self.fee = Int(data["fee"] as? String ?? "") ?? 0
+        self.applicationFee = Int(data["applicationFee"] as? String ?? "") ?? 0
         self.meetingPlace = (data["meetingPlace"] as? String)?.base64Decode() ?? ""
         
         guard let day = DateFormatter(dateFormat: "yyyyMMdd").date(from: data["day"] as? String ?? "") else {
@@ -78,11 +82,13 @@ class ReserveRequester {
         }
     }
     
-    class func reserve(guestId: String, guideId: String, meetingPlace: String, day: Date, startTime: Int, endTime: Int, completion: @escaping ((Bool) -> ())) {
+    class func reserve(guestId: String, guideId: String, fee: Int, applicationFee: Int, meetingPlace: String, day: Date, startTime: Int, endTime: Int, completion: @escaping ((Bool) -> ())) {
 
         var params: [String: String] = ["command": "createReserve"]
         params["guestId"] = guestId
         params["guideId"] = guideId
+        params["fee"] = "\(fee)"
+        params["applicationFee"] = "\(applicationFee)"
         params["meetingPlace"] = meetingPlace.base64Encode() ?? ""
         params["day"] = DateFormatter(dateFormat: "yyyyMMdd").string(from: day)
         params["startTime"] = "\(startTime)"

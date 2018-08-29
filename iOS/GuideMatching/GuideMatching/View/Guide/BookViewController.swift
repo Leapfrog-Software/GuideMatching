@@ -155,7 +155,10 @@ class BookViewController: UIViewController {
         let guestId = SaveData.shared.guestId
         let guideId = self.guideData.id
         let meetingPlace = self.meetingPlace ?? ""
-        ReserveRequester.reserve(guestId: guestId, guideId: guideId, meetingPlace: meetingPlace, day: self.targetDate, startTime: self.startTimeIndex, endTime: self.endTimeIndex ?? 0, completion: { result in
+        let endTimeIndex = self.endTimeIndex ?? 0
+        let amount = self.guideData.fee * (endTimeIndex - self.startTimeIndex)
+        let applicationFee = CommonUtility.calculateTransactionFee(of: amount)
+        ReserveRequester.reserve(guestId: guestId, guideId: guideId, fee: amount, applicationFee: applicationFee, meetingPlace: meetingPlace, day: self.targetDate, startTime: self.startTimeIndex, endTime: self.endTimeIndex ?? 0, completion: { result in
             if result {
                 self.charge()
             } else {
