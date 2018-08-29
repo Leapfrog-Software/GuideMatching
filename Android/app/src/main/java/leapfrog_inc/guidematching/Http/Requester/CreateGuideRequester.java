@@ -8,7 +8,7 @@ import leapfrog_inc.guidematching.System.Constants;
 
 public class CreateGuideRequester {
 
-    public static void create(String email, String name, String nationality, String language, String specialty, String category, String message, String timeZone, int applicableNumber, int fee, String notes, final Callback callback) {
+    public static void create(String email, String name, String nationality, String language, String area, String keyword, String category, String message, int applicableNumber, int fee, String notes, final Callback callback) {
 
         HttpManager httpManager = new HttpManager(new HttpManager.HttpCallback() {
             @Override
@@ -38,13 +38,13 @@ public class CreateGuideRequester {
         param.append("&");
         param.append("language=" + Base64Utility.encode(language));
         param.append("&");
-        param.append("specialty=" + Base64Utility.encode(specialty));
+        param.append("area=" + Base64Utility.encode(area));
+        param.append("&");
+        param.append("keyword=" + Base64Utility.encode(keyword));
         param.append("&");
         param.append("category=" + Base64Utility.encode(category));
         param.append("&");
         param.append("message=" + Base64Utility.encode(message));
-        param.append("&");
-        param.append("timeZone=" + Base64Utility.encode(timeZone));
         param.append("&");
         param.append("applicableNumber=" + String.valueOf(applicableNumber));
         param.append("&");

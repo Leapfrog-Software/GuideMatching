@@ -142,6 +142,40 @@
                     android:layout_height="1dp"
                     android:background="@color/separatorGray" />
 
+                <!-- エリア -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Area"
+                        android:textSize="@dimen/guideDetailTitleTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
+                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
+                    <TextView
+                        android:id="@+id/areaTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="English"
+                        android:textSize="@dimen/guideDetailvalueTextSize"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
+                        android:layout_marginLeft="@dimen/guideDetailValueLeftMargin"
+                        android:layout_marginRight="@dimen/guideDetailValueRightMargin"
+                        android:gravity="right"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separatorGray" />
+
                 <!-- カテゴリー -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -184,14 +218,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Specialty"
+                        android:text="Keyword"
                         android:textSize="@dimen/guideDetailTitleTextSize"
                         android:textColor="@color/mainBlack"
                         android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
                         android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
                         android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
                     <TextView
-                        android:id="@+id/specialtyTextView"
+                        android:id="@+id/keywordTextView"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -226,40 +260,6 @@
                         android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
                     <TextView
                         android:id="@+id/messageTextView"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="English"
-                        android:textSize="@dimen/guideDetailvalueTextSize"
-                        android:textColor="@color/mainBlack"
-                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
-                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
-                        android:layout_marginLeft="@dimen/guideDetailValueLeftMargin"
-                        android:layout_marginRight="@dimen/guideDetailValueRightMargin"
-                        android:gravity="right"/>
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/separatorGray" />
-
-                <!-- ガイド可能日時 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Available time"
-                        android:textSize="@dimen/guideDetailTitleTextSize"
-                        android:textColor="@color/mainBlack"
-                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
-                        android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
-                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
-                    <TextView
-                        android:id="@+id/timeZoneTextView"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"

@@ -211,6 +211,31 @@
                     </FrameLayout>
                 </LinearLayout>
 
+                <!-- エリア -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="エリア"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"/>
+                    <EditText
+                        android:id="@+id/areaEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="text"
+                        android:textSize="14dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/shape_edittext"
+                        android:padding="10dp"/>
+                </LinearLayout>
+
                 <!-- カテゴリー -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -255,7 +280,7 @@
                     </FrameLayout>
                 </LinearLayout>
 
-                <!-- 得意分野 -->
+                <!-- キーワード -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -266,19 +291,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="得意分野"
+                        android:text="キーワード"
                         android:textSize="14dp"
                         android:textColor="@color/mainBlack"/>
                     <EditText
-                        android:id="@+id/specialtyEditText"
+                        android:id="@+id/keywordEditText"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:textSize="14dp"
                         android:gravity="top"
                         android:layout_marginTop="8dp"
                         android:background="@drawable/shape_edittext"
-                        android:padding="10dp"
-                        android:hint="エリア名や得意分野を登録しましょう。 \n例)Tokyo, Izakaya, Sake" />
+                        android:padding="10dp" />
                 </LinearLayout>
 
                 <!-- 自己紹介 -->
@@ -305,32 +329,6 @@
                         android:background="@drawable/shape_edittext"
                         android:padding="10dp"
                         android:hint="こんにちは" />
-                </LinearLayout>
-
-                <!-- 案内可能日時 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="案内可能日時"
-                        android:textSize="14dp"
-                        android:textColor="@color/mainBlack"/>
-                    <EditText
-                        android:id="@+id/timeZoneEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="100dp"
-                        android:textSize="14dp"
-                        android:gravity="top"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/shape_edittext"
-                        android:padding="10dp"
-                        android:hint="Sat. 11:00 - 16:00\nSun. 13:00 - 18:00" />
                 </LinearLayout>
 
                 <!-- 対応人数 -->

@@ -66,10 +66,10 @@ public class GuideDetailFragment extends BaseFragment {
         });
 
         ((TextView)view.findViewById(R.id.languageTextView)).setText(mGuideData.language);
+        ((TextView)view.findViewById(R.id.areaTextView)).setText(mGuideData.area);
         ((TextView)view.findViewById(R.id.categoryTextView)).setText(mGuideData.category);
-        ((TextView)view.findViewById(R.id.specialtyTextView)).setText(mGuideData.specialty);
+        ((TextView)view.findViewById(R.id.keywordTextView)).setText(mGuideData.keyword);
         ((TextView)view.findViewById(R.id.messageTextView)).setText(mGuideData.message);
-        ((TextView)view.findViewById(R.id.timeZoneTextView)).setText(mGuideData.timeZone);
         ((TextView)view.findViewById(R.id.applicableNumberTextView)).setText(String.valueOf(mGuideData.applicableNumber) + "人");
 
         String fee = CommonUtility.digit3Format(mGuideData.fee) + " JPY/30min";

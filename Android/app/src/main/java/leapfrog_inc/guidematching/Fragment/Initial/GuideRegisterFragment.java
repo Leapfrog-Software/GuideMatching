@@ -82,11 +82,10 @@ public class GuideRegisterFragment extends BaseFragment {
                 ((EditText)view.findViewById(R.id.nameEditText)).setText(guideData.name);
                 ((EditText)view.findViewById(R.id.nationalityEditText)).setText(guideData.nationality);
                 ((TextView)view.findViewById(R.id.languageTextView)).setText(guideData.language);
-                ((EditText)view.findViewById(R.id.specialtyEditText)).setText(guideData.specialty);
+                ((TextView)view.findViewById(R.id.areaEditText)).setText(guideData.area);
+                ((EditText)view.findViewById(R.id.keywordEditText)).setText(guideData.keyword);
                 ((TextView)view.findViewById(R.id.categoryTextView)).setText(guideData.category);
                 ((EditText)view.findViewById(R.id.messageEditText)).setText(guideData.message);
-                ((EditText)view.findViewById(R.id.timeZoneEditText)).setText(guideData.timeZone);
-                ((EditText)view.findViewById(R.id.timeZoneEditText)).setText(guideData.timeZone);
                 ((TextView)view.findViewById(R.id.applicableNumberTextView)).setText(String.valueOf(guideData.applicableNumber));
                 ((EditText)view.findViewById(R.id.feeEditText)).setText(String.valueOf(guideData.fee));
                 ((EditText)view.findViewById(R.id.notesEditText)).setText(guideData.notes);
@@ -257,19 +256,21 @@ public class GuideRegisterFragment extends BaseFragment {
 
     private void createGuide() {
 
-        String email = ((EditText)getView().findViewById(R.id.emailEditText)).getText().toString();
-        String name = ((EditText)getView().findViewById(R.id.nameEditText)).getText().toString();
-        String nationality = ((EditText)getView().findViewById(R.id.nationalityEditText)).getText().toString();
-        String language = mLanguageList.get(mLanguageIndex);
-        String specialty = ((EditText)getView().findViewById(R.id.specialtyEditText)).getText().toString();
-        String category = mCategoryList.get(mCategoryIndex);
-        String message = ((EditText)getView().findViewById(R.id.messageEditText)).getText().toString();
-        String timeZone = ((EditText)getView().findViewById(R.id.timeZoneEditText)).getText().toString();
-        int applicableNumber = Integer.parseInt(mApplicableNumberList.get(mApplicableNumberIndex));
-        int fee = Integer.parseInt(((EditText)getView().findViewById(R.id.feeEditText)).getText().toString());
-        String notes = ((EditText)getView().findViewById(R.id.notesEditText)).getText().toString();
+        View view = getView();
 
-        CreateGuideRequester.create(email, name, nationality, language, specialty, category, message, timeZone, applicableNumber, fee, notes, new CreateGuideRequester.Callback() {
+        String email = ((EditText)view.findViewById(R.id.emailEditText)).getText().toString();
+        String name = ((EditText)view.findViewById(R.id.nameEditText)).getText().toString();
+        String nationality = ((EditText)view.findViewById(R.id.nationalityEditText)).getText().toString();
+        String language = mLanguageList.get(mLanguageIndex);
+        String area = ((EditText)view.findViewById(R.id.areaEditText)).getText().toString();
+        String keyword = ((EditText)view.findViewById(R.id.keywordEditText)).getText().toString();
+        String category = mCategoryList.get(mCategoryIndex);
+        String message = ((EditText)view.findViewById(R.id.messageEditText)).getText().toString();
+        int applicableNumber = Integer.parseInt(mApplicableNumberList.get(mApplicableNumberIndex));
+        int fee = Integer.parseInt(((EditText)view.findViewById(R.id.feeEditText)).getText().toString());
+        String notes = ((EditText)view.findViewById(R.id.notesEditText)).getText().toString();
+
+        CreateGuideRequester.create(email, name, nationality, language, area, keyword, category, message, applicableNumber, fee, notes, new CreateGuideRequester.Callback() {
             @Override
             public void didReceiveData(boolean result, final String guideId) {
                 if (result) {
@@ -289,28 +290,30 @@ public class GuideRegisterFragment extends BaseFragment {
 
     private void updateGuide() {
 
+        View view = getView();
+
         GuideData myGuideData = FetchGuideRequester.getInstance().query(SaveData.getInstance().guideId);
 
-        String email = ((EditText)getView().findViewById(R.id.emailEditText)).getText().toString();
-        String name = ((EditText)getView().findViewById(R.id.nameEditText)).getText().toString();
-        String nationality = ((EditText)getView().findViewById(R.id.nationalityEditText)).getText().toString();
+        String email = ((EditText)view.findViewById(R.id.emailEditText)).getText().toString();
+        String name = ((EditText)view.findViewById(R.id.nameEditText)).getText().toString();
+        String nationality = ((EditText)view.findViewById(R.id.nationalityEditText)).getText().toString();
         String language = mLanguageList.get(mLanguageIndex);
-        String specialty = ((EditText)getView().findViewById(R.id.specialtyEditText)).getText().toString();
+        String area = ((EditText)view.findViewById(R.id.areaEditText)).getText().toString();
+        String keyword = ((EditText)view.findViewById(R.id.keywordEditText)).getText().toString();
         String category = mCategoryList.get(mCategoryIndex);
-        String message = ((EditText)getView().findViewById(R.id.messageEditText)).getText().toString();
-        String timeZone = ((EditText)getView().findViewById(R.id.timeZoneEditText)).getText().toString();
+        String message = ((EditText)view.findViewById(R.id.messageEditText)).getText().toString();
         int applicableNumber = Integer.parseInt(mApplicableNumberList.get(mApplicableNumberIndex));
-        int fee = Integer.parseInt(((EditText)getView().findViewById(R.id.feeEditText)).getText().toString());
-        String notes = ((EditText)getView().findViewById(R.id.notesEditText)).getText().toString();
+        int fee = Integer.parseInt(((EditText)view.findViewById(R.id.feeEditText)).getText().toString());
+        String notes = ((EditText)view.findViewById(R.id.notesEditText)).getText().toString();
 
         myGuideData.email = email;
         myGuideData.name = name;
         myGuideData.nationality = nationality;
         myGuideData.language = language;
-        myGuideData.specialty = specialty;
+        myGuideData.area = area;
+        myGuideData.keyword = keyword;
         myGuideData.category = category;
         myGuideData.message = message;
-        myGuideData.timeZone = timeZone;
         myGuideData.applicableNumber = applicableNumber;
         myGuideData.fee = fee;
         myGuideData.notes = notes;

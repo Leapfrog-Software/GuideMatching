@@ -100,10 +100,10 @@ public class GuideData {
     public String name;
     public String nationality;
     public String language;
-    public String specialty;
+    public String area;
+    public String keyword;
     public String category;
     public String message;
-    public String timeZone;
     public int applicableNumber;
     public int fee;
     public String notes;
@@ -121,10 +121,10 @@ public class GuideData {
             guideData.name = Base64Utility.decode(json.getString("name"));
             guideData.nationality = Base64Utility.decode(json.getString("nationality"));
             guideData.language = Base64Utility.decode(json.getString("language"));
-            guideData.specialty = Base64Utility.decode(json.getString("specialty"));
+            guideData.area = Base64Utility.decode(json.getString("area"));
+            guideData.keyword = Base64Utility.decode(json.getString("keyword"));
             guideData.category = Base64Utility.decode(json.getString("category"));
             guideData.message = Base64Utility.decode(json.getString("message"));
-            guideData.timeZone = Base64Utility.decode(json.getString("timeZone"));
             guideData.applicableNumber = Integer.parseInt(json.getString("applicableNumber"));
             guideData.fee = Integer.parseInt(json.getString("fee"));
             guideData.notes = Base64Utility.decode(json.getString("notes"));

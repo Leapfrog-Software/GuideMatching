@@ -87,12 +87,12 @@
                     android:layout_marginRight="12dp"/>
             </LinearLayout>
 
-            <!-- 特技 -->
+            <!-- キーワード -->
             <TextView
-                android:id="@+id/specialtyTextView"
+                android:id="@+id/keywordTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tokyo, Izakaya, Anime"
+                android:text="Tokyo"
                 android:textSize="12dp"
                 android:textColor="@color/mainBlack"/>
 
