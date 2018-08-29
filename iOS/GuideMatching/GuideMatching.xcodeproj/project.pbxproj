@@ -16,6 +16,9 @@
 		2E12A0BD20EDB6190035107F /* MyPageScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0BC20EDB6190035107F /* MyPageScheduleViewController.swift */; };
 		2E12A0BF20EDC9220035107F /* MyPageScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0BE20EDC9220035107F /* MyPageScheduleTableViewCell.swift */; };
 		2E12A0C120EE031E0035107F /* ReserveRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E12A0C020EE031E0035107F /* ReserveRequester.swift */; };
+		2E20ECEA213633FC00DA0F98 /* GuideDetailTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E20ECE9213633FC00DA0F98 /* GuideDetailTourView.swift */; };
+		2E20ECEC2136340700DA0F98 /* GuideDetailTourView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E20ECEB2136340700DA0F98 /* GuideDetailTourView.xib */; };
+		2E20ECEF21363D5200DA0F98 /* GuideDetailTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E20ECEE21363D5200DA0F98 /* GuideDetailTourViewController.swift */; };
 		2E4FC0972106E3FA007FA061 /* BookCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4FC0962106E3FA007FA061 /* BookCompleteViewController.swift */; };
 		2E67BDA92101B427004E3B17 /* StripeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E67BDA82101B427004E3B17 /* StripeManager.swift */; };
 		2E67BDAB2101B475004E3B17 /* StripeApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E67BDAA2101B475004E3B17 /* StripeApiClient.swift */; };
@@ -54,6 +57,8 @@
 		2E94043420E37F3B00362878 /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94043320E37F3B00362878 /* GuideTableViewCell.swift */; };
 		2E94043820E3857A00362878 /* CommonUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94043720E3857A00362878 /* CommonUtility.swift */; };
 		2E94043A20E386A200362878 /* EstimateRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94043920E386A200362878 /* EstimateRequester.swift */; };
+		2E9D8D9421365C08009ECF99 /* GuideDetailTourHighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D8D9321365C08009ECF99 /* GuideDetailTourHighlightsView.swift */; };
+		2E9D8D9621365C12009ECF99 /* GuideDetailTourHighlightsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E9D8D9521365C12009ECF99 /* GuideDetailTourHighlightsView.xib */; };
 		2EBAAEE4213524CE00E1F1EA /* CreateTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBAAEE3213524CE00E1F1EA /* CreateTourViewController.swift */; };
 		2EBAAEE62135354900E1F1EA /* GuideRegisterTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBAAEE52135354900E1F1EA /* GuideRegisterTourView.swift */; };
 		2EBAAEE82135355600E1F1EA /* GuideRegisterTourView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EBAAEE72135355600E1F1EA /* GuideRegisterTourView.xib */; };
@@ -108,6 +113,9 @@
 		2E12A0BC20EDB6190035107F /* MyPageScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScheduleViewController.swift; sourceTree = "<group>"; };
 		2E12A0BE20EDC9220035107F /* MyPageScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		2E12A0C020EE031E0035107F /* ReserveRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveRequester.swift; sourceTree = "<group>"; };
+		2E20ECE9213633FC00DA0F98 /* GuideDetailTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailTourView.swift; sourceTree = "<group>"; };
+		2E20ECEB2136340700DA0F98 /* GuideDetailTourView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDetailTourView.xib; sourceTree = "<group>"; };
+		2E20ECEE21363D5200DA0F98 /* GuideDetailTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailTourViewController.swift; sourceTree = "<group>"; };
 		2E4FC0962106E3FA007FA061 /* BookCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCompleteViewController.swift; sourceTree = "<group>"; };
 		2E67BDA82101B427004E3B17 /* StripeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeManager.swift; sourceTree = "<group>"; };
 		2E67BDAA2101B475004E3B17 /* StripeApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeApiClient.swift; sourceTree = "<group>"; };
@@ -146,6 +154,8 @@
 		2E94043320E37F3B00362878 /* GuideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
 		2E94043720E3857A00362878 /* CommonUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonUtility.swift; sourceTree = "<group>"; };
 		2E94043920E386A200362878 /* EstimateRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateRequester.swift; sourceTree = "<group>"; };
+		2E9D8D9321365C08009ECF99 /* GuideDetailTourHighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailTourHighlightsView.swift; sourceTree = "<group>"; };
+		2E9D8D9521365C12009ECF99 /* GuideDetailTourHighlightsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDetailTourHighlightsView.xib; sourceTree = "<group>"; };
 		2EBAAEE3213524CE00E1F1EA /* CreateTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTourViewController.swift; sourceTree = "<group>"; };
 		2EBAAEE52135354900E1F1EA /* GuideRegisterTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterTourView.swift; sourceTree = "<group>"; };
 		2EBAAEE72135355600E1F1EA /* GuideRegisterTourView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideRegisterTourView.xib; sourceTree = "<group>"; };
@@ -212,6 +222,9 @@
 				2E11B3EC20EC869D002441EB /* GuideDetailScheduleView.xib */,
 				2E11B3EE20EC9099002441EB /* GuideDetailScheduleTableViewCell.swift */,
 				2E11B3F020EC90EC002441EB /* GuideDetailScheduleTableViewCell.xib */,
+				2E20ECE9213633FC00DA0F98 /* GuideDetailTourView.swift */,
+				2E20ECEB2136340700DA0F98 /* GuideDetailTourView.xib */,
+				2E20ECED21363D4000DA0F98 /* Tour */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -232,6 +245,16 @@
 				2E8D3766211415AB00AF21E0 /* CustomerReviewTableViewCell.swift */,
 			);
 			path = Review;
+			sourceTree = "<group>";
+		};
+		2E20ECED21363D4000DA0F98 /* Tour */ = {
+			isa = PBXGroup;
+			children = (
+				2E20ECEE21363D5200DA0F98 /* GuideDetailTourViewController.swift */,
+				2E9D8D9321365C08009ECF99 /* GuideDetailTourHighlightsView.swift */,
+				2E9D8D9521365C12009ECF99 /* GuideDetailTourHighlightsView.xib */,
+			);
+			path = Tour;
 			sourceTree = "<group>";
 		};
 		2E67BDA72101B40E004E3B17 /* Stripe */ = {
@@ -609,7 +632,9 @@
 				2E7DAA912105D24C0076EE12 /* Loading.xib in Resources */,
 				2E94040B20E36AD600362878 /* Common.storyboard in Resources */,
 				2E94043220E37D7A00362878 /* MyPage.storyboard in Resources */,
+				2E20ECEC2136340700DA0F98 /* GuideDetailTourView.xib in Resources */,
 				BB5059E320E262AE00491506 /* LaunchScreen.storyboard in Resources */,
+				2E9D8D9621365C12009ECF99 /* GuideDetailTourHighlightsView.xib in Resources */,
 				2E94042E20E37D6900362878 /* Search.storyboard in Resources */,
 				BB5059E020E262AE00491506 /* Assets.xcassets in Resources */,
 				2E7DAA992105D2800076EE12 /* DialogButton.xib in Resources */,
@@ -679,6 +704,7 @@
 				BB68506821357A7A00CBD20A /* MultiPickerViewController.swift in Sources */,
 				BB5059F820E2675800491506 /* CALayer+Border.swift in Sources */,
 				2E8D376C2114434C00AF21E0 /* EstimateViewController.swift in Sources */,
+				2E20ECEA213633FC00DA0F98 /* GuideDetailTourView.swift in Sources */,
 				2E94040020E3307600362878 /* Constants.swift in Sources */,
 				2E7DAA8F2105D2440076EE12 /* Loading.swift in Sources */,
 				2E7DAA932105D2600076EE12 /* Dialog.swift in Sources */,
@@ -703,6 +729,7 @@
 				2E94042720E37C2600362878 /* MessageViewController.swift in Sources */,
 				BB505A0420E26F8D00491506 /* ApiManager.swift in Sources */,
 				2EBAAEE4213524CE00E1F1EA /* CreateTourViewController.swift in Sources */,
+				2E9D8D9421365C08009ECF99 /* GuideDetailTourHighlightsView.swift in Sources */,
 				BB505A0720E2703C00491506 /* AccountRequester.swift in Sources */,
 				BBBE5FA22116A93200842BC3 /* MyPageAccountEditViewController.swift in Sources */,
 				2E94041820E370CD00362878 /* PlaceholderTextField.swift in Sources */,
@@ -729,6 +756,7 @@
 				BBFEBB2820E4E14F00C9F01C /* MyPageReservationNoneTableViewCell.swift in Sources */,
 				BBFEBB1C20E4D72000C9F01C /* MessageDetailRightTableViewCell.swift in Sources */,
 				BB505A0220E26F8500491506 /* HttpManager.swift in Sources */,
+				2E20ECEF21363D5200DA0F98 /* GuideDetailTourViewController.swift in Sources */,
 				BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */,
 				BBFEBB1E20E4DD1400C9F01C /* MyPageReservationTitleTableViewCell.swift in Sources */,
 				BB5059F320E2658F00491506 /* GuideRegisterViewController.swift in Sources */,

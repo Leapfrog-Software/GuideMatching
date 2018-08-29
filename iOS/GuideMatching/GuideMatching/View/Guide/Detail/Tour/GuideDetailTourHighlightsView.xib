@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="GuideDetailTourHighlightsView" customModule="GuideMatching" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="見所タイトル" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zV0-FA-Kap">
+                    <rect key="frame" x="20" y="10" width="335" height="19.5"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <color key="textColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YTv-fb-9O7">
+                    <rect key="frame" x="20" y="37.5" width="335" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="lze-FW-2vA"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="説明文" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JsU-6C-tWq">
+                    <rect key="frame" x="20" y="165" width="335" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="JsU-6C-tWq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="3zX-uk-oa1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JsU-6C-tWq" secondAttribute="trailing" constant="20" id="46P-wi-Cmh"/>
+                <constraint firstItem="zV0-FA-Kap" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="EZB-9b-TnA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zV0-FA-Kap" secondAttribute="trailing" constant="20" id="Lpb-qP-HcY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="JsU-6C-tWq" secondAttribute="bottom" constant="10" id="Wa8-A5-TdT"/>
+                <constraint firstItem="YTv-fb-9O7" firstAttribute="top" secondItem="zV0-FA-Kap" secondAttribute="bottom" constant="8" id="XCu-oL-FiD"/>
+                <constraint firstItem="zV0-FA-Kap" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="bfo-hK-w5P"/>
+                <constraint firstItem="JsU-6C-tWq" firstAttribute="top" secondItem="YTv-fb-9O7" secondAttribute="bottom" constant="8" id="caj-mr-wSI"/>
+                <constraint firstItem="YTv-fb-9O7" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="oAv-YP-mxl"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="YTv-fb-9O7" secondAttribute="trailing" constant="20" id="ub1-So-5tc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="bodyLabel" destination="JsU-6C-tWq" id="uX7-5u-gmN"/>
+                <outlet property="highlightsImageView" destination="YTv-fb-9O7" id="d2a-xG-Thb"/>
+                <outlet property="highlightsTitleLabel" destination="zV0-FA-Kap" id="4dL-Dh-jcz"/>
+            </connections>
+            <point key="canvasLocation" x="61.5" y="-175.5"/>
+        </view>
+    </objects>
+</document>

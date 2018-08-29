@@ -236,12 +236,16 @@ class GuideRegisterViewController: UIViewController {
         AccountRequester.updateGuide(guideData: myGuideData, completion: { resultUpdate in
             if resultUpdate {
                 self.uploadAllImage(guideId: SaveData.shared.guideId, completion: { resultImage in
-                    Loading.stop()
-                    if resultImage {
-                        Dialog.show(style: .success, title: "確認", message: "更新しました", actions: [DialogAction(title: "OK", action: nil)])
-                    } else {
-                        self.showCommunicateError()
-                    }
+                    GuideRequester.shared.fetch(completion: { resultFetch in
+                        Loading.stop()
+                        
+                        if resultImage && resultFetch {
+                            NotificationCenter.default.post(name: .guide, object: nil, userInfo: nil)
+                            Dialog.show(style: .success, title: "確認", message: "更新しました", actions: [DialogAction(title: "OK", action: nil)])
+                        } else {
+                            self.showCommunicateError()
+                        }
+                    })
                 })
             } else {
                 Loading.stop()

@@ -26,13 +26,15 @@ class BookCompleteViewController: UIViewController {
     private var startTimeIndex: Int!
     private var endTimeIndex: Int!
     private var meetingPlace: String!
+    private var tourFee: Int?
     
-    func set(guideData: GuideData, date: Date, startTimeIndex: Int, endTimeIndex: Int, meetingPlace: String) {
+    func set(guideData: GuideData, date: Date, startTimeIndex: Int, endTimeIndex: Int, meetingPlace: String, tourFee: Int? = nil) {
         self.guideData = guideData
         self.date = date
         self.startTimeIndex = startTimeIndex
         self.endTimeIndex = endTimeIndex
         self.meetingPlace = meetingPlace
+        self.tourFee = tourFee
     }
     
     override func viewDidLoad() {
@@ -54,11 +56,19 @@ class BookCompleteViewController: UIViewController {
         self.startTimeLabel.text = CommonUtility.timeOffsetToString(offset: self.startTimeIndex)
         self.endTimeLabel.text = CommonUtility.timeOffsetToString(offset: self.endTimeIndex)
         self.placeLabel.text = self.meetingPlace
-        let guideFee = (self.endTimeIndex - self.startTimeIndex) * self.guideData.fee
-        self.guideFeeLabel.text = CommonUtility.digit3Format(value: guideFee) + " JPY"
-        let transactionFee = CommonUtility.calculateTransactionFee(of: guideFee)
-        self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + " JPY"
-        self.totalFeeLabel.text = CommonUtility.digit3Format(value: guideFee + transactionFee) + " JPY"
+        
+        if let tourFee = self.tourFee {
+            self.guideFeeLabel.text = CommonUtility.digit3Format(value: tourFee) + " JPY"
+            let transactionFee = CommonUtility.calculateTransactionFee(of: tourFee)
+            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + " JPY"
+            self.totalFeeLabel.text = CommonUtility.digit3Format(value: tourFee + transactionFee) + " JPY"
+        } else {
+            let guideFee = (self.endTimeIndex - self.startTimeIndex) * self.guideData.fee
+            self.guideFeeLabel.text = CommonUtility.digit3Format(value: guideFee) + " JPY"
+            let transactionFee = CommonUtility.calculateTransactionFee(of: guideFee)
+            self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + " JPY"
+            self.totalFeeLabel.text = CommonUtility.digit3Format(value: guideFee + transactionFee) + " JPY"
+        }
     }
     
     private func adjustLayout() {

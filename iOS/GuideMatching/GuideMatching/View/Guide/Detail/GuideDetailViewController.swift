@@ -35,6 +35,7 @@ class GuideDetailViewController: UIViewController {
     @IBOutlet private weak var star2RateLabel: UILabel!
     @IBOutlet private weak var star1RateLabel: UILabel!
     @IBOutlet private weak var star0RateLabel: UILabel!
+    @IBOutlet private weak var tourStackView: UIStackView!
     @IBOutlet private weak var scheduleBaseView: UIView!
     
     private var guideData: GuideData!
@@ -77,6 +78,14 @@ class GuideDetailViewController: UIViewController {
         self.applicableNumberLabel.text = "\(self.guideData.applicableNumber)人"
         self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
         self.notesLabel.text = self.guideData.notes
+        
+        self.guideData.tours.forEach { tourData in
+            let tourView = UINib(nibName: "GuideDetailTourView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! GuideDetailTourView
+            tourView.set(tourData: tourData, didTap: { [weak self] tourData in
+                self?.didTapTour(tourData: tourData)
+            })
+            self.tourStackView.addArrangedSubview(tourView)
+        }
         
         if let scheduleView = UINib(nibName: "GuideDetailScheduleView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? GuideDetailScheduleView {
             scheduleView.set(guideId: self.guideData.id, schedules: self.guideData.schedules, didSelect: { [weak self] targetDate, timeOffset in
@@ -165,6 +174,12 @@ class GuideDetailViewController: UIViewController {
         self.star3RateLabel.text = "\(score3Rate)%"
         self.star4RateLabel.text = "\(score4Rate)%"
         self.star5RateLabel.text = "\(score5Rate)%"
+    }
+    
+    private func didTapTour(tourData: GuideTourData) {
+        let tour = self.viewController(storyboard: "Guide", identifier: "GuideDetailTourViewController") as! GuideDetailTourViewController
+        tour.set(guideId: self.guideData.id, tourData: tourData)
+        self.stack(viewController: tour, animationType: .horizontal)
     }
     
     private func didSelectSchedule(targetDate: Date, timeOffset: Int) {
