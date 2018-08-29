@@ -121,6 +121,10 @@ class GuideDetailScheduleView: UIView {
 
 extension GuideDetailScheduleView: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 48
     }
@@ -147,7 +151,10 @@ extension GuideDetailScheduleView: UITableViewDelegate, UITableViewDataSource {
                 return false
             })
             
-            if let scheduleData = (self.scheduleDatas.filter { $0.date.isSameDay(with: targetDate) }).first {
+            if isReserved {
+                type = .reserved
+                
+            } else if let scheduleData = (self.scheduleDatas.filter { $0.date.isSameDay(with: targetDate) }).first {
                 if scheduleData.isFreeList[indexPath.row] {
                     type = .free
                 } else {

@@ -229,18 +229,6 @@ class GuideDetailViewController: UIViewController {
         }
     }
     
-    @IBAction func onTapNextMonth2(_ sender: Any) {
-        if let scheduleView = (self.scheduleBaseView.subviews.compactMap { $0 as? GuideDetailScheduleView }).first {
-            scheduleView.changeToNext()
-        }
-    }
-    
-    @IBAction func onTapPreviousMonth2(_ sender: Any) {
-        if let scheduleView = (self.scheduleBaseView.subviews.compactMap { $0 as? GuideDetailScheduleView }).first {
-            scheduleView.changeToPrevious()
-        }
-    }
-    
     @IBAction func onTapBack(_ sender: Any) {
         self.pop(animationType: .horizontal)
     }
