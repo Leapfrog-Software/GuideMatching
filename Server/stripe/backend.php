@@ -115,18 +115,22 @@ function createCharge() {
   }
 
   try {
-    $charge = \Stripe\Charge::create(
-      Array(
-//        "customer" => $customerId,
-        "amount" => $amountInt,
-        "currency" => "jpy",
-        "source" => $cardId,
-        "application_fee" => $applicationFeeInt,
-        "destination" => Array(
-          "account" => $destination
-        )
-      )
-    );
+    $paramAry = Array(
+                  "amount" => $amountInt,
+                  "currency" => "jpy",
+                  "source" => $cardId,
+                  "application_fee" => $applicationFeeInt,
+                  "destination" => Array(
+                    "account" => $destination
+                  )
+                );
+
+    if (strlen($customerId) > 0) {
+      $paramAry["customer"] = $customerId;
+    }
+
+    $charge = \Stripe\Charge::create($paramAry);
+
     echo(json_encode(Array("result" => "0")));
   } catch (Exception $e) {
     echo(json_encode(Array("result" => "1", "message" => $e->getMessage())));
