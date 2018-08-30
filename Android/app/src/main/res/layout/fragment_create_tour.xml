@@ -21,6 +21,629 @@
                 android:src="@drawable/back_white"
                 android:scaleType="fitCenter"
                 android:background="#0000"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tour"
+                android:textSize="@dimen/headerTitleTextSize"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:layout_gravity="center"/>
         </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:overScrollMode="never">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- ツアー写真 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ツアー写真"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="14dp"/>
+                <ImageButton
+                    android:id="@+id/tourImageButton"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/image_guide"
+                    android:scaleType="fitCenter"
+                    android:background="#0000"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="14dp" />
+
+                <!-- ツアータイトル -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:text="ツアータイトル"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"/>
+                <EditText
+                    android:id="@+id/tourTitleEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="text"
+                    android:background="@drawable/shape_edittext"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"/>
+
+                <!-- エリア -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:text="エリア"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"/>
+                <EditText
+                    android:id="@+id/areaEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="text"
+                    android:background="@drawable/shape_edittext"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"/>
+
+                <!-- 料金 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:text="料金"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"/>
+                <EditText
+                    android:id="@+id/feeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="number"
+                    android:background="@drawable/shape_edittext"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"/>
+
+                <!-- 概要 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:text="概要"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"/>
+                <EditText
+                    android:id="@+id/descriptionEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="text"
+                    android:background="@drawable/shape_edittext"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"/>
+
+                <!-- 見所1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="30dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="見所1"
+                            android:textSize="16dp"
+                            android:textColor="@color/mainBlack"
+                            android:textStyle="bold"/>
+                        <Button
+                            android:id="@+id/highlights1DeleteButton"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:text="削除する"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:textColor="#3AA6FF"
+                            android:background="#0000"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="14dp"
+                        android:text="見所タイトル"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"/>
+                    <EditText
+                        android:id="@+id/highlighs1TitleEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="text"
+                        android:background="@drawable/shape_edittext"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"/>
+
+                    <!-- 見所写真 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="写真"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="14dp"/>
+                    <ImageButton
+                        android:id="@+id/highlights1ImageButton"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/image_guide"
+                        android:scaleType="fitCenter"
+                        android:background="#0000"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="14dp"
+                        android:text="説明"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"/>
+                    <EditText
+                        android:id="@+id/highlighs1BodyEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="text"
+                        android:background="@drawable/shape_edittext"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"/>
+                </LinearLayout>
+
+                <!-- 見所2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="30dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="見所2"
+                            android:textSize="16dp"
+                            android:textColor="@color/mainBlack"
+                            android:textStyle="bold"/>
+                        <Button
+                            android:id="@+id/highlights2DeleteButton"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:text="削除する"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:textColor="#3AA6FF"
+                            android:background="#0000"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="14dp"
+                        android:text="見所タイトル"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"/>
+                    <EditText
+                        android:id="@+id/highlighs2TitleEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="text"
+                        android:background="@drawable/shape_edittext"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"/>
+
+                    <!-- 見所写真 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="写真"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="14dp"/>
+                    <ImageButton
+                        android:id="@+id/highlights2ImageButton"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/image_guide"
+                        android:scaleType="fitCenter"
+                        android:background="#0000"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="14dp"
+                        android:text="説明"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"/>
+                    <EditText
+                        android:id="@+id/highlighs2BodyEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="text"
+                        android:background="@drawable/shape_edittext"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"/>
+                </LinearLayout>
+
+                <!-- 見所3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginTop="30dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="見所3"
+                            android:textSize="16dp"
+                            android:textColor="@color/mainBlack"
+                            android:textStyle="bold"/>
+                        <Button
+                            android:id="@+id/highlights3DeleteButton"
+                            android:layout_width="100dp"
+                            android:layout_height="match_parent"
+                            android:text="削除する"
+                            android:textSize="14dp"
+                            android:textStyle="bold"
+                            android:textColor="#3AA6FF"
+                            android:background="#0000"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="14dp"
+                        android:text="見所タイトル"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"/>
+                    <EditText
+                        android:id="@+id/highlighs3TitleEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="text"
+                        android:background="@drawable/shape_edittext"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"/>
+
+                    <!-- 見所写真 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="写真"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="14dp"/>
+                    <ImageButton
+                        android:id="@+id/highlights3ImageButton"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/image_guide"
+                        android:scaleType="fitCenter"
+                        android:background="#0000"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginLeft="14dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="14dp"
+                        android:text="説明"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"/>
+                    <EditText
+                        android:id="@+id/highlighs3BodyEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="text"
+                        android:background="@drawable/shape_edittext"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginRight="14dp"/>
+                </LinearLayout>
+
+                <!-- 見所追加 -->
+                <Button
+                    android:id="@+id/addHighlightsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:text="＋見所を追加"
+                    android:textSize="18dp"
+                    android:textColor="@color/mainBlack"
+                    android:layout_marginTop="20dp"
+                    android:background="#0000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Important Information"
+                    android:textSize="16dp"
+                    android:textColor="@color/mainBlack"
+                    android:textStyle="bold"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="14dp"/>
+
+                <!-- Days -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:text="Days"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edittext"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp">
+                    <TextView
+                        android:id="@+id/daysTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5/1(月)"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="▼"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="20dp"/>
+                    <Button
+                        android:id="@+id/daysButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#0000"/>
+                </FrameLayout>
+
+                <!-- Start Time -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:text="StartTime"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edittext"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp">
+                    <TextView
+                        android:id="@+id/startTimeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="13:00"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="▼"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="20dp"/>
+                    <Button
+                        android:id="@+id/startTimeButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#0000"/>
+                </FrameLayout>
+
+                <!-- End Time -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:text="End Time"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_edittext"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp">
+                    <TextView
+                        android:id="@+id/endTimeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="13:00"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="▼"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="20dp"/>
+                    <Button
+                        android:id="@+id/endTimeButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#0000"/>
+                </FrameLayout>
+
+                <!-- Departure Point -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:text="Departure Point"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"/>
+                <EditText
+                    android:id="@+id/departurePointEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="text"
+                    android:background="@drawable/shape_edittext"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"/>
+
+                <!-- Return Detail -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:text="Return Detail"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"/>
+                <EditText
+                    android:id="@+id/returnDetailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="text"
+                    android:background="@drawable/shape_edittext"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"/>
+
+                <!-- Inclusions -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:text="Inclusions"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"/>
+                <EditText
+                    android:id="@+id/inclusionsEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="text"
+                    android:background="@drawable/shape_edittext"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"/>
+
+                <!-- Exclusions -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="14dp"
+                    android:text="Exclusions"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"/>
+                <EditText
+                    android:id="@+id/exclusionsEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:inputType="text"
+                    android:background="@drawable/shape_edittext"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="14dp"
+                    android:layout_marginRight="14dp"/>
+
+                <!-- 更新 -->
+                <Button
+                    android:id="@+id/updateButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="ツアー情報を更新"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/shape_create_tour_update_button"/>
+
+                <!-- 削除 -->
+                <Button
+                    android:id="@+id/deleteButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="ツアー情報を削除"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/shape_create_tour_delete_button"
+                    android:layout_marginBottom="30dp"/>
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </FrameLayout>
