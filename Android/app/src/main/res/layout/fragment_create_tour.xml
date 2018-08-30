@@ -138,6 +138,7 @@
 
                 <!-- 見所1 -->
                 <LinearLayout
+                    android:id="@+id/highlights1Layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -146,7 +147,7 @@
                     android:layout_marginTop="30dp">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="0dp"
@@ -176,7 +177,7 @@
                         android:textSize="14dp"
                         android:textColor="@color/mainBlack"/>
                     <EditText
-                        android:id="@+id/highlighs1TitleEditText"
+                        android:id="@+id/highlights1TitleEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:inputType="text"
@@ -194,15 +195,23 @@
                         android:textColor="@color/mainBlack"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="14dp"/>
-                    <ImageButton
-                        android:id="@+id/highlights1ImageButton"
+                    <FrameLayout
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/image_guide"
-                        android:scaleType="fitCenter"
-                        android:background="#0000"
                         android:layout_marginTop="8dp"
-                        android:layout_marginLeft="14dp" />
+                        android:layout_marginLeft="14dp">
+                        <ImageView
+                            android:id="@+id/highlights1ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/image_guide"
+                            android:scaleType="fitCenter"/>
+                        <Button
+                            android:id="@+id/highlights1ImageButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#0000"/>
+                    </FrameLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -213,7 +222,7 @@
                         android:textSize="14dp"
                         android:textColor="@color/mainBlack"/>
                     <EditText
-                        android:id="@+id/highlighs1BodyEditText"
+                        android:id="@+id/highlights1BodyEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:inputType="text"
@@ -225,6 +234,7 @@
 
                 <!-- 見所2 -->
                 <LinearLayout
+                    android:id="@+id/highlights2Layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -233,7 +243,7 @@
                     android:layout_marginTop="30dp">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="0dp"
@@ -263,7 +273,7 @@
                         android:textSize="14dp"
                         android:textColor="@color/mainBlack"/>
                     <EditText
-                        android:id="@+id/highlighs2TitleEditText"
+                        android:id="@+id/highlights2TitleEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:inputType="text"
@@ -281,15 +291,23 @@
                         android:textColor="@color/mainBlack"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="14dp"/>
-                    <ImageButton
-                        android:id="@+id/highlights2ImageButton"
+                    <FrameLayout
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/image_guide"
-                        android:scaleType="fitCenter"
-                        android:background="#0000"
                         android:layout_marginTop="8dp"
-                        android:layout_marginLeft="14dp" />
+                        android:layout_marginLeft="14dp">
+                        <ImageView
+                            android:id="@+id/highlights2ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/image_guide"
+                            android:scaleType="fitCenter"/>
+                        <Button
+                            android:id="@+id/highlights2ImageButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#0000"/>
+                    </FrameLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -300,7 +318,7 @@
                         android:textSize="14dp"
                         android:textColor="@color/mainBlack"/>
                     <EditText
-                        android:id="@+id/highlighs2BodyEditText"
+                        android:id="@+id/highlights2BodyEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:inputType="text"
@@ -312,6 +330,7 @@
 
                 <!-- 見所3 -->
                 <LinearLayout
+                    android:id="@+id/highlights3Layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -320,7 +339,7 @@
                     android:layout_marginTop="30dp">
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:orientation="horizontal">
                         <TextView
                             android:layout_width="0dp"
@@ -350,7 +369,7 @@
                         android:textSize="14dp"
                         android:textColor="@color/mainBlack"/>
                     <EditText
-                        android:id="@+id/highlighs3TitleEditText"
+                        android:id="@+id/highlights3TitleEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:inputType="text"
@@ -368,15 +387,23 @@
                         android:textColor="@color/mainBlack"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="14dp"/>
-                    <ImageButton
-                        android:id="@+id/highlights3ImageButton"
+                    <FrameLayout
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/image_guide"
-                        android:scaleType="fitCenter"
-                        android:background="#0000"
                         android:layout_marginTop="8dp"
-                        android:layout_marginLeft="14dp" />
+                        android:layout_marginLeft="14dp">
+                        <ImageView
+                            android:id="@+id/highlights3ImageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/image_guide"
+                            android:scaleType="fitCenter"/>
+                        <Button
+                            android:id="@+id/highlights3ImageButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#0000"/>
+                    </FrameLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -387,7 +414,7 @@
                         android:textSize="14dp"
                         android:textColor="@color/mainBlack"/>
                     <EditText
-                        android:id="@+id/highlighs3BodyEditText"
+                        android:id="@+id/highlights3BodyEditText"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:inputType="text"
