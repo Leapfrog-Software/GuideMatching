@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -89,10 +90,26 @@ public class GuideRegisterFragment extends BaseFragment {
                 ((TextView)view.findViewById(R.id.applicableNumberTextView)).setText(String.valueOf(guideData.applicableNumber));
                 ((EditText)view.findViewById(R.id.feeEditText)).setText(String.valueOf(guideData.fee));
                 ((EditText)view.findViewById(R.id.notesEditText)).setText(guideData.notes);
+
+                for (int i = 0; i < guideData.tours.size(); i++) {
+                    GuideRegisterTourLayout tourLayout = new GuideRegisterTourLayout(getActivity(), null);
+                    final GuideData.GuideTourData tourData = guideData.tours.get(i);
+                    tourLayout.set(tourData);
+                    ((LinearLayout)view.findViewById(R.id.tourLayout)).addView(tourLayout);
+                    tourLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onClickTour(tourData);
+                        }
+                    });
+                }
             }
 
         } else {
             ((TextView)view.findViewById(R.id.headerTitleTextView)).setText("New Registration");
+
+            view.findViewById(R.id.tourLayout).setVisibility(View.GONE);
+            view.findViewById(R.id.createTourButton).setVisibility(View.GONE);
         }
     }
 
@@ -100,6 +117,12 @@ public class GuideRegisterFragment extends BaseFragment {
         ViewGroup.LayoutParams params = view.getLayoutParams();
         params.height = height;
         view.setLayoutParams(params);
+    }
+
+    private void onClickTour(GuideData.GuideTourData tourData) {
+        CreateTourFragment fragment = new CreateTourFragment();
+        fragment.set(tourData);
+        stackFragment(fragment, AnimationType.horizontal);
     }
 
     private void initAction(View view) {
@@ -199,6 +222,14 @@ public class GuideRegisterFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 popFragment(AnimationType.vertical);
+            }
+        });
+
+        view.findViewById(R.id.createTourButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateTourFragment fragment = new CreateTourFragment();
+                stackFragment(fragment, AnimationType.horizontal);
             }
         });
     }

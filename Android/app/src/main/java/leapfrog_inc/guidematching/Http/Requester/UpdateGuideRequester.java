@@ -62,6 +62,15 @@ public class UpdateGuideRequester {
         }
         param.append("schedules=" + schedules.toString());
 
+        StringBuffer tours = new StringBuffer();
+        for (int i = 0; i < guideData.tours.size(); i++) {
+            if (i > 0) {
+                tours.append("/");
+            }
+            tours.append(guideData.tours.get(i).toString());
+        }
+        param.append("tours=" + tours.toString());
+
         param.append("&");
         param.append("stripeAccountId=" + guideData.stripeAccountId);
         param.append("&");
