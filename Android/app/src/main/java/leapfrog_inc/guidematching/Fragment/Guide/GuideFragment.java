@@ -64,6 +64,7 @@ public class GuideFragment extends BaseFragment {
 
         if (mSearchCondition == null) {
             for (int i = 0; i < FetchGuideRequester.getInstance().mDataList.size(); i++) {
+                // TODO 自分は除く
                 adapter.add(FetchGuideRequester.getInstance().mDataList.get(i));
                 isEmpty = false;
             }

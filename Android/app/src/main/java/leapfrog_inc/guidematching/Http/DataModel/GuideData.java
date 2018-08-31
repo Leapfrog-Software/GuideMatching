@@ -19,7 +19,7 @@ public class GuideData {
 
             GuideScheduleData scheduleData = new GuideScheduleData();
 
-            String[] splited = string.split("_");
+            String[] splited = string.split("_", -1);
             if (splited.length != 49) {
                 return null;
             }
@@ -83,7 +83,7 @@ public class GuideData {
 
         public static GuideTourData create(String string) {
 
-            String[] splited = string.split("-");
+            String[] splited = string.split("-", -1);
             if (splited.length == 18) {
                 GuideTourData tourData = new GuideTourData();
 
@@ -99,7 +99,7 @@ public class GuideData {
                 tourData.highlights3Title = Base64Utility.decode(splited[9]);
                 tourData.highlights3Body = Base64Utility.decode(splited[10]);
 
-                String[] daysStrs = splited[11].split("|");
+                String[] daysStrs = splited[11].split("\\|");
                 for (int i = 0; i < daysStrs.length; i++) {
                     Date date = DateUtility.stringToDate(daysStrs[i], "yyyyMMdd");
                     if (date != null) {
@@ -113,6 +113,7 @@ public class GuideData {
                 tourData.returnDetail = Base64Utility.decode(splited[15]);
                 tourData.inclusions = Base64Utility.decode(splited[16]);
                 tourData.exclusions = Base64Utility.decode(splited[17]);
+                return tourData;
             }
             return null;
         }
@@ -151,8 +152,8 @@ public class GuideData {
             return id + "-"
                     + name + "-"
                     + area + "-"
-                    + fee + "-"
                     + description + "-"
+                    + fee + "-"
                     + highlights1Title + "-"
                     + highlights1Body + "-"
                     + highlights2Title + "-"
@@ -165,7 +166,7 @@ public class GuideData {
                     + departurePoint + "-"
                     + returnDetail + "-"
                     + inclusions + "-"
-                    + exclusions + "-";
+                    + exclusions;
         }
     }
 
@@ -183,7 +184,7 @@ public class GuideData {
             GuideBankAccountData account = new GuideBankAccountData();
 
             String decode = Base64Utility.decode(string);
-            String[] splited = decode.split(",");
+            String[] splited = decode.split(",", -1);
             if (splited.length != 6) {
                 return account;
             }
