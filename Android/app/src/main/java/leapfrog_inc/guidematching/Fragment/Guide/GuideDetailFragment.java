@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import java.util.Date;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
 import leapfrog_inc.guidematching.Fragment.Common.Dialog;
+import leapfrog_inc.guidematching.Fragment.Initial.GuideRegisterTourLayout;
 import leapfrog_inc.guidematching.Fragment.Message.MessageDetailFragment;
 import leapfrog_inc.guidematching.Fragment.Message.MessageFragment;
 import leapfrog_inc.guidematching.Fragment.MyPage.MyPageFragment;
@@ -153,6 +155,20 @@ public class GuideDetailFragment extends BaseFragment {
         ((TextView)view.findViewById(R.id.star4RateTextView)).setText(String.valueOf(score4Rate) + "%");
         ((TextView)view.findViewById(R.id.star5RateTextView)).setText(String.valueOf(score5Rate) + "%");
 
+        LinearLayout tourBaseLayout = view.findViewById(R.id.tourLayout);
+        for (int i = 0; i < mGuideData.tours.size(); i++) {
+            GuideDetailTourLayout tourLayout = new GuideDetailTourLayout(getActivity(), null);
+            final GuideData.GuideTourData tourData = mGuideData.tours.get(i);
+            tourLayout.set(tourData);
+            tourBaseLayout.addView(tourLayout);
+            tourLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickTour(tourData);
+                }
+            });
+        }
+
         android.support.v4.app.FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         mScheduleFragment = new GuideDetailScheduleFragment();
@@ -170,6 +186,12 @@ public class GuideDetailFragment extends BaseFragment {
         ViewGroup.LayoutParams params = view.getLayoutParams();
         params.width = width;
         view.setLayoutParams(params);
+    }
+
+    private void onClickTour(GuideData.GuideTourData tourData) {
+        GuideDetailTourFragment fragment = new GuideDetailTourFragment();
+        fragment.set(tourData);
+        stackFragment(fragment, AnimationType.horizontal);
     }
 
     private void didSelectSchedule(Calendar date, int timeIndex) {
