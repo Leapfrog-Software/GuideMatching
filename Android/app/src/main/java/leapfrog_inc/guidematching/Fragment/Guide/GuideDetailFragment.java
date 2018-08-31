@@ -190,7 +190,7 @@ public class GuideDetailFragment extends BaseFragment {
 
     private void onClickTour(GuideData.GuideTourData tourData) {
         GuideDetailTourFragment fragment = new GuideDetailTourFragment();
-        fragment.set(tourData);
+        fragment.set(mGuideData, tourData);
         stackFragment(fragment, AnimationType.horizontal);
     }
 
