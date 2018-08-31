@@ -57,13 +57,16 @@ public class GuideRegisterFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_guide_register, null);
 
-        initContents(view);
+        resetContents(view);
         initAction(view);
 
         return view;
     }
 
-    private void initContents(View view) {
+    void resetContents(View v) {
+
+        View view = v;
+        if (view == null) view = getView();
 
         int faceImageHeight = (DeviceUtility.getWindowSize(getActivity()).x - (int)(80 * DeviceUtility.getDeviceDensity(getActivity()))) / 3;
         setHeight(view.findViewById(R.id.face1ImageButton), faceImageHeight);
@@ -91,11 +94,14 @@ public class GuideRegisterFragment extends BaseFragment {
                 ((EditText)view.findViewById(R.id.feeEditText)).setText(String.valueOf(guideData.fee));
                 ((EditText)view.findViewById(R.id.notesEditText)).setText(guideData.notes);
 
+                LinearLayout tourBaseLayout = (LinearLayout)view.findViewById(R.id.tourLayout);
+                tourBaseLayout.removeAllViews();
+
                 for (int i = 0; i < guideData.tours.size(); i++) {
                     GuideRegisterTourLayout tourLayout = new GuideRegisterTourLayout(getActivity(), null);
                     final GuideData.GuideTourData tourData = guideData.tours.get(i);
                     tourLayout.set(tourData);
-                    ((LinearLayout)view.findViewById(R.id.tourLayout)).addView(tourLayout);
+                    tourBaseLayout.addView(tourLayout);
                     tourLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

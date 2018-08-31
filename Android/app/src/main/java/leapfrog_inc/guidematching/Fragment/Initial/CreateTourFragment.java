@@ -2,6 +2,7 @@ package leapfrog_inc.guidematching.Fragment.Initial;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +15,24 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
 import leapfrog_inc.guidematching.Fragment.Common.Dialog;
+import leapfrog_inc.guidematching.Fragment.Common.Loading;
 import leapfrog_inc.guidematching.Fragment.Common.MultiplePickerFragment;
 import leapfrog_inc.guidematching.Fragment.Common.PickerFragment;
+import leapfrog_inc.guidematching.Fragment.Guide.GuideFragment;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;
+import leapfrog_inc.guidematching.Http.Requester.FetchGuideRequester;
+import leapfrog_inc.guidematching.Http.Requester.UpdateGuideRequester;
 import leapfrog_inc.guidematching.R;
 import leapfrog_inc.guidematching.System.CommonUtility;
 import leapfrog_inc.guidematching.System.Constants;
 import leapfrog_inc.guidematching.System.DateUtility;
 import leapfrog_inc.guidematching.System.GalleryManager;
 import leapfrog_inc.guidematching.System.PicassoUtility;
+import leapfrog_inc.guidematching.System.SaveData;
 
 public class CreateTourFragment extends BaseFragment {
 
@@ -113,6 +120,39 @@ public class CreateTourFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 onTapHighlights3Image();
+            }
+        });
+
+        view.findViewById(R.id.highlights1DeleteButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onTapHighlights1Delete();
+            }
+        });
+        view.findViewById(R.id.highlights2DeleteButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onTapHighlights2Delete();
+            }
+        });
+        view.findViewById(R.id.highlights3DeleteButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onTapHighlights3Delete();
+            }
+        });
+
+        view.findViewById(R.id.updateButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onTapUpdate();
+            }
+        });
+
+        view.findViewById(R.id.deleteButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onTapDelete();
             }
         });
     }
@@ -338,4 +378,185 @@ public class CreateTourFragment extends BaseFragment {
         });
     }
 
+    private void onTapHighlights1Delete() {
+        getView().findViewById(R.id.highlights1Layout).setVisibility(View.GONE);
+    }
+
+    private void onTapHighlights2Delete() {
+        getView().findViewById(R.id.highlights2Layout).setVisibility(View.GONE);
+    }
+
+    private void onTapHighlights3Delete() {
+        getView().findViewById(R.id.highlights3Layout).setVisibility(View.GONE);
+    }
+
+    private void onTapUpdate() {
+
+        View view = getView();
+
+        GuideData.GuideTourData newTourData = new GuideData.GuideTourData();
+
+        newTourData.name = ((EditText)view.findViewById(R.id.tourTitleEditText)).getText().toString();
+        newTourData.area = ((EditText)view.findViewById(R.id.areaEditText)).getText().toString();
+        newTourData.description = ((EditText)view.findViewById(R.id.descriptionEditText)).getText().toString();
+
+        String feeStr = ((EditText)view.findViewById(R.id.feeEditText)).getText().toString();
+        int fee = Integer.parseInt(feeStr);
+        if (fee <= 0) {
+            showError("不適切な料金設定です");
+            return;
+        }
+        newTourData.fee = fee;
+
+        if (view.findViewById(R.id.highlights1Layout).getVisibility() == View.VISIBLE) {
+            newTourData.highlights1Title = ((EditText)view.findViewById(R.id.highlights1TitleEditText)).getText().toString();
+            newTourData.highlights1Body = ((EditText)view.findViewById(R.id.highlights1BodyEditText)).getText().toString();
+        }
+        if (view.findViewById(R.id.highlights2Layout).getVisibility() == View.VISIBLE) {
+            newTourData.highlights2Title = ((EditText)view.findViewById(R.id.highlights2TitleEditText)).getText().toString();
+            newTourData.highlights2Body = ((EditText)view.findViewById(R.id.highlights2BodyEditText)).getText().toString();
+        }
+        if (view.findViewById(R.id.highlights3Layout).getVisibility() == View.VISIBLE) {
+            newTourData.highlights3Title = ((EditText)view.findViewById(R.id.highlights3TitleEditText)).getText().toString();
+            newTourData.highlights3Body = ((EditText)view.findViewById(R.id.highlights3BodyEditText)).getText().toString();
+        }
+
+        if (mSelectedDaysIndexes == null) {
+            showError("日付の入力がありません");
+            return;
+        }
+        newTourData.days = new ArrayList<Date>();
+        ArrayList<Date> dates = createDays();
+        for (int i = 0; i < mSelectedDaysIndexes.size(); i++) {
+            newTourData.days.add(dates.get(mSelectedDaysIndexes.get(i)));
+        }
+
+        if (mSelectedStartTime == null) {
+            showError("開始時刻の入力がありません");
+            return;
+        }
+        newTourData.startTime = mSelectedStartTime;
+
+        if (mSelectedEndTime == null) {
+            showError("終了時刻の入力がありません");
+            return;
+        }
+        newTourData.endTime = mSelectedEndTime;
+
+        newTourData.departurePoint = ((EditText)view.findViewById(R.id.departurePointEditText)).getText().toString();
+        newTourData.returnDetail = ((EditText)view.findViewById(R.id.returnDetailEditText)).getText().toString();
+        newTourData.inclusions = ((EditText)view.findViewById(R.id.inclusionsEditText)).getText().toString();
+        newTourData.exclusions = ((EditText)view.findViewById(R.id.exclusionsEditText)).getText().toString();
+
+        GuideData myGuideData = FetchGuideRequester.getInstance().query(SaveData.getInstance().guideId);
+
+        if (mTourData == null) {
+            newTourData.id = myGuideData.id + "_" + String.valueOf(myGuideData.tours.size());
+            myGuideData.tours.add(newTourData);
+        } else {
+            int tourIndex = -1;
+            for (int i = 0; i < myGuideData.tours.size(); i++) {
+                if (myGuideData.tours.get(i).id.equals(mTourData.id)) {
+                    tourIndex = i;
+                    break;
+                }
+            }
+            if (tourIndex == -1) {
+                return;
+            }
+            newTourData.id = mTourData.id;
+            myGuideData.tours.set(tourIndex, newTourData);
+        }
+
+        Loading.start(getActivity());
+
+        UpdateGuideRequester.update(myGuideData, new UpdateGuideRequester.Callback() {
+            @Override
+            public void didReceiveData(boolean resultUpdate) {
+                if (resultUpdate) {
+                    FetchGuideRequester.getInstance().fetch(new FetchGuideRequester.Callback() {
+                        @Override
+                        public void didReceiveData(boolean resultFetch) {
+                            Loading.stop(getActivity());
+
+                            if (resultFetch) {
+                                String message = (mTourData == null) ? "ツアーを作成しました" : "ツアーを更新しました";
+                                Dialog.show(getActivity(), Dialog.Style.success, "確認", message, new Dialog.DialogCallback() {
+                                    @Override
+                                    public void didClose() {
+                                        popFragment(AnimationType.horizontal);
+                                    }
+                                });
+                                List<Fragment> fragments = getActivity().getSupportFragmentManager().getFragments();
+                                for (int i = 0; i < fragments.size(); i++) {
+                                    BaseFragment fragment = (BaseFragment) fragments.get(i);
+                                    if (fragment instanceof GuideRegisterFragment) {
+                                        ((GuideRegisterFragment)fragment).resetContents(null);
+                                    }
+                                }
+                            } else {
+                                showError("通信に失敗しました");
+                            }
+                        }
+                    });
+                } else {
+                    Loading.stop(getActivity());
+                    showError("通信に失敗しました");
+                }
+            }
+        });
+    }
+
+    private void onTapDelete() {
+
+        if (mTourData == null) {
+            return;
+        }
+
+        GuideData myGuideData = FetchGuideRequester.getInstance().query(SaveData.getInstance().guideId);
+        for (int i = 0; i < myGuideData.tours.size(); i++) {
+            if (myGuideData.tours.get(i).id.equals(mTourData.id)) {
+                myGuideData.tours.remove(i);
+                break;
+            }
+        }
+
+        Loading.start(getActivity());
+
+        UpdateGuideRequester.update(myGuideData, new UpdateGuideRequester.Callback() {
+            @Override
+            public void didReceiveData(boolean resultUpdate) {
+                if (resultUpdate) {
+                    FetchGuideRequester.getInstance().fetch(new FetchGuideRequester.Callback() {
+                        @Override
+                        public void didReceiveData(boolean resultFetch) {
+                            Loading.stop(getActivity());
+
+                            if (resultFetch) {
+                                Dialog.show(getActivity(), Dialog.Style.success, "確認", "ツアーを削除しました", new Dialog.DialogCallback() {
+                                    @Override
+                                    public void didClose() {
+                                        popFragment(AnimationType.horizontal);
+                                    }
+                                });
+                                List<Fragment> fragments = getActivity().getSupportFragmentManager().getFragments();
+                                for (int i = 0; i < fragments.size(); i++) {
+                                    BaseFragment fragment = (BaseFragment) fragments.get(i);
+                                    if (fragment instanceof GuideRegisterFragment) {
+                                        ((GuideRegisterFragment)fragment).resetContents(null);
+                                    }
+                                }
+
+                            } else {
+                                showError("通信に失敗しました");
+                            }
+                        }
+                    });
+                } else {
+                    Loading.stop(getActivity());
+                    showError("通信に失敗しました");
+                }
+            }
+        });
+    }
 }
