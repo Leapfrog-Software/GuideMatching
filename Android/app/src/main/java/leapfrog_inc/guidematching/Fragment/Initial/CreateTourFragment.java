@@ -15,6 +15,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
@@ -24,6 +25,7 @@ import leapfrog_inc.guidematching.Fragment.Common.MultiplePickerFragment;
 import leapfrog_inc.guidematching.Fragment.Common.PickerFragment;
 import leapfrog_inc.guidematching.Fragment.Guide.GuideFragment;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;
+import leapfrog_inc.guidematching.Http.ImageUploader;
 import leapfrog_inc.guidematching.Http.Requester.FetchGuideRequester;
 import leapfrog_inc.guidematching.Http.Requester.UpdateGuideRequester;
 import leapfrog_inc.guidematching.R;
@@ -466,7 +468,7 @@ public class CreateTourFragment extends BaseFragment {
         newTourData.inclusions = ((EditText)view.findViewById(R.id.inclusionsEditText)).getText().toString();
         newTourData.exclusions = ((EditText)view.findViewById(R.id.exclusionsEditText)).getText().toString();
 
-        GuideData myGuideData = FetchGuideRequester.getInstance().query(SaveData.getInstance().guideId);
+        final GuideData myGuideData = FetchGuideRequester.getInstance().query(SaveData.getInstance().guideId);
 
         if (mTourData == null) {
             newTourData.id = myGuideData.id + "_" + String.valueOf(myGuideData.tours.size());
@@ -488,41 +490,125 @@ public class CreateTourFragment extends BaseFragment {
 
         Loading.start(getActivity());
 
-        UpdateGuideRequester.update(myGuideData, new UpdateGuideRequester.Callback() {
+        uploadAllImage(newTourData.id, new UploadImageCallback() {
             @Override
-            public void didReceiveData(boolean resultUpdate) {
-                if (resultUpdate) {
-                    FetchGuideRequester.getInstance().fetch(new FetchGuideRequester.Callback() {
+            public void didSent(boolean resultImage) {
+                if (resultImage) {
+                    UpdateGuideRequester.update(myGuideData, new UpdateGuideRequester.Callback() {
                         @Override
-                        public void didReceiveData(boolean resultFetch) {
-                            Loading.stop(getActivity());
-
-                            if (resultFetch) {
-                                String message = (mTourData == null) ? "ツアーを作成しました" : "ツアーを更新しました";
-                                Dialog.show(getActivity(), Dialog.Style.success, "確認", message, new Dialog.DialogCallback() {
+                        public void didReceiveData(boolean resultUpdate) {
+                            if (resultUpdate) {
+                                FetchGuideRequester.getInstance().fetch(new FetchGuideRequester.Callback() {
                                     @Override
-                                    public void didClose() {
-                                        popFragment(AnimationType.horizontal);
+                                    public void didReceiveData(boolean resultFetch) {
+                                        Loading.stop(getActivity());
+
+                                        if (resultFetch) {
+                                            String message = (mTourData == null) ? "ツアーを作成しました" : "ツアーを更新しました";
+                                            Dialog.show(getActivity(), Dialog.Style.success, "確認", message, new Dialog.DialogCallback() {
+                                                @Override
+                                                public void didClose() {
+                                                    popFragment(AnimationType.horizontal);
+                                                }
+                                            });
+                                            List<Fragment> fragments = getActivity().getSupportFragmentManager().getFragments();
+                                            for (int i = 0; i < fragments.size(); i++) {
+                                                BaseFragment fragment = (BaseFragment) fragments.get(i);
+                                                if (fragment instanceof GuideRegisterFragment) {
+                                                    ((GuideRegisterFragment)fragment).resetContents(null);
+                                                }
+                                            }
+                                        } else {
+                                            showError("通信に失敗しました");
+                                        }
                                     }
                                 });
-                                List<Fragment> fragments = getActivity().getSupportFragmentManager().getFragments();
-                                for (int i = 0; i < fragments.size(); i++) {
-                                    BaseFragment fragment = (BaseFragment) fragments.get(i);
-                                    if (fragment instanceof GuideRegisterFragment) {
-                                        ((GuideRegisterFragment)fragment).resetContents(null);
-                                    }
-                                }
                             } else {
+                                Loading.stop(getActivity());
                                 showError("通信に失敗しました");
                             }
                         }
                     });
                 } else {
-                    Loading.stop(getActivity());
                     showError("通信に失敗しました");
                 }
             }
         });
+    }
+
+    private void uploadAllImage(final String tourId, final UploadImageCallback callback) {
+
+        uploadImage(tourId, ImageType.tour, new UploadImageCallback() {
+            @Override
+            public void didSent(final boolean resultTour) {
+                uploadImage(tourId, ImageType.highlights1, new UploadImageCallback() {
+                    @Override
+                    public void didSent(final boolean resultH1) {
+                        uploadImage(tourId, ImageType.highlights2, new UploadImageCallback() {
+                            @Override
+                            public void didSent(final boolean resultH2) {
+                                uploadImage(tourId, ImageType.highlights3, new UploadImageCallback() {
+                                    @Override
+                                    public void didSent(boolean resultH3) {
+                                        boolean result = resultTour && resultH1 && resultH2 && resultH3;
+                                        callback.didSent(result);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    private enum ImageType {
+        tour,
+        highlights1,
+        highlights2,
+        highlights3
+    }
+
+    private void uploadImage(String tourId, ImageType imageType, final UploadImageCallback callback) {
+
+        Bitmap bitmap;
+        String suffix;
+        if (imageType == ImageType.tour) {
+            bitmap = mTourBitmap;
+            suffix = "t";
+        } else if (imageType == ImageType.highlights1) {
+            bitmap = mHighlights1Bitmap;
+            suffix = "h1";
+        } else if (imageType == ImageType.highlights2) {
+            bitmap = mHighlights2Bitmap;
+            suffix = "h2";
+        } else {
+            bitmap = mHighlights3Bitmap;
+            suffix = "h3";
+        }
+        if (bitmap == null) {
+            callback.didSent(true);
+            return;
+        }
+
+        ImageUploader.Parameter param = new ImageUploader.Parameter();
+        param.bitmap = bitmap;
+        param.params = new HashMap<>();
+        param.params.put("command", "uploadTourImage");
+        param.params.put("tourId", tourId);
+        param.params.put("suffix", suffix);
+
+        ImageUploader uploader = new ImageUploader(new ImageUploader.ImageUploaderCallback() {
+            @Override
+            public void didReceive(boolean result) {
+                callback.didSent(result);
+            }
+        });
+        uploader.execute(param);
+    }
+
+    private interface UploadImageCallback {
+        void didSent(boolean result);
     }
 
     private void onTapDelete() {

@@ -38,12 +38,17 @@ public class MyPageFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_mypage, null);
 
-        initListView(view);
+        resetListView(view);
 
         return view;
     }
 
-    private void initListView(View view) {
+    public void resetListView(View v) {
+
+        View view = v;
+        if (view == null) {
+            view = getView();
+        }
 
         MyPageAdapter adapter = new MyPageAdapter(getActivity(), new GuideButtonCallback() {
             @Override

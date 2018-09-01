@@ -3,6 +3,7 @@ package leapfrog_inc.guidematching.Fragment.Tabbar;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -180,11 +181,19 @@ public class TabbarFragment extends BaseFragment {
 
     private void reloadFragments() {
 
-        List<Fragment> fragments = getActivity().getSupportFragmentManager().getFragments();
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        if (manager == null) {
+            return;
+        }
+
+        List<Fragment> fragments = manager.getFragments();
         for (int i = 0; i < fragments.size(); i++) {
             BaseFragment fragment = (BaseFragment) fragments.get(i);
             if (fragment instanceof GuideFragment) {
                 ((GuideFragment)fragment).resetListView(null);
+            }
+            if (fragment instanceof MyPageFragment) {
+                ((MyPageFragment)fragment).resetListView(null);
             }
         }
     }
