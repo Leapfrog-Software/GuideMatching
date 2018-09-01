@@ -77,7 +77,9 @@
                     android:background="@drawable/shape_edittext"
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="14dp"
-                    android:layout_marginRight="14dp"/>
+                    android:layout_marginRight="14dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
 
                 <!-- エリア -->
                 <TextView
@@ -96,7 +98,9 @@
                     android:background="@drawable/shape_edittext"
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="14dp"
-                    android:layout_marginRight="14dp"/>
+                    android:layout_marginRight="14dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
 
                 <!-- 料金 -->
                 <TextView
@@ -115,7 +119,9 @@
                     android:background="@drawable/shape_edittext"
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="14dp"
-                    android:layout_marginRight="14dp"/>
+                    android:layout_marginRight="14dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
 
                 <!-- 概要 -->
                 <TextView
@@ -134,7 +140,9 @@
                     android:background="@drawable/shape_edittext"
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="14dp"
-                    android:layout_marginRight="14dp"/>
+                    android:layout_marginRight="14dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
 
                 <!-- 見所1 -->
                 <LinearLayout
@@ -184,7 +192,9 @@
                         android:background="@drawable/shape_edittext"
                         android:layout_marginTop="4dp"
                         android:layout_marginLeft="14dp"
-                        android:layout_marginRight="14dp"/>
+                        android:layout_marginRight="14dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"/>
 
                     <!-- 見所写真 -->
                     <TextView
@@ -229,7 +239,9 @@
                         android:background="@drawable/shape_edittext"
                         android:layout_marginTop="4dp"
                         android:layout_marginLeft="14dp"
-                        android:layout_marginRight="14dp"/>
+                        android:layout_marginRight="14dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"/>
                 </LinearLayout>
 
                 <!-- 見所2 -->
@@ -280,7 +292,9 @@
                         android:background="@drawable/shape_edittext"
                         android:layout_marginTop="4dp"
                         android:layout_marginLeft="14dp"
-                        android:layout_marginRight="14dp"/>
+                        android:layout_marginRight="14dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"/>
 
                     <!-- 見所写真 -->
                     <TextView
@@ -325,7 +339,9 @@
                         android:background="@drawable/shape_edittext"
                         android:layout_marginTop="4dp"
                         android:layout_marginLeft="14dp"
-                        android:layout_marginRight="14dp"/>
+                        android:layout_marginRight="14dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"/>
                 </LinearLayout>
 
                 <!-- 見所3 -->
@@ -376,7 +392,9 @@
                         android:background="@drawable/shape_edittext"
                         android:layout_marginTop="4dp"
                         android:layout_marginLeft="14dp"
-                        android:layout_marginRight="14dp"/>
+                        android:layout_marginRight="14dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"/>
 
                     <!-- 見所写真 -->
                     <TextView
@@ -421,7 +439,9 @@
                         android:background="@drawable/shape_edittext"
                         android:layout_marginTop="4dp"
                         android:layout_marginLeft="14dp"
-                        android:layout_marginRight="14dp"/>
+                        android:layout_marginRight="14dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"/>
                 </LinearLayout>
 
                 <!-- 見所追加 -->
@@ -582,7 +602,9 @@
                     android:background="@drawable/shape_edittext"
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="14dp"
-                    android:layout_marginRight="14dp"/>
+                    android:layout_marginRight="14dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
 
                 <!-- Return Detail -->
                 <TextView
@@ -601,7 +623,9 @@
                     android:background="@drawable/shape_edittext"
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="14dp"
-                    android:layout_marginRight="14dp"/>
+                    android:layout_marginRight="14dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
 
                 <!-- Inclusions -->
                 <TextView
@@ -620,7 +644,9 @@
                     android:background="@drawable/shape_edittext"
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="14dp"
-                    android:layout_marginRight="14dp"/>
+                    android:layout_marginRight="14dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
 
                 <!-- Exclusions -->
                 <TextView
@@ -639,7 +665,9 @@
                     android:background="@drawable/shape_edittext"
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="14dp"
-                    android:layout_marginRight="14dp"/>
+                    android:layout_marginRight="14dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
 
                 <!-- 更新 -->
                 <Button

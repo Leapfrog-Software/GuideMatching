@@ -671,7 +671,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
                     <Button
-                        android:id="@+id/before1Button"
+                        android:id="@+id/beforeButton"
                         android:layout_width="100dp"
                         android:layout_height="match_parent"
                         android:text="＜ Before"
@@ -683,7 +683,7 @@
                         android:layout_weight="1"
                         android:layout_height="1dp"/>
                     <Button
-                        android:id="@+id/next1Button"
+                        android:id="@+id/nextButton"
                         android:layout_width="100dp"
                         android:layout_height="match_parent"
                         android:text="Next ＞"
@@ -695,40 +695,11 @@
                 <LinearLayout
                     android:id="@+id/scheduleLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="618dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:orientation="vertical"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp">
-                    <Button
-                        android:id="@+id/before2Button"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:text="＜ Before"
-                        android:textColor="@color/mainBlack"
-                        android:textSize="12dp"
-                        android:background="@drawable/shape_guide_detail_button"/>
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="1dp"/>
-                    <Button
-                        android:id="@+id/next2Button"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent"
-                        android:text="Next ＞"
-                        android:textColor="@color/mainBlack"
-                        android:textSize="12dp"
-                        android:background="@drawable/shape_guide_detail_button"/>
-                </LinearLayout>
 
                 <Button
                     android:id="@+id/inqueryButton"

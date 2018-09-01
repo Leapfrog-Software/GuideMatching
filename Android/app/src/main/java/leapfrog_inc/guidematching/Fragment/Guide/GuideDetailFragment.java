@@ -74,7 +74,7 @@ public class GuideDetailFragment extends BaseFragment {
         ((TextView)view.findViewById(R.id.categoryTextView)).setText(mGuideData.category);
         ((TextView)view.findViewById(R.id.keywordTextView)).setText(mGuideData.keyword);
         ((TextView)view.findViewById(R.id.messageTextView)).setText(mGuideData.message);
-        ((TextView)view.findViewById(R.id.applicableNumberTextView)).setText(String.valueOf(mGuideData.applicableNumber) + "人");
+        ((TextView)view.findViewById(R.id.applicableNumberTextView)).setText(String.valueOf(mGuideData.applicableNumber) + "person");
 
         String fee = CommonUtility.digit3Format(mGuideData.fee) + " JPY/30min";
         ((TextView)view.findViewById(R.id.feeTextView)).setText(fee);
@@ -261,25 +261,13 @@ public class GuideDetailFragment extends BaseFragment {
             }
         });
 
-        view.findViewById(R.id.before1Button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.beforeButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mScheduleFragment.changeToPreviousWeek();
             }
         });
-        view.findViewById(R.id.before2Button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mScheduleFragment.changeToPreviousWeek();
-            }
-        });
-        view.findViewById(R.id.next1Button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mScheduleFragment.changeToNextWeek();
-            }
-        });
-        view.findViewById(R.id.next2Button).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.nextButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mScheduleFragment.changeToNextWeek();

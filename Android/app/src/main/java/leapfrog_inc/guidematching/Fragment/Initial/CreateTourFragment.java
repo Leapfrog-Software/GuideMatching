@@ -30,6 +30,7 @@ import leapfrog_inc.guidematching.R;
 import leapfrog_inc.guidematching.System.CommonUtility;
 import leapfrog_inc.guidematching.System.Constants;
 import leapfrog_inc.guidematching.System.DateUtility;
+import leapfrog_inc.guidematching.System.DeviceUtility;
 import leapfrog_inc.guidematching.System.GalleryManager;
 import leapfrog_inc.guidematching.System.PicassoUtility;
 import leapfrog_inc.guidematching.System.SaveData;
@@ -65,6 +66,7 @@ public class CreateTourFragment extends BaseFragment {
         view.findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DeviceUtility.hideSoftKeyboard(getActivity());
                 popFragment(AnimationType.horizontal);
             }
         });
@@ -167,7 +169,7 @@ public class CreateTourFragment extends BaseFragment {
             return;
         }
 
-        PicassoUtility.getImage(getActivity(), Constants.ServerTourImageDirectory + mTourData.id + "-t", (ImageView)view.findViewById(R.id.tourImageView), R.drawable.no_face);
+        PicassoUtility.getImage(getActivity(), Constants.ServerTourImageDirectory + mTourData.id + "-t", (ImageView)view.findViewById(R.id.tourImageView), R.drawable.image_guide);
 
         ((EditText)view.findViewById(R.id.tourTitleEditText)).setText(mTourData.name);
         ((EditText)view.findViewById(R.id.areaEditText)).setText(mTourData.area);
@@ -178,7 +180,7 @@ public class CreateTourFragment extends BaseFragment {
             view.findViewById(R.id.highlights1Layout).setVisibility(View.GONE);
         } else {
             view.findViewById(R.id.highlights1Layout).setVisibility(View.VISIBLE);
-            PicassoUtility.getImage(getActivity(), Constants.ServerTourImageDirectory + mTourData.id + "-h1", (ImageView)view.findViewById(R.id.highlights1ImageView), R.drawable.no_face);
+            PicassoUtility.getImage(getActivity(), Constants.ServerTourImageDirectory + mTourData.id + "-h1", (ImageView)view.findViewById(R.id.highlights1ImageView), R.drawable.image_guide);
             ((EditText)view.findViewById(R.id.highlights1TitleEditText)).setText(mTourData.highlights1Title);
             ((EditText)view.findViewById(R.id.highlights1BodyEditText)).setText(mTourData.highlights1Body);
         }
@@ -186,7 +188,7 @@ public class CreateTourFragment extends BaseFragment {
             view.findViewById(R.id.highlights2Layout).setVisibility(View.GONE);
         } else {
             view.findViewById(R.id.highlights2Layout).setVisibility(View.VISIBLE);
-            PicassoUtility.getImage(getActivity(), Constants.ServerTourImageDirectory + mTourData.id + "-h2", (ImageView)view.findViewById(R.id.highlights2ImageView), R.drawable.no_face);
+            PicassoUtility.getImage(getActivity(), Constants.ServerTourImageDirectory + mTourData.id + "-h2", (ImageView)view.findViewById(R.id.highlights2ImageView), R.drawable.image_guide);
             ((EditText)view.findViewById(R.id.highlights2TitleEditText)).setText(mTourData.highlights2Title);
             ((EditText)view.findViewById(R.id.highlights2BodyEditText)).setText(mTourData.highlights2Body);
         }
@@ -194,7 +196,7 @@ public class CreateTourFragment extends BaseFragment {
             view.findViewById(R.id.highlights3Layout).setVisibility(View.GONE);
         } else {
             view.findViewById(R.id.highlights3Layout).setVisibility(View.VISIBLE);
-            PicassoUtility.getImage(getActivity(), Constants.ServerTourImageDirectory + mTourData.id + "-h3", (ImageView)view.findViewById(R.id.highlights3ImageView), R.drawable.no_face);
+            PicassoUtility.getImage(getActivity(), Constants.ServerTourImageDirectory + mTourData.id + "-h3", (ImageView)view.findViewById(R.id.highlights3ImageView), R.drawable.image_guide);
             ((EditText)view.findViewById(R.id.highlights3TitleEditText)).setText(mTourData.highlights3Title);
             ((EditText)view.findViewById(R.id.highlights3BodyEditText)).setText(mTourData.highlights3Body);
         }
@@ -214,7 +216,7 @@ public class CreateTourFragment extends BaseFragment {
 
         if (view.findViewById(R.id.highlights1Layout).getVisibility() == View.GONE) {
             view.findViewById(R.id.highlights1Layout).setVisibility(View.VISIBLE);
-            ((ImageView)view.findViewById(R.id.highlights1ImageView)).setImageResource(R.drawable.no_face);
+            ((ImageView)view.findViewById(R.id.highlights1ImageView)).setImageResource(R.drawable.image_guide);
             mHighlights1Bitmap = null;
             ((EditText)view.findViewById(R.id.highlights1TitleEditText)).setText("");
             ((EditText)view.findViewById(R.id.highlights1BodyEditText)).setText("");
@@ -222,11 +224,12 @@ public class CreateTourFragment extends BaseFragment {
             if ((view.findViewById(R.id.highlights2Layout).getVisibility() == View.VISIBLE) && (view.findViewById(R.id.highlights3Layout).getVisibility() == View.VISIBLE)) {
                 view.findViewById(R.id.addHighlightsButton).setVisibility(View.GONE);
             }
+            return;
         }
 
         if (view.findViewById(R.id.highlights2Layout).getVisibility() == View.GONE) {
             view.findViewById(R.id.highlights2Layout).setVisibility(View.VISIBLE);
-            ((ImageView)view.findViewById(R.id.highlights2ImageView)).setImageResource(R.drawable.no_face);
+            ((ImageView)view.findViewById(R.id.highlights2ImageView)).setImageResource(R.drawable.image_guide);
             mHighlights2Bitmap = null;
             ((EditText)view.findViewById(R.id.highlights2TitleEditText)).setText("");
             ((EditText)view.findViewById(R.id.highlights2BodyEditText)).setText("");
@@ -234,11 +237,12 @@ public class CreateTourFragment extends BaseFragment {
             if ((view.findViewById(R.id.highlights1Layout).getVisibility() == View.VISIBLE) && (view.findViewById(R.id.highlights3Layout).getVisibility() == View.VISIBLE)) {
                 view.findViewById(R.id.addHighlightsButton).setVisibility(View.GONE);
             }
+            return;
         }
 
         if (view.findViewById(R.id.highlights3Layout).getVisibility() == View.GONE) {
             view.findViewById(R.id.highlights3Layout).setVisibility(View.VISIBLE);
-            ((ImageView)view.findViewById(R.id.highlights3ImageView)).setImageResource(R.drawable.no_face);
+            ((ImageView)view.findViewById(R.id.highlights3ImageView)).setImageResource(R.drawable.image_guide);
             mHighlights3Bitmap = null;
             ((EditText)view.findViewById(R.id.highlights3TitleEditText)).setText("");
             ((EditText)view.findViewById(R.id.highlights3BodyEditText)).setText("");
@@ -246,6 +250,7 @@ public class CreateTourFragment extends BaseFragment {
             if ((view.findViewById(R.id.highlights1Layout).getVisibility() == View.VISIBLE) && (view.findViewById(R.id.highlights2Layout).getVisibility() == View.VISIBLE)) {
                 view.findViewById(R.id.addHighlightsButton).setVisibility(View.GONE);
             }
+            return;
         }
     }
 
@@ -261,6 +266,9 @@ public class CreateTourFragment extends BaseFragment {
     }
 
     private void onTapDays() {
+
+        DeviceUtility.hideSoftKeyboard(getActivity());
+
         MultiplePickerFragment fragment = new MultiplePickerFragment();
 
         ArrayList<Integer> defaultIndexes = new ArrayList<Integer>();
@@ -295,6 +303,8 @@ public class CreateTourFragment extends BaseFragment {
 
     private void onTapStartTime() {
 
+        DeviceUtility.hideSoftKeyboard(getActivity());
+
         PickerFragment fragment = new PickerFragment();
 
         int defaultIndex = 0;
@@ -316,6 +326,8 @@ public class CreateTourFragment extends BaseFragment {
     }
 
     private void onTapEndTime() {
+
+        DeviceUtility.hideSoftKeyboard(getActivity());
 
         PickerFragment fragment = new PickerFragment();
 
@@ -379,15 +391,21 @@ public class CreateTourFragment extends BaseFragment {
     }
 
     private void onTapHighlights1Delete() {
-        getView().findViewById(R.id.highlights1Layout).setVisibility(View.GONE);
+        View view = getView();
+        view.findViewById(R.id.highlights1Layout).setVisibility(View.GONE);
+        view.findViewById(R.id.addHighlightsButton).setVisibility(View.VISIBLE);
     }
 
     private void onTapHighlights2Delete() {
-        getView().findViewById(R.id.highlights2Layout).setVisibility(View.GONE);
+        View view = getView();
+        view.findViewById(R.id.highlights2Layout).setVisibility(View.GONE);
+        view.findViewById(R.id.addHighlightsButton).setVisibility(View.VISIBLE);
     }
 
     private void onTapHighlights3Delete() {
-        getView().findViewById(R.id.highlights3Layout).setVisibility(View.GONE);
+        View view = getView();
+        view.findViewById(R.id.highlights3Layout).setVisibility(View.GONE);
+        view.findViewById(R.id.addHighlightsButton).setVisibility(View.VISIBLE);
     }
 
     private void onTapUpdate() {

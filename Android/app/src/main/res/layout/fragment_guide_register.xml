@@ -438,14 +438,15 @@
                 <Button
                     android:id="@+id/createTourButton"
                     android:layout_width="match_parent"
-                    android:layout_height="44dp"
+                    android:layout_height="50dp"
                     android:text="ツアーを追加"
                     android:textSize="16dp"
                     android:textStyle="bold"
                     android:textColor="#3AA6FF"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"/>
+                    android:layout_marginRight="30dp"
+                    android:background="#0000"/>
 
                 <Button
                     android:id="@+id/doneButton"
