@@ -106,7 +106,7 @@ public class CardInputFragment extends BaseFragment {
 
     private void createReserve(final Token token) {
 
-        CreateReserveRequester.create(SaveData.getInstance().guestId, mGuideData.id, mMeetingPlace, mDate.getTime(), mStartIndex, mEndIndex, new CreateReserveRequester.Callback() {
+        CreateReserveRequester.create(SaveData.getInstance().guestId, mGuideData.id, mGuideFee, mTransactionFee, mMeetingPlace, mDate.getTime(), mStartIndex, mEndIndex, new CreateReserveRequester.Callback() {
             @Override
             public void didReceiveData(boolean result) {
                 if (result) {
