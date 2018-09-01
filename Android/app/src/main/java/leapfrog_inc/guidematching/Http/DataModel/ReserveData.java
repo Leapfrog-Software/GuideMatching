@@ -14,6 +14,8 @@ public class ReserveData {
     public String id;
     public String guestId;
     public String guideId;
+    public int fee;
+    public int applicationFee;
     public String meetingPlace;
     public Date day;
     public int startTime;
@@ -28,6 +30,8 @@ public class ReserveData {
             reserveData.id = json.getString("id");
             reserveData.guestId = json.getString("guestId");
             reserveData.guideId = json.getString("guideId");
+            reserveData.fee = Integer.parseInt(json.getString("fee"));
+            reserveData.applicationFee = Integer.parseInt(json.getString("applicationFee"));
             reserveData.meetingPlace = Base64Utility.decode(json.getString("meetingPlace"));
 
             reserveData.day = DateUtility.stringToDate(json.getString("day"), "yyyyMMdd");

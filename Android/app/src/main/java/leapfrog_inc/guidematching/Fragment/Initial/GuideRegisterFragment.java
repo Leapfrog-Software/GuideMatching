@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -56,13 +57,16 @@ public class GuideRegisterFragment extends BaseFragment {
 
         View view = inflater.inflate(R.layout.fragment_guide_register, null);
 
-        initContents(view);
+        resetContents(view);
         initAction(view);
 
         return view;
     }
 
-    private void initContents(View view) {
+    void resetContents(View v) {
+
+        View view = v;
+        if (view == null) view = getView();
 
         int faceImageHeight = (DeviceUtility.getWindowSize(getActivity()).x - (int)(80 * DeviceUtility.getDeviceDensity(getActivity()))) / 3;
         setHeight(view.findViewById(R.id.face1ImageButton), faceImageHeight);
@@ -82,18 +86,36 @@ public class GuideRegisterFragment extends BaseFragment {
                 ((EditText)view.findViewById(R.id.nameEditText)).setText(guideData.name);
                 ((EditText)view.findViewById(R.id.nationalityEditText)).setText(guideData.nationality);
                 ((TextView)view.findViewById(R.id.languageTextView)).setText(guideData.language);
-                ((EditText)view.findViewById(R.id.specialtyEditText)).setText(guideData.specialty);
+                ((TextView)view.findViewById(R.id.areaEditText)).setText(guideData.area);
+                ((EditText)view.findViewById(R.id.keywordEditText)).setText(guideData.keyword);
                 ((TextView)view.findViewById(R.id.categoryTextView)).setText(guideData.category);
                 ((EditText)view.findViewById(R.id.messageEditText)).setText(guideData.message);
-                ((EditText)view.findViewById(R.id.timeZoneEditText)).setText(guideData.timeZone);
-                ((EditText)view.findViewById(R.id.timeZoneEditText)).setText(guideData.timeZone);
                 ((TextView)view.findViewById(R.id.applicableNumberTextView)).setText(String.valueOf(guideData.applicableNumber));
                 ((EditText)view.findViewById(R.id.feeEditText)).setText(String.valueOf(guideData.fee));
                 ((EditText)view.findViewById(R.id.notesEditText)).setText(guideData.notes);
+
+                LinearLayout tourBaseLayout = (LinearLayout)view.findViewById(R.id.tourLayout);
+                tourBaseLayout.removeAllViews();
+
+                for (int i = 0; i < guideData.tours.size(); i++) {
+                    GuideRegisterTourLayout tourLayout = new GuideRegisterTourLayout(getActivity(), null);
+                    final GuideData.GuideTourData tourData = guideData.tours.get(i);
+                    tourLayout.set(tourData);
+                    tourBaseLayout.addView(tourLayout);
+                    tourLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            onClickTour(tourData);
+                        }
+                    });
+                }
             }
 
         } else {
             ((TextView)view.findViewById(R.id.headerTitleTextView)).setText("New Registration");
+
+            view.findViewById(R.id.tourLayout).setVisibility(View.GONE);
+            view.findViewById(R.id.createTourButton).setVisibility(View.GONE);
         }
     }
 
@@ -101,6 +123,12 @@ public class GuideRegisterFragment extends BaseFragment {
         ViewGroup.LayoutParams params = view.getLayoutParams();
         params.height = height;
         view.setLayoutParams(params);
+    }
+
+    private void onClickTour(GuideData.GuideTourData tourData) {
+        CreateTourFragment fragment = new CreateTourFragment();
+        fragment.set(tourData);
+        stackFragment(fragment, AnimationType.horizontal);
     }
 
     private void initAction(View view) {
@@ -202,6 +230,14 @@ public class GuideRegisterFragment extends BaseFragment {
                 popFragment(AnimationType.vertical);
             }
         });
+
+        view.findViewById(R.id.createTourButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateTourFragment fragment = new CreateTourFragment();
+                stackFragment(fragment, AnimationType.horizontal);
+            }
+        });
     }
 
     private void showError(String message) {
@@ -257,19 +293,21 @@ public class GuideRegisterFragment extends BaseFragment {
 
     private void createGuide() {
 
-        String email = ((EditText)getView().findViewById(R.id.emailEditText)).getText().toString();
-        String name = ((EditText)getView().findViewById(R.id.nameEditText)).getText().toString();
-        String nationality = ((EditText)getView().findViewById(R.id.nationalityEditText)).getText().toString();
-        String language = mLanguageList.get(mLanguageIndex);
-        String specialty = ((EditText)getView().findViewById(R.id.specialtyEditText)).getText().toString();
-        String category = mCategoryList.get(mCategoryIndex);
-        String message = ((EditText)getView().findViewById(R.id.messageEditText)).getText().toString();
-        String timeZone = ((EditText)getView().findViewById(R.id.timeZoneEditText)).getText().toString();
-        int applicableNumber = Integer.parseInt(mApplicableNumberList.get(mApplicableNumberIndex));
-        int fee = Integer.parseInt(((EditText)getView().findViewById(R.id.feeEditText)).getText().toString());
-        String notes = ((EditText)getView().findViewById(R.id.notesEditText)).getText().toString();
+        View view = getView();
 
-        CreateGuideRequester.create(email, name, nationality, language, specialty, category, message, timeZone, applicableNumber, fee, notes, new CreateGuideRequester.Callback() {
+        String email = ((EditText)view.findViewById(R.id.emailEditText)).getText().toString();
+        String name = ((EditText)view.findViewById(R.id.nameEditText)).getText().toString();
+        String nationality = ((EditText)view.findViewById(R.id.nationalityEditText)).getText().toString();
+        String language = mLanguageList.get(mLanguageIndex);
+        String area = ((EditText)view.findViewById(R.id.areaEditText)).getText().toString();
+        String keyword = ((EditText)view.findViewById(R.id.keywordEditText)).getText().toString();
+        String category = mCategoryList.get(mCategoryIndex);
+        String message = ((EditText)view.findViewById(R.id.messageEditText)).getText().toString();
+        int applicableNumber = Integer.parseInt(mApplicableNumberList.get(mApplicableNumberIndex));
+        int fee = Integer.parseInt(((EditText)view.findViewById(R.id.feeEditText)).getText().toString());
+        String notes = ((EditText)view.findViewById(R.id.notesEditText)).getText().toString();
+
+        CreateGuideRequester.create(email, name, nationality, language, area, keyword, category, message, applicableNumber, fee, notes, new CreateGuideRequester.Callback() {
             @Override
             public void didReceiveData(boolean result, final String guideId) {
                 if (result) {
@@ -289,28 +327,30 @@ public class GuideRegisterFragment extends BaseFragment {
 
     private void updateGuide() {
 
+        View view = getView();
+
         GuideData myGuideData = FetchGuideRequester.getInstance().query(SaveData.getInstance().guideId);
 
-        String email = ((EditText)getView().findViewById(R.id.emailEditText)).getText().toString();
-        String name = ((EditText)getView().findViewById(R.id.nameEditText)).getText().toString();
-        String nationality = ((EditText)getView().findViewById(R.id.nationalityEditText)).getText().toString();
+        String email = ((EditText)view.findViewById(R.id.emailEditText)).getText().toString();
+        String name = ((EditText)view.findViewById(R.id.nameEditText)).getText().toString();
+        String nationality = ((EditText)view.findViewById(R.id.nationalityEditText)).getText().toString();
         String language = mLanguageList.get(mLanguageIndex);
-        String specialty = ((EditText)getView().findViewById(R.id.specialtyEditText)).getText().toString();
+        String area = ((EditText)view.findViewById(R.id.areaEditText)).getText().toString();
+        String keyword = ((EditText)view.findViewById(R.id.keywordEditText)).getText().toString();
         String category = mCategoryList.get(mCategoryIndex);
-        String message = ((EditText)getView().findViewById(R.id.messageEditText)).getText().toString();
-        String timeZone = ((EditText)getView().findViewById(R.id.timeZoneEditText)).getText().toString();
+        String message = ((EditText)view.findViewById(R.id.messageEditText)).getText().toString();
         int applicableNumber = Integer.parseInt(mApplicableNumberList.get(mApplicableNumberIndex));
-        int fee = Integer.parseInt(((EditText)getView().findViewById(R.id.feeEditText)).getText().toString());
-        String notes = ((EditText)getView().findViewById(R.id.notesEditText)).getText().toString();
+        int fee = Integer.parseInt(((EditText)view.findViewById(R.id.feeEditText)).getText().toString());
+        String notes = ((EditText)view.findViewById(R.id.notesEditText)).getText().toString();
 
         myGuideData.email = email;
         myGuideData.name = name;
         myGuideData.nationality = nationality;
         myGuideData.language = language;
-        myGuideData.specialty = specialty;
+        myGuideData.area = area;
+        myGuideData.keyword = keyword;
         myGuideData.category = category;
         myGuideData.message = message;
-        myGuideData.timeZone = timeZone;
         myGuideData.applicableNumber = applicableNumber;
         myGuideData.fee = fee;
         myGuideData.notes = notes;

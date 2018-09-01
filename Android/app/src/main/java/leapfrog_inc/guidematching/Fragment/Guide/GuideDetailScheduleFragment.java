@@ -265,8 +265,9 @@ public class GuideDetailScheduleFragment extends BaseFragment {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        int startX = (int)(80 * DeviceUtility.getDeviceDensity((Activity)mContext));
-                        int width = (DeviceUtility.getWindowSize((Activity)mContext).x - startX) / 6;
+                        float density = DeviceUtility.getDeviceDensity((Activity)mContext);
+                        int startX = (int)(80 * density);
+                        int width = (DeviceUtility.getWindowSize((Activity)mContext).x - (int)(120 * density)) / 7;
                         int touchX = (int)event.getX();
                         for (int i = 0; i < 7; i++) {
                             if ((touchX > startX + i * width)

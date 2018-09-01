@@ -8,6 +8,7 @@ public class Constants {
     public static String StripeBackendUrl = Constants.ServerRootUrl + "stripe/backend.php";
     public static String ServerGuideImageDirectory = Constants.ServerRootUrl + "data/image/guide/";
     public static String ServerGuestImageDirectory = Constants.ServerRootUrl + "data/image/guest/";
+    public static String ServerTourImageDirectory = Constants.ServerRootUrl + "data/image/tour/";
 
     public static int HttpConnectTimeout = 10000;
     public static int HttpReadTimeout = 10000;

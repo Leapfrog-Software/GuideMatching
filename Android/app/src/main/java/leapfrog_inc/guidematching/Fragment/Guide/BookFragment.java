@@ -105,7 +105,7 @@ public class BookFragment extends BaseFragment {
         int estimateCount = FetchEstimateRequester.getInstance().query(mGuideData.id).size();
         ((TextView)view.findViewById(R.id.estimateCountTextView)).setText("(" + String.valueOf(estimateCount) + ")");
 
-        ((TextView)view.findViewById(R.id.specialtyTextView)).setText(mGuideData.specialty);
+        ((TextView)view.findViewById(R.id.keywordTextView)).setText(mGuideData.keyword);
         CommonUtility.setLoginState(mGuideData.loginDate, view.findViewById(R.id.loginStateView), (TextView)view.findViewById(R.id.loginStateTextView));
         ((TextView)view.findViewById(R.id.feeTextView)).setText(CommonUtility.digit3Format(mGuideData.fee) + " JPY/30min");
 

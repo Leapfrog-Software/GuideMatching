@@ -64,6 +64,7 @@ public class GuideFragment extends BaseFragment {
 
         if (mSearchCondition == null) {
             for (int i = 0; i < FetchGuideRequester.getInstance().mDataList.size(); i++) {
+                // TODO 自分は除く
                 adapter.add(FetchGuideRequester.getInstance().mDataList.get(i));
                 isEmpty = false;
             }
@@ -133,7 +134,7 @@ public class GuideFragment extends BaseFragment {
                         && (!guideData.name.contains(mSearchCondition.keyword))
                         && (!guideData.nationality.contains(mSearchCondition.keyword))
                         && (!guideData.category.contains(mSearchCondition.keyword))
-                        && (!guideData.specialty.contains(mSearchCondition.keyword))
+                        && (!guideData.keyword.contains(mSearchCondition.keyword))
                         && (!guideData.notes.contains(mSearchCondition.keyword))) {
                     continue;
                 }
@@ -221,7 +222,7 @@ public class GuideFragment extends BaseFragment {
             int estimateCount = FetchEstimateRequester.getInstance().query(data.id).size();
             ((TextView)convertView.findViewById(R.id.estimateNumberTextView)).setText("(" + String.valueOf(estimateCount) + ")");
 
-            ((TextView)convertView.findViewById(R.id.specialtyTextView)).setText(data.specialty);
+            ((TextView)convertView.findViewById(R.id.keywordTextView)).setText(data.keyword);
 
             CommonUtility.setLoginState(data.loginDate, (View)convertView.findViewById(R.id.loginStateView), (TextView)convertView.findViewById(R.id.loginStateTextView));
 

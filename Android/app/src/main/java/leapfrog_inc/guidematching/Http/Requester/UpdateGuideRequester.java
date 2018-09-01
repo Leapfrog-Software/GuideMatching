@@ -38,13 +38,13 @@ public class UpdateGuideRequester {
         param.append("&");
         param.append("language=" + Base64Utility.encode(guideData.language));
         param.append("&");
-        param.append("specialty=" + Base64Utility.encode(guideData.specialty));
+        param.append("area=" + Base64Utility.encode(guideData.area));
+        param.append("&");
+        param.append("keyword=" + Base64Utility.encode(guideData.keyword));
         param.append("&");
         param.append("category=" + Base64Utility.encode(guideData.category));
         param.append("&");
         param.append("message=" + Base64Utility.encode(guideData.message));
-        param.append("&");
-        param.append("timeZone=" + Base64Utility.encode(guideData.timeZone));
         param.append("&");
         param.append("applicableNumber=" + String.valueOf(guideData.applicableNumber));
         param.append("&");
@@ -61,6 +61,16 @@ public class UpdateGuideRequester {
             schedules.append(guideData.schedules.get(i).toString());
         }
         param.append("schedules=" + schedules.toString());
+        param.append("&");
+
+        StringBuffer tours = new StringBuffer();
+        for (int i = 0; i < guideData.tours.size(); i++) {
+            if (i > 0) {
+                tours.append("/");
+            }
+            tours.append(guideData.tours.get(i).toString());
+        }
+        param.append("tours=" + tours.toString());
 
         param.append("&");
         param.append("stripeAccountId=" + guideData.stripeAccountId);

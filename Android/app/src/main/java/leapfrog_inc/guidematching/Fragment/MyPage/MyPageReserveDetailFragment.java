@@ -79,7 +79,7 @@ public class MyPageReserveDetailFragment extends BaseFragment {
         int estimateCount = FetchEstimateRequester.getInstance().query(guideData.id).size();
         ((TextView)view.findViewById(R.id.estimateCountTextView)).setText("(" + String.valueOf(estimateCount) + ")");
 
-        ((TextView)view.findViewById(R.id.specialtyTextView)).setText(guideData.specialty);
+        ((TextView)view.findViewById(R.id.keywordTextView)).setText(guideData.keyword);
         CommonUtility.setLoginState(guideData.loginDate, view.findViewById(R.id.loginStateView), (TextView)view.findViewById(R.id.loginStateTextView));
         ((TextView)view.findViewById(R.id.feeTextView)).setText(CommonUtility.digit3Format(guideData.fee) + " JPY/30min");
 

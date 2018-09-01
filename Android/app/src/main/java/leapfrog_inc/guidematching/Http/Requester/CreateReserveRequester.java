@@ -11,7 +11,7 @@ import leapfrog_inc.guidematching.System.DateUtility;
 
 public class CreateReserveRequester {
 
-    public static void create(String guestId, String guideId, String meetingPlace, Date day, int startTime, int endTime, final Callback callback) {
+    public static void create(String guestId, String guideId, int fee, int applicationFee, String meetingPlace, Date day, int startTime, int endTime, final Callback callback) {
 
         HttpManager httpManager = new HttpManager(new HttpManager.HttpCallback() {
             @Override
@@ -35,6 +35,10 @@ public class CreateReserveRequester {
         param.append("guestId=" + guestId);
         param.append("&");
         param.append("guideId=" + guideId);
+        param.append("&");
+        param.append("fee=" + fee);
+        param.append("&");
+        param.append("applicationFee=" + applicationFee);
         param.append("&");
         param.append("meetingPlace=" + Base64Utility.encode(meetingPlace));
         param.append("&");
