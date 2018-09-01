@@ -471,8 +471,8 @@ extension CreateTourViewController: UIImagePickerControllerDelegate, UINavigatio
             image = self.highlights2Image
             params["suffix"] = "h2"
         case .highlights3:
-            image = self.highlights2Image
-            params["suffix"] = "h1"
+            image = self.highlights3Image
+            params["suffix"] = "h3"
         }
         
         guard let img = image else {
