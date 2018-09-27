@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -158,6 +159,78 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rPF-lj-trU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="378" y="297"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="ziF-H8-x82">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="okk-sw-pA8" customClass="WebViewController" customModule="GuideMatching" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gBY-kQ-Df5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="boV-M9-aRm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.72549019609999998" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERs-XJ-Nui">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPj-eI-mUy">
+                                        <rect key="frame" x="151" y="11.5" width="73.5" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLI-lk-Ab6">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="nLI-lk-Ab6" secondAttribute="height" multiplier="1:1" id="X8g-5H-QSD"/>
+                                        </constraints>
+                                        <state key="normal" image="back_white"/>
+                                        <connections>
+                                            <action selector="onTapBack:" destination="okk-sw-pA8" eventType="touchUpInside" id="7kY-CQ-Gdh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.96862745100000003" green="0.72549019609999998" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="nLI-lk-Ab6" firstAttribute="leading" secondItem="ERs-XJ-Nui" secondAttribute="leading" id="8xd-Lo-aa2"/>
+                                    <constraint firstItem="IPj-eI-mUy" firstAttribute="centerX" secondItem="ERs-XJ-Nui" secondAttribute="centerX" id="JS8-mh-sXi"/>
+                                    <constraint firstAttribute="bottom" secondItem="nLI-lk-Ab6" secondAttribute="bottom" id="KUY-P0-zgN"/>
+                                    <constraint firstItem="nLI-lk-Ab6" firstAttribute="top" secondItem="ERs-XJ-Nui" secondAttribute="top" id="b1P-j9-hBh"/>
+                                    <constraint firstAttribute="height" constant="44" id="toI-Lq-wVL"/>
+                                    <constraint firstItem="IPj-eI-mUy" firstAttribute="centerY" secondItem="ERs-XJ-Nui" secondAttribute="centerY" id="zHN-Q3-ulL"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="248-nA-dUD">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ERs-XJ-Nui" firstAttribute="top" secondItem="boV-M9-aRm" secondAttribute="bottom" id="9EX-eb-mhX"/>
+                            <constraint firstItem="boV-M9-aRm" firstAttribute="leading" secondItem="gBY-kQ-Df5" secondAttribute="leading" id="EuI-qr-Ymp"/>
+                            <constraint firstItem="boV-M9-aRm" firstAttribute="top" secondItem="gBY-kQ-Df5" secondAttribute="top" id="HOs-r5-fbj"/>
+                            <constraint firstItem="ERs-XJ-Nui" firstAttribute="top" secondItem="kGw-jN-DzN" secondAttribute="top" id="OOy-z5-wSF"/>
+                            <constraint firstAttribute="trailing" secondItem="boV-M9-aRm" secondAttribute="trailing" id="SFC-Zc-saH"/>
+                            <constraint firstItem="kGw-jN-DzN" firstAttribute="trailing" secondItem="248-nA-dUD" secondAttribute="trailing" id="TjW-hj-bhm"/>
+                            <constraint firstItem="248-nA-dUD" firstAttribute="top" secondItem="ERs-XJ-Nui" secondAttribute="bottom" id="VEV-JC-DLW"/>
+                            <constraint firstItem="ERs-XJ-Nui" firstAttribute="trailing" secondItem="kGw-jN-DzN" secondAttribute="trailing" id="ceS-Oj-YK8"/>
+                            <constraint firstItem="kGw-jN-DzN" firstAttribute="bottom" secondItem="248-nA-dUD" secondAttribute="bottom" id="l3W-0a-dQO"/>
+                            <constraint firstItem="248-nA-dUD" firstAttribute="leading" secondItem="kGw-jN-DzN" secondAttribute="leading" id="uke-FM-RzD"/>
+                            <constraint firstItem="ERs-XJ-Nui" firstAttribute="leading" secondItem="kGw-jN-DzN" secondAttribute="leading" id="xjc-3v-oRU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kGw-jN-DzN"/>
+                    </view>
+                    <connections>
+                        <outlet property="headerTitleLabel" destination="IPj-eI-mUy" id="rdl-8d-7Jf"/>
+                        <outlet property="webView" destination="248-nA-dUD" id="mx0-sz-8Fn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k9a-uw-EiU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1247" y="296"/>
         </scene>
         <!--Multi Picker View Controller-->
         <scene sceneID="y5w-CM-ElY">
@@ -322,10 +395,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFN-F6-H47" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="378" y="297"/>
+            <point key="canvasLocation" x="377" y="1000"/>
         </scene>
     </scenes>
     <resources>
+        <image name="back_white" width="48" height="48"/>
         <image name="picker_selected" width="20" height="20"/>
     </resources>
 </document>

@@ -19,4 +19,20 @@ class UserSelectViewController: UIViewController {
         let guideRegisterViewController = self.viewController(storyboard: "Initial", identifier: "GuideRegisterViewController") as! GuideRegisterViewController
         self.stack(viewController: guideRegisterViewController, animationType: .vertical)
     }
+    
+    @IBAction func onTapTerms(_ sender: Any) {
+        if let path = Bundle.main.path(forResource: "terms", ofType: "pdf") {
+            let webView = self.viewController(storyboard: "Common", identifier: "WebViewController") as! WebViewController
+            webView.set(title: "our terms of services", path: path)
+            self.stack(viewController: webView, animationType: .horizontal)
+        }
+    }
+    
+    @IBAction func onTapPrivacyPolicy(_ sender: Any) {
+        if let path = Bundle.main.path(forResource: "privacypolicy", ofType: "pdf") {
+            let webView = self.viewController(storyboard: "Common", identifier: "WebViewController") as! WebViewController
+            webView.set(title: "privacypolicy", path: path)
+            self.stack(viewController: webView, animationType: .horizontal)
+        }
+    }
 }

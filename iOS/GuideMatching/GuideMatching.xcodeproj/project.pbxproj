@@ -63,6 +63,9 @@
 		2EBAAEE62135354900E1F1EA /* GuideRegisterTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBAAEE52135354900E1F1EA /* GuideRegisterTourView.swift */; };
 		2EBAAEE82135355600E1F1EA /* GuideRegisterTourView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EBAAEE72135355600E1F1EA /* GuideRegisterTourView.xib */; };
 		2EDE6209211990BC00DA956A /* ReserveDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDE6208211990BC00DA956A /* ReserveDetailViewController.swift */; };
+		BB46375D215D1114000FC5FC /* terms.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BB46375B215D1114000FC5FC /* terms.pdf */; };
+		BB46375E215D1114000FC5FC /* privacypolicy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BB46375C215D1114000FC5FC /* privacypolicy.pdf */; };
+		BB463760215D112E000FC5FC /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB46375F215D112E000FC5FC /* WebViewController.swift */; };
 		BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5059D820E262AD00491506 /* AppDelegate.swift */; };
 		BB5059E020E262AE00491506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5059DF20E262AE00491506 /* Assets.xcassets */; };
 		BB5059E320E262AE00491506 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5059E120E262AE00491506 /* LaunchScreen.storyboard */; };
@@ -161,6 +164,9 @@
 		2EBAAEE72135355600E1F1EA /* GuideRegisterTourView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideRegisterTourView.xib; sourceTree = "<group>"; };
 		2EDE6208211990BC00DA956A /* ReserveDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveDetailViewController.swift; sourceTree = "<group>"; };
 		85D8F097BB5D617C900E952E /* Pods-GuideMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuideMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GuideMatching/Pods-GuideMatching.debug.xcconfig"; sourceTree = "<group>"; };
+		BB46375B215D1114000FC5FC /* terms.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = terms.pdf; sourceTree = "<group>"; };
+		BB46375C215D1114000FC5FC /* privacypolicy.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = privacypolicy.pdf; sourceTree = "<group>"; };
+		BB46375F215D112E000FC5FC /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		BB5059D520E262AD00491506 /* GuideMatching.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuideMatching.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5059D820E262AD00491506 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB5059DF20E262AE00491506 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -320,6 +326,7 @@
 				2E94041420E370A700362878 /* Placeholder */,
 				2E94040F20E36B6600362878 /* Picker */,
 				BBFEBB2F20E50D9900C9F01C /* KeyboardRespondableViewController.swift */,
+				BB46375F215D112E000FC5FC /* WebViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -409,6 +416,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BB46375A215D10F9000FC5FC /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				BB46375C215D1114000FC5FC /* privacypolicy.pdf */,
+				BB46375B215D1114000FC5FC /* terms.pdf */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		BB5059CC20E262AD00491506 = {
 			isa = PBXGroup;
 			children = (
@@ -430,12 +446,13 @@
 		BB5059D720E262AD00491506 /* GuideMatching */ = {
 			isa = PBXGroup;
 			children = (
+				BB5059D820E262AD00491506 /* AppDelegate.swift */,
 				BB5059EA20E264C200491506 /* View */,
 				BB505A0020E26F7500491506 /* Http */,
 				BB5059F620E2673A00491506 /* Extension */,
 				2E9403FE20E3306400362878 /* System */,
 				BB5059EB20E264C600491506 /* Storyboard */,
-				BB5059D820E262AD00491506 /* AppDelegate.swift */,
+				BB46375A215D10F9000FC5FC /* Resource */,
 				BB5059DF20E262AE00491506 /* Assets.xcassets */,
 				BB5059E120E262AE00491506 /* LaunchScreen.storyboard */,
 				BB5059E420E262AE00491506 /* Info.plist */,
@@ -630,6 +647,7 @@
 				2E11B3F120EC90EC002441EB /* GuideDetailScheduleTableViewCell.xib in Resources */,
 				BB5059F520E265A500491506 /* Initial.storyboard in Resources */,
 				2E7DAA912105D24C0076EE12 /* Loading.xib in Resources */,
+				BB46375D215D1114000FC5FC /* terms.pdf in Resources */,
 				2E94040B20E36AD600362878 /* Common.storyboard in Resources */,
 				2E94043220E37D7A00362878 /* MyPage.storyboard in Resources */,
 				2E20ECEC2136340700DA0F98 /* GuideDetailTourView.xib in Resources */,
@@ -637,6 +655,7 @@
 				2E9D8D9621365C12009ECF99 /* GuideDetailTourHighlightsView.xib in Resources */,
 				2E94042E20E37D6900362878 /* Search.storyboard in Resources */,
 				BB5059E020E262AE00491506 /* Assets.xcassets in Resources */,
+				BB46375E215D1114000FC5FC /* privacypolicy.pdf in Resources */,
 				2E7DAA992105D2800076EE12 /* DialogButton.xib in Resources */,
 				2E94043020E37D7200362878 /* Message.storyboard in Resources */,
 				2EBAAEE82135355600E1F1EA /* GuideRegisterTourView.xib in Resources */,
@@ -757,6 +776,7 @@
 				BBFEBB1C20E4D72000C9F01C /* MessageDetailRightTableViewCell.swift in Sources */,
 				BB505A0220E26F8500491506 /* HttpManager.swift in Sources */,
 				2E20ECEF21363D5200DA0F98 /* GuideDetailTourViewController.swift in Sources */,
+				BB463760215D112E000FC5FC /* WebViewController.swift in Sources */,
 				BB5059D920E262AD00491506 /* AppDelegate.swift in Sources */,
 				BBFEBB1E20E4DD1400C9F01C /* MyPageReservationTitleTableViewCell.swift in Sources */,
 				BB5059F320E2658F00491506 /* GuideRegisterViewController.swift in Sources */,
