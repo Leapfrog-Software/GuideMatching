@@ -2,7 +2,7 @@
 
 require "reserve.php";
 
-$str = "予約ID,予約日時,ゲストID,ガイドID,ガイド料,システム手数料,待ち合わせ場所,日付,開始時刻,終了時刻\n";
+$str = "ID,Reserve date,Guest ID,Guide ID,Guide fee,Transaction fee,Meeting place,Date,Start time,End time\n";
 
 $reserveList = Reserve::readAll();
 foreach ($reserveList as $reserveData) {
