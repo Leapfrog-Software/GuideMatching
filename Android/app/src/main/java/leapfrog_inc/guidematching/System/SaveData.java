@@ -7,6 +7,8 @@ public class SaveData {
 
     private static SaveData container = null;
 
+    private String currentVersion = "1";
+
     public Context mContext;
     public String guideId = "";
     public String guestId = "";
@@ -26,6 +28,11 @@ public class SaveData {
 
         SharedPreferences data = context.getSharedPreferences(Constants.SharedPreferenceKey.Key, Context.MODE_PRIVATE);
 
+        if (!data.getString(Constants.SharedPreferenceKey.Version, "").equals(currentVersion)) {
+            guideId = "";
+            guestId = "";
+            return;
+        }
         guideId = data.getString(Constants.SharedPreferenceKey.GuideId, "");
         guestId = data.getString(Constants.SharedPreferenceKey.GuestId, "");
     }
@@ -35,6 +42,7 @@ public class SaveData {
         SharedPreferences data = mContext.getSharedPreferences(Constants.SharedPreferenceKey.Key, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = data.edit();
 
+        editor.putString(Constants.SharedPreferenceKey.Version, currentVersion);
         editor.putString(Constants.SharedPreferenceKey.GuideId, guideId);
         editor.putString(Constants.SharedPreferenceKey.GuestId, guestId);
 

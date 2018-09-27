@@ -15,6 +15,7 @@ public class Constants {
 
     public static class SharedPreferenceKey {
         public static String Key = "GuideMatching";
+        public static String Version = "Version";
         public static String GuideId = "GuideId";
         public static String GuestId = "GuestId";
     }
