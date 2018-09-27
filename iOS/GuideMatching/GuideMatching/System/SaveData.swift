@@ -12,7 +12,7 @@ class SaveData {
     
     static let shared = SaveData()
     
-    private var currentVersion = "1"
+    private var currentVersion = "2"
     
     var guestId = ""
     var guideId = ""
