@@ -12,6 +12,7 @@ class GuideDetailTourHighlightsView: UIView {
 
     @IBOutlet private weak var highlightsTitleLabel: UILabel!
     @IBOutlet private weak var highlightsImageView: UIImageView!
+    @IBOutlet private weak var highlightsImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var bodyLabel: UILabel!
 
     private var titleString: String!
@@ -28,7 +29,11 @@ class GuideDetailTourHighlightsView: UIView {
         super.didMoveToSuperview()
         
         self.highlightsTitleLabel.text = self.titleString
-        ImageStorage.shared.fetch(url: self.imageUrl, imageView: self.highlightsImageView, defaultImage: UIImage(named: "no_image"))
+        ImageStorage.shared.fetch(url: self.imageUrl, imageView: self.highlightsImageView, defaultImage: UIImage(named: "no_image"), completion: {
+            if let image = self.highlightsImageView.image {
+                self.highlightsImageHeightConstraint.constant = (UIScreen.main.bounds.size.width - 40) * image.size.height / image.size.width
+            }
+        })
         self.bodyLabel.text = self.bodyString
     }
 }

@@ -52,6 +52,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="bodyLabel" destination="JsU-6C-tWq" id="uX7-5u-gmN"/>
+                <outlet property="highlightsImageHeightConstraint" destination="lze-FW-2vA" id="7oJ-Ec-7Tu"/>
                 <outlet property="highlightsImageView" destination="YTv-fb-9O7" id="d2a-xG-Thb"/>
                 <outlet property="highlightsTitleLabel" destination="zV0-FA-Kap" id="4dL-Dh-jcz"/>
             </connections>
