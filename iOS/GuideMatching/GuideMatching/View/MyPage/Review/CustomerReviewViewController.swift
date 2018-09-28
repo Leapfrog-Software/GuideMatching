@@ -15,12 +15,14 @@ class CustomerReviewViewController: UIViewController {
     
     private var estimates = [EstimateData]()
     
+    func set(guideId: String) {
+        self.estimates = EstimateRequester.shared.dataList.filter { estimate -> Bool in
+            return estimate.guideId == guideId
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.estimates = EstimateRequester.shared.dataList.filter { estimate in
-            return estimate.guideId == SaveData.shared.guideId
-        }
         
         self.tableView.isHidden = self.estimates.isEmpty
         self.noDataLabel.isHidden = !self.estimates.isEmpty

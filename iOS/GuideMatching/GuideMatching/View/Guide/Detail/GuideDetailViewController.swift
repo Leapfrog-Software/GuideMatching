@@ -75,7 +75,7 @@ class GuideDetailViewController: UIViewController {
         self.categoryLabel.text = self.guideData.category
         self.keywordLabel.text = self.guideData.keyword
         self.messageLabel.text = self.guideData.message
-        self.applicableNumberLabel.text = "\(self.guideData.applicableNumber)人"
+        self.applicableNumberLabel.text = "\(self.guideData.applicableNumber) person"
         self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
         self.notesLabel.text = self.guideData.notes
         
@@ -209,6 +209,12 @@ class GuideDetailViewController: UIViewController {
         if page <= 1 {
             self.imageScrollView.setContentOffset(CGPoint(x: CGFloat(page + 1) * self.imageScrollView.frame.size.width, y: 0), animated: true)
         }
+    }
+    
+    @IBAction func onTapReview(_ sender: Any) {
+        let review = self.viewController(storyboard: "MyPage", identifier: "CustomerReviewViewController") as! CustomerReviewViewController
+        review.set(guideId: self.guideData.id)
+        self.tabbarViewController()?.stack(viewController: review, animationType: .horizontal)
     }
 
     @IBAction func onTapInquiry(_ sender: Any) {
