@@ -69,16 +69,25 @@ class GuideDetailViewController: UIViewController {
             ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + self.guideData.id + "-\(i)", imageView: imageView)
         }
         self.imageScrollView.contentSize = CGSize(width: windowWidth, height: windowWidth)
+ 
+        func setText(label: UILabel, text: String) {
+            if text.count > 0 {
+                label.text = text
+            } else {
+                label.text = "-"
+            }
+        }
         
-        self.languageLabel.text = self.guideData.language
-        self.areaLabel.text = self.guideData.area
-        self.categoryLabel.text = self.guideData.category
-        self.keywordLabel.text = self.guideData.keyword
-        self.messageLabel.text = self.guideData.message
+        setText(label: self.languageLabel, text: self.guideData.language)
+        setText(label: self.areaLabel, text: self.guideData.area)
+        setText(label: self.categoryLabel, text: self.guideData.category)
+        setText(label: self.keywordLabel, text: self.guideData.keyword)
+        setText(label: self.messageLabel, text: self.guideData.message)
+        setText(label: self.notesLabel, text: self.guideData.notes)
+        
         self.applicableNumberLabel.text = "\(self.guideData.applicableNumber) person"
         self.priceLabel.text = CommonUtility.digit3Format(value: self.guideData.fee) + " JPY/30min"
-        self.notesLabel.text = self.guideData.notes
-        
+ 
         self.guideData.tours.forEach { tourData in
             let tourView = UINib(nibName: "GuideDetailTourView", bundle: nil).instantiate(withOwner: nil, options: nil).first as! GuideDetailTourView
             tourView.set(tourData: tourData, didTap: { [weak self] tourData in
@@ -98,6 +107,7 @@ class GuideDetailViewController: UIViewController {
             scheduleView.trailingAnchor.constraint(equalTo: self.scheduleBaseView.trailingAnchor).isActive = true
             scheduleView.bottomAnchor.constraint(equalTo: self.scheduleBaseView.bottomAnchor).isActive = true
         }
+ 
     }
     
     private func initScore() {

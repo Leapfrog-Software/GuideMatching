@@ -38,6 +38,10 @@ class GuideDetailScheduleView: UIView {
         self.tableView.register(UINib(nibName: "GuideDetailScheduleTableViewCell", bundle: nil), forCellReuseIdentifier: "GuideDetailScheduleTableViewCell")
         
         self.reload()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            self.tableView.contentOffset = CGPoint(x: 0, y: 44 * 24)
+        })
     }
     
     func changeToNext() {
