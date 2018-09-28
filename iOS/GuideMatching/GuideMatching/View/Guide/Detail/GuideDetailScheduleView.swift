@@ -174,10 +174,12 @@ extension GuideDetailScheduleView: UITableViewDelegate, UITableViewDataSource {
             states.append(state)
         }
         
-        cell.configure(cellIndex: indexPath.row, states:states, onTap: { [weak self] dateOffset, timeOffset in
-            let weekOffset = self?.weekOffset ?? 0
-            let targetDate = Date().latestSunday().add(day: weekOffset * 7 + dateOffset)
-            self?.didSelect?(targetDate, timeOffset)
+        cell.configure(cellIndex: indexPath.row, states: states, onTap: { [weak self] dateOffset, timeOffset in
+            if (!states[dateOffset].isPast) && (states[dateOffset].type == .free) {
+                let weekOffset = self?.weekOffset ?? 0
+                let targetDate = Date().latestSunday().add(day: weekOffset * 7 + dateOffset)
+                self?.didSelect?(targetDate, timeOffset)
+            }
         })
         
         return cell
