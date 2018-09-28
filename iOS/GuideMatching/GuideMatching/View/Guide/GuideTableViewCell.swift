@@ -31,7 +31,7 @@ class GuideTableViewCell: UITableViewCell {
 
     func configure(guideData: GuideData) {
         
-        ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + guideData.id + "-0", imageView: self.faceImageView, defaultImage: nil)
+        ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + guideData.id + "-0", imageView: self.faceImageView)
         
         self.nameLabel.text = guideData.name
         

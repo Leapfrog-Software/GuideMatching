@@ -28,7 +28,7 @@ class GuideDetailTourHighlightsView: UIView {
         super.didMoveToSuperview()
         
         self.highlightsTitleLabel.text = self.titleString
-        ImageStorage.shared.fetch(url: self.imageUrl, imageView: self.highlightsImageView)
+        ImageStorage.shared.fetch(url: self.imageUrl, imageView: self.highlightsImageView, defaultImage: UIImage(named: "no_image"))
         self.bodyLabel.text = self.bodyString
     }
 }

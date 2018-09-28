@@ -12,6 +12,7 @@ import Stripe
 class GuideDetailTourViewController: UIViewController {
 
     @IBOutlet private weak var tourImageView: UIImageView!
+    @IBOutlet private weak var tourImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tourTitleLabel: UILabel!
     @IBOutlet private weak var areaLabel: UILabel!
     @IBOutlet private weak var feeLabel: UILabel!
@@ -42,7 +43,11 @@ class GuideDetailTourViewController: UIViewController {
     
     private func initContents() {
         
-        ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id + "-t", imageView: self.tourImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id + "-t", imageView: self.tourImageView, defaultImage: UIImage(named: "no_image"), completion: {
+            if let image = self.tourImageView.image {
+                self.tourImageHeightConstraint.constant = (UIScreen.main.bounds.size.width - 40) * image.size.height / image.size.width
+            }
+        })
         
         self.tourTitleLabel.text = self.tourData.name
         self.areaLabel.text = self.tourData.area

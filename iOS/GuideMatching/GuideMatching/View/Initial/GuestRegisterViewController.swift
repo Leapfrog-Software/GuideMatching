@@ -59,7 +59,7 @@ class GuestRegisterViewController: UIViewController {
         ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuestData.id + "-0", imageView: self.face1ImageView)
         ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuestData.id + "-1", imageView: self.face2ImageView)
         ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuestData.id + "-2", imageView: self.face3ImageView)
-        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuestData.id + "-p", imageView: self.passportImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuestData.id + "-p", imageView: self.passportImageView, defaultImage: UIImage(named: "no_image"))
         
         self.emailTextField.text = myGuestData.email
         self.nameTextField.text = myGuestData.name

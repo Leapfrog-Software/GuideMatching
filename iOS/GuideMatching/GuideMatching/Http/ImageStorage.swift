@@ -27,10 +27,11 @@ class ImageStorage {
     private var imageList = [ImageStorageData]()
     private var requestList = [ImageRequestData]()
     
-    func fetch(url: String, imageView: UIImageView, defaultImage: UIImage? = nil) {
+    func fetch(url: String, imageView: UIImageView, defaultImage: UIImage? = UIImage(named: "no_face"), completion: (() -> ())? = nil) {
         
         if let image = (self.imageList.filter { $0.url == url }).first?.image {
             imageView.image = image
+            completion?()
             return
         }
         imageView.image = nil
@@ -50,16 +51,13 @@ class ImageStorage {
             if result, let data = data, let image = UIImage(data: data) {
                 resultImage = image
             } else {
-                if let defaultImage = defaultImage {
-                    resultImage = defaultImage
-                } else {
-                    resultImage = UIImage(named: "no_face")
-                }
+                resultImage = defaultImage
             }
             let storageData = ImageStorageData(url: url, image: resultImage!)
             self?.imageList.append(storageData)
             self?.cancelRequest(imageView: requestData.imageView)
             requestData.imageView.image = resultImage!
+            completion?()
         }
     }
     

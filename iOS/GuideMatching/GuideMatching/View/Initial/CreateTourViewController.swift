@@ -89,7 +89,7 @@ class CreateTourViewController: UIViewController {
             return
         }
         
-        ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id, imageView: self.tourImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id, imageView: self.tourImageView, defaultImage: UIImage(named: "no_image"))
         
         self.tourTitleTextField.text = tourData.name
         self.areaTextField.text = tourData.area
@@ -102,7 +102,7 @@ class CreateTourViewController: UIViewController {
         } else {
             self.highlights1View.isHidden = false
             self.highlights1ViewHeightConstraint.constant = self.highlightsViewHeight
-            ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id + "-h1", imageView: self.highlights1ImageView)
+            ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id + "-h1", imageView: self.highlights1ImageView, defaultImage: UIImage(named: "no_image"))
             self.highlights1TitleTextField.text = tourData.highlights1Title
             self.highlights1BodyTextField.text = tourData.highlights1Body
         }
@@ -113,7 +113,7 @@ class CreateTourViewController: UIViewController {
         } else {
             self.highlights2View.isHidden = false
             self.highlights2ViewHeightConstraint.constant = self.highlightsViewHeight
-            ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id + "-h2", imageView: self.highlights2ImageView)
+            ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id + "-h2", imageView: self.highlights2ImageView, defaultImage: UIImage(named: "no_image"))
             self.highlights2TitleTextField.text = tourData.highlights2Title
             self.highlights2BodyTextField.text = tourData.highlights2Body
         }
@@ -124,7 +124,7 @@ class CreateTourViewController: UIViewController {
         } else {
             self.highlights3View.isHidden = false
             self.highlights3ViewHeightConstraint.constant = self.highlightsViewHeight
-            ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id + "-h3", imageView: self.highlights3ImageView)
+            ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id + "-h3", imageView: self.highlights3ImageView, defaultImage: UIImage(named: "no_image"))
             self.highlights3TitleTextField.text = tourData.highlights3Title
             self.highlights3BodyTextField.text = tourData.highlights3Body
         }

@@ -27,7 +27,7 @@ class GuideDetailTourView: UIView {
         super.didMoveToSuperview()
         
         self.tourTitleLabel.text = self.tourData.name
-        ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + self.tourData.id + "-t", imageView: self.tourImageView)
+        ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + self.tourData.id + "-t", imageView: self.tourImageView, defaultImage: UIImage(named: "no_image"))
         self.descriptionLabel.text = self.tourData.description
         self.feeLabel.text = CommonUtility.digit3Format(value: self.tourData.fee) + " JPY"
     }
