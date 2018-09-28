@@ -43,10 +43,6 @@ class GuideViewController: UIViewController {
             
             let guides = GuideRequester.shared.dataList.filter { guideData -> Bool in
                 
-                if guideData.id == SaveData.shared.guideId {
-                    return false
-                }
-                
                 if let language = condition.language {
                     if !guideData.language.contains(language) {
                         return false
@@ -108,7 +104,7 @@ class GuideViewController: UIViewController {
             
         } else {
             self.backButton.isHidden = true
-            self.guideDatas = GuideRequester.shared.dataList.filter { $0.id != SaveData.shared.guideId }
+            self.guideDatas = GuideRequester.shared.dataList
         }
         
         ImageStorage.shared.removeAll()
