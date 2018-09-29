@@ -109,8 +109,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dateLabel" destination="ldf-Lo-YXu" id="23y-Uf-aRa"/>
                                             <outlet property="faceImageView" destination="Th6-bV-Aa6" id="s0T-Yb-dLS"/>
-                                            <outlet property="loginLabel" destination="ldf-Lo-YXu" id="DjW-V7-303"/>
                                             <outlet property="messageLabel" destination="g74-wC-dKe" id="ljC-6H-2zU"/>
                                             <outlet property="nameLabel" destination="V8e-oh-YQs" id="NXj-1U-jyD"/>
                                         </connections>
