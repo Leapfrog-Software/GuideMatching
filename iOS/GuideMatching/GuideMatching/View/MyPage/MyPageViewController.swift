@@ -49,6 +49,11 @@ class MyPageViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .reserve, object: nil)
     }
     
+    func reload() {
+        self.resetCellDatas()
+        self.tableView.reloadData()
+    }
+    
     private func resetCellDatas() {
         
         var cellDatas = [CellData]()

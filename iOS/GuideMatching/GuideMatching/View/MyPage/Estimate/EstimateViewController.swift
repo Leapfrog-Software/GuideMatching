@@ -103,13 +103,19 @@ class EstimateViewController: UIViewController {
         Loading.start()
         
         EstimateRequester.post(reserveId: self.reserveData.id, guestId: SaveData.shared.guestId, guideId: self.reserveData.guideId, score: score, comment: comment, completion: { result in
-            Loading.stop()
-            
-            if result {
-                Dialog.show(style: .success, title: "確認", message: "送信しました", actions: [DialogAction(title: "OK", action: nil)])
-            } else {
-                Dialog.show(style: .error, title: "Error", message: "Failed to communicate", actions: [DialogAction(title: "OK", action: nil)])
-            }
+            EstimateRequester.shared.fetch(completion: { _ in
+                Loading.stop()
+                
+                if result {
+                    Dialog.show(style: .success, title: "確認", message: "送信しました", actions: [DialogAction(title: "OK", action: nil)])
+                    
+                    if let myPage = (self.tabbarViewController()?.childViewControllers.compactMap { $0 as? MyPageViewController })?.first {
+                        myPage.reload()
+                    }
+                } else {
+                    Dialog.show(style: .error, title: "Error", message: "Failed to communicate", actions: [DialogAction(title: "OK", action: nil)])
+                }
+            })
         })
     }
     
