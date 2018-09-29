@@ -44,7 +44,7 @@ class GuideRegisterViewController: UIViewController {
     
     private var languages: [String] = ["English", "Chinese", "Korean", "Thai", "Malay", "Indonesian", "Vietnamese", "Hindi", "French", "German", "Italian", "Spanish", "Arabic", "Portuguese"]
     private var languageIndex = 0
-    private var categories: [String] = ["Food", "Traditional", "culture", "Nature"]
+    private var categories: [String] = ["Food", "Nature", "Historical site", "Traditional culture", "Music", "Art", "Subculture"]
     private var categoryIndex = 0
     private var applicableNumbers: [Int] = (Array<Int>)(1...20)
     private var applicableNumberIndex = 0

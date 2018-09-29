@@ -43,18 +43,16 @@ class GuideViewController: UIViewController {
             
             let guides = GuideRequester.shared.dataList.filter { guideData -> Bool in
                 
-                if let language = condition.language {
-                    if !guideData.language.contains(language) {
-                        return false
-                    }
+                if !guideData.language.contains(condition.language) {
+                    return false
                 }
-                if let keyword = condition.keyword {
-                    if !guideData.email.contains(keyword)
-                        && !guideData.name.contains(keyword)
-                        && !guideData.nationality.contains(keyword)
-                        && !guideData.category.contains(keyword)
-                        && !guideData.keyword.contains(keyword)
-                        && !guideData.notes.contains(keyword) {
+                if let keyword = condition.keyword?.lowercased() {
+                    if !guideData.email.lowercased().contains(keyword)
+                        && !guideData.name.lowercased().contains(keyword)
+                        && !guideData.nationality.lowercased().contains(keyword)
+                        && !guideData.category.lowercased().contains(keyword)
+                        && !guideData.keyword.lowercased().contains(keyword)
+                        && !guideData.notes.lowercased().contains(keyword) {
                         return false
                     }
                 }
@@ -73,15 +71,8 @@ class GuideViewController: UIViewController {
                         return false
                     }
                 }
-                if let nationality = condition.nationality {
-                    if !guideData.nationality.contains(nationality) {
-                        return false
-                    }
-                }
-                if let category = condition.category {
-                    if !guideData.category.contains(category) {
-                        return false
-                    }
+                if !guideData.category.contains(condition.category) {
+                    return false
                 }
                 return true
             }

@@ -11,12 +11,11 @@ import UIKit
 class SearchViewController: UIViewController {
     
     struct SearchCondition {
-        let language: String?
+        let language: String
         let keyword: String?
         let date: Date?
         let time: Int?
-        let nationality: String?
-        let category: String?
+        let category: String
         let order: OrderType
     }
     
@@ -28,32 +27,70 @@ class SearchViewController: UIViewController {
         func toString() -> String {
             switch self {
             case .login:
-                return "ログイン"
+                return "Login time"
             case .estimate:
-                return "評価"
+                return "Customer review"
             case .number:
-                return "実績"
+                return "Number of transactions"
             }
         }
     }
     
-    @IBOutlet private weak var languageTextField: UITextField!
+    @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var keywordTextField: UITextField!
     @IBOutlet private weak var dayLabel: UILabel!
     @IBOutlet private weak var timeLabel: UILabel!
-    @IBOutlet private weak var nationalityTextField: UITextField!
-    @IBOutlet private weak var categoryTextField: UITextField!
+    @IBOutlet private weak var categoryLabel: UILabel!
     @IBOutlet private weak var orderLabel: UILabel!
-
+    
+    private var languages: [String] = ["English", "Chinese", "Korean", "Thai", "Malay", "Indonesian", "Vietnamese", "Hindi", "French", "German", "Italian", "Spanish", "Arabic", "Portuguese"]
+    private var categories: [String] = ["Food", "Nature", "Historical site", "Traditional culture", "Music", "Art", "Subculture"]
+    
+    private var selectedLanguageIndex = 0
     private var selectedDay: Date?
     private var selectedTime: Int?
+    private var selectedCategoryIndex = 0
     private var selectedOrderType = OrderType.login
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.reset()
+    }
+    
+    private func reset() {
+        self.languageLabel.text = self.languages[0]
+        self.keywordTextField.text = ""
+        self.dayLabel.text = ""
+        self.timeLabel.text = ""
+        self.categoryLabel.text = self.categories[0]
+        self.orderLabel.text = OrderType.login.toString()
+        
+        self.selectedLanguageIndex = 0
+        self.selectedDay = nil
+        self.selectedTime = nil
+        self.selectedCategoryIndex = 0
+        self.selectedOrderType = .login
+    }
     
     @IBAction func didEndEdit(_ sender: Any) {
         self.view.endEditing(true)
     }
     
+    @IBAction func onTapLanguage(_ sender: Any) {
+        self.view.endEditing(true)
+        
+        let picker = self.viewController(storyboard: "Common", identifier: "PickerViewController") as! PickerViewController
+        picker.set(title: "Language", dataArray: self.languages, defaultIndex: self.selectedLanguageIndex, completion: { index in
+            self.selectedLanguageIndex = index
+            self.languageLabel.text = self.languages[index]
+        })
+        self.tabbarViewController()?.stack(viewController: picker, animationType: .none)
+    }
+    
     @IBAction func onTapDay(_ sender: Any) {
+        
+        self.view.endEditing(true)
 
         var dates = [Date]()
         for i in 0..<28 {
@@ -76,6 +113,8 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func onTapTime(_ sender: Any) {
+        
+        self.view.endEditing(true)
 
         var times = [Int]()
         for i in 0..<48 {
@@ -91,7 +130,20 @@ class SearchViewController: UIViewController {
         self.tabbarViewController()?.stack(viewController: picker, animationType: .none)
     }
     
+    @IBAction func onTapCategory(_ sender: Any) {
+        self.view.endEditing(true)
+        
+        let picker = self.viewController(storyboard: "Common", identifier: "PickerViewController") as! PickerViewController
+        picker.set(title: "Category", dataArray: self.categories, defaultIndex: self.selectedCategoryIndex, completion: { index in
+            self.selectedCategoryIndex = index
+            self.categoryLabel.text = self.categories[index]
+        })
+        self.tabbarViewController()?.stack(viewController: picker, animationType: .none)
+    }
+    
     @IBAction func onTapOrder(_ sender: Any) {
+        self.view.endEditing(true)
+        
         let picker = self.viewController(storyboard: "Common", identifier: "PickerViewController") as! PickerViewController
         let orderTypes: [OrderType] = [.login, .estimate, .number]
         picker.set(title: "Order", dataArray: orderTypes.compactMap { $0.toString() }, defaultIndex: self.selectedOrderType.rawValue, completion: { [weak self] index in
@@ -104,17 +156,19 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func onTapSearch(_ sender: Any) {
+
+        self.view.endEditing(true)
         
-        let language = self.languageTextField.text ?? ""
-        let keyword = self.keywordTextField.text ?? ""
-        let nationality = self.nationalityTextField.text ?? ""
-        let category = self.categoryTextField.text ?? ""
-        let condition = SearchCondition(language: (language.count > 0) ? language : nil,
-                                        keyword: (keyword.count > 0) ? keyword : nil,
+        var keyword: String? = nil
+        if (self.keywordTextField.text ?? "").count > 0 {
+            keyword = self.keywordTextField.text
+        }
+        
+        let condition = SearchCondition(language: self.languages[self.selectedLanguageIndex],
+                                        keyword: keyword,
                                         date: self.selectedDay,
                                         time: self.selectedTime,
-                                        nationality: (nationality.count > 0) ? nationality : nil,
-                                        category: (category.count > 0) ? category : nil,
+                                        category: self.categories[self.selectedCategoryIndex],
                                         order: self.selectedOrderType)
         let guideList = self.viewController(storyboard: "Guide", identifier: "GuideViewController") as! GuideViewController
         guideList.set(searchCondition: condition)
@@ -122,17 +176,7 @@ class SearchViewController: UIViewController {
     }
 
     @IBAction func onTapReset(_ sender: Any) {
-        self.languageTextField.text = ""
-        self.keywordTextField.text = ""
-        self.dayLabel.text = ""
-        self.timeLabel.text = ""
-        self.nationalityTextField.text = ""
-        self.categoryTextField.text = ""
-        self.orderLabel.text = OrderType.login.toString()
-        
-        self.selectedDay = nil
-        self.selectedTime = nil
-        self.selectedOrderType = .login
+        self.reset()
     }
 }
 
