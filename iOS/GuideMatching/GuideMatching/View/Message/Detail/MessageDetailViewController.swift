@@ -12,7 +12,8 @@ class MessageDetailViewController: KeyboardRespondableViewController {
     
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var textField: UITextField!
+    @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var textViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var inputViewBottomConstraint: NSLayoutConstraint!
     
     private var targetUserId: String!
@@ -20,6 +21,10 @@ class MessageDetailViewController: KeyboardRespondableViewController {
     private var dummyLeftCell: MessageDetailLeftTableViewCell?
     private var dummyRightCell: MessageDetailRightTableViewCell?
     private var tmpMessageIds = [String]()
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.UITextViewTextDidChange, object: nil)
+    }
     
     func set(targetUserId: String) {
         self.targetUserId = targetUserId
@@ -48,6 +53,9 @@ class MessageDetailViewController: KeyboardRespondableViewController {
                 }
             })
         })
+        
+        self.adjustTextViewHeight()
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: Notification.Name.UITextViewTextDidChange, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -106,13 +114,17 @@ class MessageDetailViewController: KeyboardRespondableViewController {
         }
     }
     
-    @IBAction func didExitTextField(_ sender: Any) {
-        self.view.endEditing(true)
+    private func adjustTextViewHeight() {
+        self.textViewHeightConstraint.constant = self.textView.contentSize.height
     }
     
+    @objc func textDidChange(notification: Notification) {
+        self.adjustTextViewHeight()
+    }
+        
     @IBAction func onTapSend(_ sender: Any) {
         
-        guard let message = self.textField.text, message.count > 0 else {
+        guard let message = self.textView.text, message.count > 0 else {
             return
         }
         
@@ -132,7 +144,7 @@ class MessageDetailViewController: KeyboardRespondableViewController {
                 Dialog.show(style: .error, title: "Error", message: "Failed to communicate", actions: [DialogAction(title: "OK", action: nil)])
             }
         })
-        self.textField.text = ""
+        self.textView.text = ""
         
         let userId: String
         if SaveData.shared.guestId.count > 0 {

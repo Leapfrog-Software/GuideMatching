@@ -200,7 +200,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ccM-ud-8My">
-                                <rect key="frame" x="0.0" y="64" width="375" height="555"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageDetailLeftTableViewCell" rowHeight="180" id="WDq-QG-Lnc" customClass="MessageDetailLeftTableViewCell" customModule="GuideMatching" customModuleProvider="target">
@@ -356,27 +356,27 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zcd-zJ-eMC">
-                                <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                                <rect key="frame" x="0.0" y="615" width="375" height="52"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bq2-YA-cp5">
-                                        <rect key="frame" x="16" y="8" width="291" height="32"/>
+                                        <rect key="frame" x="16" y="8" width="291" height="36"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uTm-PT-0Mh">
-                                                <rect key="frame" x="16" y="0.0" width="259" height="32"/>
-                                                <nil key="textColor"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="JZ8-k8-yid">
+                                                <rect key="frame" x="16" y="8" width="259" height="20"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="GPU-fe-tkZ"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <connections>
-                                                    <action selector="didExitTextField:" destination="oJZ-Xs-MBR" eventType="editingDidEndOnExit" id="ReB-3K-xao"/>
-                                                </connections>
-                                            </textField>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="uTm-PT-0Mh" firstAttribute="top" secondItem="bq2-YA-cp5" secondAttribute="top" id="ECh-0z-pX8"/>
-                                            <constraint firstAttribute="bottom" secondItem="uTm-PT-0Mh" secondAttribute="bottom" id="dOd-Zi-Onu"/>
-                                            <constraint firstItem="uTm-PT-0Mh" firstAttribute="leading" secondItem="bq2-YA-cp5" secondAttribute="leading" constant="16" id="pCP-ZY-DPg"/>
-                                            <constraint firstAttribute="trailing" secondItem="uTm-PT-0Mh" secondAttribute="trailing" constant="16" id="xbf-y2-py9"/>
+                                            <constraint firstItem="JZ8-k8-yid" firstAttribute="leading" secondItem="bq2-YA-cp5" secondAttribute="leading" constant="16" id="1ql-Sj-vOP"/>
+                                            <constraint firstAttribute="bottom" secondItem="JZ8-k8-yid" secondAttribute="bottom" constant="8" id="TtU-gB-Ok8"/>
+                                            <constraint firstItem="JZ8-k8-yid" firstAttribute="top" secondItem="bq2-YA-cp5" secondAttribute="top" constant="8" id="lqg-to-IzX"/>
+                                            <constraint firstAttribute="trailing" secondItem="JZ8-k8-yid" secondAttribute="trailing" constant="16" id="zWH-7Q-c7E"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -391,7 +391,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pjN-ME-L56">
-                                        <rect key="frame" x="315" y="8" width="44" height="32"/>
+                                        <rect key="frame" x="315" y="10" width="44" height="32"/>
                                         <color key="backgroundColor" red="0.14117647059999999" green="0.3411764706" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="1ez-0C-CUn"/>
@@ -418,7 +418,6 @@
                                     <constraint firstItem="bq2-YA-cp5" firstAttribute="top" secondItem="Zcd-zJ-eMC" secondAttribute="top" constant="8" id="CZw-hU-wmA"/>
                                     <constraint firstItem="pjN-ME-L56" firstAttribute="centerY" secondItem="Zcd-zJ-eMC" secondAttribute="centerY" id="KTC-Bt-cCE"/>
                                     <constraint firstAttribute="trailing" secondItem="pjN-ME-L56" secondAttribute="trailing" constant="16" id="Pz7-ak-pID"/>
-                                    <constraint firstAttribute="height" constant="48" id="SAM-VI-9Ql"/>
                                     <constraint firstItem="pjN-ME-L56" firstAttribute="leading" secondItem="bq2-YA-cp5" secondAttribute="trailing" constant="8" id="Sd5-7r-CBW"/>
                                 </constraints>
                             </view>
@@ -446,7 +445,8 @@
                         <outlet property="inputViewBottomConstraint" destination="RrB-BW-51w" id="FW8-Uc-uVg"/>
                         <outlet property="nameLabel" destination="GI1-QE-qHg" id="ZEN-4s-4qC"/>
                         <outlet property="tableView" destination="ccM-ud-8My" id="q49-kt-JCW"/>
-                        <outlet property="textField" destination="uTm-PT-0Mh" id="IlB-IT-YxK"/>
+                        <outlet property="textView" destination="JZ8-k8-yid" id="HTy-ka-P3C"/>
+                        <outlet property="textViewHeightConstraint" destination="GPU-fe-tkZ" id="nWf-bc-lJ9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fee-ne-F3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
