@@ -49,7 +49,6 @@ class GuideViewController: UIViewController {
                 if let keyword = condition.keyword?.lowercased() {
                     if !guideData.email.lowercased().contains(keyword)
                         && !guideData.name.lowercased().contains(keyword)
-                        && !guideData.nationality.lowercased().contains(keyword)
                         && !guideData.category.lowercased().contains(keyword)
                         && !guideData.keyword.lowercased().contains(keyword)
                         && !guideData.notes.lowercased().contains(keyword) {

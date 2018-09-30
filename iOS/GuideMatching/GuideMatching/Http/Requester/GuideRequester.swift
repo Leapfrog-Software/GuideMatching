@@ -179,7 +179,6 @@ struct GuideData {
     let id: String
     var email: String
     var name: String
-    var nationality: String
     var language: String
     var area: String
     var keyword: String
@@ -203,7 +202,6 @@ struct GuideData {
         
         self.email = data["email"] as? String ?? ""
         self.name = (data["name"] as? String)?.base64Decode() ?? ""
-        self.nationality = (data["nationality"] as? String)?.base64Decode() ?? ""
         self.language = (data["language"] as? String)?.base64Decode() ?? ""
         self.area = (data["area"] as? String)?.base64Decode() ?? ""
         self.keyword = (data["keyword"] as? String)?.base64Decode() ?? ""

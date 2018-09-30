@@ -44,14 +44,13 @@ class AccountRequester {
         })
     }
     
-    class func createGuide(email: String, name: String, nationality: String, language: String, area: String,
+    class func createGuide(email: String, name: String, language: String, area: String,
                            keyword: String, category: String, message: String, applicableNumber: Int,
                            fee: Int, notes: String, completion: @escaping ((Bool, String?) -> ())) {
         
         var params: [String: String] = ["command": "createGuide"]
         params["email"] = email
         params["name"] = name.base64Encode() ?? ""
-        params["nationality"] = nationality.base64Encode() ?? ""
         params["language"] = language.base64Encode() ?? ""
         params["area"] = area.base64Encode() ?? ""
         params["keyword"] = keyword.base64Encode() ?? ""
@@ -75,7 +74,6 @@ class AccountRequester {
         var params: [String: String] = ["command": "updateGuide"]
         params["id"] = guideData.id
         params["name"] = guideData.name.base64Encode() ?? ""
-        params["nationality"] = guideData.nationality.base64Encode() ?? ""
         params["language"] = guideData.language.base64Encode() ?? ""
         params["area"] = guideData.area.base64Encode() ?? ""
         params["keyword"] = guideData.keyword.base64Encode() ?? ""

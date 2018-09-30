@@ -10,7 +10,7 @@ import UIKit
 
 import UIKit
 
-class GuideRegisterViewController: UIViewController {
+class GuideRegisterViewController: KeyboardRespondableViewController {
     
     enum ImageType {
         case face1
@@ -19,15 +19,15 @@ class GuideRegisterViewController: UIViewController {
     }
     
     @IBOutlet private weak var headerTitleLabel: UILabel!
+    @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var face1ImageView: UIImageView!
     @IBOutlet private weak var face2ImageView: UIImageView!
     @IBOutlet private weak var face3ImageView: UIImageView!
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var nameTextField: UITextField!
-    @IBOutlet private weak var nationalityTextField: UITextField!
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var areaTextField: UITextField!
-    @IBOutlet private weak var keywordTextView: UITextView!
+    @IBOutlet private weak var keywordTextField: UITextField!
     @IBOutlet private weak var categoryLabel: UILabel!
     @IBOutlet private weak var messageTextView: UITextView!
     @IBOutlet private weak var applicableNumberLabel: UILabel!
@@ -36,6 +36,7 @@ class GuideRegisterViewController: UIViewController {
     @IBOutlet private weak var tourBaseStackView: UIStackView!
     @IBOutlet private weak var createTourBaseView: UIView!
     @IBOutlet private weak var createTourBaseViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var scrollViewBottomConstraint: NSLayoutConstraint!
     
     private var pickerTarget: ImageType?
     private var face1Image: UIImage?
@@ -45,7 +46,7 @@ class GuideRegisterViewController: UIViewController {
     private var languages: [String] = ["English", "Chinese", "Korean", "Thai", "Malay", "Indonesian", "Vietnamese", "Hindi", "French", "German", "Italian", "Spanish", "Arabic", "Portuguese"]
     private var languageIndex = 0
     private var categories: [String] = ["Food", "Nature", "Historical site", "Traditional culture", "Music", "Art", "Subculture"]
-    private var categoryIndex = 0
+    private var categoryIndexes = [Int]()
     private var applicableNumbers: [Int] = (Array<Int>)(1...20)
     private var applicableNumberIndex = 0
     
@@ -82,10 +83,9 @@ class GuideRegisterViewController: UIViewController {
         
         self.emailTextField.text = myGuideData.email
         self.nameTextField.text = myGuideData.name
-        self.nationalityTextField.text = myGuideData.nationality
         self.languageLabel.text = myGuideData.language
         self.areaTextField.text = myGuideData.area
-        self.keywordTextView.text = myGuideData.keyword
+        self.keywordTextField.text = myGuideData.keyword
         self.categoryLabel.text = myGuideData.category
         self.messageTextView.text = myGuideData.message
         self.applicableNumberLabel.text = "\(myGuideData.applicableNumber)"
@@ -145,6 +145,8 @@ class GuideRegisterViewController: UIViewController {
     }
     
     @IBAction func onTapLanguage(_ sender: Any) {
+        self.view.endEditing(true)
+        
         let picker = self.viewController(storyboard: "Common", identifier: "PickerViewController") as! PickerViewController
         picker.set(title: "言語", dataArray: self.languages, defaultIndex: self.languageIndex, completion: { [weak self] index in
             self?.languageIndex = index
@@ -154,15 +156,27 @@ class GuideRegisterViewController: UIViewController {
     }
     
     @IBAction func onTapCategory(_ sender: Any) {
-        let picker = self.viewController(storyboard: "Common", identifier: "PickerViewController") as! PickerViewController
-        picker.set(title: "カテゴリー", dataArray: self.categories, defaultIndex: self.categoryIndex, completion: { [weak self] index in
-            self?.categoryIndex = index
-            self?.categoryLabel.text = self?.categories[index]
+        self.view.endEditing(true)
+        
+        let picker = self.viewController(storyboard: "Common", identifier: "MultiPickerViewController") as! MultiPickerViewController
+        picker.set(title: "カテゴリー", dataArray: self.categories, defaultIndexes: self.categoryIndexes, completion: { [weak self] indexes in
+            self?.categoryIndexes = indexes
+            if let categories = self?.categories {
+                var selectedCaetgories = [String]()
+                for i in 0..<categories.count {
+                    if indexes.contains(i) {
+                        selectedCaetgories.append(categories[i])
+                    }
+                }
+                self?.categoryLabel.text = selectedCaetgories.joined(separator: ", ")
+            }
         })
         self.stack(viewController: picker, animationType: .none)
     }
     
     @IBAction func onTapApplicableNumber(_ sender: Any) {
+        self.view.endEditing(true)
+        
         let picker = self.viewController(storyboard: "Common", identifier: "PickerViewController") as! PickerViewController
         picker.set(title: "対応人数", dataArray: self.applicableNumbers.compactMap { "\($0)" }, defaultIndex: self.applicableNumberIndex, completion: { [weak self] index in
             self?.applicableNumberIndex = index
@@ -192,12 +206,6 @@ class GuideRegisterViewController: UIViewController {
             return
         }
         
-        let nationality = self.nationalityTextField.text ?? ""
-        if nationality.count == 0 {
-            self.showError(message: "国籍が入力されていません")
-            return
-        }
-        
         let fee = Int(self.feeTextField.text ?? "0") ?? 0
         if fee <= 0 {
             self.showError(message: "不適切な料金設定です")
@@ -214,6 +222,8 @@ class GuideRegisterViewController: UIViewController {
     }
     
     @IBAction func onTapCreateTour(_ sender: Any) {
+        self.view.endEditing(true)
+        
         let tour = self.viewController(storyboard: "Initial", identifier: "CreateTourViewController") as! CreateTourViewController
         self.stack(viewController: tour, animationType: .horizontal)
     }
@@ -223,11 +233,18 @@ class GuideRegisterViewController: UIViewController {
         var myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId)!
         myGuideData.email = self.emailTextField.text ?? ""
         myGuideData.name = self.nameTextField.text ?? ""
-        myGuideData.nationality = self.nationalityTextField.text ?? ""
         myGuideData.language = self.languages[self.languageIndex]
         myGuideData.area = self.areaTextField.text ?? ""
-        myGuideData.keyword = self.keywordTextView.text ?? ""
-        myGuideData.category = self.categories[self.categoryIndex]
+        myGuideData.keyword = self.keywordTextField.text ?? ""
+        
+        var selectedCategories = [String]()
+        for i in 0..<self.categories.count {
+            if self.categoryIndexes.contains(i) {
+                selectedCategories.append(self.categories[i])
+            }
+        }
+        myGuideData.category = selectedCategories.joined(separator: ", ")
+        
         myGuideData.message = self.messageTextView.text ?? ""
         myGuideData.applicableNumber = self.applicableNumbers[self.applicableNumberIndex]
         myGuideData.fee = Int(self.feeTextField.text ?? "0") ?? 0
@@ -256,19 +273,28 @@ class GuideRegisterViewController: UIViewController {
     
     private func createGuide() {
         
+        self.view.endEditing(true)
+        
         let email = self.emailTextField.text ?? ""
         let name = self.nameTextField.text ?? ""
-        let nationality = self.nationalityTextField.text ?? ""
         let language = self.languages[self.languageIndex]
         let area = self.areaTextField.text ?? ""
-        let keyword = self.keywordTextView.text ?? ""
-        let category = self.categories[self.categoryIndex]
+        let keyword = self.keywordTextField.text ?? ""
+
+        var selectedCategories = [String]()
+        for i in 0..<self.categories.count {
+            if self.categoryIndexes.contains(i) {
+                selectedCategories.append(self.categories[i])
+            }
+        }
+        let category = selectedCategories.joined(separator: ", ")
+        
         let message = self.messageTextView.text ?? ""
         let applicableNumber = self.applicableNumbers[self.applicableNumberIndex]
         let fee = Int(self.feeTextField.text ?? "0") ?? 0
         let notes = self.notesTextView.text ?? ""
         
-        AccountRequester.createGuide(email: email, name: name, nationality: nationality, language: language, area: area, keyword: keyword, category: category, message: message, applicableNumber: applicableNumber, fee: fee, notes: notes, completion: { resultCreate, guideId in
+        AccountRequester.createGuide(email: email, name: name, language: language, area: area, keyword: keyword, category: category, message: message, applicableNumber: applicableNumber, fee: fee, notes: notes, completion: { resultCreate, guideId in
             if resultCreate, let guideId = guideId {
                 self.uploadAllImage(guideId: guideId, completion: { resultImage in
                     if resultImage {
@@ -288,12 +314,24 @@ class GuideRegisterViewController: UIViewController {
     @IBAction func onTapClose(_ sender: Any) {
         self.pop(animationType: .vertical)
     }
-}
-
-extension GuideRegisterViewController: UIScrollViewDelegate {
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        self.view.endEditing(true)
+    override func animate(with: KeyboardAnimation) {
+        
+        self.scrollViewBottomConstraint.constant = with.height
+        UIView.animate(withDuration: with.duration, delay: 0, options: with.curve, animations: {
+            self.view.layoutIfNeeded()
+        })
+        
+        let views: [UIView] = [self.emailTextField, self.nameTextField, self.areaTextField, self.keywordTextField, self.messageTextView, self.feeTextField, self.notesTextView]
+        if let firstResponder = (views.filter { $0.isFirstResponder }).first, let window = UIApplication.shared.keyWindow {
+            let absRect = firstResponder.convert(firstResponder.bounds, to: window)
+            let bottom = absRect.origin.y + absRect.size.height
+            if bottom > window.frame.size.height - with.height {
+                self.scrollView.setContentOffset(CGPoint(x: self.scrollView.contentOffset.x,
+                                                         y: self.scrollView.contentOffset.y + 50),
+                                                 animated: true)
+            }
+        }
     }
 }
 
