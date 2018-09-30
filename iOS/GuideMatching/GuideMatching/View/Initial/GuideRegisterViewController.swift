@@ -29,10 +29,10 @@ class GuideRegisterViewController: KeyboardRespondableViewController {
     @IBOutlet private weak var areaTextField: UITextField!
     @IBOutlet private weak var keywordTextField: UITextField!
     @IBOutlet private weak var categoryLabel: UILabel!
-    @IBOutlet private weak var messageTextView: UITextView!
+    @IBOutlet private weak var messageTextView: PlaceholderTextView!
     @IBOutlet private weak var applicableNumberLabel: UILabel!
     @IBOutlet private weak var feeTextField: UITextField!
-    @IBOutlet private weak var notesTextView: UITextView!
+    @IBOutlet private weak var notesTextView: PlaceholderTextView!
     @IBOutlet private weak var scrollViewBottomConstraint: NSLayoutConstraint!
     
     private var pickerTarget: ImageType?
@@ -81,10 +81,22 @@ class GuideRegisterViewController: KeyboardRespondableViewController {
         self.areaTextField.text = myGuideData.area
         self.keywordTextField.text = myGuideData.keyword
         self.categoryLabel.text = myGuideData.category
-        self.messageTextView.text = myGuideData.message
+        self.messageTextView.setText(myGuideData.message)
         self.applicableNumberLabel.text = "\(myGuideData.applicableNumber)"
         self.feeTextField.text = "\(myGuideData.fee)"
-        self.notesTextView.text = myGuideData.notes
+        self.notesTextView.setText(myGuideData.notes)
+        
+        self.languageIndex = self.languages.index(of: myGuideData.language) ?? 0
+        
+        var selectedCategoryIndexes = [Int]()
+        for i in 0..<self.categories.count {
+            if myGuideData.category.contains(self.categories[i]) {
+                selectedCategoryIndexes.append(i)
+            }
+        }
+        self.categoryIndexes = selectedCategoryIndexes
+        
+        self.applicableNumberIndex = self.applicableNumbers.index(of: myGuideData.applicableNumber) ?? 0
     }
     
     private func stackTabbar() {
