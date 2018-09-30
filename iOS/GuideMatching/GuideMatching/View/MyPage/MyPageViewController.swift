@@ -216,9 +216,9 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             profile.set(isEdit: true)
             self.tabbarViewController()?.stack(viewController: profile, animationType: .horizontal)
             
-        case .payment:
-            let payment = self.viewController(storyboard: "MyPage", identifier: "MyPagePaymentViewController") as! MyPagePaymentViewController
-            self.tabbarViewController()?.stack(viewController: payment, animationType: .horizontal)
+        case .tour:
+            let tourList = self.viewController(storyboard: "MyPage", identifier: "TourListViewController") as! TourListViewController
+            self.tabbarViewController()?.stack(viewController: tourList, animationType: .horizontal)
             
         case .review:
             let review = self.viewController(storyboard: "MyPage", identifier: "CustomerReviewViewController") as! CustomerReviewViewController

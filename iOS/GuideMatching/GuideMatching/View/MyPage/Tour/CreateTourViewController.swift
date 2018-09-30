@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateTourViewController: UIViewController {
+class CreateTourViewController: KeyboardRespondableViewController {
     
     enum ImageType {
         case tour
@@ -46,6 +46,9 @@ class CreateTourViewController: UIViewController {
     @IBOutlet private weak var inclusionsTextField: UITextField!
     @IBOutlet private weak var exclusionsTextField: UITextField!
     @IBOutlet private weak var deleteButton: UIButton!
+    @IBOutlet private weak var deleteButtonTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var deleteButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var scrollViewBottomConstraint: NSLayoutConstraint!
     
     private var guideTourData: GuideTourData?
     private var tourImage: UIImage?
@@ -71,6 +74,8 @@ class CreateTourViewController: UIViewController {
         
         if self.guideTourData == nil {
             self.deleteButton.isHidden = true
+            self.deleteButtonTopConstraint.constant = 0
+            self.deleteButtonHeightConstraint.constant = 0
         }
     }
     
@@ -93,7 +98,7 @@ class CreateTourViewController: UIViewController {
         
         self.tourTitleTextField.text = tourData.name
         self.areaTextField.text = tourData.area
-        self.feeTextField.text = CommonUtility.digit3Format(value: tourData.fee) + " JPY"
+        self.feeTextField.text = "\(tourData.fee)"
         self.descriptionTextField.text = tourData.description
         
         if tourData.highlights1Title.isEmpty && tourData.highlights1Body.isEmpty {
@@ -132,6 +137,39 @@ class CreateTourViewController: UIViewController {
         if self.highlights3View.isHidden == false {
             self.addHighlightsButton.isHidden = true
         }
+        
+        // Days
+        let days = self.createDays()
+        var selectedDaysIndex = [Int]()
+        for i in 0..<days.count {
+            for j in 0..<tourData.days.count {
+                if days[i].isSameDay(with: tourData.days[j]) {
+                    selectedDaysIndex.append(i)
+                }
+            }
+        }
+        self.selectedDays = selectedDaysIndex
+        self.daysLabel.text = tourData.days.map { DateFormatter(dateFormat: "MM/dd(E)").string(from: $0) }.joined(separator: " ")
+        
+        // Start time
+        self.selectedStartTime = tourData.startTime
+        self.startTimeLabel.text = CommonUtility.timeOffsetToString(offset: tourData.startTime)
+        
+        // End time
+        self.selectedEndTime = tourData.endTime
+        self.endTimeLabel.text = CommonUtility.timeOffsetToString(offset: tourData.endTime)
+        
+        // Departure Point
+        self.departurePointTextField.text = tourData.departurePoint
+        
+        // Return Details
+        self.returnDetailTextField.text = tourData.returnDetail
+        
+        // Inclusions
+        self.inclusionsTextField.text = tourData.inclusions
+        
+        // Exlusions
+        self.exclusionsTextField.text = tourData.exclusions
     }
     
     private func showError(message: String) {
@@ -196,6 +234,8 @@ class CreateTourViewController: UIViewController {
     }
     
     @IBAction func onTapDays(_ sender: Any) {
+        self.view.endEditing(true)
+        
         let multiPicker = self.viewController(storyboard: "Common", identifier: "MultiPickerViewController") as! MultiPickerViewController
         let days = self.createDays()
         let dataArray = days.map { DateFormatter(dateFormat: "MM/dd(E)").string(from: $0) }
@@ -209,6 +249,8 @@ class CreateTourViewController: UIViewController {
     }
     
     @IBAction func onTapStartTime(_ sender: Any) {
+        self.view.endEditing(true)
+        
         var times = [Int]()
         for i in 0..<48 {
             times.append(i)
@@ -224,6 +266,8 @@ class CreateTourViewController: UIViewController {
     }
     
     @IBAction func onTapEndTime(_ sender: Any) {
+        self.view.endEditing(true)
+        
         var times = [Int]()
         for i in 0..<48 {
             times.append(i)
@@ -239,6 +283,8 @@ class CreateTourViewController: UIViewController {
     }
     
     @IBAction func onTapUpdate(_ sender: Any) {
+        
+        self.view.endEditing(true)
 
         var newTourData = GuideTourData()
         newTourData.name = self.tourTitleTextField.text ?? ""
@@ -320,8 +366,8 @@ class CreateTourViewController: UIViewController {
                         })
                         Dialog.show(style: .success, title: "確認", message: message, actions: [action])
                         
-                        if let guideRegister = self.parent as? GuideRegisterViewController {
-                            guideRegister.resetContents()
+                        if let tourList = self.parent as? TourListViewController {
+                            tourList.resetContents()
                         }
                     } else {
                         self.showError(message: "通信に失敗しました")
@@ -386,8 +432,8 @@ class CreateTourViewController: UIViewController {
                         })
                         Dialog.show(style: .success, title: "確認", message: "ツアーを削除しました", actions: [action])
                         
-                        if let guideRegister = self.parent as? GuideRegisterViewController {
-                            guideRegister.resetContents()
+                        if let tourList = self.parent as? TourListViewController {
+                            tourList.resetContents()
                         }
                     } else {
                         self.showError(message: "通信に失敗しました")
@@ -395,6 +441,14 @@ class CreateTourViewController: UIViewController {
                 })
             })
         }
+    }
+    
+    override func animate(with: KeyboardAnimation) {
+        
+        self.scrollViewBottomConstraint.constant = with.height
+        UIView.animate(withDuration: with.duration, delay: 0, options: with.curve, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
 }
 

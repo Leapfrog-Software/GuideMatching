@@ -11,10 +11,10 @@ import UIKit
 class MyPageGuideButtonTableViewCell: UITableViewCell {
     
     enum ButtonType {
-        case history
-        case schedule
         case profile
-        case payment
+        case tour
+        case schedule
+        case history
         case review
     }
     
@@ -36,8 +36,8 @@ class MyPageGuideButtonTableViewCell: UITableViewCell {
         self.didTap?(.profile)
     }
     
-    @IBAction func onTapPayment(_ sender: Any) {
-        self.didTap?(.payment)
+    @IBAction func onTapTour(_ sender: Any) {
+        self.didTap?(.tour)
     }
     
     @IBAction func onTapReview(_ sender: Any) {
