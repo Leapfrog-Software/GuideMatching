@@ -94,7 +94,7 @@ class CreateTourViewController: KeyboardRespondableViewController {
             return
         }
         
-        ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id, imageView: self.tourImageView, defaultImage: UIImage(named: "no_image"))
+        ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + tourData.id + "-t", imageView: self.tourImageView, defaultImage: UIImage(named: "no_image"))
         
         self.tourTitleTextField.text = tourData.name
         self.areaTextField.text = tourData.area

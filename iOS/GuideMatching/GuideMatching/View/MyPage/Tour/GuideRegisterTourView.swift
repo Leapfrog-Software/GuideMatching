@@ -24,7 +24,7 @@ class GuideRegisterTourView: UIView {
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         
-        ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + self.tourData.id, imageView: self.tourImageView, defaultImage: UIImage(named: "no_image"))
+        ImageStorage.shared.fetch(url: Constants.ServerTourImageRootUrl + self.tourData.id + "-t", imageView: self.tourImageView, defaultImage: UIImage(named: "no_image"))
         self.tourTitleLabel.text = self.tourData.name
     }
     

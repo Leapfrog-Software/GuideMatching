@@ -59,8 +59,6 @@
 		2E94043A20E386A200362878 /* EstimateRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E94043920E386A200362878 /* EstimateRequester.swift */; };
 		2E9D8D9421365C08009ECF99 /* GuideDetailTourHighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9D8D9321365C08009ECF99 /* GuideDetailTourHighlightsView.swift */; };
 		2E9D8D9621365C12009ECF99 /* GuideDetailTourHighlightsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E9D8D9521365C12009ECF99 /* GuideDetailTourHighlightsView.xib */; };
-		2EBAAEE62135354900E1F1EA /* GuideRegisterTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBAAEE52135354900E1F1EA /* GuideRegisterTourView.swift */; };
-		2EBAAEE82135355600E1F1EA /* GuideRegisterTourView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EBAAEE72135355600E1F1EA /* GuideRegisterTourView.xib */; };
 		2EDE6209211990BC00DA956A /* ReserveDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDE6208211990BC00DA956A /* ReserveDetailViewController.swift */; };
 		BB46375D215D1114000FC5FC /* terms.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BB46375B215D1114000FC5FC /* terms.pdf */; };
 		BB46375E215D1114000FC5FC /* privacypolicy.pdf in Resources */ = {isa = PBXBuildFile; fileRef = BB46375C215D1114000FC5FC /* privacypolicy.pdf */; };
@@ -89,6 +87,8 @@
 		BBC64C962116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC64C952116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift */; };
 		BBE809252160AC3700643CC6 /* CreateTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE809242160AC3700643CC6 /* CreateTourViewController.swift */; };
 		BBE809272160AD6A00643CC6 /* TourListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE809262160AD6A00643CC6 /* TourListViewController.swift */; };
+		BBEB60112161A8F100A2E90B /* GuideRegisterTourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEB600F2161A8F000A2E90B /* GuideRegisterTourView.swift */; };
+		BBEB60122161A8F100A2E90B /* GuideRegisterTourView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBEB60102161A8F100A2E90B /* GuideRegisterTourView.xib */; };
 		BBFEBB1520E4D60D00C9F01C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */; };
 		BBFEBB1820E4D6FE00C9F01C /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1720E4D6FE00C9F01C /* MessageDetailViewController.swift */; };
 		BBFEBB1A20E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFEBB1920E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift */; };
@@ -160,8 +160,6 @@
 		2E94043920E386A200362878 /* EstimateRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimateRequester.swift; sourceTree = "<group>"; };
 		2E9D8D9321365C08009ECF99 /* GuideDetailTourHighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDetailTourHighlightsView.swift; sourceTree = "<group>"; };
 		2E9D8D9521365C12009ECF99 /* GuideDetailTourHighlightsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDetailTourHighlightsView.xib; sourceTree = "<group>"; };
-		2EBAAEE52135354900E1F1EA /* GuideRegisterTourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideRegisterTourView.swift; sourceTree = "<group>"; };
-		2EBAAEE72135355600E1F1EA /* GuideRegisterTourView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideRegisterTourView.xib; sourceTree = "<group>"; };
 		2EDE6208211990BC00DA956A /* ReserveDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveDetailViewController.swift; sourceTree = "<group>"; };
 		85D8F097BB5D617C900E952E /* Pods-GuideMatching.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GuideMatching.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GuideMatching/Pods-GuideMatching.debug.xcconfig"; sourceTree = "<group>"; };
 		BB46375B215D1114000FC5FC /* terms.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = terms.pdf; sourceTree = "<group>"; };
@@ -193,6 +191,8 @@
 		BBC64C952116A12D00D5660B /* MyPagePaymentAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPagePaymentAccountTableViewCell.swift; sourceTree = "<group>"; };
 		BBE809242160AC3700643CC6 /* CreateTourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTourViewController.swift; sourceTree = "<group>"; };
 		BBE809262160AD6A00643CC6 /* TourListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TourListViewController.swift; sourceTree = "<group>"; };
+		BBEB600F2161A8F000A2E90B /* GuideRegisterTourView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideRegisterTourView.swift; sourceTree = "<group>"; };
+		BBEB60102161A8F100A2E90B /* GuideRegisterTourView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideRegisterTourView.xib; sourceTree = "<group>"; };
 		BBFEBB1420E4D60D00C9F01C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		BBFEBB1720E4D6FE00C9F01C /* MessageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
 		BBFEBB1920E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailLeftTableViewCell.swift; sourceTree = "<group>"; };
@@ -497,8 +497,6 @@
 				BB5059EE20E2657000491506 /* UserSelectViewController.swift */,
 				BB5059F020E2658200491506 /* GuestRegisterViewController.swift */,
 				BB5059F220E2658F00491506 /* GuideRegisterViewController.swift */,
-				2EBAAEE52135354900E1F1EA /* GuideRegisterTourView.swift */,
-				2EBAAEE72135355600E1F1EA /* GuideRegisterTourView.xib */,
 			);
 			path = Initial;
 			sourceTree = "<group>";
@@ -570,6 +568,8 @@
 			isa = PBXGroup;
 			children = (
 				BBE809262160AD6A00643CC6 /* TourListViewController.swift */,
+				BBEB600F2161A8F000A2E90B /* GuideRegisterTourView.swift */,
+				BBEB60102161A8F100A2E90B /* GuideRegisterTourView.xib */,
 				BBE809242160AC3700643CC6 /* CreateTourViewController.swift */,
 			);
 			path = Tour;
@@ -653,6 +653,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBEB60122161A8F100A2E90B /* GuideRegisterTourView.xib in Resources */,
 				2E11B3ED20EC869D002441EB /* GuideDetailScheduleView.xib in Resources */,
 				2E94042C20E37D5F00362878 /* Guide.storyboard in Resources */,
 				2E11B3F120EC90EC002441EB /* GuideDetailScheduleTableViewCell.xib in Resources */,
@@ -669,7 +670,6 @@
 				BB46375E215D1114000FC5FC /* privacypolicy.pdf in Resources */,
 				2E7DAA992105D2800076EE12 /* DialogButton.xib in Resources */,
 				2E94043020E37D7200362878 /* Message.storyboard in Resources */,
-				2EBAAEE82135355600E1F1EA /* GuideRegisterTourView.xib in Resources */,
 				2E7DAA972105D2780076EE12 /* Dialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -769,7 +769,6 @@
 				2E4FC0972106E3FA007FA061 /* BookCompleteViewController.swift in Sources */,
 				2EDE6209211990BC00DA956A /* ReserveDetailViewController.swift in Sources */,
 				BBFEBB1A20E4D71300C9F01C /* MessageDetailLeftTableViewCell.swift in Sources */,
-				2EBAAEE62135354900E1F1EA /* GuideRegisterTourView.swift in Sources */,
 				2E94040220E3458F00362878 /* ImageUploader.swift in Sources */,
 				2E94041C20E3746A00362878 /* SplashViewController.swift in Sources */,
 				BBE809252160AC3700643CC6 /* CreateTourViewController.swift in Sources */,
@@ -785,6 +784,7 @@
 				2E94042420E37C0B00362878 /* SearchViewController.swift in Sources */,
 				2E8D37632113EA4900AF21E0 /* ImageStorage.swift in Sources */,
 				BBFEBB2820E4E14F00C9F01C /* MyPageReservationNoneTableViewCell.swift in Sources */,
+				BBEB60112161A8F100A2E90B /* GuideRegisterTourView.swift in Sources */,
 				BBFEBB1C20E4D72000C9F01C /* MessageDetailRightTableViewCell.swift in Sources */,
 				BB505A0220E26F8500491506 /* HttpManager.swift in Sources */,
 				2E20ECEF21363D5200DA0F98 /* GuideDetailTourViewController.swift in Sources */,
