@@ -17,6 +17,8 @@
     <color name="scheduleReserved">#FE978F</color>
     <color name="scheduleNone">#FAF7EA</color>
 
+    <color name="activeNavy">#084D7D</color>
+
     <color name="dialogButtonSuccess">#7BD1F9</color>
     <color name="dialogButtonError">#E64942</color>
 

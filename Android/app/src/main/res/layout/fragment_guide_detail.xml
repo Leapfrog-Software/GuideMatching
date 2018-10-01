@@ -354,7 +354,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="notes"
+                        android:text="Remarks"
                         android:textSize="@dimen/guideDetailTitleTextSize"
                         android:textColor="@color/mainBlack"
                         android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
@@ -664,6 +664,16 @@
                     android:background="@color/separatorGray"
                     android:layout_marginTop="30dp"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tour"
+                    android:textSize="16dp"
+                    android:textColor="@color/mainBlack"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"/>
+
                 <LinearLayout
                     android:id="@+id/tourLayout"
                     android:layout_width="match_parent"
@@ -671,11 +681,45 @@
                     android:orientation="vertical"
                     android:layout_marginTop="20dp"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Customized tour"
+                    android:textSize="16dp"
+                    android:textColor="@color/mainBlack"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ask about tours and customization"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="8dp"/>
+
+                <Button
+                    android:id="@+id/inqueryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Send a message to the guide"
+                    android:textSize="16dp"
+                    android:textColor="#fff"
+                    android:background="@drawable/shape_guide_detail_message_button"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:textAllCaps="false"/>
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:orientation="horizontal"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
                     <Button
@@ -707,22 +751,8 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:orientation="vertical"/>
-
-                <Button
-                    android:id="@+id/inqueryButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:text="Inquiry"
-                    android:textSize="18dp"
-                    android:textColor="@color/mainBlack"
-                    android:background="@drawable/shape_guide_detail_button"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
                     android:layout_marginBottom="30dp"
-                    android:textAllCaps="false"/>
-
+                    android:orientation="vertical"/>
 
             </LinearLayout>
         </ScrollView>

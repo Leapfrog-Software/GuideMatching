@@ -5,6 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <leapfrog_inc.guidematching.Fragment.Common.AspectVariableImageView
+        android:id="@+id/tourImageView"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        app:aspectRatio="1.0"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
     <TextView
         android:id="@+id/tourTitleTextView"
         android:layout_width="match_parent"
@@ -16,34 +24,30 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
-    <leapfrog_inc.guidematching.Fragment.Common.AspectVariableImageView
-        android:id="@+id/tourImageView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        app:aspectRatio="1.0"
-        android:scaleType="fitCenter"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
-    <TextView
-        android:id="@+id/descriptionTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:text="詳細"
-        android:textSize="14dp"
-        android:textColor="@color/mainBlack"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="20dp"/>
-    <TextView
-        android:id="@+id/feeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1,000 JPY"
-        android:textSize="14dp"
-        android:textStyle="bold"
-        android:textColor="@color/mainOrange"
-        android:layout_marginTop="3dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginRight="20dp">
+        <TextView
+            android:id="@+id/descriptionTextView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="詳細"
+            android:textSize="14dp"
+            android:textColor="@color/mainBlack" />
+        <TextView
+            android:id="@+id/feeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1,000 JPY"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/mainOrange" />
+    </LinearLayout>
 
 
 </LinearLayout>
