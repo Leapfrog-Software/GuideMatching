@@ -28,7 +28,7 @@ public class PicassoUtility {
     public static void getTourImage(Context context, String url, ImageView imageView) {
 
         CircleTransformation transform = new CircleTransformation();
-        transform.set(10);
+        transform.set(14);
 
         Picasso.with(context)
                 .load(url)
