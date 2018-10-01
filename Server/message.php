@@ -53,15 +53,13 @@ class Message {
   }
 
   static function readFile($fileName) {
-    DebugSave($fileName);
+
     if (file_exists($fileName)) {
       $fileData = file_get_contents($fileName);
-      DebugSave($fileData);
       if ($fileData !== false) {
         $messageList = [];
         $lines = explode("\n", $fileData);
         for ($i = 0; $i < count($lines); $i++) {
-          DebugSave("for");
           $messageData = MessageData::initFromFileString($lines[$i]);
           if (!is_null($messageData)) {
             $messageList[] = $messageData;
@@ -77,7 +75,10 @@ class Message {
     $messages = [];
     $files = Message::listUpFile($userId);
     foreach ($files as $file) {
-      $messages += Message::readFile($file);
+    	$readMessages = Message::readFile($file);
+    	foreach($readMessages as $readMessage) {
+    		$messages[] = $readMessage;
+    	}
     }
     return $messages;
   }
