@@ -383,7 +383,7 @@
                 <!-- レビュー -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
@@ -391,35 +391,43 @@
                         android:text="Customer review"
                         android:textSize="@dimen/guideDetailTitleTextSize"
                         android:textColor="@color/mainBlack"
-                        android:layout_marginTop="@dimen/guideDetailTitleVerticalMargin"
                         android:layout_marginLeft="@dimen/guideDetailTitleLeftMargin"
-                        android:layout_marginBottom="@dimen/guideDetailTitleVerticalMargin"/>
-                    <View
+                        android:layout_gravity="center_vertical"/>
+                    <FrameLayout
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:layout_height="1dp"/>
-                    <TextView
-                        android:id="@+id/scoreTextView"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="3.5"
-                        android:textStyle="bold"
-                        android:textSize="16dp"
-                        android:textColor="@color/mainOrange"
-                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
-                        android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
-                        android:gravity="right"/>
-                    <TextView
-                        android:id="@+id/reviewCountTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="(123)"
-                        android:textSize="12dp"
-                        android:textColor="@color/mainBlack"
-                        android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
-                        android:layout_marginRight="12dp"
-                        android:layout_marginLeft="4dp"/>
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center_vertical">
+                            <TextView
+                                android:id="@+id/scoreTextView"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="3.5"
+                                android:textStyle="bold"
+                                android:textSize="16dp"
+                                android:textColor="@color/mainOrange"
+                                android:gravity="right"/>
+                            <TextView
+                                android:id="@+id/reviewCountTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="(123)"
+                                android:textSize="12dp"
+                                android:textColor="@color/mainBlack"
+                                android:layout_marginRight="12dp"
+                                android:layout_marginLeft="4dp"/>
+                        </LinearLayout>
+                        <Button
+                            android:id="@+id/reviewButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#0000"/>
+                    </FrameLayout>
                 </LinearLayout>
 
                 <!-- 5 star -->

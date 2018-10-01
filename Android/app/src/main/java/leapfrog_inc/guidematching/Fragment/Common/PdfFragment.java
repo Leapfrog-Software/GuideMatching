@@ -59,7 +59,7 @@ public class PdfFragment extends BaseFragment {
     }
 
     private void initContent(View view) {
-        
+
         ((TextView)view.findViewById(R.id.headerTitleTextView)).setText(mTitle);
 
         try {

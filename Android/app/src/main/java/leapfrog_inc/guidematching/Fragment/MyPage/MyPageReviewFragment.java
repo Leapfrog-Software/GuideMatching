@@ -33,6 +33,12 @@ import leapfrog_inc.guidematching.System.SaveData;
 
 public class MyPageReviewFragment extends BaseFragment {
 
+    private String mGuideId;
+
+    public void set(String guideId) {
+        mGuideId = guideId;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
 
@@ -58,7 +64,7 @@ public class MyPageReviewFragment extends BaseFragment {
 
         MyPageReviewAdapter adapter = new MyPageReviewAdapter(getActivity());
 
-        ArrayList<EstimateData> estimates = FetchEstimateRequester.getInstance().query(SaveData.getInstance().guideId);
+        ArrayList<EstimateData> estimates = FetchEstimateRequester.getInstance().query(mGuideId);
         int count = 0;
 
         for (int i = 0; i < estimates.size(); i++) {

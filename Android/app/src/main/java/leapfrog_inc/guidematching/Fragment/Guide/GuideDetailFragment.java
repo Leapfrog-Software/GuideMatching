@@ -22,6 +22,7 @@ import leapfrog_inc.guidematching.Fragment.Initial.GuideRegisterTourLayout;
 import leapfrog_inc.guidematching.Fragment.Message.MessageDetailFragment;
 import leapfrog_inc.guidematching.Fragment.Message.MessageFragment;
 import leapfrog_inc.guidematching.Fragment.MyPage.MyPageFragment;
+import leapfrog_inc.guidematching.Fragment.MyPage.MyPageReviewFragment;
 import leapfrog_inc.guidematching.Fragment.Search.SearchFragment;
 import leapfrog_inc.guidematching.Http.DataModel.EstimateData;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;
@@ -278,6 +279,15 @@ public class GuideDetailFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 MessageDetailFragment fragment = new MessageDetailFragment();
+                fragment.set(mGuideData.id);
+                stackFragment(fragment, AnimationType.horizontal);
+            }
+        });
+
+        view.findViewById(R.id.reviewButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyPageReviewFragment fragment = new MyPageReviewFragment();
                 fragment.set(mGuideData.id);
                 stackFragment(fragment, AnimationType.horizontal);
             }

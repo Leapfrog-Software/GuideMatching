@@ -155,6 +155,7 @@ public class MyPageFragment extends BaseFragment {
             stackFragment(fragment, AnimationType.horizontal);
         } else if (type == GuideButtonType.review) {
             MyPageReviewFragment fragment = new MyPageReviewFragment();
+            fragment.set(SaveData.getInstance().guideId);
             stackFragment(fragment, AnimationType.horizontal);
         }
     }
