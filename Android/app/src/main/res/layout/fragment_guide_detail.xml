@@ -13,7 +13,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/headerHeight"
-            android:background="@color/headerOrange">
+            android:background="@color/mainOrange">
             <ImageButton
                 android:id="@+id/backButton"
                 android:layout_width="@dimen/headerHeight"
@@ -406,7 +406,7 @@
                         android:text="3.5"
                         android:textStyle="bold"
                         android:textSize="16dp"
-                        android:textColor="@color/headerOrange"
+                        android:textColor="@color/mainOrange"
                         android:layout_marginTop="@dimen/guideDetailValueVerticalMargin"
                         android:layout_marginBottom="@dimen/guideDetailValueVerticalMargin"
                         android:gravity="right"/>
@@ -445,7 +445,7 @@
                             android:id="@+id/star5RateView"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
-                            android:background="@color/headerOrange"
+                            android:background="@color/mainOrange"
                             android:layout_margin="1dp"/>
                     </FrameLayout>
                     <TextView
@@ -483,7 +483,7 @@
                             android:id="@+id/star4RateView"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
-                            android:background="@color/headerOrange"
+                            android:background="@color/mainOrange"
                             android:layout_margin="1dp"/>
                     </FrameLayout>
                     <TextView
@@ -521,7 +521,7 @@
                             android:id="@+id/star3RateView"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
-                            android:background="@color/headerOrange"
+                            android:background="@color/mainOrange"
                             android:layout_margin="1dp"/>
                     </FrameLayout>
                     <TextView
@@ -559,7 +559,7 @@
                             android:id="@+id/star2RateView"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
-                            android:background="@color/headerOrange"
+                            android:background="@color/mainOrange"
                             android:layout_margin="1dp"/>
                     </FrameLayout>
                     <TextView
@@ -597,7 +597,7 @@
                             android:id="@+id/star1RateView"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
-                            android:background="@color/headerOrange"
+                            android:background="@color/mainOrange"
                             android:layout_margin="1dp"/>
                     </FrameLayout>
                     <TextView
@@ -635,7 +635,7 @@
                             android:id="@+id/star0RateView"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
-                            android:background="@color/headerOrange"
+                            android:background="@color/mainOrange"
                             android:layout_margin="1dp"/>
                     </FrameLayout>
                     <TextView

@@ -5,45 +5,149 @@
     android:background="#fff"
     android:clickable="true"
     android:id="@+id/rootLayout">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_splash"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="The best memory of Japan."
+                    android:textSize="16dp"
+                    android:textColor="@color/mainBlack"
+                    android:textStyle="bold"
+                    android:layout_marginTop="-14dp"
+                    android:layout_gravity="center_horizontal"/>
+
+                <Button
+                    android:id="@+id/guestButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Register as a guest"
+                    android:textSize="16dp"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:background="@drawable/shape_user_select_guest_button"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"/>
+
+                <Button
+                    android:id="@+id/guideButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="ガイドとして登録"
+                    android:textSize="16dp"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:background="@drawable/shape_user_select_guide_button"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="ガイドマッチング(仮)"
-            android:textSize="18dp"
-            android:textColor="@color/mainBlack"
-            android:textStyle="bold"/>
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="By registering with LOCALS,\nyou agree to"
+                android:textSize="14dp"
+                android:textColor="@color/mainBlack"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"/>
 
-        <Button
-            android:id="@+id/guestButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Register as a guest"
-            android:textSize="16dp"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:textAllCaps="false"
-            android:background="@drawable/shape_user_select_guest_button"
-            android:layout_marginTop="50dp"/>
+            <!-- 利用規約 -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="our terms of services"
+                        android:textSize="14dp"
+                        android:textColor="#1CA4FC"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text=","
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:gravity="center_vertical"/>
+                </LinearLayout>
+                <Button
+                    android:id="@+id/termsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#0000"/>
+            </FrameLayout>
 
-        <Button
-            android:id="@+id/guideButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="ガイドとして登録"
-            android:textSize="16dp"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:background="@drawable/shape_user_select_guide_button"
-            android:layout_marginTop="50dp"/>
+            <!-- プライバシーポリシー -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_marginBottom="30dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="privacy policy"
+                        android:textSize="14dp"
+                        android:textColor="#1CA4FC"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="."
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:gravity="center_vertical"/>
+                </LinearLayout>
+                <Button
+                    android:id="@+id/privacyPolicyButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#0000"/>
+            </FrameLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

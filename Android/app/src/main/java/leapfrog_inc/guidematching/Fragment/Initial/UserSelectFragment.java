@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
+import leapfrog_inc.guidematching.Fragment.Common.PdfFragment;
 import leapfrog_inc.guidematching.R;
 
 public class UserSelectFragment extends BaseFragment {
@@ -34,6 +35,24 @@ public class UserSelectFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 stackFragment(new GuideRegisterFragment(), AnimationType.vertical);
+            }
+        });
+
+        view.findViewById(R.id.termsButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PdfFragment fragment = new PdfFragment();
+                fragment.set("terms.pdf", "our terms of services");
+                stackFragment(fragment, AnimationType.horizontal);
+            }
+        });
+
+        view.findViewById(R.id.privacyPolicyButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PdfFragment fragment = new PdfFragment();
+                fragment.set("privacypolicy.pdf", "privacypolicy");
+                stackFragment(fragment, AnimationType.horizontal);
             }
         });
     }

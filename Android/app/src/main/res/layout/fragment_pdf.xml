@@ -25,33 +25,18 @@
                 android:id="@+id/headerTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Credit Card"
+                android:text="title"
                 android:textSize="@dimen/headerTitleTextSize"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:layout_gravity="center"/>
         </FrameLayout>
 
-        <com.stripe.android.view.CardMultilineWidget
-            android:id="@+id/cardWidget"
+        <ImageView
+            android:id="@+id/pdfImageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="40dp"/>
-
-        <Button
-            android:id="@+id/payoutButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Pay out"
-            android:textColor="#fff"
-            android:textSize="16dp"
-            android:textAllCaps="false"
-            android:background="@drawable/shape_cardinput_payout_button"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 </FrameLayout>

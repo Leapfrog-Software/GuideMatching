@@ -14,7 +14,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/headerHeight"
-            android:background="@color/headerOrange">
+            android:background="@color/mainOrange">
             <Button
                 android:id="@+id/closeButton"
                 android:layout_width="44dp"
