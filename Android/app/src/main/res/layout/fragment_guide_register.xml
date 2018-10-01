@@ -115,6 +115,15 @@
                         android:layout_marginTop="8dp"
                         android:background="@drawable/shape_edittext"
                         android:padding="10dp"/>
+                    <TextView
+                        android:id="@+id/emailTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="mail@mail.com"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"/>
                 </LinearLayout>
 
                 <!-- 名前 -->

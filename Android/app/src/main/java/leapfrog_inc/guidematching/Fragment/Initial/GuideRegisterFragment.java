@@ -82,7 +82,8 @@ public class GuideRegisterFragment extends BaseFragment {
                 PicassoUtility.getImage(getActivity(), Constants.ServerGuestImageDirectory + guideData.id + "-1", (ImageView)view.findViewById(R.id.face2ImageButton), R.drawable.image_guide);
                 PicassoUtility.getImage(getActivity(), Constants.ServerGuestImageDirectory + guideData.id + "-2", (ImageView)view.findViewById(R.id.face3ImageButton), R.drawable.image_guide);
 
-                ((EditText)view.findViewById(R.id.emailEditText)).setText(guideData.email);
+                ((EditText)view.findViewById(R.id.emailTextView)).setText(guideData.email);
+                view.findViewById(R.id.emailEditText).setVisibility(View.GONE);
                 ((EditText)view.findViewById(R.id.nameEditText)).setText(guideData.name);
                 ((EditText)view.findViewById(R.id.nationalityEditText)).setText(guideData.nationality);
                 ((TextView)view.findViewById(R.id.languageTextView)).setText(guideData.language);
@@ -113,6 +114,7 @@ public class GuideRegisterFragment extends BaseFragment {
 
         } else {
             ((TextView)view.findViewById(R.id.headerTitleTextView)).setText("New Registration");
+            view.findViewById(R.id.emailTextView).setVisibility(View.GONE);
 
             view.findViewById(R.id.tourLayout).setVisibility(View.GONE);
             view.findViewById(R.id.createTourButton).setVisibility(View.GONE);
@@ -261,13 +263,15 @@ public class GuideRegisterFragment extends BaseFragment {
             return;
         }
 
-        if (email.length() == 0) {
-            showError("メールアドレスが入力されていません");
-            return;
-        }
-        if ((email.contains(",")) || (!email.contains("@"))) {
-            showError("不正なメールアドレスです");
-            return;
+        if (!mIsEdit) {
+            if (email.length() == 0) {
+                showError("メールアドレスが入力されていません");
+                return;
+            }
+            if ((email.contains(",")) || (!email.contains("@"))) {
+                showError("不正なメールアドレスです");
+                return;
+            }
         }
         if (name.length() == 0) {
             showError("名前が入力されていません");
@@ -331,7 +335,6 @@ public class GuideRegisterFragment extends BaseFragment {
 
         GuideData myGuideData = FetchGuideRequester.getInstance().query(SaveData.getInstance().guideId);
 
-        String email = ((EditText)view.findViewById(R.id.emailEditText)).getText().toString();
         String name = ((EditText)view.findViewById(R.id.nameEditText)).getText().toString();
         String nationality = ((EditText)view.findViewById(R.id.nationalityEditText)).getText().toString();
         String language = mLanguageList.get(mLanguageIndex);
@@ -343,7 +346,6 @@ public class GuideRegisterFragment extends BaseFragment {
         int fee = Integer.parseInt(((EditText)view.findViewById(R.id.feeEditText)).getText().toString());
         String notes = ((EditText)view.findViewById(R.id.notesEditText)).getText().toString();
 
-        myGuideData.email = email;
         myGuideData.name = name;
         myGuideData.nationality = nationality;
         myGuideData.language = language;
@@ -376,7 +378,6 @@ public class GuideRegisterFragment extends BaseFragment {
                 } else {
                     Loading.stop(getActivity());
                     showCommunicationError();
-
                 }
             }
         });

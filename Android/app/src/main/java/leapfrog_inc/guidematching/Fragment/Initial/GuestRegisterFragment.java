@@ -77,13 +77,15 @@ public class GuestRegisterFragment extends BaseFragment {
                 PicassoUtility.getImage(getActivity(), Constants.ServerGuestImageDirectory + guestData.id + "-2", (ImageView)view.findViewById(R.id.face3ImageButton), R.drawable.image_guide);
                 PicassoUtility.getImage(getActivity(), Constants.ServerGuestImageDirectory + guestData.id + "-p", (ImageView)view.findViewById(R.id.passportImageButton), R.drawable.image_guide);
 
-                ((EditText)view.findViewById(R.id.emailEditText)).setText(guestData.email);
+                view.findViewById(R.id.emailEditText).setVisibility(View.GONE);
+                ((TextView)view.findViewById(R.id.emailTextView)).setText(guestData.email);
                 ((EditText)view.findViewById(R.id.nameEditText)).setText(guestData.name);
                 ((EditText)view.findViewById(R.id.nationalityEditText)).setText(guestData.nationality);
             }
 
         } else {
             ((TextView)view.findViewById(R.id.headerTitleTextView)).setText("New Registration");
+            view.findViewById(R.id.emailTextView).setVisibility(View.GONE);
         }
     }
 
@@ -182,13 +184,15 @@ public class GuestRegisterFragment extends BaseFragment {
         String name = ((EditText)getView().findViewById(R.id.nameEditText)).getText().toString();
         String nationality = ((EditText)getView().findViewById(R.id.nationalityEditText)).getText().toString();
 
-        if (email.length() == 0) {
-            showError("Email is not entered");
-            return;
-        }
-        if ((email.contains(",")) || (!email.contains("@"))) {
-            showError("Email is invalid");
-            return;
+        if (mIsEdit == false) {
+            if (email.length() == 0) {
+                showError("Email is not entered");
+                return;
+            }
+            if ((email.contains(",")) || (!email.contains("@"))) {
+                showError("Email is invalid");
+                return;
+            }
         }
         if (name.length() == 0) {
             showError("Name is not entered");
@@ -207,7 +211,7 @@ public class GuestRegisterFragment extends BaseFragment {
         Loading.start(getActivity());
 
         if (mIsEdit) {
-            updateGuest(email, name, nationality);
+            updateGuest(name, nationality);
         } else {
             createGuest(email, name, nationality);
         }
@@ -238,10 +242,9 @@ public class GuestRegisterFragment extends BaseFragment {
         });
     }
 
-    private void updateGuest(String email, String name, String nationality) {
+    private void updateGuest(String name, String nationality) {
 
         GuestData myGuestData = FetchGuestRequester.getInstance().query(SaveData.getInstance().guestId);
-        myGuestData.email = email;
         myGuestData.name = name;
         myGuestData.nationality = nationality;
 
@@ -376,7 +379,7 @@ public class GuestRegisterFragment extends BaseFragment {
             @Override
             public void didReceiveResponse(boolean result, String customerId) {
                 if (result) {
-                    updateGuest(guestId, customerId);
+                    updateStripeSetting(guestId, customerId);
                 } else {
                     Loading.stop(getActivity());
                     showCommunicationError();
@@ -385,7 +388,7 @@ public class GuestRegisterFragment extends BaseFragment {
         });
     }
 
-    private void updateGuest(final String guestId, String stripeCustomerId) {
+    private void updateStripeSetting(final String guestId, String stripeCustomerId) {
 
         GuestData myGuestData = FetchGuestRequester.getInstance().query(guestId);
         myGuestData.stripeCustomerId = stripeCustomerId;
