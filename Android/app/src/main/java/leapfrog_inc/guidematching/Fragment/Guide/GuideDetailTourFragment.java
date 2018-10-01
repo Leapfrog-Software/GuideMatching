@@ -48,7 +48,7 @@ public class GuideDetailTourFragment extends BaseFragment {
 
     private void initContents(View view) {
 
-        PicassoUtility.getImage(getActivity(), Constants.ServerTourImageDirectory + mTourData.id + "-t", (ImageView)view.findViewById(R.id.tourImageView), R.drawable.no_face);
+        PicassoUtility.getTourImage(getActivity(), Constants.ServerTourImageDirectory + mTourData.id + "-t", (ImageView)view.findViewById(R.id.tourImageView));
 
         ((TextView)view.findViewById(R.id.tourTitleTextView)).setText(mTourData.name);
         ((TextView)view.findViewById(R.id.areaTextView)).setText(mTourData.area);

@@ -16,16 +16,26 @@ import leapfrog_inc.guidematching.R;
 public class PicassoUtility {
 
     public static void getFaceImage(Context context, String url, ImageView imageView) {
-        if (url.length() == 0) {
-            imageView.setImageResource(R.drawable.no_face);
-            return;
-        }
         Picasso.with(context)
                 .load(url)
                 .networkPolicy(NetworkPolicy.NO_STORE)
                 .noFade()
                 .error(R.drawable.no_face)
                 .transform(new CircleTransformation())
+                .into(imageView);
+    }
+
+    public static void getTourImage(Context context, String url, ImageView imageView) {
+
+        CircleTransformation transform = new CircleTransformation();
+        transform.set(10);
+
+        Picasso.with(context)
+                .load(url)
+                .networkPolicy(NetworkPolicy.NO_STORE)
+                .noFade()
+                .error(R.drawable.no_image)
+                .transform(transform)
                 .into(imageView);
     }
 
@@ -39,6 +49,12 @@ public class PicassoUtility {
     }
 
     private static class CircleTransformation implements Transformation {
+
+        private float mRound = -1;
+
+        public void set(float round) {
+            mRound = round;
+        }
 
         @Override
         public Bitmap transform(Bitmap source) {
@@ -60,9 +76,12 @@ public class PicassoUtility {
             paint.setShader(shader);
             paint.setAntiAlias(true);
 
-            float r = size/2f;
-            canvas.drawCircle(r, r, r, paint);
-
+            if (mRound == -1) {
+                float r = size / 2f;
+                canvas.drawCircle(r, r, r, paint);
+            } else {
+                canvas.drawCircle(mRound, mRound, mRound, paint);
+            }
             squaredBitmap.recycle();
             return bitmap;
         }

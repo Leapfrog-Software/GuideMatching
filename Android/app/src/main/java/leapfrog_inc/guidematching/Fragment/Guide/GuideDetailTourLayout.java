@@ -28,7 +28,7 @@ public class GuideDetailTourLayout extends LinearLayout {
 
     public void set(GuideData.GuideTourData tourData) {
 
-        PicassoUtility.getImage(mContext, Constants.ServerTourImageDirectory + tourData.id + "-t", (ImageView)findViewById(R.id.tourImageView), R.drawable.no_face);
+        PicassoUtility.getTourImage(mContext, Constants.ServerTourImageDirectory + tourData.id + "-t", (ImageView)findViewById(R.id.tourImageView));
         ((TextView)findViewById(R.id.tourTitleTextView)).setText(tourData.name);
         ((TextView)findViewById(R.id.descriptionTextView)).setText(tourData.description);
         ((TextView)findViewById(R.id.feeTextView)).setText(CommonUtility.digit3Format(tourData.fee) + " JPY");

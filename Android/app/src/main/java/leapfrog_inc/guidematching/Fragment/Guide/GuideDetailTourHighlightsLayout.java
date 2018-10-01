@@ -29,7 +29,7 @@ public class GuideDetailTourHighlightsLayout extends LinearLayout {
     public void set(String title, String imageUrl, String body) {
 
         ((TextView)findViewById(R.id.titleTextView)).setText(title);
-        PicassoUtility.getImage(mContext, imageUrl, (ImageView)findViewById(R.id.highlightsImageView), R.drawable.no_face);
+        PicassoUtility.getTourImage(mContext, imageUrl, (ImageView)findViewById(R.id.highlightsImageView));
         ((TextView)findViewById(R.id.bodyTextView)).setText(body);
     }
 }
