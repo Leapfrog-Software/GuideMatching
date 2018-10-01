@@ -21,7 +21,9 @@ class GuestRegisterViewController: UIViewController {
     @IBOutlet private weak var face1ImageView: UIImageView!
     @IBOutlet private weak var face2ImageView: UIImageView!
     @IBOutlet private weak var face3ImageView: UIImageView!
+    @IBOutlet private weak var emailBaseView: UIView!
     @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var nationalityTextField: UITextField!
     @IBOutlet private weak var passportImageView: UIImageView!
@@ -45,8 +47,12 @@ class GuestRegisterViewController: UIViewController {
         if self.isEdit {
             self.initContents()
             self.headerTitleLabel.text = "Edit Profile"
+            self.emailBaseView.isHidden = true
+            self.emailLabel.isHidden = false
         } else {
             self.headerTitleLabel.text = "New Registration"
+            self.emailBaseView.isHidden = false
+            self.emailLabel.isHidden = true
         }        
     }
     
@@ -61,7 +67,7 @@ class GuestRegisterViewController: UIViewController {
         ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuestData.id + "-2", imageView: self.face3ImageView)
         ImageStorage.shared.fetch(url: Constants.ServerGuestImageRootUrl + myGuestData.id + "-p", imageView: self.passportImageView, defaultImage: UIImage(named: "no_image"))
         
-        self.emailTextField.text = myGuestData.email
+        self.emailLabel.text = myGuestData.email
         self.nameTextField.text = myGuestData.name
         self.nationalityTextField.text = myGuestData.nationality
     }
@@ -110,14 +116,16 @@ class GuestRegisterViewController: UIViewController {
     @IBAction func onTapDone(_ sender: Any) {
         self.view.endEditing(true)
         
-        let email = self.emailTextField.text ?? ""
-        if email.count == 0 {
-            self.showError(message: "Email is not entered")
-            return
-        }
-        if email.contains(",") || !email.contains("@") {
-            self.showError(message: "Email is invalid")
-            return
+        if !self.isEdit {
+            let email = self.emailTextField.text ?? ""
+            if email.count == 0 {
+                self.showError(message: "Email is not entered")
+                return
+            }
+            if email.contains(",") || !email.contains("@") {
+                self.showError(message: "Email is invalid")
+                return
+            }
         }
         
         let name = self.nameTextField.text ?? ""
@@ -170,7 +178,6 @@ class GuestRegisterViewController: UIViewController {
     private func updateGuest() {
         
         var myGuestData = GuestRequester.shared.query(id: SaveData.shared.guestId)!
-        myGuestData.email = self.emailTextField.text ?? ""
         myGuestData.name = self.nameTextField.text ?? ""
         myGuestData.nationality = self.nationalityTextField.text ?? ""
         

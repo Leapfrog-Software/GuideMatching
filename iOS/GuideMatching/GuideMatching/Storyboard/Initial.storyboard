@@ -505,12 +505,22 @@ you agree to</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mail@mail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXN-YV-7RX">
+                                                <rect key="frame" x="12" y="25" width="291" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="SGQ-NC-Yrp" secondAttribute="bottom" id="EeL-qo-Kin"/>
+                                            <constraint firstItem="YXN-YV-7RX" firstAttribute="bottom" secondItem="SGQ-NC-Yrp" secondAttribute="bottom" id="FcH-X4-skF"/>
                                             <constraint firstItem="SGQ-NC-Yrp" firstAttribute="leading" secondItem="9fd-Tx-OPr" secondAttribute="leading" id="Fu3-Vg-cvx"/>
                                             <constraint firstItem="SGQ-NC-Yrp" firstAttribute="top" secondItem="ZjW-2O-Kgi" secondAttribute="bottom" constant="8" id="Yem-5x-JBg"/>
+                                            <constraint firstItem="YXN-YV-7RX" firstAttribute="trailing" secondItem="SGQ-NC-Yrp" secondAttribute="trailing" constant="-12" id="eQF-mz-3Gl"/>
+                                            <constraint firstItem="YXN-YV-7RX" firstAttribute="top" secondItem="SGQ-NC-Yrp" secondAttribute="top" id="pch-hl-8lP"/>
+                                            <constraint firstItem="YXN-YV-7RX" firstAttribute="leading" secondItem="SGQ-NC-Yrp" secondAttribute="leading" constant="12" id="qVj-Md-Od7"/>
                                             <constraint firstAttribute="trailing" secondItem="SGQ-NC-Yrp" secondAttribute="trailing" id="qvb-2k-TpL"/>
                                             <constraint firstItem="ZjW-2O-Kgi" firstAttribute="top" secondItem="9fd-Tx-OPr" secondAttribute="top" id="raL-nW-339"/>
                                             <constraint firstItem="ZjW-2O-Kgi" firstAttribute="leading" secondItem="9fd-Tx-OPr" secondAttribute="leading" id="ya3-b8-NgD"/>
@@ -724,6 +734,8 @@ you agree to</string>
                     <size key="freeformSize" width="375" height="800"/>
                     <connections>
                         <outlet property="doneButton" destination="br5-w5-cy8" id="C9B-kj-5cQ"/>
+                        <outlet property="emailBaseView" destination="SGQ-NC-Yrp" id="pL5-yx-wbc"/>
+                        <outlet property="emailLabel" destination="YXN-YV-7RX" id="IDj-md-Odv"/>
                         <outlet property="emailTextField" destination="jgL-4o-AMP" id="t7U-cy-FOB"/>
                         <outlet property="face1ImageView" destination="ajF-hw-fpw" id="1Bu-KG-7fc"/>
                         <outlet property="face2ImageView" destination="u3O-gV-W5b" id="snE-vL-xzN"/>
@@ -913,6 +925,12 @@ you agree to</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email@main.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdN-Ah-qIf">
+                                                <rect key="frame" x="12" y="25" width="291" height="40"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -920,8 +938,12 @@ you agree to</string>
                                             <constraint firstItem="aRp-IK-xV1" firstAttribute="leading" secondItem="pns-y3-kux" secondAttribute="leading" id="5lm-FZ-3Xc"/>
                                             <constraint firstItem="0bQ-cy-UfU" firstAttribute="top" secondItem="pns-y3-kux" secondAttribute="top" id="60c-LU-iBq"/>
                                             <constraint firstAttribute="bottom" secondItem="aRp-IK-xV1" secondAttribute="bottom" id="8Ip-Ue-JP1"/>
+                                            <constraint firstItem="aRp-IK-xV1" firstAttribute="top" secondItem="sdN-Ah-qIf" secondAttribute="top" id="BRL-WA-pM0"/>
+                                            <constraint firstItem="aRp-IK-xV1" firstAttribute="bottom" secondItem="sdN-Ah-qIf" secondAttribute="bottom" id="CM4-Ka-dTx"/>
+                                            <constraint firstItem="aRp-IK-xV1" firstAttribute="leading" secondItem="sdN-Ah-qIf" secondAttribute="leading" constant="-12" id="Pw7-aS-2uA"/>
                                             <constraint firstAttribute="trailing" secondItem="aRp-IK-xV1" secondAttribute="trailing" id="Rhe-f8-dvI"/>
                                             <constraint firstItem="0bQ-cy-UfU" firstAttribute="leading" secondItem="pns-y3-kux" secondAttribute="leading" id="sew-PD-4bm"/>
+                                            <constraint firstItem="aRp-IK-xV1" firstAttribute="trailing" secondItem="sdN-Ah-qIf" secondAttribute="trailing" constant="12" id="taK-Bl-gKL"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0k-9J-SAx">
@@ -1538,6 +1560,8 @@ you agree to</string>
                         <outlet property="applicableNumberLabel" destination="fED-wP-kAj" id="Stu-NQ-sz6"/>
                         <outlet property="areaTextField" destination="4qh-s6-adg" id="HYV-s2-zux"/>
                         <outlet property="categoryLabel" destination="mB0-g5-4Zc" id="rd2-aa-eY5"/>
+                        <outlet property="emailBaseView" destination="aRp-IK-xV1" id="ntH-ne-XIn"/>
+                        <outlet property="emailLabel" destination="sdN-Ah-qIf" id="O5H-e5-S8z"/>
                         <outlet property="emailTextField" destination="awZ-mI-Ady" id="Oiq-Gh-b5B"/>
                         <outlet property="face1ImageView" destination="V0H-79-0je" id="nJC-yC-w0X"/>
                         <outlet property="face2ImageView" destination="ia6-5f-i6y" id="xPB-GG-KAU"/>

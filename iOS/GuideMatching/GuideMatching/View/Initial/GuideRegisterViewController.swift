@@ -23,7 +23,9 @@ class GuideRegisterViewController: KeyboardRespondableViewController {
     @IBOutlet private weak var face1ImageView: UIImageView!
     @IBOutlet private weak var face2ImageView: UIImageView!
     @IBOutlet private weak var face3ImageView: UIImageView!
+    @IBOutlet private weak var emailBaseView: UIView!
     @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var languageLabel: UILabel!
     @IBOutlet private weak var areaTextField: UITextField!
@@ -57,15 +59,19 @@ class GuideRegisterViewController: KeyboardRespondableViewController {
         super.viewDidLoad()
         
         self.resetContents()
-        
-        if self.isEdit {
-            self.headerTitleLabel.text = "Edit Profile"
-        } else {
-            self.headerTitleLabel.text = "New Registration"
-        }
     }
     
     func resetContents() {
+        
+        if self.isEdit {
+            self.headerTitleLabel.text = "Edit Profile"
+            self.emailBaseView.isHidden = true
+            self.emailLabel.isHidden = false
+        } else {
+            self.headerTitleLabel.text = "New Registration"
+            self.emailBaseView.isHidden = false
+            self.emailLabel.isHidden = true
+        }
         
         guard let myGuideData = GuideRequester.shared.query(id: SaveData.shared.guideId) else {
             return
@@ -75,7 +81,7 @@ class GuideRegisterViewController: KeyboardRespondableViewController {
         ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + myGuideData.id + "-1", imageView: self.face2ImageView)
         ImageStorage.shared.fetch(url: Constants.ServerGuideImageRootUrl + myGuideData.id + "-2", imageView: self.face3ImageView)
         
-        self.emailTextField.text = myGuideData.email
+        self.emailLabel.text = myGuideData.email
         self.nameTextField.text = myGuideData.name
         self.languageLabel.text = myGuideData.language
         self.areaTextField.text = myGuideData.area
@@ -181,14 +187,16 @@ class GuideRegisterViewController: KeyboardRespondableViewController {
     @IBAction func onTapDone(_ sender: Any) {
         self.view.endEditing(true)
         
-        let email = self.emailTextField.text ?? ""
-        if email.count == 0 {
-            self.showError(message: "メールアドレスが入力されていません")
-            return
-        }
-        if email.contains(",") || !email.contains("@") {
-            self.showError(message: "不正なメールアドレスです")
-            return
+        if !self.isEdit {
+            let email = self.emailTextField.text ?? ""
+            if email.count == 0 {
+                self.showError(message: "メールアドレスが入力されていません")
+                return
+            }
+            if email.contains(",") || !email.contains("@") {
+                self.showError(message: "不正なメールアドレスです")
+                return
+            }
         }
 
         let name = self.nameTextField.text ?? ""
