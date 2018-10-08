@@ -128,7 +128,7 @@ public class CardInputFragment extends BaseFragment {
         String customerId = guestData.stripeCustomerId;
         String cardId = token.getId();
 
-        StripeManager.charge(customerId, cardId, mGuideFee, mTransactionFee, mGuideData.stripeAccountId, new StripeManager.ChargeCallback() {
+        StripeManager.charge(""/*customerId*/, cardId, mGuideFee, mTransactionFee, mGuideData.stripeAccountId, new StripeManager.ChargeCallback() {
             @Override
             public void didReceiveResponse(boolean result) {
                 Loading.stop(getActivity());

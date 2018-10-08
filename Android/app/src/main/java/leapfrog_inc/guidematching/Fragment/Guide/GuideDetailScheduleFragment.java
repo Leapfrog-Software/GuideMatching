@@ -201,6 +201,8 @@ public class GuideDetailScheduleFragment extends BaseFragment {
 
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
+
+        listView.setSelection(24);
     }
 
     private GuideData.GuideScheduleData findSchedule(Calendar date) {
