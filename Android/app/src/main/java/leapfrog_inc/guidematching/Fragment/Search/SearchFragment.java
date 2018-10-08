@@ -10,12 +10,15 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
 import leapfrog_inc.guidematching.Fragment.Common.PickerFragment;
 import leapfrog_inc.guidematching.Fragment.Guide.GuideFragment;
+import leapfrog_inc.guidematching.Fragment.Initial.GuideRegisterFragment;
 import leapfrog_inc.guidematching.R;
 import leapfrog_inc.guidematching.System.CommonUtility;
 import leapfrog_inc.guidematching.System.DateUtility;
@@ -28,7 +31,6 @@ public class SearchFragment extends BaseFragment {
         public String keyword;
         public Calendar date;
         public Integer time;
-        public String nationality;
         public String category;
         public OrderType orderType;
     }
@@ -61,17 +63,19 @@ public class SearchFragment extends BaseFragment {
 
         public String toString() {
             if (this == login) {
-                return "ログイン";
+                return "Login time";
             } else if (this == estimate) {
-                return "評価";
+                return "Customer review";
             } else {
-                return "実績";
+                return "Number of transactions";
             }
         }
     }
 
+    private Integer mSelectedLanguageIndex = null;
     private Integer mSelectedDayIndex = null;
     private Integer mSelectedTimeIndex = null;
+    private Integer mSelectedCategoryIndex = null;
     private OrderType mSelectedOrderType = OrderType.login;
 
     @Override
@@ -100,9 +104,57 @@ public class SearchFragment extends BaseFragment {
 
     private void initAction(View view) {
 
+        view.findViewById(R.id.languageButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeviceUtility.hideSoftKeyboard(getActivity());
+
+                PickerFragment fragment = new PickerFragment();
+                int defaultIndex = 0;
+                if (mSelectedLanguageIndex != null) {
+                    defaultIndex = mSelectedLanguageIndex;
+                }
+                ArrayList<String> dataList = GuideRegisterFragment.mLanguageList;
+                fragment.set("Language", defaultIndex, dataList, new PickerFragment.PickerFragmentCallback() {
+                    @Override
+                    public void didSelect(int index) {
+                        mSelectedLanguageIndex = index;
+                        String language = GuideRegisterFragment.mLanguageList.get(index);
+                        ((TextView)getView().findViewById(R.id.languageTextView)).setText(language);
+                    }
+                });
+                stackFragment(fragment, AnimationType.none);
+            }
+        });
+
+        view.findViewById(R.id.categoryButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeviceUtility.hideSoftKeyboard(getActivity());
+
+                PickerFragment fragment = new PickerFragment();
+                int defaultIndex = 0;
+                if (mSelectedCategoryIndex != null) {
+                    defaultIndex = mSelectedCategoryIndex;
+                }
+                ArrayList<String> dataList = GuideRegisterFragment.mCategoryList;
+                fragment.set("Category", defaultIndex, dataList, new PickerFragment.PickerFragmentCallback() {
+                    @Override
+                    public void didSelect(int index) {
+                        mSelectedCategoryIndex = index;
+                        String category = GuideRegisterFragment.mCategoryList.get(index);
+                        ((TextView)getView().findViewById(R.id.categoryTextView)).setText(category);
+                    }
+                });
+                stackFragment(fragment, AnimationType.none);
+            }
+        });
+
         view.findViewById(R.id.dayButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DeviceUtility.hideSoftKeyboard(getActivity());
+
                 PickerFragment fragment = new PickerFragment();
                 int defaultIndex = 0;
                 if (mSelectedDayIndex != null) {
@@ -129,6 +181,8 @@ public class SearchFragment extends BaseFragment {
         view.findViewById(R.id.timeButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DeviceUtility.hideSoftKeyboard(getActivity());
+
                 PickerFragment fragment = new PickerFragment();
                 int defaultIndex = 0;
                 if (mSelectedTimeIndex != null) {
@@ -153,6 +207,8 @@ public class SearchFragment extends BaseFragment {
         view.findViewById(R.id.orderButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DeviceUtility.hideSoftKeyboard(getActivity());
+
                 PickerFragment fragment = new PickerFragment();
                 int defaultIndex = 0;
                 if (mSelectedOrderType != null) {
@@ -180,14 +236,15 @@ public class SearchFragment extends BaseFragment {
         view.findViewById(R.id.resetButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DeviceUtility.hideSoftKeyboard(getActivity());
+
                 View view = getView();
 
-                ((EditText)view.findViewById(R.id.languageEditText)).setText("");
+                ((TextView)view.findViewById(R.id.languageTextView)).setText("");
                 ((EditText)view.findViewById(R.id.keywordEditText)).setText("");
                 ((TextView)view.findViewById(R.id.dayTextView)).setText("");
                 ((TextView)view.findViewById(R.id.timeTextView)).setText("");
-                ((EditText)view.findViewById(R.id.nationalityEditText)).setText("");
-                ((EditText)view.findViewById(R.id.categoryEditText)).setText("");
+                ((TextView)view.findViewById(R.id.categoryTextView)).setText("");
                 ((TextView)view.findViewById(R.id.orderTextView)).setText("Login");
 
                 mSelectedDayIndex = null;
@@ -199,6 +256,8 @@ public class SearchFragment extends BaseFragment {
         view.findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DeviceUtility.hideSoftKeyboard(getActivity());
+
                 onTapSearch();
             }
         });
@@ -221,24 +280,24 @@ public class SearchFragment extends BaseFragment {
 
         View view = getView();
 
-        String language = ((EditText)view.findViewById(R.id.languageEditText)).getText().toString();
-        if (language.length() == 0) language = null;
+        String language = null;
+        if (mSelectedLanguageIndex != null) {
+            language = GuideRegisterFragment.mLanguageList.get(mSelectedLanguageIndex);
+        }
 
         String keyword = ((EditText)view.findViewById(R.id.keywordEditText)).getText().toString();
         if (keyword.length() == 0) keyword = null;
 
-        String nationality = ((EditText)view.findViewById(R.id.nationalityEditText)).getText().toString();
-        if (nationality.length() == 0) nationality = null;
-
-        String category = ((EditText)view.findViewById(R.id.categoryEditText)).getText().toString();
-        if (category.length() == 0) category = null;
+        String category = null;
+        if (mSelectedCategoryIndex != null) {
+            category = GuideRegisterFragment.mCategoryList.get(mSelectedCategoryIndex);
+        }
 
         SearchCondition condition = new SearchCondition();
         condition.language = language;
         condition.keyword = keyword;
         condition.date = (mSelectedDayIndex == null) ? null : createDateList().get(mSelectedDayIndex);
         condition.time = (mSelectedTimeIndex == null) ? null : mSelectedTimeIndex;
-        condition.nationality = nationality;
         condition.category = category;
         condition.orderType = mSelectedOrderType;
 

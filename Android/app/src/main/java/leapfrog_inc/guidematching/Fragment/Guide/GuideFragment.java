@@ -129,12 +129,12 @@ public class GuideFragment extends BaseFragment {
                 }
             }
             if (mSearchCondition.keyword != null) {
-                if ((!guideData.email.contains(mSearchCondition.keyword))
-                        && (!guideData.name.contains(mSearchCondition.keyword))
-                        && (!guideData.nationality.contains(mSearchCondition.keyword))
-                        && (!guideData.category.contains(mSearchCondition.keyword))
-                        && (!guideData.keyword.contains(mSearchCondition.keyword))
-                        && (!guideData.notes.contains(mSearchCondition.keyword))) {
+                String keyword = mSearchCondition.keyword.toLowerCase();
+                if ((!guideData.email.contains(keyword))
+                        && (!guideData.name.toLowerCase().contains(keyword))
+                        && (!guideData.category.toLowerCase().contains(keyword))
+                        && (!guideData.keyword.toLowerCase().contains(keyword))
+                        && (!guideData.notes.toLowerCase().contains(keyword))) {
                     continue;
                 }
             }
@@ -170,11 +170,6 @@ public class GuideFragment extends BaseFragment {
                     }
                 }
                 if (find == false) {
-                    continue;
-                }
-            }
-            if (mSearchCondition.nationality != null) {
-                if (!guideData.nationality.contains(mSearchCondition.nationality)) {
                     continue;
                 }
             }

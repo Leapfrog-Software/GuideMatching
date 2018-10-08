@@ -13,7 +13,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/headerHeight"
-            android:background="@color/mainOrange">
+            android:background="@color/headerOrange">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,14 +45,34 @@
                     android:textSize="14dp"
                     android:textColor="@color/mainBlack"
                     android:layout_marginTop="30dp"/>
-                <EditText
-                    android:id="@+id/languageEditText"
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:background="@drawable/shape_search_input"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:layout_marginTop="4dp"/>
+                    android:layout_marginTop="4dp">
+                    <TextView
+                        android:id="@+id/languageTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="▼"
+                        android:textSize="20dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="20dp"/>
+                    <Button
+                        android:id="@+id/languageButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#0000"/>
+                </FrameLayout>
 
                 <!-- キーワード -->
                 <TextView
@@ -141,23 +161,6 @@
                         android:background="#0000"/>
                 </FrameLayout>
 
-                <!-- 国籍 -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nationality"
-                    android:textSize="14dp"
-                    android:textColor="@color/mainBlack"
-                    android:layout_marginTop="20dp"/>
-                <EditText
-                    android:id="@+id/nationalityEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:background="@drawable/shape_search_input"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:layout_marginTop="4dp"/>
-
                 <!-- カテゴリー -->
                 <TextView
                     android:layout_width="wrap_content"
@@ -166,14 +169,34 @@
                     android:textSize="14dp"
                     android:textColor="@color/mainBlack"
                     android:layout_marginTop="20dp"/>
-                <EditText
-                    android:id="@+id/categoryEditText"
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:background="@drawable/shape_search_input"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:layout_marginTop="4dp"/>
+                    android:layout_marginTop="4dp">
+                    <TextView
+                        android:id="@+id/categoryTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="▼"
+                        android:textSize="20dp"
+                        android:textColor="@color/mainBlack"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="20dp"/>
+                    <Button
+                        android:id="@+id/categoryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#0000"/>
+                </FrameLayout>
 
                 <!-- そーと -->
                 <TextView
@@ -225,7 +248,7 @@
                         android:text="Reset"
                         android:textSize="16dp"
                         android:textColor="@color/mainBlack"
-                        android:background="@drawable/shape_search_input"/>
+                        android:background="@drawable/shape_search_reset_button"/>
                     <Button
                         android:id="@+id/searchButton"
                         android:layout_width="0dp"
@@ -233,9 +256,9 @@
                         android:layout_height="match_parent"
                         android:text="Search"
                         android:textSize="16dp"
-                        android:textColor="@color/mainBlack"
+                        android:textColor="#fff"
                         android:layout_marginLeft="20dp"
-                        android:background="@drawable/shape_search_input"/>
+                        android:background="@drawable/shape_search_search_button"/>
                 </LinearLayout>
 
             </LinearLayout>
