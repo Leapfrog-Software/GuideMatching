@@ -7,7 +7,7 @@ public class SaveData {
 
     private static SaveData container = null;
 
-    private String currentVersion = "1";
+    private String currentVersion = "2";
 
     public Context mContext;
     public String guideId = "";
