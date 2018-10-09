@@ -35,7 +35,7 @@ public class PicassoUtility {
                 .networkPolicy(NetworkPolicy.NO_STORE)
                 .noFade()
                 .error(R.drawable.no_image)
-                .transform(transform)
+//                .transform(transform)
                 .into(imageView);
     }
 
