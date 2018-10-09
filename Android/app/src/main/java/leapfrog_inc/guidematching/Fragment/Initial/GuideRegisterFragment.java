@@ -95,28 +95,28 @@ public class GuideRegisterFragment extends BaseFragment {
                 ((EditText)view.findViewById(R.id.feeEditText)).setText(String.valueOf(guideData.fee));
                 ((EditText)view.findViewById(R.id.notesEditText)).setText(guideData.notes);
 
-                LinearLayout tourBaseLayout = (LinearLayout)view.findViewById(R.id.tourLayout);
-                tourBaseLayout.removeAllViews();
-
-                for (int i = 0; i < guideData.tours.size(); i++) {
-                    GuideRegisterTourLayout tourLayout = new GuideRegisterTourLayout(getActivity(), null);
-                    final GuideData.GuideTourData tourData = guideData.tours.get(i);
-                    tourLayout.set(tourData);
-                    tourBaseLayout.addView(tourLayout);
-                    tourLayout.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            onClickTour(tourData);
-                        }
-                    });
-                }
+//                LinearLayout tourBaseLayout = (LinearLayout)view.findViewById(R.id.tourLayout);
+//                tourBaseLayout.removeAllViews();
+//
+//                for (int i = 0; i < guideData.tours.size(); i++) {
+//                    GuideRegisterTourLayout tourLayout = new GuideRegisterTourLayout(getActivity(), null);
+//                    final GuideData.GuideTourData tourData = guideData.tours.get(i);
+//                    tourLayout.set(tourData);
+//                    tourBaseLayout.addView(tourLayout);
+//                    tourLayout.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            onClickTour(tourData);
+//                        }
+//                    });
+//                }
             }
 
         } else {
             ((TextView)view.findViewById(R.id.headerTitleTextView)).setText("New Registration");
 
-            view.findViewById(R.id.tourLayout).setVisibility(View.GONE);
-            view.findViewById(R.id.createTourButton).setVisibility(View.GONE);
+//            view.findViewById(R.id.tourLayout).setVisibility(View.GONE);
+//            view.findViewById(R.id.createTourButton).setVisibility(View.GONE);
         }
     }
 
@@ -126,11 +126,11 @@ public class GuideRegisterFragment extends BaseFragment {
         view.setLayoutParams(params);
     }
 
-    private void onClickTour(GuideData.GuideTourData tourData) {
-        CreateTourFragment fragment = new CreateTourFragment();
-        fragment.set(tourData);
-        stackFragment(fragment, AnimationType.horizontal);
-    }
+//    private void onClickTour(GuideData.GuideTourData tourData) {
+//        CreateTourFragment fragment = new CreateTourFragment();
+//        fragment.set(tourData);
+//        stackFragment(fragment, AnimationType.horizontal);
+//    }
 
     private void initAction(View view) {
 
@@ -232,13 +232,13 @@ public class GuideRegisterFragment extends BaseFragment {
             }
         });
 
-        view.findViewById(R.id.createTourButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CreateTourFragment fragment = new CreateTourFragment();
-                stackFragment(fragment, AnimationType.horizontal);
-            }
-        });
+//        view.findViewById(R.id.createTourButton).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                CreateTourFragment fragment = new CreateTourFragment();
+//                stackFragment(fragment, AnimationType.horizontal);
+//            }
+//        });
     }
 
     private void showError(String message) {
