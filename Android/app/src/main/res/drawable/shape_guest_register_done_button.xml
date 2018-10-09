@@ -4,9 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <solid android:color="#fff" />
+    <solid android:color="@color/activeNavy" />
     <corners android:radius="10dp" />
-    <stroke
-        android:width="1dp"
-        android:color="#909090" />
 </shape>
