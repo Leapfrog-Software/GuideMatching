@@ -83,7 +83,8 @@ public class GuideRegisterFragment extends BaseFragment {
                 PicassoUtility.getImage(getActivity(), Constants.ServerGuestImageDirectory + guideData.id + "-1", (ImageView)view.findViewById(R.id.face2ImageButton), R.drawable.image_guide);
                 PicassoUtility.getImage(getActivity(), Constants.ServerGuestImageDirectory + guideData.id + "-2", (ImageView)view.findViewById(R.id.face3ImageButton), R.drawable.image_guide);
 
-                ((EditText)view.findViewById(R.id.emailEditText)).setText(guideData.email);
+                ((EditText)view.findViewById(R.id.emailTextView)).setText(guideData.email);
+                view.findViewById(R.id.emailEditText).setVisibility(View.GONE);
                 ((EditText)view.findViewById(R.id.nameEditText)).setText(guideData.name);
                 ((EditText)view.findViewById(R.id.nationalityEditText)).setText(guideData.nationality);
                 ((TextView)view.findViewById(R.id.languageTextView)).setText(guideData.language);
@@ -115,6 +116,7 @@ public class GuideRegisterFragment extends BaseFragment {
         } else {
             ((TextView)view.findViewById(R.id.headerTitleTextView)).setText("New Registration");
 
+            view.findViewById(R.id.emailTextView).setVisibility(View.GONE);
 //            view.findViewById(R.id.tourLayout).setVisibility(View.GONE);
 //            view.findViewById(R.id.createTourButton).setVisibility(View.GONE);
         }
@@ -250,6 +252,8 @@ public class GuideRegisterFragment extends BaseFragment {
     }
 
     private void onClickDone() {
+
+        DeviceUtility.hideSoftKeyboard(getActivity());
 
         String email = ((EditText)getView().findViewById(R.id.emailEditText)).getText().toString();
         String name = ((EditText)getView().findViewById(R.id.nameEditText)).getText().toString();

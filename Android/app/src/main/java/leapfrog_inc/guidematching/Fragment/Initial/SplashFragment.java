@@ -119,7 +119,12 @@ public class SplashFragment extends BaseFragment {
             Dialog.show(getActivity(), Dialog.Style.error, "エラー", "通信に失敗しました", new Dialog.DialogCallback() {
                 @Override
                 public void didClose() {
-                    checkResult();
+                    if (mGuideFetchResult == FetchResult.error) mGuideFetchResult = FetchResult.progress;
+                    if (mGuestFetchResult == FetchResult.error) mGuestFetchResult = FetchResult.progress;
+                    if (mReserveFetchResult == FetchResult.error) mReserveFetchResult = FetchResult.progress;
+                    if (mMessageFetchResult == FetchResult.error) mMessageFetchResult = FetchResult.progress;
+                    if (mEstimateFetchResult == FetchResult.error) mEstimateFetchResult = FetchResult.progress;
+                    fetch();
                 }
             });
             return;

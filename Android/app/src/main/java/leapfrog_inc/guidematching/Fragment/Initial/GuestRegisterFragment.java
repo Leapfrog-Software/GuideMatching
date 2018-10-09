@@ -180,6 +180,8 @@ public class GuestRegisterFragment extends BaseFragment {
 
     private void onClickDone() {
 
+        DeviceUtility.hideSoftKeyboard(getActivity());
+
         String email = ((EditText)getView().findViewById(R.id.emailEditText)).getText().toString();
         String name = ((EditText)getView().findViewById(R.id.nameEditText)).getText().toString();
         String nationality = ((EditText)getView().findViewById(R.id.nationalityEditText)).getText().toString();
