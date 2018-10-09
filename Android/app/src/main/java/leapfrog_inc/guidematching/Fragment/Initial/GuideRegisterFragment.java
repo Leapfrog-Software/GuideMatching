@@ -19,6 +19,7 @@ import leapfrog_inc.guidematching.Fragment.BaseFragment;
 import leapfrog_inc.guidematching.Fragment.Common.Dialog;
 import leapfrog_inc.guidematching.Fragment.Common.Loading;
 import leapfrog_inc.guidematching.Fragment.Common.PickerFragment;
+import leapfrog_inc.guidematching.Fragment.MyPage.Tour.CreateTourFragment;
 import leapfrog_inc.guidematching.Fragment.Tabbar.TabbarFragment;
 import leapfrog_inc.guidematching.Http.DataModel.GuestData;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;

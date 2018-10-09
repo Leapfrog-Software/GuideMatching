@@ -80,7 +80,8 @@ public class PicassoUtility {
                 float r = size / 2f;
                 canvas.drawCircle(r, r, r, paint);
             } else {
-                canvas.drawCircle(mRound, mRound, mRound, paint);
+                float r = size - mRound;
+                canvas.drawCircle(0, 0, r, paint);
             }
             squaredBitmap.recycle();
             return bitmap;

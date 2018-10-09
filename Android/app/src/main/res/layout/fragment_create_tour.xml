@@ -50,15 +50,24 @@
                     android:textColor="@color/mainBlack"
                     android:layout_marginTop="30dp"
                     android:layout_marginLeft="14dp"/>
-                <ImageButton
-                    android:id="@+id/tourImageButton"
+                <FrameLayout
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/image_guide"
-                    android:scaleType="fitCenter"
-                    android:background="#0000"
                     android:layout_marginTop="8dp"
-                    android:layout_marginLeft="14dp" />
+                    android:layout_marginLeft="14dp">
+                    <ImageView
+                        android:id="@+id/tourImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/image_guide"
+                        android:scaleType="fitCenter"
+                        android:background="#0000"/>
+                    <Button
+                        android:id="@+id/tourImageButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#0000"/>
+                </FrameLayout>
 
                 <!-- ツアータイトル -->
                 <TextView
@@ -486,6 +495,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14dp"
+                        android:lines="1"
                         android:textColor="@color/mainBlack"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="20dp"/>

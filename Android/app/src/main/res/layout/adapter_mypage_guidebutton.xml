@@ -9,6 +9,7 @@
         android:layout_height="80dp"
         android:orientation="horizontal"
         android:layout_marginTop="30dp">
+
         <FrameLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -20,20 +21,50 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/mypage_history"
+                    android:src="@drawable/mypage_profile"
                     android:scaleType="fitCenter"
                     android:layout_gravity="center_horizontal" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="History"
+                    android:text="Profile"
                     android:textSize="16dp"
-                    android:textColor="@color/mainBlack"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/mainBlack"
                     android:layout_gravity="center_horizontal"/>
             </LinearLayout>
             <Button
-                android:id="@+id/historyButton"
+                android:id="@+id/profileButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#0000"/>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/mypage_tour"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tour"
+                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/mainBlack"
+                    android:layout_gravity="center_horizontal"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/tourButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#0000"/>
@@ -69,36 +100,6 @@
                 android:background="#0000"/>
         </FrameLayout>
 
-        <FrameLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/mypage_profile"
-                    android:scaleType="fitCenter"
-                    android:layout_gravity="center_horizontal" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Profile"
-                    android:textSize="16dp"
-                    android:layout_marginTop="10dp"
-                    android:textColor="@color/mainBlack"
-                    android:layout_gravity="center_horizontal"/>
-            </LinearLayout>
-            <Button
-                android:id="@+id/profileButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#0000"/>
-        </FrameLayout>
-
     </LinearLayout>
 
     <LinearLayout
@@ -106,6 +107,7 @@
         android:layout_height="80dp"
         android:orientation="horizontal"
         android:layout_marginTop="30dp">
+
         <FrameLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -117,20 +119,20 @@
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/mypage_payment"
+                    android:src="@drawable/mypage_history"
                     android:scaleType="fitCenter"
                     android:layout_gravity="center_horizontal" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payment"
+                    android:text="History"
                     android:textSize="16dp"
-                    android:layout_marginTop="10dp"
                     android:textColor="@color/mainBlack"
+                    android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal"/>
             </LinearLayout>
             <Button
-                android:id="@+id/paymentButton"
+                android:id="@+id/historyButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#0000"/>

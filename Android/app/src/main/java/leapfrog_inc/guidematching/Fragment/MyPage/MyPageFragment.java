@@ -18,6 +18,7 @@ import java.util.Comparator;
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
 import leapfrog_inc.guidematching.Fragment.Initial.GuestRegisterFragment;
 import leapfrog_inc.guidematching.Fragment.Initial.GuideRegisterFragment;
+import leapfrog_inc.guidematching.Fragment.MyPage.Tour.MyPageTourListFragment;
 import leapfrog_inc.guidematching.Http.DataModel.EstimateData;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;
 import leapfrog_inc.guidematching.Http.DataModel.ReserveData;
@@ -140,18 +141,18 @@ public class MyPageFragment extends BaseFragment {
 
     private void didSelectGuideButton(GuideButtonType type) {
 
-        if (type == GuideButtonType.history) {
-            MyPageHistoryFragment fragment = new MyPageHistoryFragment();
+        if (type == GuideButtonType.profile) {
+            GuideRegisterFragment fragment = new GuideRegisterFragment();
+            fragment.set(true);
+            stackFragment(fragment, AnimationType.horizontal);
+        } else if (type == GuideButtonType.tour) {
+            MyPageTourListFragment fragment = new MyPageTourListFragment();
             stackFragment(fragment, AnimationType.horizontal);
         } else if (type == GuideButtonType.schedule) {
             MyPageScheduleFragment fragment = new MyPageScheduleFragment();
             stackFragment(fragment, AnimationType.horizontal);
-        } else if (type == GuideButtonType.profile) {
-            GuideRegisterFragment fragment = new GuideRegisterFragment();
-            fragment.set(true);
-            stackFragment(fragment, AnimationType.horizontal);
-        } else if (type == GuideButtonType.payment) {
-            MyPagePaymentFragment fragment = new MyPagePaymentFragment();
+        } else if (type == GuideButtonType.history) {
+            MyPageHistoryFragment fragment = new MyPageHistoryFragment();
             stackFragment(fragment, AnimationType.horizontal);
         } else if (type == GuideButtonType.review) {
             MyPageReviewFragment fragment = new MyPageReviewFragment();
@@ -292,12 +293,11 @@ public class MyPageFragment extends BaseFragment {
             } else if (data.type == MyPageAdapterType.guideButton) {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_guidebutton, parent, false);
 
-                setGuideButtonCallback(convertView.findViewById(R.id.historyButton), GuideButtonType.history);
-                setGuideButtonCallback(convertView.findViewById(R.id.scheduleButton), GuideButtonType.schedule);
                 setGuideButtonCallback(convertView.findViewById(R.id.profileButton), GuideButtonType.profile);
-                setGuideButtonCallback(convertView.findViewById(R.id.paymentButton), GuideButtonType.payment);
+                setGuideButtonCallback(convertView.findViewById(R.id.tourButton), GuideButtonType.tour);
+                setGuideButtonCallback(convertView.findViewById(R.id.scheduleButton), GuideButtonType.schedule);
+                setGuideButtonCallback(convertView.findViewById(R.id.historyButton), GuideButtonType.history);
                 setGuideButtonCallback(convertView.findViewById(R.id.reviewButton), GuideButtonType.review);
-
 
             } else if (data.type == MyPageAdapterType.guestButton) {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_guestbutton, parent, false);
@@ -317,10 +317,10 @@ public class MyPageFragment extends BaseFragment {
     }
 
     private enum GuideButtonType {
-        history,
-        schedule,
         profile,
-        payment,
+        tour,
+        schedule,
+        history,
         review
     }
 

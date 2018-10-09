@@ -1,4 +1,4 @@
-package leapfrog_inc.guidematching.Fragment.Initial;
+package leapfrog_inc.guidematching.Fragment.MyPage.Tour;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -24,6 +24,7 @@ import leapfrog_inc.guidematching.Fragment.Common.Loading;
 import leapfrog_inc.guidematching.Fragment.Common.MultiplePickerFragment;
 import leapfrog_inc.guidematching.Fragment.Common.PickerFragment;
 import leapfrog_inc.guidematching.Fragment.Guide.GuideFragment;
+import leapfrog_inc.guidematching.Fragment.MyPage.Tour.MyPageTourListFragment;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;
 import leapfrog_inc.guidematching.Http.ImageUploader;
 import leapfrog_inc.guidematching.Http.Requester.FetchGuideRequester;
@@ -175,7 +176,7 @@ public class CreateTourFragment extends BaseFragment {
 
         ((EditText)view.findViewById(R.id.tourTitleEditText)).setText(mTourData.name);
         ((EditText)view.findViewById(R.id.areaEditText)).setText(mTourData.area);
-        ((EditText)view.findViewById(R.id.feeEditText)).setText(CommonUtility.digit3Format(mTourData.fee) + " JPY");
+        ((EditText)view.findViewById(R.id.feeEditText)).setText(String.valueOf(mTourData.fee));
         ((EditText)view.findViewById(R.id.descriptionEditText)).setText(mTourData.description);
 
         if ((mTourData.highlights1Title.length() == 0) && (mTourData.highlights1Body.length() == 0)) {
@@ -206,6 +207,48 @@ public class CreateTourFragment extends BaseFragment {
         if (view.findViewById(R.id.highlights3Layout).getVisibility() == View.VISIBLE) {
             view.findViewById(R.id.addHighlightsButton).setVisibility(View.GONE);
         }
+
+        // Days
+        mSelectedDaysIndexes = new ArrayList<Integer>();
+        ArrayList<Date> days = createDays();
+        ArrayList<Date> tourDays = mTourData.days;
+        for (int i = 0; i < days.size(); i++) {
+            for (int j = 0; j < tourDays.size(); j++) {
+                Calendar cal1 = Calendar.getInstance();
+                cal1.setTime(days.get(i));
+                Calendar cal2 = Calendar.getInstance();
+                cal2.setTime(tourDays.get(j));
+                if (DateUtility.isSameDay(cal1, cal2)) {
+                    mSelectedDaysIndexes.add(i);
+                }
+            }
+        }
+        StringBuffer daysBuffer = new StringBuffer();
+        for (int i = 0; i < mSelectedDaysIndexes.size(); i++) {
+            if (i > 0) {
+                daysBuffer.append(" ");
+            }
+            Date date = days.get(mSelectedDaysIndexes.get(i));
+            daysBuffer.append(DateUtility.dateToString(date, "M/d(E)"));
+        }
+        ((TextView)view.findViewById(R.id.daysTextView)).setText(daysBuffer.toString());
+
+        // Start time
+        mSelectedStartTime = mTourData.startTime;
+        ((TextView)view.findViewById(R.id.startTimeTextView)).setText(CommonUtility.timeOffsetToString(mSelectedStartTime));
+
+        // End time
+        mSelectedEndTime = mTourData.endTime;
+        ((TextView)view.findViewById(R.id.endTimeTextView)).setText(CommonUtility.timeOffsetToString(mSelectedEndTime));
+
+        // Departure Point
+        ((TextView)view.findViewById(R.id.departurePointEditText)).setText(mTourData.departurePoint);
+        // Return Details
+        ((TextView)view.findViewById(R.id.returnDetailEditText)).setText(mTourData.returnDetail);
+        // Inclusions
+        ((TextView)view.findViewById(R.id.inclusionsEditText)).setText(mTourData.inclusions);
+        // Exclusions
+        ((TextView)view.findViewById(R.id.exclusionsEditText)).setText(mTourData.exclusions);
     }
 
     private void showError(String message) {
@@ -357,7 +400,7 @@ public class CreateTourFragment extends BaseFragment {
             @Override
             public void didSelectImage(Bitmap bitmap) {
                 mTourBitmap = bitmap;
-                ((ImageButton)getView().findViewById(R.id.tourImageButton)).setImageBitmap(bitmap);
+                ((ImageView)getView().findViewById(R.id.tourImageView)).setImageBitmap(bitmap);
             }
         });
     }
@@ -421,7 +464,10 @@ public class CreateTourFragment extends BaseFragment {
         newTourData.description = ((EditText)view.findViewById(R.id.descriptionEditText)).getText().toString();
 
         String feeStr = ((EditText)view.findViewById(R.id.feeEditText)).getText().toString();
-        int fee = Integer.parseInt(feeStr);
+        int fee = 0;
+        try {
+            fee = Integer.parseInt(feeStr);
+        } catch (Exception e) {}
         if (fee <= 0) {
             showError("不適切な料金設定です");
             return;
@@ -514,8 +560,8 @@ public class CreateTourFragment extends BaseFragment {
                                             List<Fragment> fragments = getActivity().getSupportFragmentManager().getFragments();
                                             for (int i = 0; i < fragments.size(); i++) {
                                                 BaseFragment fragment = (BaseFragment) fragments.get(i);
-                                                if (fragment instanceof GuideRegisterFragment) {
-                                                    ((GuideRegisterFragment)fragment).resetContents(null);
+                                                if (fragment instanceof MyPageTourListFragment) {
+                                                    ((MyPageTourListFragment)fragment).resetListView(null);
                                                 }
                                             }
                                         } else {
@@ -646,8 +692,8 @@ public class CreateTourFragment extends BaseFragment {
                                 List<Fragment> fragments = getActivity().getSupportFragmentManager().getFragments();
                                 for (int i = 0; i < fragments.size(); i++) {
                                     BaseFragment fragment = (BaseFragment) fragments.get(i);
-                                    if (fragment instanceof GuideRegisterFragment) {
-                                        ((GuideRegisterFragment)fragment).resetContents(null);
+                                    if (fragment instanceof MyPageTourListFragment) {
+                                        ((MyPageTourListFragment)fragment).resetListView(null);
                                     }
                                 }
 
