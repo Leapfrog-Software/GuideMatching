@@ -446,13 +446,22 @@
 
                 <!-- 備考 -->
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remarks"
+                    android:textSize="16dp"
+                    android:textColor="@color/mainBlack"
+                    android:textStyle="bold"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"/>
+                <TextView
                     android:id="@+id/notesTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="備考"
                     android:textSize="14dp"
                     android:textColor="@color/mainBlack"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"/>
 

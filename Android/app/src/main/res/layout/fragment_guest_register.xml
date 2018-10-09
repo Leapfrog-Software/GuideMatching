@@ -44,87 +44,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- 顔画像 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Images"
-                        android:textSize="14dp"
-                        android:textColor="@color/mainBlack"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="8dp">
-                        <ImageButton
-                            android:id="@+id/face1ImageButton"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="50dp"
-                            android:src="@drawable/image_guide"
-                            android:scaleType="fitCenter"
-                            android:background="#0000"/>
-                        <ImageButton
-                            android:id="@+id/face2ImageButton"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="50dp"
-                            android:src="@drawable/image_guide"
-                            android:scaleType="fitCenter"
-                            android:background="#0000"
-                            android:layout_marginLeft="20dp"/>
-                        <ImageButton
-                            android:id="@+id/face3ImageButton"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="50dp"
-                            android:src="@drawable/image_guide"
-                            android:scaleType="fitCenter"
-                            android:background="#0000"
-                            android:layout_marginLeft="20dp"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Email -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Email"
-                        android:textSize="14dp"
-                        android:textColor="@color/mainBlack"/>
-                    <EditText
-                        android:id="@+id/emailEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:inputType="text"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/shape_edittext"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"/>
-                    <TextView
-                        android:id="@+id/emailTextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:text="mail@mail.com"
-                        android:textSize="14dp"
-                        android:textColor="@color/mainBlack"
-                        android:gravity="center_vertical"/>
-                </LinearLayout>
-
                 <!-- Name -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -173,6 +92,87 @@
                         android:background="@drawable/shape_edittext"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"/>
+                </LinearLayout>
+
+                <!-- Email -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"/>
+                    <EditText
+                        android:id="@+id/emailEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:inputType="text"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/shape_edittext"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"/>
+                    <TextView
+                        android:id="@+id/emailTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="mail@mail.com"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"
+                        android:gravity="center_vertical"/>
+                </LinearLayout>
+
+                <!-- 顔画像 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Images"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+                        <ImageButton
+                            android:id="@+id/face1ImageButton"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="50dp"
+                            android:src="@drawable/image_guide"
+                            android:scaleType="fitCenter"
+                            android:background="#0000"/>
+                        <ImageButton
+                            android:id="@+id/face2ImageButton"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="50dp"
+                            android:src="@drawable/image_guide"
+                            android:scaleType="fitCenter"
+                            android:background="#0000"
+                            android:layout_marginLeft="20dp"/>
+                        <ImageButton
+                            android:id="@+id/face3ImageButton"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="50dp"
+                            android:src="@drawable/image_guide"
+                            android:scaleType="fitCenter"
+                            android:background="#0000"
+                            android:layout_marginLeft="20dp"/>
+                    </LinearLayout>
                 </LinearLayout>
 
                 <!-- Passport -->
