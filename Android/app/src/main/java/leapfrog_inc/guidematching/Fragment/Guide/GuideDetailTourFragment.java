@@ -71,6 +71,11 @@ public class GuideDetailTourFragment extends BaseFragment {
         ((TextView)view.findViewById(R.id.returnDetailTextView)).setText(mTourData.returnDetail);
         ((TextView)view.findViewById(R.id.inclusionsTextView)).setText(mTourData.inclusions);
         ((TextView)view.findViewById(R.id.exclusionsTextView)).setText(mTourData.exclusions);
+
+        ((TextView)view.findViewById(R.id.tourFeeTextView)).setText(CommonUtility.digit3Format(mTourData.fee) + " JPY");
+        int transactionFee = CommonUtility.calculateTransactionFee(mTourData.fee);
+        ((TextView)view.findViewById(R.id.transactionFeeTextView)).setText(CommonUtility.digit3Format(transactionFee) + " JPY");
+        ((TextView)view.findViewById(R.id.totalFeeTextView)).setText(CommonUtility.digit3Format(mTourData.fee + transactionFee) + " JPY");
     }
 
     private void initAction(View view) {

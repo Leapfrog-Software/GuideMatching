@@ -257,6 +257,88 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Guide fee"
+                    android:textSize="14dp"
+                    android:textColor="@color/mainBlack"
+                    android:textStyle="bold"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tour fee"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack" />
+                    <TextView
+                        android:id="@+id/tourFeeTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="10,000 JPY"
+                        android:textSize="14dp"
+                        android:gravity="right"
+                        android:textColor="@color/mainBlack"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Transaction fee"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainBlack" />
+                    <TextView
+                        android:id="@+id/transactionFeeTextView"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="10,000 JPY"
+                        android:textSize="14dp"
+                        android:gravity="right"
+                        android:textColor="@color/mainBlack"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="right">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/mainOrange" />
+                    <TextView
+                        android:id="@+id/totalFeeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10,000 JPY"
+                        android:textSize="14dp"
+                        android:textColor="@color/mainOrange"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"/>
+                </LinearLayout>
+
                 <Button
                     android:id="@+id/messageButton"
                     android:layout_width="match_parent"
