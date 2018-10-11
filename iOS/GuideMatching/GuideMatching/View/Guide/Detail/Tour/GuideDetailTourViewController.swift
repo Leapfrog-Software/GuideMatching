@@ -24,6 +24,9 @@ class GuideDetailTourViewController: UIViewController {
     @IBOutlet private weak var returnDetailLabel: UILabel!
     @IBOutlet private weak var inclusionsLabel: UILabel!
     @IBOutlet private weak var exclusionsLabel: UILabel!
+    @IBOutlet private weak var tourFeeLabel: UILabel!
+    @IBOutlet private weak var transactionFeeLabel: UILabel!
+    @IBOutlet private weak var totalFeeLabel: UILabel!
     
     private var guideId: String!
     private var tourData: GuideTourData!
@@ -70,6 +73,11 @@ class GuideDetailTourViewController: UIViewController {
         self.returnDetailLabel.text = self.tourData.returnDetail
         self.inclusionsLabel.text = self.tourData.inclusions
         self.exclusionsLabel.text = self.tourData.exclusions
+        
+        self.tourFeeLabel.text = CommonUtility.digit3Format(value: self.tourData.fee) + " JPY"
+        let transactionFee = CommonUtility.calculateTransactionFee(of: self.tourData.fee)
+        self.transactionFeeLabel.text = CommonUtility.digit3Format(value: transactionFee) + " JPY"
+        self.totalFeeLabel.text = CommonUtility.digit3Format(value: self.tourData.fee + transactionFee) + " JPY"
     }
     
     private func addHighlights(title: String, imageUrl: String, body: String) {
