@@ -105,6 +105,13 @@ class GuideRegisterViewController: KeyboardRespondableViewController {
         self.applicableNumberIndex = self.applicableNumbers.index(of: myGuideData.applicableNumber) ?? 0
     }
     
+    private func showStripeNotes() {
+        let action = DialogAction(title: "OK", action: {
+            self.stackTabbar()
+        })
+        Dialog.show(style: .success, title: "メールを送信しました", message: "メールの内容に沿って銀行口座と支払いサイクルの設定を行ってください", actions: [action])
+    }
+    
     private func stackTabbar() {
         if let splashViewController = self.parent?.parent {
             let tabbar = self.viewController(storyboard: "Initial", identifier: "TabbarViewController") as! TabbarViewController
@@ -386,7 +393,7 @@ extension GuideRegisterViewController {
                                     saveData.guideId = guideId
                                     saveData.save()
                                     
-                                    self.stackTabbar()
+                                    self.showStripeNotes()
                                 })
                             } else {
                                 Loading.stop()
