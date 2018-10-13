@@ -16,6 +16,7 @@ class MyPageGuideButtonTableViewCell: UITableViewCell {
         case schedule
         case history
         case review
+        case payment
     }
     
     private var didTap: ((ButtonType) -> ())?
@@ -42,5 +43,9 @@ class MyPageGuideButtonTableViewCell: UITableViewCell {
     
     @IBAction func onTapReview(_ sender: Any) {
         self.didTap?(.review)
+    }
+    
+    @IBAction func onTapPayment(_ sender: Any) {
+        self.didTap?(.payment)
     }
 }

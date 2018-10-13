@@ -224,6 +224,9 @@ extension MyPageViewController: UITableViewDelegate, UITableViewDataSource {
             let review = self.viewController(storyboard: "MyPage", identifier: "CustomerReviewViewController") as! CustomerReviewViewController
             review.set(guideId: SaveData.shared.guideId)
             self.tabbarViewController()?.stack(viewController: review, animationType: .horizontal)
-        }
+        case .payment:
+            let payment = self.viewController(storyboard: "MyPage", identifier: "MyPagePaymentViewController") as! MyPagePaymentViewController
+            self.tabbarViewController()?.stack(viewController: payment, animationType: .horizontal)
+        }        
     }
 }

@@ -64,7 +64,7 @@ class MyPageAccountEditViewController: UIViewController {
                 GuideRequester.shared.fetch(completion: { _ in
                     Loading.stop()
                     
-                    (self.parent as? MyPagePaymentViewController)?.reloadTable()
+//                    (self.parent as? MyPagePaymentViewController)?.reloadTable()
                     
                     let action = DialogAction(title: "OK", action: {
                         self.pop(animationType: .horizontal)

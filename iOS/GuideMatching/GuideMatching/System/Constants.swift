@@ -29,5 +29,8 @@ class Constants {
     struct Stripe {
         static let Key = "pk_test_YA3x9LrmFX1C7annyyM1iEg3"
 //        static let Key = "pk_test_PMO8LzsVdmpwxs0s3GXnRoRa"     // 開発用
+        
+//        static let dashboardUrl = "https://dashboard.stripe.com/login"
+        static let dashboardUrl = "https://dashboard.stripe.com/test/login"     // テスト環境
     }
 }
