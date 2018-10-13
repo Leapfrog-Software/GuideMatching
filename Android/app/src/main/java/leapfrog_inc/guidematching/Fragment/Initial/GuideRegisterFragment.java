@@ -499,7 +499,7 @@ public class GuideRegisterFragment extends BaseFragment {
                                         saveData.guideId = guideId;
                                         saveData.save();
 
-                                        stackFragment(new TabbarFragment(), AnimationType.none);
+                                        showStripeNotes();
                                     }
                                 });
                             } else {
@@ -513,6 +513,16 @@ public class GuideRegisterFragment extends BaseFragment {
                     Loading.stop(getActivity());
                     showCommunicationError();
                 }
+            }
+        });
+    }
+
+    private void showStripeNotes() {
+
+        Dialog.show(getActivity(), Dialog.Style.success, "メールを送信しました", "メールの内容に沿って銀行口座と支払いサイクルの設定を行ってください", new Dialog.DialogCallback() {
+            @Override
+            public void didClose() {
+                stackFragment(new TabbarFragment(), AnimationType.none);
             }
         });
     }
