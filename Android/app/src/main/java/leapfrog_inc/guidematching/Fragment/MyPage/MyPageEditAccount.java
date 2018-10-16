@@ -111,7 +111,7 @@ public class MyPageEditAccount extends BaseFragment {
         for (int i = 0; i < fragments.size(); i++) {
             BaseFragment fragment = (BaseFragment) fragments.get(i);
             if (fragment instanceof MyPagePaymentFragment) {
-                ((MyPagePaymentFragment)fragment).resetListView(null);
+//                ((MyPagePaymentFragment)fragment).resetListView(null);
             }
         }
 

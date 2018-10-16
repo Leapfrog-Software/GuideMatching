@@ -158,6 +158,9 @@ public class MyPageFragment extends BaseFragment {
             MyPageReviewFragment fragment = new MyPageReviewFragment();
             fragment.set(SaveData.getInstance().guideId);
             stackFragment(fragment, AnimationType.horizontal);
+        } else if (type == GuideButtonType.payment) {
+            MyPagePaymentFragment fragment = new MyPagePaymentFragment();
+            stackFragment(fragment, AnimationType.horizontal);
         }
     }
 
@@ -298,6 +301,7 @@ public class MyPageFragment extends BaseFragment {
                 setGuideButtonCallback(convertView.findViewById(R.id.scheduleButton), GuideButtonType.schedule);
                 setGuideButtonCallback(convertView.findViewById(R.id.historyButton), GuideButtonType.history);
                 setGuideButtonCallback(convertView.findViewById(R.id.reviewButton), GuideButtonType.review);
+                setGuideButtonCallback(convertView.findViewById(R.id.paymentButton), GuideButtonType.payment);
 
             } else if (data.type == MyPageAdapterType.guestButton) {
                 convertView = mInflater.inflate(R.layout.adapter_mypage_guestbutton, parent, false);
@@ -321,7 +325,8 @@ public class MyPageFragment extends BaseFragment {
         tour,
         schedule,
         history,
-        review
+        review,
+        payment
     }
 
     private interface GuideButtonCallback {

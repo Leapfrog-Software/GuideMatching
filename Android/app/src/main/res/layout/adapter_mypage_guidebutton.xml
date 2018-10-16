@@ -104,7 +104,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="120dp"
         android:orientation="horizontal"
         android:layout_marginTop="30dp">
 
@@ -168,10 +168,45 @@
                 android:background="#0000"/>
         </FrameLayout>
 
-        <View
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="1dp"/>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/mypage_payment"
+                    android:scaleType="fitCenter"
+                    android:layout_gravity="center_horizontal" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Payment"
+                    android:textSize="16dp"
+                    android:textColor="@color/mainBlack"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="新規登録は選択\nしないでください"
+                    android:textColor="#f00"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:gravity="center_horizontal"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/paymentButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#0000"/>
+        </FrameLayout>
 
     </LinearLayout>
 

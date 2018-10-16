@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -15,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import leapfrog_inc.guidematching.Fragment.BaseFragment;
+import leapfrog_inc.guidematching.Fragment.Common.Loading;
 import leapfrog_inc.guidematching.Http.DataModel.GuestData;
 import leapfrog_inc.guidematching.Http.DataModel.GuideData;
 import leapfrog_inc.guidematching.Http.DataModel.ReserveData;
@@ -36,7 +40,7 @@ public class MyPagePaymentFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_mypage_payment, null);
 
         initAction(view);
-        resetListView(view);
+        initWebView(view);
 
         return view;
     }
@@ -51,158 +55,33 @@ public class MyPagePaymentFragment extends BaseFragment {
         });
     }
 
-    public void resetListView(View v) {
+    private void initWebView(View view) {
 
-        View view = v;
-        if (view == null) view = getView();
+        WebView webView = (WebView) view.findViewById(R.id.webView);
+        webView.setWebViewClient(new PaymentWebViewClient());
 
-        MyPagePaymentAdapter adapter = new MyPagePaymentAdapter(getActivity(), this);
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
 
-        GuideData myGuideData = FetchGuideRequester.getInstance().query(SaveData.getInstance().guideId);
+        webView.loadUrl(Constants.Stripe.dashboardUrl);
 
-        // TODO トータルじゃなく今月
-
-        int total = 0;
-        ArrayList<ReserveData> reserveList = FetchReserveRequester.getInstance().mDataList;
-        for (int i = 0; i < reserveList.size(); i++) {
-            if (reserveList.get(i).guideId.equals(myGuideData.id)) {
-                total += myGuideData.fee * (reserveList.get(i).endTime - reserveList.get(i).startTime);
-            }
-        }
-        MyPagePaymentAdapterData currentFeeAdapterData = new MyPagePaymentAdapterData();
-        currentFeeAdapterData.type = MyPagePaymentAdapterType.currentFee;
-        currentFeeAdapterData.currentFee = total;
-        adapter.add(currentFeeAdapterData);
-
-        ArrayList<Calendar> monthList = getMonthList();
-        if (monthList.size() == 0) {
-            MyPagePaymentAdapterData historyNoneAdapterData = new MyPagePaymentAdapterData();
-            historyNoneAdapterData.type = MyPagePaymentAdapterType.historyNone;
-            adapter.add(historyNoneAdapterData);
-        } else {
-            for (int i = 0; i < monthList.size(); i++) {
-                int amount = 0;
-                Calendar month = monthList.get(i);
-                for (int j = 0; j < reserveList.size(); j++) {
-                    ReserveData reserveData = reserveList.get(j);
-                    if (reserveData.guideId.equals(myGuideData.id)) {
-                        if (DateUtility.isSameMonth(month, reserveData.toStartDate())) {
-                            amount += myGuideData.fee * (reserveData.endTime - reserveData.startTime);
-                        }
-                    }
-                }
-                MyPagePaymentAdapterData historyAdapterData = new MyPagePaymentAdapterData();
-                historyAdapterData.type = MyPagePaymentAdapterType.history;
-
-                String monthString = DateUtility.dateToString(month.getTime(), "M");
-                historyAdapterData.monthString = monthString + "/25 " + monthString + "月分";
-                historyAdapterData.monthFee = amount;
-                adapter.add(historyAdapterData);
-            }
-        }
-
-        MyPagePaymentAdapterData accountAdapterData = new MyPagePaymentAdapterData();
-        accountAdapterData.type = MyPagePaymentAdapterType.account;
-        accountAdapterData.accountData = myGuideData.bankAccount;
-        adapter.add(accountAdapterData);
-
-        ListView listView = (ListView)view.findViewById(R.id.listView);
-        adapter.notifyDataSetChanged();
-        listView.setAdapter(adapter);
+        Loading.start(getActivity());
     }
 
-    private ArrayList<Calendar> getMonthList() {
+    private class PaymentWebViewClient extends WebViewClient {
 
-        ArrayList<Calendar> ret = new ArrayList<Calendar>();
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
 
-        ArrayList<ReserveData> reserveList = FetchReserveRequester.getInstance().mDataList;
-        for (int i = 0; i < reserveList.size(); i++) {
-
-            boolean find = false;
-            for (int j = 0; j < ret.size(); j++) {
-                if (DateUtility.isSameMonth(ret.get(j), reserveList.get(i).toStartDate())) {
-                    find = true;
-                    break;
-                }
-            }
-            if (find == false) {
-                ret.add(reserveList.get(i).toStartDate());
-            }
-        }
-        return ret;
-    }
-
-    private void onTapRegisterAccount() {
-        stackFragment(new MyPageEditAccount(), AnimationType.horizontal);
-    }
-
-    private enum MyPagePaymentAdapterType {
-        currentFee,
-        history,
-        historyNone,
-        account
-    }
-
-    private class MyPagePaymentAdapterData {
-        MyPagePaymentAdapterType type;
-        int currentFee;
-        String monthString;
-        int monthFee;
-        GuideData.GuideBankAccountData accountData;
-    }
-
-    private class MyPagePaymentAdapter extends ArrayAdapter<MyPagePaymentAdapterData> {
-
-        LayoutInflater mInflater;
-        Context mContext;
-        MyPagePaymentFragment mFragment;
-
-        public MyPagePaymentAdapter(Context context, MyPagePaymentFragment fragment){
-            super(context, 0);
-            mInflater = LayoutInflater.from(context);
-            mContext = context;
-            mFragment = fragment;
+            Loading.stop(getActivity());
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            super.onReceivedError(view, errorCode, description, failingUrl);
 
-            MyPagePaymentAdapterData data = getItem(position);
-
-            if (data.type == MyPagePaymentAdapterType.currentFee) {
-                convertView = mInflater.inflate(R.layout.adapter_mypage_payment_currentfee, parent, false);
-                String fee = "¥" + CommonUtility.digit3Format(data.currentFee);
-                ((TextView)convertView.findViewById(R.id.feeTextView)).setText(fee);
-
-            } else if (data.type == MyPagePaymentAdapterType.history) {
-                convertView = mInflater.inflate(R.layout.adapter_mypage_payment_history, parent, false);
-
-                ((TextView)convertView.findViewById(R.id.monthTextView)).setText(data.monthString);
-                String fee = "¥" + CommonUtility.digit3Format(data.monthFee);
-                ((TextView)convertView.findViewById(R.id.feeTextView)).setText(fee);
-
-            } else if (data.type == MyPagePaymentAdapterType.historyNone) {
-                convertView = mInflater.inflate(R.layout.adapter_mypage_payment_history_none, parent, false);
-
-            } else if (data.type == MyPagePaymentAdapterType.account) {
-                convertView = mInflater.inflate(R.layout.adapter_mypage_payment_account, parent, false);
-
-                ((TextView)convertView.findViewById(R.id.nameTextView)).setText(data.accountData.name);
-                ((TextView)convertView.findViewById(R.id.kanaTextView)).setText(data.accountData.kana);
-                ((TextView)convertView.findViewById(R.id.bankTextView)).setText(data.accountData.bankName);
-                ((TextView)convertView.findViewById(R.id.bankBranchTextView)).setText(data.accountData.bankBranchName);
-                ((TextView)convertView.findViewById(R.id.accountTypeTextView)).setText(data.accountData.accountType);
-                ((TextView)convertView.findViewById(R.id.accountNumberTextView)).setText(data.accountData.accountNumber);
-
-                convertView.findViewById(R.id.registerButton).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mFragment.onTapRegisterAccount();
-                    }
-                });
-            }
-
-            return convertView;
+            Loading.stop(getActivity());
         }
     }
 }
