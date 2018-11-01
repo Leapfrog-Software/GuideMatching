@@ -47,17 +47,17 @@ else {
 
 function createGuide() {
 
-  $email = $_POST["email"];
-  $name = $_POST["name"];
-  $nationality = $_POST["nationality"];
-  $language = $_POST["language"];
-  $area = $_POST["area"];
-  $keyword = $_POST["keyword"];
-  $category = $_POST["category"];
-  $message = $_POST["message"];
-  $applicableNumber = $_POST["applicableNumber"];
-  $fee = $_POST["fee"];
-  $notes = $_POST["notes"];
+  $email = getParam("email");
+  $name = getParam("name");
+  $nationality = getParam("nationality");
+  $language = getParam("language");
+  $area = getParam("area");
+  $keyword = getParam("keyword");
+  $category = getParam("category");
+  $message = getParam("message");
+  $applicableNumber = getParam("applicableNumber");
+  $fee = getParam("fee");
+  $notes = getParam("notes");
 
   $guideId = Guide::create($email, $name, $nationality, $language, $area, $keyword, $category, $message, $applicableNumber, $fee, $notes);
   if (is_null($guideId)) {
@@ -69,8 +69,8 @@ function createGuide() {
 
 function uploadGuideImage() {
 
-  $guideId = $_POST["guideId"];
-  $suffix = $_POST["suffix"];
+  $guideId = getParam("guideId");
+  $suffix = getParam("suffix");
   $file = $_FILES['image']['tmp_name'];
   if (Guide::uploadImage($guideId, $suffix, $file)) {
     echo(json_encode(Array("result" => "0")));
@@ -81,21 +81,21 @@ function uploadGuideImage() {
 
 function updateGuide() {
 
-  $id = $_POST["id"];
-  $name = $_POST["name"];
-  $nationality = $_POST["nationality"];
-  $language = $_POST["language"];
-  $area = $_POST["area"];
-  $keyword = $_POST["keyword"];
-  $category = $_POST["category"];
-  $message = $_POST["message"];
-  $applicableNumber = $_POST["applicableNumber"];
-  $fee = $_POST["fee"];
-  $notes = $_POST["notes"];
-  $schedules = $_POST["schedules"];
-  $tours = $_POST["tours"];
-  $stripeAccountId = $_POST["stripeAccountId"];
-  $bankAccount = $_POST["bankAccount"];
+  $id = getParam("id");
+  $name = getParam("name");
+  $nationality = getParam("nationality");
+  $language = getParam("language");
+  $area = getParam("area");
+  $keyword = getParam("keyword");
+  $category = getParam("category");
+  $message = getParam("message");
+  $applicableNumber = getParam("applicableNumber");
+  $fee = getParam("fee");
+  $notes = getParam("notes");
+  $schedules = getParam("schedules");
+  $tours = getParam("tours");
+  $stripeAccountId = getParam("stripeAccountId");
+  $bankAccount = getParam("bankAccount");
 
   if (Guide::update($id, $name, $nationality, $language, $area, $keyword, $category, $message, $applicableNumber, $fee, $notes, $schedules, $tours, $stripeAccountId, $bankAccount)) {
     echo(json_encode(Array("result" => "0")));
@@ -134,9 +134,9 @@ function getGuide() {
 
 function createGuest() {
 
-  $email = $_POST["email"];
-  $name = $_POST["name"];
-  $nationality = $_POST["nationality"];
+  $email = getParam("email");
+  $name = getParam("name");
+  $nationality = getParam("nationality");
 
   $guestId = Guest::create($email, $name, $nationality);
   if (is_null($guestId)) {
@@ -148,8 +148,8 @@ function createGuest() {
 
 function uploadGuestImage() {
   
-  $guestId = $_POST["guestId"];
-  $suffix = $_POST["suffix"];
+  $guestId = getParam("guestId");
+  $suffix = getParam("suffix");
   $file = $_FILES['image']['tmp_name'];
   if (Guest::uploadImage($guestId, $suffix, $file)) {
     echo(json_encode(Array("result" => "0")));
@@ -160,10 +160,10 @@ function uploadGuestImage() {
 
 function updateGuest() {
 
-  $id = $_POST["id"];
-  $name = $_POST["name"];
-  $nationality = $_POST["nationality"];
-  $stripeCustomerId = $_POST["stripeCustomerId"];
+  $id = getParam("id");
+  $name = getParam("name");
+  $nationality = getParam("nationality");
+  $stripeCustomerId = getParam("stripeCustomerId");
 
   if (Guest::update($id, $name, $nationality, $stripeCustomerId)) {
     echo(json_encode(Array("result" => "0")));
@@ -190,8 +190,8 @@ function getGuest() {
 
 function uploadTourImage() {
 
-  $tourId = $_POST["tourId"];
-  $suffix = $_POST["suffix"];
+  $tourId = getParam("tourId");
+  $suffix = getParam("suffix");
   $file = $_FILES['image']['tmp_name'];
   if (Guide::uploadTourImage($tourId, $suffix, $file)) {
     echo(json_encode(Array("result" => "0")));
@@ -202,7 +202,7 @@ function uploadTourImage() {
 
 function login() {
 
-  $id = $_POST["id"];
+  $id = getParam("id");
   if (Guide::login($id)) {
     echo(json_encode(Array("result" => "0")));
   } else {
@@ -212,14 +212,14 @@ function login() {
 
 function createReserve() {
 
-  $guestId = $_POST["guestId"];
-  $guideId = $_POST["guideId"];
-  $fee = $_POST["fee"];
-  $applicationFee = $_POST["applicationFee"];
-  $meetingPlace = $_POST["meetingPlace"];
-  $day = $_POST["day"];
-  $startTime = $_POST["startTime"];
-  $endTime = $_POST["endTime"];
+  $guestId = getParam("guestId");
+  $guideId = getParam("guideId");
+  $fee = getParam("fee");
+  $applicationFee = getParam("applicationFee");
+  $meetingPlace = getParam("meetingPlace");
+  $day = getParam("day");
+  $startTime = getParam("startTime");
+  $endTime = getParam("endTime");
 
   if (Reserve::create($guestId, $guideId, $fee, $applicationFee, $meetingPlace, $day, $startTime, $endTime)) {
     echo(json_encode(Array("result" => "0")));
@@ -250,7 +250,7 @@ function getReserve() {
 
 function getMessage() {
 
-  $userId = $_POST["userId"];
+  $userId = getParam("userId");
   $data = [];
   $messageList = Message::readMessage($userId);
   foreach ($messageList as $message) {
@@ -271,11 +271,11 @@ function postMessage() {
   date_default_timezone_set('Asia/Tokyo');
 
   $messageData = new MessageData();
-  $messageData->messageId = $_POST["messageId"];
-  $messageData->senderId = $_POST["senderId"];
-  $messageData->receiverId = $_POST["receiverId"];
+  $messageData->messageId = getParam("messageId");
+  $messageData->senderId = getParam("senderId");
+  $messageData->receiverId = getParam("receiverId");
   $messageData->date = date('YmdHis');
-  $messageData->message = $_POST["message"];
+  $messageData->message = getParam("message");
   Message::append($messageData);
   echo(json_encode(Array("result" => "0")));
 }
@@ -299,11 +299,11 @@ function getEstimate() {
 function postEstimate() {
 
   $estimateData = new EstimateData();
-  $estimateData->reserveId = $_POST["reserveId"];
-  $estimateData->guestId = $_POST["guestId"];
-  $estimateData->guideId = $_POST["guideId"];
-  $estimateData->score = $_POST["score"];
-  $estimateData->comment = $_POST["comment"];
+  $estimateData->reserveId = getParam("reserveId");
+  $estimateData->guestId = getParam("guestId");
+  $estimateData->guideId = getParam("guideId");
+  $estimateData->score = getParam("score");
+  $estimateData->comment = getParam("comment");
 
   if (Estimate::append($estimateData)) {
     echo(json_encode(Array("result" => "0")));
@@ -312,6 +312,11 @@ function postEstimate() {
   }
 }
 
+function getParam($key) {
+
+  $value = $_POST[$key];
+  return str_replace(" ", "+", $value);
+}
 
 function DebugSave($str){
 
